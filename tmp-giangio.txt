@@ -1,0 +1,5 @@
+https://pfnysxsjbiausyrwmqov.supabase.co
+
+sb_publishable_-Poaigk_9aHnMYy5ZOnRrQ_Uk4BVPAQ
+
+npx cap sync) quando il frontend sarà pronto.
