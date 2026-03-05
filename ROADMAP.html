@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roadmap App "Drive Tracker" (Aggiornata)</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; line-height: 1.6; color: #333; max-width: 900px; margin: 0 auto; padding: 20px; }
+        h1 { color: #2c3e50; border-bottom: 2px solid #3498db; padding-bottom: 10px; }
+        h2 { color: #2980b9; margin-top: 30px; }
+        h3 { color: #e67e22; margin-top: 20px; font-size: 1.1em; }
+        ul { list-style-type: none; padding-left: 0; }
+        li { margin-bottom: 8px; padding: 10px; background: #f8f9fa; border-left: 4px solid #bdc3c7; }
+        .dev1 { border-left-color: #3498db; }
+        .dev2 { border-left-color: #e74c3c; }
+        .step { font-weight: bold; color: #555; }
+        .legend { display: flex; gap: 20px; margin-bottom: 20px; padding: 15px; background: #eee; border-radius: 5px; }
+        .badge { padding: 4px 8px; border-radius: 4px; color: white; font-size: 0.85em; font-weight: bold; }
+        .bg-blue { background-color: #3498db; }
+        .bg-red { background-color: #e74c3c; }
+    </style>
+</head>
+<body>
+
+    <h1>Roadmap di Sviluppo: App Tracciamento Auto</h1>
+    
+    <div class="legend">
+        <div><span class="badge bg-blue">Sviluppatore 1</span> = Frontend (UI, React, Mappe)</div>
+        <div><span class="badge bg-red">Sviluppatore 2</span> = Backend & Core (Capacitor, GPS, Database)</div>
+    </div>
+
+    <h2>1. FASE 1: Setup dell'Architettura e Database (Fondamenta)</h2>
+    
+    <h3>1.1 Sviluppatore 1: Setup Progetto Frontend</h3>
+    <ul>
+        <li class="dev1"><span class="step">1.1.1</span> Inizializzazione repository Git e progetto React (consigliato Vite con TypeScript).</li>
+        <li class="dev1"><span class="step">1.1.2</span> Installazione e configurazione di Tailwind CSS.</li>
+        <li class="dev1"><span class="step">1.1.3</span> Creazione della struttura base delle cartelle (es. <code>/components</code>, <code>/pages</code>, <code>/hooks</code>).</li>
+    </ul>
+
+    <h3>1.2 Sviluppatore 2: Setup Database e Motore Nativo</h3>
+    <ul>
+        <li class="dev2"><span class="step">1.2.1</span> Creazione progetto Supabase e design schema Database (Tabelle: <code>users</code>, <code>routes</code>).</li>
+        <li class="dev2"><span class="step">1.2.2</span> Installazione Capacitor nel progetto React e inizializzazione piattaforme (iOS/Android).</li>
+        <li class="dev2"><span class="step">1.2.3</span> Configurazione variabili d'ambiente (.env) per Supabase.</li>
+    </ul>
+
+    <h2>2. FASE 2: La Mappa e il Cuore del Tracking GPS</h2>
+    
+    <h3>2.1 Sviluppatore 1: Interfaccia Mappa e Schermate Iniziali</h3>
+    <ul>
+        <li class="dev1"><span class="step">2.1.1</span> Sviluppo schermata di caricamento (Splash Screen animato).</li>
+        <li class="dev1"><span class="step">2.1.2</span> Integrazione libreria mappa (Mapbox GL JS). Centratura iniziale statica.</li>
+        <li class="dev1"><span class="step">2.1.3</span> Sviluppo UI overlay: Bottone "START", menù in alto a destra, indicatori (velocità, tempo).</li>
+    </ul>
+
+    <h3>2.2 Sviluppatore 2: Logica Geolocation e Calcoli</h3>
+    <ul>
+        <li class="dev2"><span class="step">2.2.1</span> Implementazione <code>@capacitor/geolocation</code> per lettura coordinate (<code>watchPosition</code>).</li>
+        <li class="dev2"><span class="step">2.2.2</span> Sviluppo algoritmi per calcolo distanza (Haversine) e velocità istantanea.</li>
+        <li class="dev2"><span class="step">2.2.3</span> Creazione dello State Manager per passare coordinate live al Frontend.</li>
+    </ul>
+
+    <h2>3. FASE 3: Logica del Percorso, Traffico e Soste</h2>
+    
+    <h3>3.1 Sviluppatore 1: Rendering Dinamico della Linea</h3>
+    <ul>
+        <li class="dev1"><span class="step">3.1.1</span> Funzione per disegnare la Polyline sulla mappa usando l'array di coordinate in tempo reale.</li>
+        <li class="dev1"><span class="step">3.1.2</span> Logica cambio colore linea basata sulla velocità (Verde, Arancione, Rosso).</li>
+        <li class="dev1"><span class="step">3.1.3</span> Sviluppo UI per stato "In Pausa" e counter visibile.</li>
+    </ul>
+
+    <h3>3.2 Sviluppatore 2: Gestione Timer e Flusso Dati</h3>
+    <ul>
+        <li class="dev2"><span class="step">3.2.1</span> Creazione timer di partenza (Countdown 10s pre-avvio).</li>
+        <li class="dev2"><span class="step">3.2.2</span> Sviluppo logica Cronometri: Tempo Totale, Tempo Effettivo, Tempo di Sosta.</li>
+        <li class="dev2"><span class="step">3.2.3</span> Creazione struttura dati in memoria: accumulo <code>[lat, lng, velocità, timestamp]</code>.</li>
+    </ul>
+
+    <h2>4. FASE 4: Chiusura Percorso, Snapshot Mappa e Salvataggio</h2>
+    
+    <h3>4.1 Sviluppatore 1: Cattura Mappa e UI Resoconto</h3>
+    <ul>
+        <li class="dev1"><span class="step">4.1.1</span> Implementazione funzione di estrazione immagine: al click su "Fine", utilizzo di <code>map.getCanvas().toDataURL()</code> per generare un'immagine in Base64 del tracciato sulla mappa.</li>
+        <li class="dev1"><span class="step">4.1.2</span> Creazione Schermata "Resoconto Finale" per mostrare: Snapshot della mappa, Velocità Media/Max, Km, e Tempi.</li>
+        <li class="dev1"><span class="step">4.1.3</span> Creazione stato di "Caricamento Salvataggio" per l'attesa dell'upload sul cloud.</li>
+    </ul>
+
+    <h3>4.2 Sviluppatore 2: Elaborazione Dati e Storage Cloud</h3>
+    <ul>
+        <li class="dev2"><span class="step">4.2.1</span> Ricezione dell'immagine Base64 dal Frontend, conversione in file immagine e caricamento nel Cloud Storage di Supabase per ottenere un URL pubblico.</li>
+        <li class="dev2"><span class="step">4.2.2</span> Salvataggio nel Database (tabella <code>routes</code>) dell'URL dello snapshot assieme a tutte le statistiche finali del viaggio.</li>
+        <li class="dev2"><span class="step">4.2.3</span> Gestione errori di rete (es. salvataggio in local storage se offline, con riavvio automatico appena torna la connessione).</li>
+    </ul>
+
+    <h2>5. FASE 5: Menù, Cronologia e Utenti</h2>
+    
+    <h3>5.1 Sviluppatore 1: UI Impostazioni e Storico</h3>
+    <ul>
+        <li class="dev1"><span class="step">5.1.1</span> Creazione UI Impostazioni.</li>
+        <li class="dev1"><span class="step">5.1.2</span> Sviluppo schermata "I Miei Percorsi": lista che utilizza l'URL dello snapshot generato in Fase 4 come immagine di anteprima per ogni riga.</li>
+        <li class="dev1"><span class="step">5.1.3</span> Sviluppo schermata "Dettaglio Storico" per rivedere le statistiche complete di un viaggio passato.</li>
+    </ul>
+
+    <h3>5.2 Sviluppatore 2: Autenticazione e Query</h3>
+    <ul>
+        <li class="dev2"><span class="step">5.2.1</span> Integrazione sistema di Login/Registrazione con Supabase Auth.</li>
+        <li class="dev2"><span class="step">5.2.2</span> Creazione query per il recupero dei percorsi dal DB filtrati per l'utente loggato.</li>
+        <li class="dev2"><span class="step">5.2.3</span> Ottimizzazione: assicurarsi che il database restituisca i dati in modo paginato per non rallentare il caricamento se l'utente ha centinaia di viaggi.</li>
+    </ul>
+
+    <h2>6. FASE 6: Testing, iOS Build e Rifiniture</h2>
+    
+    <h3>6.1 Sviluppatore 1: Polish Interfaccia</h3>
+    <ul>
+        <li class="dev1"><span class="step">6.1.1</span> Controllo "Safe Area" per iOS (notch e barra inferiore).</li>
+        <li class="dev1"><span class="step">6.1.2</span> Aggiunta animazioni e transizioni di stato fluide.</li>
+        <li class="dev1"><span class="step">6.1.3</span> Supporto Dark Mode.</li>
+    </ul>
+
+    <h3>6.2 Sviluppatore 2: Compilazione Nativa e Background</h3>
+    <ul>
+        <li class="dev2"><span class="step">6.2.1</span> Configurazione del file <code>Info.plist</code> su Xcode per i permessi GPS (Background Location).</li>
+        <li class="dev2"><span class="step">6.2.2</span> Configurazione plugin per mantenere vivo il tracking GPS anche quando l'utente spegne lo schermo dell'iPhone.</li>
+        <li class="dev2"><span class="step">6.2.3</span> Rilascio su TestFlight per test reali in auto.</li>
+    </ul>
+
+</body>
+</html>
