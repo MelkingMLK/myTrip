@@ -1,0 +1,9 @@
+@import "tailwindcss";
+
+/* Il nostro reset per l'app mobile */
+body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden; 
+  background-color: #f3f4f6; 
+}
