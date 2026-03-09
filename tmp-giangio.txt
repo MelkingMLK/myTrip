@@ -3,3 +3,11 @@ https://pfnysxsjbiausyrwmqov.supabase.co
 sb_publishable_-Poaigk_9aHnMYy5ZOnRrQ_Uk4BVPAQ
 
 npx cap sync) quando il frontend sarà pronto.
+
++parziali del tempo in pausa
+
+PROPOSTE: 
+-anziché avere il pallino blu 
+mettiamo i loghi delle auto circoscritti in un cerchio di un colore selezionabile
+-impostazioni colori
+-dubito ma vedere dei player interfacciabili (o dei log)
