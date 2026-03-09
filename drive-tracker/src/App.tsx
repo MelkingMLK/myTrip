@@ -1,10 +1,19 @@
+import { useState, useEffect } from 'react';
+import SplashScreen from './components/SplashScreen';
+import MapOverlay from './components/MapOverlay';
+
 function App() {
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setIsLoading(false), 3000);
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
-    <div className="flex h-screen w-screen items-center justify-center bg-gray-900">
-      <h1 className="text-3xl font-bold text-white text-center">
-        Drive Tracker <br/> <span className="text-blue-400 text-xl">Setup completato! 🚗💨</span>
-      </h1>
-    </div>
+    <main className="h-screen w-screen overflow-hidden bg-black">
+      {isLoading ? <SplashScreen /> : <MapOverlay />}
+    </main> 
   );
 }
 
