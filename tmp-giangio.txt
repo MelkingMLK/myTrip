@@ -15,3 +15,8 @@ PROPOSTE:
 mettiamo i loghi delle auto circoscritti in un cerchio di un colore selezionabile
 -impostazioni colori
 -dubito ma vedere dei player interfacciabili (o dei log)
+
+
+---- step 4
+npm install @capacitor/network @capacitor/preferences
+npx cap sync

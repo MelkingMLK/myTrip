@@ -2,12 +2,12 @@ import { useEffect, useRef, useState } from 'react';
 import Map, { GeolocateControl, NavigationControl, Source, Layer, Marker } from 'react-map-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import { useDriveTracker } from '../hooks/useDriveTracker';
+import { routeManager } from '../services/routeManager'; // <-- IMPORTIAMO IL TUO SERVIZIO CLOUD
 
 const MAPBOX_TOKEN = import.meta.env.VITE_MAPBOX_TOKEN;
 
 type TripStats = { distance: number; maxSpeed: number; avgSpeed: number; time: number } | null;
 
-// Tipo per un viaggio salvato nello Storico
 type SavedTrip = {
   id: string;
   date: string;
@@ -18,38 +18,20 @@ type SavedTrip = {
   avgSpeed: number;
 };
 
-const calculateDistance = (route: any[]) => {
-  let totalDist = 0;
-  for (let i = 1; i < route.length; i++) {
-    const p1 = route[i - 1];
-    const p2 = route[i];
-    const R = 6371;
-    const dLat = (p2.lat - p1.lat) * (Math.PI / 180);
-    const dLon = (p2.lng - p1.lng) * (Math.PI / 180);
-    const a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-              Math.cos(p1.lat * (Math.PI / 180)) * Math.cos(p2.lat * (Math.PI / 180)) *
-              Math.sin(dLon / 2) * Math.sin(dLon / 2);
-    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-    totalDist += R * c;
-  }
-  return totalDist;
-};
-
 export default function MapOverlay() {
+  // Aggiunto totalTime, pauseTime e totalDistance dal tuo Hook (Sviluppatore 2)
   const {
-    status, countdown, effectiveTime, currentSpeed, route,
+    status, countdown, totalTime, effectiveTime, pauseTime, currentSpeed, totalDistance, route,
     startCountdown, pauseTracking, resumeTracking, stopTracking
   } = useDriveTracker();
 
   const mapRef = useRef<any>(null);
 
-  // Stati Fase 4 (Resoconto)
   const [showReport, setShowReport] = useState(false);
   const [mapSnapshot, setMapSnapshot] = useState<string | null>(null);
   const [tripStats, setTripStats] = useState<TripStats>(null);
   const [isSaving, setIsSaving] = useState(false);
 
-  // --- STATI FASE 5: STORICO (I MIEI PERCORSI) ---
   const [history, setHistory] = useState<SavedTrip[]>([]);
   const [showHistory, setShowHistory] = useState(false);
 
@@ -69,40 +51,71 @@ export default function MapOverlay() {
 
   const handleEndJourney = () => {
     const mapInstance = mapRef.current?.getMap();
-    if (mapInstance && route.length > 1) {
+    
+    if (mapInstance) {
+      // 1. Catturiamo lo snapshot
       const snapshot = mapInstance.getCanvas().toDataURL('image/png');
       setMapSnapshot(snapshot);
 
-      const dist = calculateDistance(route);
-      const maxS = Math.max(...route.map((p: any) => p.speed));
+      // 2. Calcoli sicuri (anche se route è vuoto o ha 1 solo punto)
+      const dist = totalDistance;
+      const maxS = route.length > 0 ? Math.max(...route.map((p: any) => p.speed)) : 0;
       const avgS = effectiveTime > 0 ? (dist / (effectiveTime / 3600)) : 0;
 
+      // 3. Mostriamo il report!
       setTripStats({ distance: dist, maxSpeed: maxS, avgSpeed: avgS, time: effectiveTime });
       setShowReport(true);
+    } else {
+      console.error("Mappa non ancora caricata");
     }
+    
+    // Fermiamo il tracciamento
     stopTracking();
   };
 
-  // Salvataggio simulato e aggiunta allo storico locale
-  const handleSaveToCloud = () => {
+  // --- IL TUO COLLEGAMENTO AL BACKEND (Fase 4) ---
+  const handleSaveToCloud = async () => {
+    if (!tripStats || !mapSnapshot) return;
+    
     setIsSaving(true);
-    setTimeout(() => {
-      setIsSaving(false);
-      
-      // Creiamo l'oggetto del viaggio e lo mettiamo nell'array "history"
-      if (tripStats && mapSnapshot) {
-        const newTrip: SavedTrip = {
-          id: Date.now().toString(),
-          date: new Date().toLocaleDateString('it-IT', { day: '2-digit', month: 'short', hour: '2-digit', minute: '2-digit' }),
-          snapshot: mapSnapshot,
-          ...tripStats
-        };
-        setHistory(prev => [newTrip, ...prev]);
-      }
+
+    // 1. Prepariamo l'oggetto con le statistiche esatte che si aspetta routeManager
+    const statsPayload = {
+      distance_km: tripStats.distance,
+      avg_speed_kmh: tripStats.avgSpeed,
+      max_speed_kmh: tripStats.maxSpeed,
+      total_time_seconds: totalTime,
+      driving_time_seconds: effectiveTime,
+      pause_time_seconds: pauseTime,
+      route_data: route 
+    };
+
+    // 2. Chiamiamo il VERO salvataggio su Supabase
+    const result = await routeManager.saveRoute(mapSnapshot, statsPayload);
+    
+    setIsSaving(false);
+
+    if (result.success) {
+      // Manteniamo la logica visiva del tuo collega per aggiornare subito lo schermo
+      const newTrip: SavedTrip = {
+        id: Date.now().toString(),
+        date: new Date().toLocaleDateString('it-IT', { day: '2-digit', month: 'short', hour: '2-digit', minute: '2-digit' }),
+        snapshot: mapSnapshot,
+        ...tripStats
+      };
+      setHistory(prev => [newTrip, ...prev]);
 
       setShowReport(false);
-      alert("Viaggio salvato nel Cloud! Controlla 'I Miei Percorsi'.");
-    }, 2000);
+      
+      // Feedback basato sulla rete
+      if (result.offline) {
+        alert("Sei Offline. Il viaggio è stato salvato nel telefono e verrà caricato appena tornerà la connessione.");
+      } else {
+        alert("Viaggio salvato nel Cloud con successo! Controlla 'I Miei Percorsi'.");
+      }
+    } else {
+      alert("Si è verificato un errore durante il salvataggio.");
+    }
   };
 
   const routeGeoJSON: any = {
@@ -164,7 +177,7 @@ export default function MapOverlay() {
             </button>
           </div>
 
-          {/* ... [Resto dell'Overlay invariato: Countdown, Header Stato, Tachimetro, Tasti Start/Stop] ... */}
+          {/* Countdown */}
           {status === 'countdown' && (
             <div className="absolute inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm">
               <div className="flex flex-col items-center">
@@ -174,6 +187,7 @@ export default function MapOverlay() {
             </div>
           )}
 
+          {/* Header Stato */}
           <div className="absolute top-6 left-0 right-0 flex justify-center pointer-events-none px-4 z-10">
             <div className="flex items-center gap-3 bg-gray-900/90 backdrop-blur-xl border border-white/10 p-3 rounded-2xl shadow-2xl">
               <div className={`h-2 w-2 rounded-full ${status === 'paused' ? 'bg-yellow-500 animate-pulse' : status === 'tracking' ? 'bg-red-500 animate-pulse' : 'bg-green-500'}`} />
@@ -183,6 +197,7 @@ export default function MapOverlay() {
             </div>
           </div>
 
+          {/* Tachimetro e Timer */}
           {(status === 'tracking' || status === 'paused') && (
             <div className="absolute top-24 left-6 flex flex-col gap-3 z-10">
                <div className="bg-black/50 backdrop-blur-md p-4 rounded-2xl border w-24 shadow-lg border-white/10">
@@ -196,6 +211,7 @@ export default function MapOverlay() {
             </div>
           )}
 
+          {/* Tasti Controllo */}
           <div className="absolute bottom-12 left-0 right-0 px-6 z-10 flex gap-4 justify-center">
             {status === 'idle' && (
               <button onClick={startCountdown} className="flex-1 max-w-[200px] py-5 rounded-3xl font-black text-lg text-white bg-blue-600 border-b-4 border-blue-800 hover:bg-blue-500 transition-all active:scale-95 shadow-2xl">
@@ -240,7 +256,6 @@ export default function MapOverlay() {
               </div>
               <div className="bg-gray-800/50 p-4 rounded-2xl border border-white/5">
                 <p className="text-gray-400 text-xs font-bold uppercase mb-1">Vel Max</p>
-                {/* 🎯 APPICATO IL .toFixed(1) ALLA VELOCITA' MAX */}
                 <p className="text-white text-2xl font-black">{tripStats.maxSpeed.toFixed(1)} <span className="text-sm text-gray-400 font-medium">km/h</span></p>
               </div>
             </div>
@@ -259,16 +274,13 @@ export default function MapOverlay() {
       {showHistory && (
         <div className="absolute inset-0 z-50 bg-gray-900 flex flex-col p-6 animate-in slide-in-from-right duration-300">
           
-          {/* Header Storico */}
           <div className="flex items-center justify-between mt-8 mb-6">
             <h2 className="text-3xl font-black text-white tracking-tight">I Miei Percorsi</h2>
             <button onClick={() => setShowHistory(false)} className="bg-gray-800 p-3 rounded-full text-gray-400 hover:text-white transition-colors">
-              {/* Icona "X" per chiudere */}
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
             </button>
           </div>
 
-          {/* Lista dei Percorsi */}
           <div className="flex-1 overflow-y-auto pb-10 flex flex-col gap-4">
             {history.length === 0 ? (
               <div className="flex flex-col items-center justify-center h-full text-gray-500 gap-4">
@@ -278,11 +290,9 @@ export default function MapOverlay() {
             ) : (
               history.map((trip) => (
                 <div key={trip.id} className="bg-gray-800 rounded-2xl p-3 flex gap-4 border border-white/5 shadow-lg active:scale-[0.98] transition-all cursor-pointer">
-                  {/* Thumbnail (Snapshot Mappa) */}
                   <div className="w-24 h-24 rounded-xl overflow-hidden bg-gray-900 flex-shrink-0">
                     <img src={trip.snapshot} alt="Mappa" className="w-full h-full object-cover" />
                   </div>
-                  {/* Dati Viaggio */}
                   <div className="flex flex-col justify-center flex-1">
                     <p className="text-gray-400 text-xs font-semibold uppercase">{trip.date}</p>
                     <div className="flex items-baseline gap-1 mt-1">
