@@ -18,6 +18,7 @@
         .badge { padding: 4px 8px; border-radius: 4px; color: white; font-size: 0.85em; font-weight: bold; }
         .bg-blue { background-color: #3498db; }
         .bg-red { background-color: #e74c3c; }
+        .bonus { background-color: #fff3cd; border-left-color: #ffc107; }
     </style>
 </head>
 <body>
@@ -26,102 +27,106 @@
     
     <div class="legend">
         <div><span class="badge bg-blue">Sviluppatore 1</span> = Frontend (UI, React, Mappe)</div>
-        <div><span class="badge bg-red">Sviluppatore 2</span> = Backend & Core (Capacitor, GPS, Database)</div>
+        <div><span class="badge bg-red">Sviluppatore 2</span> = Backend & Core (Capacitor, GPS, DB)</div>
     </div>
 
     <h2>1. FASE 1: Setup dell'Architettura e Database (Fondamenta) COMPLETATO</h2>
     
     <h3>1.1 Sviluppatore 1: Setup Progetto Frontend</h3>
     <ul>
-        <li class="dev1"><span class="step">1.1.1</span> Inizializzazione repository Git e progetto React (consigliato Vite con TypeScript).</li>
+        <li class="dev1"><span class="step">1.1.1</span> Inizializzazione repository Git e progetto React.</li>
         <li class="dev1"><span class="step">1.1.2</span> Installazione e configurazione di Tailwind CSS.</li>
-        <li class="dev1"><span class="step">1.1.3</span> Creazione della struttura base delle cartelle (es. <code>/components</code>, <code>/pages</code>, <code>/hooks</code>).</li>
+        <li class="dev1"><span class="step">1.1.3</span> Creazione della struttura base delle cartelle.</li>
     </ul>
 
     <h3>1.2 Sviluppatore 2: Setup Database e Motore Nativo</h3>
     <ul>
-        <li class="dev2"><span class="step">1.2.1</span> Creazione progetto Supabase e design schema Database (Tabelle: <code>users</code>, <code>routes</code>).</li>
-        <li class="dev2"><span class="step">1.2.2</span> Installazione Capacitor nel progetto React e inizializzazione piattaforme (iOS/Android).</li>
-        <li class="dev2"><span class="step">1.2.3</span> Configurazione variabili d'ambiente (.env) per Supabase.</li>
+        <li class="dev2"><span class="step">1.2.1</span> Creazione progetto Supabase e design schema Database.</li>
+        <li class="dev2"><span class="step">1.2.2</span> Installazione Capacitor nel progetto React e inizializzazione piattaforme.</li>
+        <li class="dev2"><span class="step">1.2.3</span> Configurazione variabili d'ambiente (.env).</li>
     </ul>
 
     <h2>2. FASE 2: La Mappa e il Cuore del Tracking GPS COMPLETATO</h2>
     
     <h3>2.1 Sviluppatore 1: Interfaccia Mappa e Schermate Iniziali</h3>
     <ul>
-        <li class="dev1"><span class="step">2.1.1</span> Sviluppo schermata di caricamento (Splash Screen animato).</li>
-        <li class="dev1"><span class="step">2.1.2</span> Integrazione libreria mappa (Mapbox GL JS). Centratura iniziale statica.</li>
-        <li class="dev1"><span class="step">2.1.3</span> Sviluppo UI overlay: Bottone "START", menù in alto a destra, indicatori (velocità, tempo).</li>
+        <li class="dev1"><span class="step">2.1.1</span> Sviluppo schermata di caricamento.</li>
+        <li class="dev1"><span class="step">2.1.2</span> Integrazione libreria mappa (Mapbox GL JS).</li>
+        <li class="dev1"><span class="step">2.1.3</span> Sviluppo UI overlay: Bottone "START", menù.</li>
     </ul>
 
     <h3>2.2 Sviluppatore 2: Logica Geolocation e Calcoli</h3>
     <ul>
-        <li class="dev2"><span class="step">2.2.1</span> Implementazione <code>@capacitor/geolocation</code> per lettura coordinate (<code>watchPosition</code>).</li>
-        <li class="dev2"><span class="step">2.2.2</span> Sviluppo algoritmi per calcolo distanza (Haversine) e velocità istantanea.</li>
-        <li class="dev2"><span class="step">2.2.3</span> Creazione dello State Manager per passare coordinate live al Frontend.</li>
+        <li class="dev2"><span class="step">2.2.1</span> Implementazione lettura coordinate (<code>watchPosition</code>).</li>
+        <li class="dev2"><span class="step">2.2.2</span> Sviluppo algoritmi per calcolo distanza e velocità.</li>
+        <li class="dev2"><span class="step">2.2.3</span> Creazione dello State Manager.</li>
     </ul>
 
-    <h2>3. FASE 3: Logica del Percorso, Traffico e Soste</h2>
+    <h2>3. FASE 3: Logica del Percorso, Traffico e Soste COMPLETATO</h2>
     
     <h3>3.1 Sviluppatore 1: Rendering Dinamico della Linea</h3>
     <ul>
-        <li class="dev1"><span class="step">3.1.1</span> Funzione per disegnare la Polyline sulla mappa usando l'array di coordinate in tempo reale.</li>
-        <li class="dev1"><span class="step">3.1.2</span> Logica cambio colore linea basata sulla velocità (Verde, Arancione, Rosso).</li>
-        <li class="dev1"><span class="step">3.1.3</span> Sviluppo UI per stato "In Pausa" e counter visibile.</li>
+        <li class="dev1"><span class="step">3.1.1</span> Funzione per disegnare la Polyline sulla mappa.</li>
+        <li class="dev1"><span class="step">3.1.2</span> Logica cambio colore linea basata sulla velocità.</li>
+        <li class="dev1"><span class="step">3.1.3</span> Sviluppo UI per stato "In Pausa".</li>
     </ul>
 
     <h3>3.2 Sviluppatore 2: Gestione Timer e Flusso Dati</h3>
     <ul>
-        <li class="dev2"><span class="step">3.2.1</span> Creazione timer di partenza (Countdown 10s pre-avvio).</li>
-        <li class="dev2"><span class="step">3.2.2</span> Sviluppo logica Cronometri: Tempo Totale, Tempo Effettivo, Tempo di Sosta.</li>
-        <li class="dev2"><span class="step">3.2.3</span> Creazione struttura dati in memoria: accumulo <code>[lat, lng, velocità, timestamp]</code>.</li>
+        <li class="dev2"><span class="step">3.2.1</span> Creazione timer di partenza (Countdown 10s).</li>
+        <li class="dev2"><span class="step">3.2.2</span> Sviluppo logica Cronometri (Totale, Effettivo, Sosta).</li>
+        <li class="dev2"><span class="step">3.2.3</span> Creazione struttura dati in memoria.</li>
     </ul>
 
-    <h2>4. FASE 4: Chiusura Percorso, Snapshot Mappa e Salvataggio</h2>
+    <h2>4. FASE 4: Chiusura Percorso, Snapshot Mappa e Salvataggio COMPLETATO</h2>
     
     <h3>4.1 Sviluppatore 1: Cattura Mappa e UI Resoconto</h3>
     <ul>
-        <li class="dev1"><span class="step">4.1.1</span> Implementazione funzione di estrazione immagine: al click su "Fine", utilizzo di <code>map.getCanvas().toDataURL()</code> per generare un'immagine in Base64 del tracciato sulla mappa.</li>
-        <li class="dev1"><span class="step">4.1.2</span> Creazione Schermata "Resoconto Finale" per mostrare: Snapshot della mappa, Velocità Media/Max, Km, e Tempi.</li>
-        <li class="dev1"><span class="step">4.1.3</span> Creazione stato di "Caricamento Salvataggio" per l'attesa dell'upload sul cloud.</li>
+        <li class="dev1"><span class="step">4.1.1</span> Implementazione estrazione immagine mappa.</li>
+        <li class="dev1"><span class="step">4.1.2</span> Creazione Schermata "Resoconto Finale".</li>
+        <li class="dev1"><span class="step">4.1.3</span> Creazione stato di "Caricamento Salvataggio".</li>
     </ul>
 
     <h3>4.2 Sviluppatore 2: Elaborazione Dati e Storage Cloud</h3>
     <ul>
-        <li class="dev2"><span class="step">4.2.1</span> Ricezione dell'immagine Base64 dal Frontend, conversione in file immagine e caricamento nel Cloud Storage di Supabase per ottenere un URL pubblico.</li>
-        <li class="dev2"><span class="step">4.2.2</span> Salvataggio nel Database (tabella <code>routes</code>) dell'URL dello snapshot assieme a tutte le statistiche finali del viaggio.</li>
-        <li class="dev2"><span class="step">4.2.3</span> Gestione errori di rete (es. salvataggio in local storage se offline, con riavvio automatico appena torna la connessione).</li>
+        <li class="dev2"><span class="step">4.2.1</span> Upload immagine su Cloud Storage.</li>
+        <li class="dev2"><span class="step">4.2.2</span> Salvataggio Database statistiche.</li>
+        <li class="dev2"><span class="step">4.2.3</span> Gestione salvataggio offline locale.</li>
     </ul>
 
-    <h2>5. FASE 5: Menù, Cronologia e Utenti</h2>
+    <h2>5. FASE 5: Menù, Impostazioni, Cronologia e Utenti</h2>
     
     <h3>5.1 Sviluppatore 1: UI Impostazioni e Storico</h3>
     <ul>
-        <li class="dev1"><span class="step">5.1.1</span> Creazione UI Impostazioni.</li>
-        <li class="dev1"><span class="step">5.1.2</span> Sviluppo schermata "I Miei Percorsi": lista che utilizza l'URL dello snapshot generato in Fase 4 come immagine di anteprima per ogni riga.</li>
-        <li class="dev1"><span class="step">5.1.3</span> Sviluppo schermata "Dettaglio Storico" per rivedere le statistiche complete di un viaggio passato.</li>
+        <li class="dev1"><span class="step">5.1.1</span> Creazione UI Impostazioni generali.</li>
+        <li class="dev1"><span class="step">5.1.2</span> Sviluppo schermata "I Miei Percorsi".</li>
+        <li class="dev1"><span class="step">5.1.3</span> Sviluppo schermata "Dettaglio Storico".</li>
+        <li class="dev1"><span class="step">5.1.4</span> <b>UI Personalizzazione:</b> Sviluppo interfaccia per selezionare il logo dell'auto (SVG) e il colore del cerchio al posto del pallino blu.</li>
+        <li class="dev1 bonus"><span class="step">5.1.5</span> <b>(Bonus) Widget Spotify:</b> Creazione di un piccolo overlay a schermo per mostrare la copertina e il titolo del brano in riproduzione.</li>
     </ul>
 
-    <h3>5.2 Sviluppatore 2: Autenticazione e Query</h3>
+    <h3>5.2 Sviluppatore 2: Autenticazione, Query e Preferenze</h3>
     <ul>
         <li class="dev2"><span class="step">5.2.1</span> Integrazione sistema di Login/Registrazione con Supabase Auth.</li>
         <li class="dev2"><span class="step">5.2.2</span> Creazione query per il recupero dei percorsi dal DB filtrati per l'utente loggato.</li>
-        <li class="dev2"><span class="step">5.2.3</span> Ottimizzazione: assicurarsi che il database restituisca i dati in modo paginato per non rallentare il caricamento se l'utente ha centinaia di viaggi.</li>
+        <li class="dev2"><span class="step">5.2.3</span> Ottimizzazione: paginazione del database per lo storico.</li>
+        <li class="dev2"><span class="step">5.2.4</span> <b>DB Personalizzazione:</b> Aggiornamento della tabella <code>users</code> per salvare in cloud le preferenze estetiche (URL logo auto e codice HEX colore).</li>
+        <li class="dev2 bonus"><span class="step">5.2.5</span> <b>(Bonus) API Spotify:</b> Setup dell'autenticazione OAuth con Spotify e script per fetchare l'endpoint <code>/me/player/currently-playing</code>.</li>
     </ul>
 
     <h2>6. FASE 6: Testing, iOS Build e Rifiniture</h2>
     
     <h3>6.1 Sviluppatore 1: Polish Interfaccia</h3>
     <ul>
-        <li class="dev1"><span class="step">6.1.1</span> Controllo "Safe Area" per iOS (notch e barra inferiore).</li>
+        <li class="dev1"><span class="step">6.1.1</span> Controllo "Safe Area" per iOS.</li>
         <li class="dev1"><span class="step">6.1.2</span> Aggiunta animazioni e transizioni di stato fluide.</li>
         <li class="dev1"><span class="step">6.1.3</span> Supporto Dark Mode.</li>
     </ul>
 
     <h3>6.2 Sviluppatore 2: Compilazione Nativa e Background</h3>
     <ul>
-        <li class="dev2"><span class="step">6.2.1</span> Configurazione del file <code>Info.plist</code> su Xcode per i permessi GPS (Background Location).</li>
-        <li class="dev2"><span class="step">6.2.2</span> Configurazione plugin per mantenere vivo il tracking GPS anche quando l'utente spegne lo schermo dell'iPhone.</li>
+        <li class="dev2"><span class="step">6.2.1</span> Configurazione del file <code>Info.plist</code> su Xcode per i permessi GPS.</li>
+        <li class="dev2"><span class="step">6.2.2</span> Configurazione plugin tracking GPS in background.</li>
         <li class="dev2"><span class="step">6.2.3</span> Rilascio su TestFlight per test reali in auto.</li>
     </ul>
 
