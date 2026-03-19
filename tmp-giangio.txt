@@ -18,6 +18,20 @@ mettiamo i loghi delle auto circoscritti in un cerchio di un colore selezionabil
 -dubito ma vedere dei player spotify interfacciabili (o dei log)
 
 
----- step 4
+---- MELK
 npm install @capacitor/network @capacitor/preferences
 npx cap sync
+
+npm install @capacitor-community/background-geolocation
+npx cap sync
+
+
+---
+Fase 1: Il ponte tra Web e Nativo per iphone
+
+Prima di aprire Xcode, dobbiamo "impacchettare" il tuo codice React e iniettarlo nella cartella nativa di iOS, insieme al nuovo plugin del GPS.
+Apri il terminale nella tua cartella drive-tracker ed esegui in ordine questi tre comandi:
+
+npm run build
+npx cap sync ios
+npx cap open ios

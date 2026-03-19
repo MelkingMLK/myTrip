@@ -1,11 +1,21 @@
 import { useState, useRef, useEffect } from 'react';
-import { Geolocation, type Position } from '@capacitor/geolocation';
+import { registerPlugin } from '@capacitor/core';
 import { calculateDistance, calculateSpeed } from '../utils/geo';
+
+// Inizializziamo il plugin di Background Geolocation
+const BackgroundGeolocation = registerPlugin<any>('BackgroundGeolocation');
 
 export interface TrackingData {
   lat: number;
   lng: number;
   speed: number;
+  timestamp: number;
+}
+
+// Creiamo un tipo più semplice per l'ultima posizione, per slegarci dalle dipendenze del vecchio plugin
+interface SimplePosition {
+  lat: number;
+  lng: number;
   timestamp: number;
 }
 
@@ -23,8 +33,9 @@ export const useDriveTracker = () => {
   const [totalDistance, setTotalDistance] = useState(0);
   const [route, setRoute] = useState<TrackingData[]>([]);
 
+  // Il Watcher ID con questo plugin è una stringa
   const watchId = useRef<string | null>(null);
-  const lastPosition = useRef<Position | null>(null);
+  const lastPosition = useRef<SimplePosition | null>(null);
   const isPausedRef = useRef(false);
 
   // --- 1. GESTIONE SCORRIMENTO TEMPO ---
@@ -32,7 +43,6 @@ export const useDriveTracker = () => {
     let interval: ReturnType<typeof setInterval>;
 
     if (status === 'countdown') {
-      // Qui ci limitiamo SOLO a scalare il numero
       interval = setInterval(() => {
         setCountdown((prev) => prev - 1);
       }, 1000);
@@ -51,7 +61,6 @@ export const useDriveTracker = () => {
   }, [status]);
 
   // --- 2. CONTROLLO FINE COUNTDOWN ---
-  // Questo useEffect "osserva" il numero e fa scattare la magia quando arriva a 0
   useEffect(() => {
     if (status === 'countdown' && countdown <= 0) {
       startActualTracking();
@@ -71,58 +80,67 @@ export const useDriveTracker = () => {
   };
 
   const startActualTracking = async () => {
-    // Salvavita per Safari/Web: Proviamo a chiedere i permessi nativi...
-    try {
-      const permissions = await Geolocation.requestPermissions();
-      if (permissions.location !== 'granted') {
-         console.error("Permessi GPS negati");
-         setStatus('idle');
-         return;
-      }
-    } catch (error) {
-      // ...se il browser non supporta l'API dei permessi (come Safari), lo ignoriamo
-      // Il browser chiederà il permesso in automatico non appena chiameremo watchPosition
-      console.warn("Delego la richiesta dei permessi al browser");
-    }
-
-    // CAMBIAMO STATO! Questo fa sparire il pannello nero e fa comparire i bottoni Pausa/Stop
     setStatus('tracking'); 
     
-    watchId.current = await Geolocation.watchPosition(
-      { enableHighAccuracy: true, timeout: 10000, maximumAge: 0 },
-      (position, err) => {
-        if (err || !position) return;
-        
-        if (isPausedRef.current) {
-          setCurrentSpeed(0);
-          return;
+    try {
+      // Usiamo il nuovo plugin corazzato per il Background Tracking
+      const id = await BackgroundGeolocation.addWatcher(
+        {
+          backgroundTitle: "Tracciamento in corso",
+          backgroundMessage: "Drive Tracker sta registrando il tuo viaggio in background.",
+          requestPermissions: true, // Chiede in automatico i permessi "Sempre" su iOS
+          stale: false,
+          distanceFilter: 5 // Aggiorna ogni 5 metri per risparmiare un po' di batteria
+        },
+        (location: any, err: any) => {
+          if (err || !location) {
+            console.error("Errore GPS Background:", err);
+            return;
+          }
+          
+          if (isPausedRef.current) {
+            setCurrentSpeed(0);
+            return;
+          }
+
+          const latitude = location.latitude;
+          const longitude = location.longitude;
+          const timestamp = location.time || Date.now();
+          
+          // Il plugin restituisce la velocità in m/s (se disponibile)
+          let speed = location.speed != null ? (location.speed * 3.6) : 0; 
+
+          if (lastPosition.current) {
+              const distance = calculateDistance(
+                  lastPosition.current.lat,
+                  lastPosition.current.lng,
+                  latitude,
+                  longitude
+              );
+              
+              setTotalDistance(prev => prev + distance);
+
+              // Calcolo manuale se il GPS non fornisce la velocità nativa
+              if (location.speed == null) {
+                 const timeDiff = timestamp - lastPosition.current.timestamp;
+                 speed = calculateSpeed(distance, timeDiff);
+              }
+          }
+
+          setCurrentSpeed(speed);
+          lastPosition.current = { lat: latitude, lng: longitude, timestamp };
+          
+          setRoute(prev => [...prev, { lat: latitude, lng: longitude, speed, timestamp }]);
         }
+      );
 
-        const { latitude, longitude } = position.coords;
-        const timestamp = position.timestamp;
-        let speed = position.coords.speed !== null ? (position.coords.speed * 3.6) : 0; 
+      watchId.current = id;
 
-        if (lastPosition.current) {
-            const distance = calculateDistance(
-                lastPosition.current.coords.latitude,
-                lastPosition.current.coords.longitude,
-                latitude,
-                longitude
-            );
-            
-            setTotalDistance(prev => prev + distance);
-
-            if (position.coords.speed === null) {
-               const timeDiff = timestamp - lastPosition.current.timestamp;
-               speed = calculateSpeed(distance, timeDiff);
-            }
-        }
-
-        setCurrentSpeed(speed);
-        lastPosition.current = position;
-        setRoute(prev => [...prev, { lat: latitude, lng: longitude, speed, timestamp }]);
-      }
-    );
+    } catch (error) {
+      console.error("Errore avvio Background Geolocation:", error);
+      // Fallback in caso di Safari su Mac che non supporta il plugin nativo
+      alert("Il tracciamento in background è supportato solo sui dispositivi nativi (iOS/Android).");
+    }
   };
 
   const pauseTracking = () => {
@@ -137,8 +155,9 @@ export const useDriveTracker = () => {
   };
 
   const stopTracking = async () => {
+    // Rimuoviamo l'osservatore di sistema per fermare l'uso della batteria
     if (watchId.current) {
-      await Geolocation.clearWatch({ id: watchId.current });
+      await BackgroundGeolocation.removeWatcher({ id: watchId.current });
       watchId.current = null;
     }
     setStatus('finished');

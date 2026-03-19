@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Roadmap App "Drive Tracker" (Aggiornata)</title>
+    <title>Roadmap App "Drive Tracker" (Aggiornata con BETA)</title>
     <style>
         body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; line-height: 1.6; color: #333; max-width: 900px; margin: 0 auto; padding: 20px; }
         h1 { color: #2c3e50; border-bottom: 2px solid #3498db; padding-bottom: 10px; }
@@ -18,7 +18,9 @@
         .badge { padding: 4px 8px; border-radius: 4px; color: white; font-size: 0.85em; font-weight: bold; }
         .bg-blue { background-color: #3498db; }
         .bg-red { background-color: #e74c3c; }
+        .bg-purple { background-color: #8e44ad; }
         .bonus { background-color: #fff3cd; border-left-color: #ffc107; }
+        .beta-title { color: #8e44ad; border-bottom: 2px dashed #8e44ad; }
     </style>
 </head>
 <body>
@@ -28,6 +30,7 @@
     <div class="legend">
         <div><span class="badge bg-blue">Sviluppatore 1</span> = Frontend (UI, React, Mappe)</div>
         <div><span class="badge bg-red">Sviluppatore 2</span> = Backend & Core (Capacitor, GPS, DB)</div>
+        <div><span class="badge bg-purple">FASE BETA</span> = Funzionalità Post-Lancio</div>
     </div>
 
     <h2>1. FASE 1: Setup dell'Architettura e Database (Fondamenta) COMPLETATO</h2>
@@ -101,17 +104,13 @@
         <li class="dev1"><span class="step">5.1.1</span> Creazione UI Impostazioni generali.</li>
         <li class="dev1"><span class="step">5.1.2</span> Sviluppo schermata "I Miei Percorsi".</li>
         <li class="dev1"><span class="step">5.1.3</span> Sviluppo schermata "Dettaglio Storico".</li>
-        <li class="dev1"><span class="step">5.1.4</span> <b>UI Personalizzazione:</b> Sviluppo interfaccia per selezionare il logo dell'auto (SVG) e il colore del cerchio al posto del pallino blu.</li>
-        <li class="dev1 bonus"><span class="step">5.1.5</span> <b>(Bonus) Widget Spotify:</b> Creazione di un piccolo overlay a schermo per mostrare la copertina e il titolo del brano in riproduzione.</li>
     </ul>
 
-    <h3>5.2 Sviluppatore 2: Autenticazione, Query e Preferenze</h3>
+    <h3>5.2 Sviluppatore 2: Autenticazione e Query</h3>
     <ul>
         <li class="dev2"><span class="step">5.2.1</span> Integrazione sistema di Login/Registrazione con Supabase Auth.</li>
         <li class="dev2"><span class="step">5.2.2</span> Creazione query per il recupero dei percorsi dal DB filtrati per l'utente loggato.</li>
         <li class="dev2"><span class="step">5.2.3</span> Ottimizzazione: paginazione del database per lo storico.</li>
-        <li class="dev2"><span class="step">5.2.4</span> <b>DB Personalizzazione:</b> Aggiornamento della tabella <code>users</code> per salvare in cloud le preferenze estetiche (URL logo auto e codice HEX colore).</li>
-        <li class="dev2 bonus"><span class="step">5.2.5</span> <b>(Bonus) API Spotify:</b> Setup dell'autenticazione OAuth con Spotify e script per fetchare l'endpoint <code>/me/player/currently-playing</code>.</li>
     </ul>
 
     <h2>6. FASE 6: Testing, iOS Build e Rifiniture</h2>
@@ -128,6 +127,22 @@
         <li class="dev2"><span class="step">6.2.1</span> Configurazione del file <code>Info.plist</code> su Xcode per i permessi GPS.</li>
         <li class="dev2"><span class="step">6.2.2</span> Configurazione plugin tracking GPS in background.</li>
         <li class="dev2"><span class="step">6.2.3</span> Rilascio su TestFlight per test reali in auto.</li>
+    </ul>
+
+    <h2 class="beta-title">7. FASE BETA: Statistiche Globali, Personalizzazione e Widget</h2>
+    
+    <h3>7.1 Sviluppatore 1: UI Nuove Funzionalità</h3>
+    <ul>
+        <li class="dev1"><span class="step">7.1.1</span> <b>UI Statistiche Globali:</b> Sviluppo nuova sezione nel menù per mostrare i "Record Personali" (Velocità max assoluta, Media generale, Km totali, Tempo totale, Viaggio più lungo).</li>
+        <li class="dev1"><span class="step">7.1.2</span> <b>UI Personalizzazione Auto:</b> Schermata per selezionare il logo della propria auto (SVG) e il colore preferito per il cursore sulla mappa.</li>
+        <li class="dev1 bonus"><span class="step">7.1.3</span> <b>(Bonus) Widget Spotify:</b> Creazione di un overlay fluttuante per mostrare brano e copertina durante il viaggio.</li>
+    </ul>
+
+    <h3>7.2 Sviluppatore 2: Aggregazione Dati e Backend BETA</h3>
+    <ul>
+        <li class="dev2"><span class="step">7.2.1</span> <b>Query Aggregazione (Record Personali):</b> Creazione di una funzione RPC su Supabase o logica lato client per calcolare somme (SUM) e record (MAX) basati sull'intero storico dell'utente.</li>
+        <li class="dev2"><span class="step">7.2.2</span> <b>DB Preferenze:</b> Aggiornamento tabella <code>users</code> per poter salvare in cloud l'icona dell'auto e il colore scelto, così da mantenerli tra vari dispositivi.</li>
+        <li class="dev2 bonus"><span class="step">7.2.3</span> <b>(Bonus) API Spotify:</b> Setup dell'autenticazione OAuth con Spotify e polling dell'endpoint <code>/me/player/currently-playing</code>.</li>
     </ul>
 
 </body>
