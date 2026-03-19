@@ -6,6 +6,7 @@ npx cap sync quando il frontend sarà pronto.
 
 +parziali del tempo in pausa
 
+cd drive-tracker 
 npm run dev -- --force
 
 npm run dev
