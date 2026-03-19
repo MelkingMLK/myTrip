@@ -22,6 +22,8 @@ mettiamo i loghi delle auto circoscritti in un cerchio di un colore selezionabil
 npm install @capacitor/network @capacitor/preferences
 npx cap sync
 
+
+----
 npm install @capacitor-community/background-geolocation
 npx cap sync
 
