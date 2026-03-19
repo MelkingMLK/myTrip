@@ -14,7 +14,7 @@ PROPOSTE:
 -anziché avere il pallino blu 
 mettiamo i loghi delle auto circoscritti in un cerchio di un colore selezionabile
 -impostazioni colori
--dubito ma vedere dei player interfacciabili (o dei log)
+-dubito ma vedere dei player spotify interfacciabili (o dei log)
 
 
 ---- step 4
