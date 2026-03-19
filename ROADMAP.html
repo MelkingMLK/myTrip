@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Roadmap App "Drive Tracker" (Aggiornata con BETA)</title>
+    <title>Roadmap App "RoadRecord" (Aggiornata con BETA)</title>
     <style>
         body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; line-height: 1.6; color: #333; max-width: 900px; margin: 0 auto; padding: 20px; }
         h1 { color: #2c3e50; border-bottom: 2px solid #3498db; padding-bottom: 10px; }
@@ -143,6 +143,21 @@
         <li class="dev2"><span class="step">7.2.1</span> <b>Query Aggregazione (Record Personali):</b> Creazione di una funzione RPC su Supabase o logica lato client per calcolare somme (SUM) e record (MAX) basati sull'intero storico dell'utente.</li>
         <li class="dev2"><span class="step">7.2.2</span> <b>DB Preferenze:</b> Aggiornamento tabella <code>users</code> per poter salvare in cloud l'icona dell'auto e il colore scelto, così da mantenerli tra vari dispositivi.</li>
         <li class="dev2 bonus"><span class="step">7.2.3</span> <b>(Bonus) API Spotify:</b> Setup dell'autenticazione OAuth con Spotify e polling dell'endpoint <code>/me/player/currently-playing</code>.</li>
+    </ul>
+
+    <h2 class="beta-title">8. FASE 8: Classifiche e Profilo Utente</h2>
+    
+    <h3>8.1 Sviluppatore 1: UI Classifiche e Profilo</h3>
+    <ul>
+        <li class="dev1"><span class="step">8.1.1</span> <b>Classifica Generale:</b> UI per mostrare la tabella degli utenti con Posizione, Nickname, Avatar e Categoria.</li>
+        <li class="dev1"><span class="step">8.1.2</span> <b>Filtri Classifica:</b> UI per filtrare la leaderboard in base a "Distanza Totale", "Velocità Massima", ecc.</li>
+        <li class="dev1"><span class="step">8.1.3</span> <b>Profilo Utente:</b> Sezione nelle impostazioni per modificare Nickname e fare l'upload dell'Immagine Profilo.</li>
+    </ul>
+
+    <h3>8.2 Sviluppatore 2: Backend Classifiche e DB Utenti</h3>
+    <ul>
+        <li class="dev2"><span class="step">8.2.1</span> <b>Aggiornamento DB Users:</b> Aggiunta colonne per <code>nickname</code> e <code>avatar_url</code>.</li>
+        <li class="dev2"><span class="step">8.2.2</span> <b>Query Classifica:</b> Creazione endpoint o funzione Supabase per scaricare le statistiche aggregate di tutti gli utenti, ordinabili per metrica.</li>
     </ul>
 
 </body>
