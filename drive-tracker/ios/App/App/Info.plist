@@ -55,13 +55,5 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<true/>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Drive Tracker ha bisogno del GPS per mostrarti sulla mappa e calcolare la velocità mentre guidi.</string>
-	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>Drive Tracker deve accedere al GPS in background per continuare a registrare i chilometri anche se spegni lo schermo dell'iPhone.</string>
-	<key>UIBackgroundModes</key>
-	<array>
-		<string>location</string>
-	</array>
 </dict>
 </plist>
