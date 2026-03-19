@@ -38,7 +38,7 @@ export const routeManager = {
       const res = await fetch(base64Image);
       const blob = await res.blob();
 
-      const { data: uploadData, error: uploadError } = await supabase.storage
+      const { error: uploadError } = await supabase.storage
         .from('snapshots')
         .upload(fileName, blob, { contentType: 'image/png' });
 

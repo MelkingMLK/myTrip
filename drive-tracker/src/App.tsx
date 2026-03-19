@@ -12,7 +12,7 @@ function App() {
 
   return (
     <main className="h-screen w-screen overflow-hidden bg-black">
-      {isLoading ? <SplashScreen /> : <MapOverlay />}
+      {isLoading ? <SplashScreen onFinish={() => setIsLoading(false)} /> : <MapOverlay />}
     </main> 
   );
 }
