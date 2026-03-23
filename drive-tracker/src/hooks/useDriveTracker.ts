@@ -12,7 +12,6 @@ export interface TrackingData {
   timestamp: number;
 }
 
-// Creiamo un tipo più semplice per l'ultima posizione, per slegarci dalle dipendenze del vecchio plugin
 interface SimplePosition {
   lat: number;
   lng: number;
@@ -25,6 +24,7 @@ export const useDriveTracker = () => {
   const [status, setStatus] = useState<TrackingStatus>('idle');
   const [countdown, setCountdown] = useState(10);
   
+  // Stati per la UI (in secondi)
   const [totalTime, setTotalTime] = useState(0);
   const [effectiveTime, setEffectiveTime] = useState(0);
   const [pauseTime, setPauseTime] = useState(0);
@@ -33,10 +33,14 @@ export const useDriveTracker = () => {
   const [totalDistance, setTotalDistance] = useState(0);
   const [route, setRoute] = useState<TrackingData[]>([]);
 
-  // Il Watcher ID con questo plugin è una stringa
   const watchId = useRef<string | null>(null);
   const lastPosition = useRef<SimplePosition | null>(null);
   const isPausedRef = useRef(false);
+
+  // --- REFS PER IL TEMPO ASSOLUTO (ANTI-BACKGROUND) ---
+  const segmentStartTimestamp = useRef<number>(0);
+  const accumulatedActiveTime = useRef<number>(0); // In millisecondi
+  const accumulatedPauseTime = useRef<number>(0);  // In millisecondi
 
   // --- 1. GESTIONE SCORRIMENTO TEMPO ---
   useEffect(() => {
@@ -48,10 +52,22 @@ export const useDriveTracker = () => {
       }, 1000);
     } 
     else if (status === 'tracking' || status === 'paused') {
+      // Aggiorniamo la UI ogni secondo, ma calcolando la VERA differenza di tempo!
       interval = setInterval(() => {
-        setTotalTime((prev) => prev + 1);
-        if (status === 'tracking') setEffectiveTime((prev) => prev + 1);
-        else if (status === 'paused') setPauseTime((prev) => prev + 1);
+        const now = Date.now();
+        
+        if (status === 'tracking') {
+          const currentActive = accumulatedActiveTime.current + (now - segmentStartTimestamp.current);
+          setEffectiveTime(Math.floor(currentActive / 1000));
+          setPauseTime(Math.floor(accumulatedPauseTime.current / 1000));
+          setTotalTime(Math.floor((currentActive + accumulatedPauseTime.current) / 1000));
+        } 
+        else if (status === 'paused') {
+          const currentPause = accumulatedPauseTime.current + (now - segmentStartTimestamp.current);
+          setEffectiveTime(Math.floor(accumulatedActiveTime.current / 1000));
+          setPauseTime(Math.floor(currentPause / 1000));
+          setTotalTime(Math.floor((accumulatedActiveTime.current + currentPause) / 1000));
+        }
       }, 1000);
     }
 
@@ -68,9 +84,13 @@ export const useDriveTracker = () => {
   }, [status, countdown]);
 
   const startCountdown = () => {
+    // Reset di tutti i tempi e dati
     setTotalTime(0);
     setEffectiveTime(0);
     setPauseTime(0);
+    accumulatedActiveTime.current = 0;
+    accumulatedPauseTime.current = 0;
+    
     setTotalDistance(0);
     setCurrentSpeed(0);
     setRoute([]);
@@ -81,22 +101,19 @@ export const useDriveTracker = () => {
 
   const startActualTracking = async () => {
     setStatus('tracking'); 
+    segmentStartTimestamp.current = Date.now(); // Inizio del tempo effettivo!
     
     try {
-      // Usiamo il nuovo plugin corazzato per il Background Tracking
       const id = await BackgroundGeolocation.addWatcher(
         {
           backgroundTitle: "Tracciamento in corso",
           backgroundMessage: "Drive Tracker sta registrando il tuo viaggio in background.",
-          requestPermissions: true, // Chiede in automatico i permessi "Sempre" su iOS
+          requestPermissions: true,
           stale: false,
-          distanceFilter: 5 // Aggiorna ogni 5 metri per risparmiare un po' di batteria
+          distanceFilter: 5 
         },
         (location: any, err: any) => {
-          if (err || !location) {
-            console.error("Errore GPS Background:", err);
-            return;
-          }
+          if (err || !location) return;
           
           if (isPausedRef.current) {
             setCurrentSpeed(0);
@@ -107,7 +124,6 @@ export const useDriveTracker = () => {
           const longitude = location.longitude;
           const timestamp = location.time || Date.now();
           
-          // Il plugin restituisce la velocità in m/s (se disponibile)
           let speed = location.speed != null ? (location.speed * 3.6) : 0; 
 
           if (lastPosition.current) {
@@ -120,7 +136,6 @@ export const useDriveTracker = () => {
               
               setTotalDistance(prev => prev + distance);
 
-              // Calcolo manuale se il GPS non fornisce la velocità nativa
               if (location.speed == null) {
                  const timeDiff = timestamp - lastPosition.current.timestamp;
                  speed = calculateSpeed(distance, timeDiff);
@@ -138,28 +153,42 @@ export const useDriveTracker = () => {
 
     } catch (error) {
       console.error("Errore avvio Background Geolocation:", error);
-      // Fallback in caso di Safari su Mac che non supporta il plugin nativo
       alert("Il tracciamento in background è supportato solo sui dispositivi nativi (iOS/Android).");
     }
   };
 
   const pauseTracking = () => {
+    // Aggiungiamo il tempo trascorso finora al "serbatoio" del tempo attivo
+    accumulatedActiveTime.current += (Date.now() - segmentStartTimestamp.current);
+    segmentStartTimestamp.current = Date.now(); // Facciamo partire il cronometro della pausa
+    
     setStatus('paused');
     isPausedRef.current = true;
   };
 
   const resumeTracking = () => {
+    // Aggiungiamo il tempo trascorso finora al "serbatoio" della pausa
+    accumulatedPauseTime.current += (Date.now() - segmentStartTimestamp.current);
+    segmentStartTimestamp.current = Date.now(); // Facciamo ripartire il cronometro attivo
+    
     setStatus('tracking');
     isPausedRef.current = false;
-    lastPosition.current = null;
+    lastPosition.current = null; // Resettiamo l'ultima posizione per non fare sbalzi di km
   };
 
   const stopTracking = async () => {
-    // Rimuoviamo l'osservatore di sistema per fermare l'uso della batteria
     if (watchId.current) {
       await BackgroundGeolocation.removeWatcher({ id: watchId.current });
       watchId.current = null;
     }
+    
+    // Calcoliamo l'ultimo spezzone di tempo prima di chiudere
+    if (status === 'tracking') {
+      accumulatedActiveTime.current += (Date.now() - segmentStartTimestamp.current);
+    } else if (status === 'paused') {
+      accumulatedPauseTime.current += (Date.now() - segmentStartTimestamp.current);
+    }
+
     setStatus('finished');
     isPausedRef.current = false;
     lastPosition.current = null;

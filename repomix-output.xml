@@ -1,0 +1,3634 @@
+This file is a merged representation of the entire codebase, combined into a single document by Repomix.
+
+<file_summary>
+This section contains a summary of this file.
+
+<purpose>
+This file contains a packed representation of the entire repository's contents.
+It is designed to be easily consumable by AI systems for analysis, code review,
+or other automated processes.
+</purpose>
+
+<file_format>
+The content is organized as follows:
+1. This summary section
+2. Repository information
+3. Directory structure
+4. Repository files (if enabled)
+5. Multiple file entries, each consisting of:
+  - File path as an attribute
+  - Full contents of the file
+</file_format>
+
+<usage_guidelines>
+- This file should be treated as read-only. Any changes should be made to the
+  original repository files, not this packed version.
+- When processing this file, use the file path to distinguish
+  between different files in the repository.
+- Be aware that this file may contain sensitive information. Handle it with
+  the same level of security as you would the original repository.
+</usage_guidelines>
+
+<notes>
+- Some files may have been excluded based on .gitignore rules and Repomix's configuration
+- Binary files are not included in this packed representation. Please refer to the Repository Structure section for a complete list of file paths, including binary files
+- Files matching patterns in .gitignore are excluded
+- Files matching default ignore patterns are excluded
+- Files are sorted by Git change count (files with more changes are at the bottom)
+</notes>
+
+</file_summary>
+
+<directory_structure>
+drive-tracker/
+  android/
+    app/
+      src/
+        androidTest/
+          java/
+            com/
+              getcapacitor/
+                myapp/
+                  ExampleInstrumentedTest.java
+        main/
+          java/
+            com/
+              tuonome/
+                drivetracker/
+                  MainActivity.java
+          res/
+            drawable/
+              ic_launcher_background.xml
+              splash.png
+            drawable-land-hdpi/
+              splash.png
+            drawable-land-mdpi/
+              splash.png
+            drawable-land-xhdpi/
+              splash.png
+            drawable-land-xxhdpi/
+              splash.png
+            drawable-land-xxxhdpi/
+              splash.png
+            drawable-port-hdpi/
+              splash.png
+            drawable-port-mdpi/
+              splash.png
+            drawable-port-xhdpi/
+              splash.png
+            drawable-port-xxhdpi/
+              splash.png
+            drawable-port-xxxhdpi/
+              splash.png
+            drawable-v24/
+              ic_launcher_foreground.xml
+            layout/
+              activity_main.xml
+            mipmap-anydpi-v26/
+              ic_launcher_round.xml
+              ic_launcher.xml
+            mipmap-hdpi/
+              ic_launcher_foreground.png
+              ic_launcher_round.png
+              ic_launcher.png
+            mipmap-mdpi/
+              ic_launcher_foreground.png
+              ic_launcher_round.png
+              ic_launcher.png
+            mipmap-xhdpi/
+              ic_launcher_foreground.png
+              ic_launcher_round.png
+              ic_launcher.png
+            mipmap-xxhdpi/
+              ic_launcher_foreground.png
+              ic_launcher_round.png
+              ic_launcher.png
+            mipmap-xxxhdpi/
+              ic_launcher_foreground.png
+              ic_launcher_round.png
+              ic_launcher.png
+            values/
+              ic_launcher_background.xml
+              strings.xml
+              styles.xml
+            xml/
+              file_paths.xml
+          AndroidManifest.xml
+        test/
+          java/
+            com/
+              getcapacitor/
+                myapp/
+                  ExampleUnitTest.java
+      .gitignore
+      build.gradle
+      capacitor.build.gradle
+      proguard-rules.pro
+    gradle/
+      wrapper/
+        gradle-wrapper.jar
+        gradle-wrapper.properties
+    .gitignore
+    build.gradle
+    capacitor.settings.gradle
+    gradle.properties
+    gradlew
+    gradlew.bat
+    settings.gradle
+    variables.gradle
+  ios/
+    App/
+      App/
+        Assets.xcassets/
+          AppIcon.appiconset/
+            AppIcon-512@2x.png
+            Contents.json
+          Splash.imageset/
+            Contents.json
+            splash-2732x2732-1.png
+            splash-2732x2732-2.png
+            splash-2732x2732.png
+          Contents.json
+        Base.lproj/
+          LaunchScreen.storyboard
+          Main.storyboard
+        AppDelegate.swift
+        Info.plist
+      App.xcodeproj/
+        project.xcworkspace/
+          xcshareddata/
+            swiftpm/
+              Package.resolved
+            IDEWorkspaceChecks.plist
+          contents.xcworkspacedata
+        project.pbxproj
+      CapApp-SPM/
+        Sources/
+          CapApp-SPM/
+            CapApp-SPM.swift
+        .gitignore
+        Package.swift
+        README.md
+    .gitignore
+    debug.xcconfig
+  public/
+    vite.svg
+  src/
+    assets/
+      react.svg
+    components/
+      LoginScreen.tsx
+      MapOverlay.tsx
+      SplashScreen.tsx
+    hooks/
+      useDriveTracker.ts
+    services/
+      authManager.ts
+      routeManager.ts
+    utils/
+      geo.ts
+    App.tsx
+    index.css
+    main.tsx
+    supabaseClient.ts
+    vite-env.d.ts
+  .gitignore
+  capacitor.config.ts
+  eslint.config.js
+  index.html
+  package.json
+  README.md
+  tsconfig.app.json
+  tsconfig.json
+  tsconfig.node.json
+  vite.config.ts
+package.json
+ROADMAP.html
+tmp-giangio.txt
+</directory_structure>
+
+<files>
+This section contains the contents of the repository's files.
+
+<file path="drive-tracker/android/app/src/androidTest/java/com/getcapacitor/myapp/ExampleInstrumentedTest.java">
+package com.getcapacitor.myapp;
+
+import static org.junit.Assert.*;
+
+import android.content.Context;
+import androidx.test.ext.junit.runners.AndroidJUnit4;
+import androidx.test.platform.app.InstrumentationRegistry;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+
+/**
+ * Instrumented test, which will execute on an Android device.
+ *
+ * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
+ */
+@RunWith(AndroidJUnit4.class)
+public class ExampleInstrumentedTest {
+
+    @Test
+    public void useAppContext() throws Exception {
+        // Context of the app under test.
+        Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
+
+        assertEquals("com.getcapacitor.app", appContext.getPackageName());
+    }
+}
+</file>
+
+<file path="drive-tracker/android/app/src/main/java/com/tuonome/drivetracker/MainActivity.java">
+package com.tuonome.drivetracker;
+
+import com.getcapacitor.BridgeActivity;
+
+public class MainActivity extends BridgeActivity {}
+</file>
+
+<file path="drive-tracker/android/app/src/main/res/drawable/ic_launcher_background.xml">
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportHeight="108"
+    android:viewportWidth="108">
+    <path
+        android:fillColor="#26A69A"
+        android:pathData="M0,0h108v108h-108z" />
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M9,0L9,108"
+        android:strokeColor="#33FFFFFF"
+        android:strokeWidth="0.8" />
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M19,0L19,108"
+        android:strokeColor="#33FFFFFF"
+        android:strokeWidth="0.8" />
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M29,0L29,108"
+        android:strokeColor="#33FFFFFF"
+        android:strokeWidth="0.8" />
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M39,0L39,108"
+        android:strokeColor="#33FFFFFF"
+        android:strokeWidth="0.8" />
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M49,0L49,108"
+        android:strokeColor="#33FFFFFF"
+        android:strokeWidth="0.8" />
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M59,0L59,108"
+        android:strokeColor="#33FFFFFF"
+        android:strokeWidth="0.8" />
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M69,0L69,108"
+        android:strokeColor="#33FFFFFF"
+        android:strokeWidth="0.8" />
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M79,0L79,108"
+        android:strokeColor="#33FFFFFF"
+        android:strokeWidth="0.8" />
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M89,0L89,108"
+        android:strokeColor="#33FFFFFF"
+        android:strokeWidth="0.8" />
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M99,0L99,108"
+        android:strokeColor="#33FFFFFF"
+        android:strokeWidth="0.8" />
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M0,9L108,9"
+        android:strokeColor="#33FFFFFF"
+        android:strokeWidth="0.8" />
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M0,19L108,19"
+        android:strokeColor="#33FFFFFF"
+        android:strokeWidth="0.8" />
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M0,29L108,29"
+        android:strokeColor="#33FFFFFF"
+        android:strokeWidth="0.8" />
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M0,39L108,39"
+        android:strokeColor="#33FFFFFF"
+        android:strokeWidth="0.8" />
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M0,49L108,49"
+        android:strokeColor="#33FFFFFF"
+        android:strokeWidth="0.8" />
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M0,59L108,59"
+        android:strokeColor="#33FFFFFF"
+        android:strokeWidth="0.8" />
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M0,69L108,69"
+        android:strokeColor="#33FFFFFF"
+        android:strokeWidth="0.8" />
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M0,79L108,79"
+        android:strokeColor="#33FFFFFF"
+        android:strokeWidth="0.8" />
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M0,89L108,89"
+        android:strokeColor="#33FFFFFF"
+        android:strokeWidth="0.8" />
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M0,99L108,99"
+        android:strokeColor="#33FFFFFF"
+        android:strokeWidth="0.8" />
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M19,29L89,29"
+        android:strokeColor="#33FFFFFF"
+        android:strokeWidth="0.8" />
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M19,39L89,39"
+        android:strokeColor="#33FFFFFF"
+        android:strokeWidth="0.8" />
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M19,49L89,49"
+        android:strokeColor="#33FFFFFF"
+        android:strokeWidth="0.8" />
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M19,59L89,59"
+        android:strokeColor="#33FFFFFF"
+        android:strokeWidth="0.8" />
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M19,69L89,69"
+        android:strokeColor="#33FFFFFF"
+        android:strokeWidth="0.8" />
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M19,79L89,79"
+        android:strokeColor="#33FFFFFF"
+        android:strokeWidth="0.8" />
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M29,19L29,89"
+        android:strokeColor="#33FFFFFF"
+        android:strokeWidth="0.8" />
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M39,19L39,89"
+        android:strokeColor="#33FFFFFF"
+        android:strokeWidth="0.8" />
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M49,19L49,89"
+        android:strokeColor="#33FFFFFF"
+        android:strokeWidth="0.8" />
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M59,19L59,89"
+        android:strokeColor="#33FFFFFF"
+        android:strokeWidth="0.8" />
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M69,19L69,89"
+        android:strokeColor="#33FFFFFF"
+        android:strokeWidth="0.8" />
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M79,19L79,89"
+        android:strokeColor="#33FFFFFF"
+        android:strokeWidth="0.8" />
+</vector>
+</file>
+
+<file path="drive-tracker/android/app/src/main/res/drawable-v24/ic_launcher_foreground.xml">
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportHeight="108"
+    android:viewportWidth="108">
+    <path
+        android:fillType="evenOdd"
+        android:pathData="M32,64C32,64 38.39,52.99 44.13,50.95C51.37,48.37 70.14,49.57 70.14,49.57L108.26,87.69L108,109.01L75.97,107.97L32,64Z"
+        android:strokeColor="#00000000"
+        android:strokeWidth="1">
+        <aapt:attr name="android:fillColor">
+            <gradient
+                android:endX="78.5885"
+                android:endY="90.9159"
+                android:startX="48.7653"
+                android:startY="61.0927"
+                android:type="linear">
+                <item
+                    android:color="#44000000"
+                    android:offset="0.0" />
+                <item
+                    android:color="#00000000"
+                    android:offset="1.0" />
+            </gradient>
+        </aapt:attr>
+    </path>
+    <path
+        android:fillColor="#FFFFFF"
+        android:fillType="nonZero"
+        android:pathData="M66.94,46.02L66.94,46.02C72.44,50.07 76,56.61 76,64L32,64C32,56.61 35.56,50.11 40.98,46.06L36.18,41.19C35.45,40.45 35.45,39.3 36.18,38.56C36.91,37.81 38.05,37.81 38.78,38.56L44.25,44.05C47.18,42.57 50.48,41.71 54,41.71C57.48,41.71 60.78,42.57 63.68,44.05L69.11,38.56C69.84,37.81 70.98,37.81 71.71,38.56C72.44,39.3 72.44,40.45 71.71,41.19L66.94,46.02ZM62.94,56.92C64.08,56.92 65,56.01 65,54.88C65,53.76 64.08,52.85 62.94,52.85C61.8,52.85 60.88,53.76 60.88,54.88C60.88,56.01 61.8,56.92 62.94,56.92ZM45.06,56.92C46.2,56.92 47.13,56.01 47.13,54.88C47.13,53.76 46.2,52.85 45.06,52.85C43.92,52.85 43,53.76 43,54.88C43,56.01 43.92,56.92 45.06,56.92Z"
+        android:strokeColor="#00000000"
+        android:strokeWidth="1" />
+</vector>
+</file>
+
+<file path="drive-tracker/android/app/src/main/res/layout/activity_main.xml">
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <WebView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
+</file>
+
+<file path="drive-tracker/android/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml">
+<?xml version="1.0" encoding="utf-8"?>
+<adaptive-icon xmlns:android="http://schemas.android.com/apk/res/android">
+    <background android:drawable="@color/ic_launcher_background"/>
+    <foreground android:drawable="@mipmap/ic_launcher_foreground"/>
+</adaptive-icon>
+</file>
+
+<file path="drive-tracker/android/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml">
+<?xml version="1.0" encoding="utf-8"?>
+<adaptive-icon xmlns:android="http://schemas.android.com/apk/res/android">
+    <background android:drawable="@color/ic_launcher_background"/>
+    <foreground android:drawable="@mipmap/ic_launcher_foreground"/>
+</adaptive-icon>
+</file>
+
+<file path="drive-tracker/android/app/src/main/res/values/ic_launcher_background.xml">
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="ic_launcher_background">#FFFFFF</color>
+</resources>
+</file>
+
+<file path="drive-tracker/android/app/src/main/res/values/strings.xml">
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">DriveTracker</string>
+    <string name="title_activity_main">DriveTracker</string>
+    <string name="package_name">com.tuonome.drivetracker</string>
+    <string name="custom_url_scheme">com.tuonome.drivetracker</string>
+</resources>
+</file>
+
+<file path="drive-tracker/android/app/src/main/res/values/styles.xml">
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="AppTheme.NoActionBar" parent="Theme.AppCompat.DayNight.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:background">@null</item>
+    </style>
+
+
+    <style name="AppTheme.NoActionBarLaunch" parent="Theme.SplashScreen">
+        <item name="android:background">@drawable/splash</item>
+    </style>
+</resources>
+</file>
+
+<file path="drive-tracker/android/app/src/main/res/xml/file_paths.xml">
+<?xml version="1.0" encoding="utf-8"?>
+<paths xmlns:android="http://schemas.android.com/apk/res/android">
+    <external-path name="my_images" path="." />
+    <cache-path name="my_cache_images" path="." />
+</paths>
+</file>
+
+<file path="drive-tracker/android/app/src/main/AndroidManifest.xml">
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+
+        <activity
+            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale|smallestScreenSize|screenLayout|uiMode|navigation|density"
+            android:name=".MainActivity"
+            android:label="@string/title_activity_main"
+            android:theme="@style/AppTheme.NoActionBarLaunch"
+            android:launchMode="singleTask"
+            android:exported="true">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+        </activity>
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths"></meta-data>
+        </provider>
+    </application>
+
+    <!-- Permissions -->
+
+    <uses-permission android:name="android.permission.INTERNET" />
+</manifest>
+</file>
+
+<file path="drive-tracker/android/app/src/test/java/com/getcapacitor/myapp/ExampleUnitTest.java">
+package com.getcapacitor.myapp;
+
+import static org.junit.Assert.*;
+
+import org.junit.Test;
+
+/**
+ * Example local unit test, which will execute on the development machine (host).
+ *
+ * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
+ */
+public class ExampleUnitTest {
+
+    @Test
+    public void addition_isCorrect() throws Exception {
+        assertEquals(4, 2 + 2);
+    }
+}
+</file>
+
+<file path="drive-tracker/android/app/.gitignore">
+/build/*
+!/build/.npmkeep
+</file>
+
+<file path="drive-tracker/android/app/build.gradle">
+apply plugin: 'com.android.application'
+
+android {
+    namespace = "com.tuonome.drivetracker"
+    compileSdk = rootProject.ext.compileSdkVersion
+    defaultConfig {
+        applicationId "com.tuonome.drivetracker"
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        aaptOptions {
+             // Files and dirs to omit from the packaged assets dir, modified to accommodate modern web apps.
+             // Default: https://android.googlesource.com/platform/frameworks/base/+/282e181b58cf72b6ca770dc7ca5f91f135444502/tools/aapt/AaptAssets.cpp#61
+            ignoreAssetsPattern = '!.svn:!.git:!.ds_store:!*.scc:.*:!CVS:!thumbs.db:!picasa.ini:!*~'
+        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+repositories {
+    flatDir{
+        dirs '../capacitor-cordova-android-plugins/src/main/libs', 'libs'
+    }
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation "androidx.appcompat:appcompat:$androidxAppCompatVersion"
+    implementation "androidx.coordinatorlayout:coordinatorlayout:$androidxCoordinatorLayoutVersion"
+    implementation "androidx.core:core-splashscreen:$coreSplashScreenVersion"
+    implementation project(':capacitor-android')
+    testImplementation "junit:junit:$junitVersion"
+    androidTestImplementation "androidx.test.ext:junit:$androidxJunitVersion"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$androidxEspressoCoreVersion"
+    implementation project(':capacitor-cordova-android-plugins')
+}
+
+apply from: 'capacitor.build.gradle'
+
+try {
+    def servicesJSON = file('google-services.json')
+    if (servicesJSON.text) {
+        apply plugin: 'com.google.gms.google-services'
+    }
+} catch(Exception e) {
+    logger.info("google-services.json not found, google-services plugin not applied. Push Notifications won't work")
+}
+</file>
+
+<file path="drive-tracker/android/app/proguard-rules.pro">
+# Add project specific ProGuard rules here.
+# You can control the set of applied configuration files using the
+# proguardFiles setting in build.gradle.
+#
+# For more details, see
+#   http://developer.android.com/guide/developing/tools/proguard.html
+
+# If your project uses WebView with JS, uncomment the following
+# and specify the fully qualified class name to the JavaScript interface
+# class:
+#-keepclassmembers class fqcn.of.javascript.interface.for.webview {
+#   public *;
+#}
+
+# Uncomment this to preserve the line number information for
+# debugging stack traces.
+#-keepattributes SourceFile,LineNumberTable
+
+# If you keep the line number information, uncomment this to
+# hide the original source file name.
+#-renamesourcefileattribute SourceFile
+</file>
+
+<file path="drive-tracker/android/gradle/wrapper/gradle-wrapper.properties">
+distributionBase=GRADLE_USER_HOME
+distributionPath=wrapper/dists
+distributionUrl=https\://services.gradle.org/distributions/gradle-8.14.3-all.zip
+networkTimeout=10000
+validateDistributionUrl=true
+zipStoreBase=GRADLE_USER_HOME
+zipStorePath=wrapper/dists
+</file>
+
+<file path="drive-tracker/android/.gitignore">
+# Using Android gitignore template: https://github.com/github/gitignore/blob/HEAD/Android.gitignore
+
+# Built application files
+*.apk
+*.aar
+*.ap_
+*.aab
+
+# Files for the ART/Dalvik VM
+*.dex
+
+# Java class files
+*.class
+
+# Generated files
+bin/
+gen/
+out/
+#  Uncomment the following line in case you need and you don't have the release build type files in your app
+# release/
+
+# Gradle files
+.gradle/
+build/
+
+# Local configuration file (sdk path, etc)
+local.properties
+
+# Proguard folder generated by Eclipse
+proguard/
+
+# Log Files
+*.log
+
+# Android Studio Navigation editor temp files
+.navigation/
+
+# Android Studio captures folder
+captures/
+
+# IntelliJ
+*.iml
+.idea/workspace.xml
+.idea/tasks.xml
+.idea/gradle.xml
+.idea/assetWizardSettings.xml
+.idea/dictionaries
+.idea/libraries
+# Android Studio 3 in .gitignore file.
+.idea/caches
+.idea/modules.xml
+# Comment next line if keeping position of elements in Navigation Editor is relevant for you
+.idea/navEditor.xml
+
+# Keystore files
+# Uncomment the following lines if you do not want to check your keystore files in.
+#*.jks
+#*.keystore
+
+# External native build folder generated in Android Studio 2.2 and later
+.externalNativeBuild
+.cxx/
+
+# Google Services (e.g. APIs or Firebase)
+# google-services.json
+
+# Freeline
+freeline.py
+freeline/
+freeline_project_description.json
+
+# fastlane
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots
+fastlane/test_output
+fastlane/readme.md
+
+# Version control
+vcs.xml
+
+# lint
+lint/intermediates/
+lint/generated/
+lint/outputs/
+lint/tmp/
+# lint/reports/
+
+# Android Profiling
+*.hprof
+
+# Cordova plugins for Capacitor
+capacitor-cordova-android-plugins
+
+# Copied web assets
+app/src/main/assets/public
+
+# Generated Config files
+app/src/main/assets/capacitor.config.json
+app/src/main/assets/capacitor.plugins.json
+app/src/main/res/xml/config.xml
+</file>
+
+<file path="drive-tracker/android/build.gradle">
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+buildscript {
+    
+    repositories {
+        google()
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:8.13.0'
+        classpath 'com.google.gms:google-services:4.4.4'
+
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+    }
+}
+
+apply from: "variables.gradle"
+
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
+</file>
+
+<file path="drive-tracker/android/gradle.properties">
+# Project-wide Gradle settings.
+
+# IDE (e.g. Android Studio) users:
+# Gradle settings configured through the IDE *will override*
+# any settings specified in this file.
+
+# For more details on how to configure your build environment visit
+# http://www.gradle.org/docs/current/userguide/build_environment.html
+
+# Specifies the JVM arguments used for the daemon process.
+# The setting is particularly useful for tweaking memory settings.
+org.gradle.jvmargs=-Xmx1536m
+
+# When configured, Gradle will run in incubating parallel mode.
+# This option should only be used with decoupled projects. More details, visit
+# http://www.gradle.org/docs/current/userguide/multi_project_builds.html#sec:decoupled_projects
+# org.gradle.parallel=true
+
+# AndroidX package structure to make it clearer which packages are bundled with the
+# Android operating system, and which are packaged with your app's APK
+# https://developer.android.com/topic/libraries/support-library/androidx-rn
+android.useAndroidX=true
+</file>
+
+<file path="drive-tracker/android/gradlew">
+#!/bin/sh
+
+#
+# Copyright © 2015-2021 the original authors.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      https://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+# SPDX-License-Identifier: Apache-2.0
+#
+
+##############################################################################
+#
+#   Gradle start up script for POSIX generated by Gradle.
+#
+#   Important for running:
+#
+#   (1) You need a POSIX-compliant shell to run this script. If your /bin/sh is
+#       noncompliant, but you have some other compliant shell such as ksh or
+#       bash, then to run this script, type that shell name before the whole
+#       command line, like:
+#
+#           ksh Gradle
+#
+#       Busybox and similar reduced shells will NOT work, because this script
+#       requires all of these POSIX shell features:
+#         * functions;
+#         * expansions «$var», «${var}», «${var:-default}», «${var+SET}»,
+#           «${var#prefix}», «${var%suffix}», and «$( cmd )»;
+#         * compound commands having a testable exit status, especially «case»;
+#         * various built-in commands including «command», «set», and «ulimit».
+#
+#   Important for patching:
+#
+#   (2) This script targets any POSIX shell, so it avoids extensions provided
+#       by Bash, Ksh, etc; in particular arrays are avoided.
+#
+#       The "traditional" practice of packing multiple parameters into a
+#       space-separated string is a well documented source of bugs and security
+#       problems, so this is (mostly) avoided, by progressively accumulating
+#       options in "$@", and eventually passing that to Java.
+#
+#       Where the inherited environment variables (DEFAULT_JVM_OPTS, JAVA_OPTS,
+#       and GRADLE_OPTS) rely on word-splitting, this is performed explicitly;
+#       see the in-line comments for details.
+#
+#       There are tweaks for specific operating systems such as AIX, CygWin,
+#       Darwin, MinGW, and NonStop.
+#
+#   (3) This script is generated from the Groovy template
+#       https://github.com/gradle/gradle/blob/HEAD/platforms/jvm/plugins-application/src/main/resources/org/gradle/api/internal/plugins/unixStartScript.txt
+#       within the Gradle project.
+#
+#       You can find Gradle at https://github.com/gradle/gradle/.
+#
+##############################################################################
+
+# Attempt to set APP_HOME
+
+# Resolve links: $0 may be a link
+app_path=$0
+
+# Need this for daisy-chained symlinks.
+while
+    APP_HOME=${app_path%"${app_path##*/}"}  # leaves a trailing /; empty if no leading path
+    [ -h "$app_path" ]
+do
+    ls=$( ls -ld "$app_path" )
+    link=${ls#*' -> '}
+    case $link in             #(
+      /*)   app_path=$link ;; #(
+      *)    app_path=$APP_HOME$link ;;
+    esac
+done
+
+# This is normally unused
+# shellcheck disable=SC2034
+APP_BASE_NAME=${0##*/}
+# Discard cd standard output in case $CDPATH is set (https://github.com/gradle/gradle/issues/25036)
+APP_HOME=$( cd -P "${APP_HOME:-./}" > /dev/null && printf '%s\n' "$PWD" ) || exit
+
+# Use the maximum available, or set MAX_FD != -1 to use that value.
+MAX_FD=maximum
+
+warn () {
+    echo "$*"
+} >&2
+
+die () {
+    echo
+    echo "$*"
+    echo
+    exit 1
+} >&2
+
+# OS specific support (must be 'true' or 'false').
+cygwin=false
+msys=false
+darwin=false
+nonstop=false
+case "$( uname )" in                #(
+  CYGWIN* )         cygwin=true  ;; #(
+  Darwin* )         darwin=true  ;; #(
+  MSYS* | MINGW* )  msys=true    ;; #(
+  NONSTOP* )        nonstop=true ;;
+esac
+
+CLASSPATH="\\\"\\\""
+
+
+# Determine the Java command to use to start the JVM.
+if [ -n "$JAVA_HOME" ] ; then
+    if [ -x "$JAVA_HOME/jre/sh/java" ] ; then
+        # IBM's JDK on AIX uses strange locations for the executables
+        JAVACMD=$JAVA_HOME/jre/sh/java
+    else
+        JAVACMD=$JAVA_HOME/bin/java
+    fi
+    if [ ! -x "$JAVACMD" ] ; then
+        die "ERROR: JAVA_HOME is set to an invalid directory: $JAVA_HOME
+
+Please set the JAVA_HOME variable in your environment to match the
+location of your Java installation."
+    fi
+else
+    JAVACMD=java
+    if ! command -v java >/dev/null 2>&1
+    then
+        die "ERROR: JAVA_HOME is not set and no 'java' command could be found in your PATH.
+
+Please set the JAVA_HOME variable in your environment to match the
+location of your Java installation."
+    fi
+fi
+
+# Increase the maximum file descriptors if we can.
+if ! "$cygwin" && ! "$darwin" && ! "$nonstop" ; then
+    case $MAX_FD in #(
+      max*)
+        # In POSIX sh, ulimit -H is undefined. That's why the result is checked to see if it worked.
+        # shellcheck disable=SC2039,SC3045
+        MAX_FD=$( ulimit -H -n ) ||
+            warn "Could not query maximum file descriptor limit"
+    esac
+    case $MAX_FD in  #(
+      '' | soft) :;; #(
+      *)
+        # In POSIX sh, ulimit -n is undefined. That's why the result is checked to see if it worked.
+        # shellcheck disable=SC2039,SC3045
+        ulimit -n "$MAX_FD" ||
+            warn "Could not set maximum file descriptor limit to $MAX_FD"
+    esac
+fi
+
+# Collect all arguments for the java command, stacking in reverse order:
+#   * args from the command line
+#   * the main class name
+#   * -classpath
+#   * -D...appname settings
+#   * --module-path (only if needed)
+#   * DEFAULT_JVM_OPTS, JAVA_OPTS, and GRADLE_OPTS environment variables.
+
+# For Cygwin or MSYS, switch paths to Windows format before running java
+if "$cygwin" || "$msys" ; then
+    APP_HOME=$( cygpath --path --mixed "$APP_HOME" )
+    CLASSPATH=$( cygpath --path --mixed "$CLASSPATH" )
+
+    JAVACMD=$( cygpath --unix "$JAVACMD" )
+
+    # Now convert the arguments - kludge to limit ourselves to /bin/sh
+    for arg do
+        if
+            case $arg in                                #(
+              -*)   false ;;                            # don't mess with options #(
+              /?*)  t=${arg#/} t=/${t%%/*}              # looks like a POSIX filepath
+                    [ -e "$t" ] ;;                      #(
+              *)    false ;;
+            esac
+        then
+            arg=$( cygpath --path --ignore --mixed "$arg" )
+        fi
+        # Roll the args list around exactly as many times as the number of
+        # args, so each arg winds up back in the position where it started, but
+        # possibly modified.
+        #
+        # NB: a `for` loop captures its iteration list before it begins, so
+        # changing the positional parameters here affects neither the number of
+        # iterations, nor the values presented in `arg`.
+        shift                   # remove old arg
+        set -- "$@" "$arg"      # push replacement arg
+    done
+fi
+
+
+# Add default JVM options here. You can also use JAVA_OPTS and GRADLE_OPTS to pass JVM options to this script.
+DEFAULT_JVM_OPTS='"-Xmx64m" "-Xms64m"'
+
+# Collect all arguments for the java command:
+#   * DEFAULT_JVM_OPTS, JAVA_OPTS, and optsEnvironmentVar are not allowed to contain shell fragments,
+#     and any embedded shellness will be escaped.
+#   * For example: A user cannot expect ${Hostname} to be expanded, as it is an environment variable and will be
+#     treated as '${Hostname}' itself on the command line.
+
+set -- \
+        "-Dorg.gradle.appname=$APP_BASE_NAME" \
+        -classpath "$CLASSPATH" \
+        -jar "$APP_HOME/gradle/wrapper/gradle-wrapper.jar" \
+        "$@"
+
+# Stop when "xargs" is not available.
+if ! command -v xargs >/dev/null 2>&1
+then
+    die "xargs is not available"
+fi
+
+# Use "xargs" to parse quoted args.
+#
+# With -n1 it outputs one arg per line, with the quotes and backslashes removed.
+#
+# In Bash we could simply go:
+#
+#   readarray ARGS < <( xargs -n1 <<<"$var" ) &&
+#   set -- "${ARGS[@]}" "$@"
+#
+# but POSIX shell has neither arrays nor command substitution, so instead we
+# post-process each arg (as a line of input to sed) to backslash-escape any
+# character that might be a shell metacharacter, then use eval to reverse
+# that process (while maintaining the separation between arguments), and wrap
+# the whole thing up as a single "set" statement.
+#
+# This will of course break if any of these variables contains a newline or
+# an unmatched quote.
+#
+
+eval "set -- $(
+        printf '%s\n' "$DEFAULT_JVM_OPTS $JAVA_OPTS $GRADLE_OPTS" |
+        xargs -n1 |
+        sed ' s~[^-[:alnum:]+,./:=@_]~\\&~g; ' |
+        tr '\n' ' '
+    )" '"$@"'
+
+exec "$JAVACMD" "$@"
+</file>
+
+<file path="drive-tracker/android/gradlew.bat">
+@rem
+@rem Copyright 2015 the original author or authors.
+@rem
+@rem Licensed under the Apache License, Version 2.0 (the "License");
+@rem you may not use this file except in compliance with the License.
+@rem You may obtain a copy of the License at
+@rem
+@rem      https://www.apache.org/licenses/LICENSE-2.0
+@rem
+@rem Unless required by applicable law or agreed to in writing, software
+@rem distributed under the License is distributed on an "AS IS" BASIS,
+@rem WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+@rem See the License for the specific language governing permissions and
+@rem limitations under the License.
+@rem
+@rem SPDX-License-Identifier: Apache-2.0
+@rem
+
+@if "%DEBUG%"=="" @echo off
+@rem ##########################################################################
+@rem
+@rem  Gradle startup script for Windows
+@rem
+@rem ##########################################################################
+
+@rem Set local scope for the variables with windows NT shell
+if "%OS%"=="Windows_NT" setlocal
+
+set DIRNAME=%~dp0
+if "%DIRNAME%"=="" set DIRNAME=.
+@rem This is normally unused
+set APP_BASE_NAME=%~n0
+set APP_HOME=%DIRNAME%
+
+@rem Resolve any "." and ".." in APP_HOME to make it shorter.
+for %%i in ("%APP_HOME%") do set APP_HOME=%%~fi
+
+@rem Add default JVM options here. You can also use JAVA_OPTS and GRADLE_OPTS to pass JVM options to this script.
+set DEFAULT_JVM_OPTS="-Xmx64m" "-Xms64m"
+
+@rem Find java.exe
+if defined JAVA_HOME goto findJavaFromJavaHome
+
+set JAVA_EXE=java.exe
+%JAVA_EXE% -version >NUL 2>&1
+if %ERRORLEVEL% equ 0 goto execute
+
+echo. 1>&2
+echo ERROR: JAVA_HOME is not set and no 'java' command could be found in your PATH. 1>&2
+echo. 1>&2
+echo Please set the JAVA_HOME variable in your environment to match the 1>&2
+echo location of your Java installation. 1>&2
+
+goto fail
+
+:findJavaFromJavaHome
+set JAVA_HOME=%JAVA_HOME:"=%
+set JAVA_EXE=%JAVA_HOME%/bin/java.exe
+
+if exist "%JAVA_EXE%" goto execute
+
+echo. 1>&2
+echo ERROR: JAVA_HOME is set to an invalid directory: %JAVA_HOME% 1>&2
+echo. 1>&2
+echo Please set the JAVA_HOME variable in your environment to match the 1>&2
+echo location of your Java installation. 1>&2
+
+goto fail
+
+:execute
+@rem Setup the command line
+
+set CLASSPATH=
+
+
+@rem Execute Gradle
+"%JAVA_EXE%" %DEFAULT_JVM_OPTS% %JAVA_OPTS% %GRADLE_OPTS% "-Dorg.gradle.appname=%APP_BASE_NAME%" -classpath "%CLASSPATH%" -jar "%APP_HOME%\gradle\wrapper\gradle-wrapper.jar" %*
+
+:end
+@rem End local scope for the variables with windows NT shell
+if %ERRORLEVEL% equ 0 goto mainEnd
+
+:fail
+rem Set variable GRADLE_EXIT_CONSOLE if you need the _script_ return code instead of
+rem the _cmd.exe /c_ return code!
+set EXIT_CODE=%ERRORLEVEL%
+if %EXIT_CODE% equ 0 set EXIT_CODE=1
+if not ""=="%GRADLE_EXIT_CONSOLE%" exit %EXIT_CODE%
+exit /b %EXIT_CODE%
+
+:mainEnd
+if "%OS%"=="Windows_NT" endlocal
+
+:omega
+</file>
+
+<file path="drive-tracker/android/settings.gradle">
+include ':app'
+include ':capacitor-cordova-android-plugins'
+project(':capacitor-cordova-android-plugins').projectDir = new File('./capacitor-cordova-android-plugins/')
+
+apply from: 'capacitor.settings.gradle'
+</file>
+
+<file path="drive-tracker/android/variables.gradle">
+ext {
+    minSdkVersion = 24
+    compileSdkVersion = 36
+    targetSdkVersion = 36
+    androidxActivityVersion = '1.11.0'
+    androidxAppCompatVersion = '1.7.1'
+    androidxCoordinatorLayoutVersion = '1.3.0'
+    androidxCoreVersion = '1.17.0'
+    androidxFragmentVersion = '1.8.9'
+    coreSplashScreenVersion = '1.2.0'
+    androidxWebkitVersion = '1.14.0'
+    junitVersion = '4.13.2'
+    androidxJunitVersion = '1.3.0'
+    androidxEspressoCoreVersion = '3.7.0'
+    cordovaAndroidVersion = '14.0.1'
+}
+</file>
+
+<file path="drive-tracker/ios/App/App/Assets.xcassets/AppIcon.appiconset/Contents.json">
+{
+  "images" : [
+    {
+      "filename" : "AppIcon-512@2x.png",
+      "idiom" : "universal",
+      "platform" : "ios",
+      "size" : "1024x1024"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}
+</file>
+
+<file path="drive-tracker/ios/App/App/Assets.xcassets/Splash.imageset/Contents.json">
+{
+  "images" : [
+    {
+      "idiom" : "universal",
+      "filename" : "splash-2732x2732-2.png",
+      "scale" : "1x"
+    },
+    {
+      "idiom" : "universal",
+      "filename" : "splash-2732x2732-1.png",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "universal",
+      "filename" : "splash-2732x2732.png",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "version" : 1,
+    "author" : "xcode"
+  }
+}
+</file>
+
+<file path="drive-tracker/ios/App/App/Assets.xcassets/Contents.json">
+{
+  "info" : {
+    "version" : 1,
+    "author" : "xcode"
+  }
+}
+</file>
+
+<file path="drive-tracker/ios/App/App/Base.lproj/LaunchScreen.storyboard">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17132" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17105"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="EHf-IW-A2E">
+            <objects>
+                <viewController id="01J-lp-oVM" sceneMemberID="viewController">
+                    <imageView key="view" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Splash" id="snD-IY-ifK">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </imageView>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="53" y="375"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="Splash" width="1366" height="1366"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
+</file>
+
+<file path="drive-tracker/ios/App/App/Base.lproj/Main.storyboard">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14111" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+    </dependencies>
+    <scenes>
+        <!--Bridge View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="CAPBridgeViewController" customModule="Capacitor" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
+    </scenes>
+</document>
+</file>
+
+<file path="drive-tracker/ios/App/App/AppDelegate.swift">
+import UIKit
+import Capacitor
+
+@UIApplicationMain
+class AppDelegate: UIResponder, UIApplicationDelegate {
+
+    var window: UIWindow?
+
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        // Override point for customization after application launch.
+        return true
+    }
+
+    func applicationWillResignActive(_ application: UIApplication) {
+        // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
+        // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
+    }
+
+    func applicationDidEnterBackground(_ application: UIApplication) {
+        // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
+        // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+    }
+
+    func applicationWillEnterForeground(_ application: UIApplication) {
+        // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
+    }
+
+    func applicationDidBecomeActive(_ application: UIApplication) {
+        // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    }
+
+    func applicationWillTerminate(_ application: UIApplication) {
+        // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    }
+
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
+        // Called when the app was launched with a url. Feel free to add additional processing here,
+        // but if you want the App API to support tracking app url opens, make sure to keep this call
+        return ApplicationDelegateProxy.shared.application(app, open: url, options: options)
+    }
+
+    func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
+        // Called when the app was launched with an activity, including Universal Links.
+        // Feel free to add additional processing here, but if you want the App API to support
+        // tracking app url opens, make sure to keep this call
+        return ApplicationDelegateProxy.shared.application(application, continue: userActivity, restorationHandler: restorationHandler)
+    }
+
+}
+</file>
+
+<file path="drive-tracker/ios/App/App.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved">
+{
+  "originHash" : "6c71de60b6f7fa3e63c5118d526c28165f6fd01b60924a5cb50e935d52eab28b",
+  "pins" : [
+    {
+      "identity" : "capacitor-swift-pm",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/ionic-team/capacitor-swift-pm.git",
+      "state" : {
+        "revision" : "de1d86e8b7a9b3ddfd19d6304aa3850023536505",
+        "version" : "7.6.0"
+      }
+    }
+  ],
+  "version" : 3
+}
+</file>
+
+<file path="drive-tracker/ios/App/App.xcodeproj/project.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist">
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDEDidComputeMac32BitWarning</key>
+	<true/>
+</dict>
+</plist>
+</file>
+
+<file path="drive-tracker/ios/App/App.xcodeproj/project.xcworkspace/contents.xcworkspacedata">
+<?xml version="1.0" encoding="UTF-8"?>
+<Workspace
+   version = "1.0">
+   <FileRef
+      location = "self:">
+   </FileRef>
+</Workspace>
+</file>
+
+<file path="drive-tracker/ios/App/CapApp-SPM/Sources/CapApp-SPM/CapApp-SPM.swift">
+public let isCapacitorApp = true
+</file>
+
+<file path="drive-tracker/ios/App/CapApp-SPM/.gitignore">
+.DS_Store
+/.build
+/Packages
+/*.xcodeproj
+xcuserdata/
+DerivedData/
+.swiftpm/config/registries.json
+.swiftpm/xcode/package.xcworkspace/contents.xcworkspacedata
+.netrc
+</file>
+
+<file path="drive-tracker/ios/.gitignore">
+App/build
+App/Pods
+App/output
+App/App/public
+DerivedData
+xcuserdata
+
+# Cordova plugins for Capacitor
+capacitor-cordova-ios-plugins
+
+# Generated Config files
+App/App/capacitor.config.json
+App/App/config.xml
+</file>
+
+<file path="drive-tracker/ios/debug.xcconfig">
+CAPACITOR_DEBUG = true
+</file>
+
+<file path="drive-tracker/public/vite.svg">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" class="iconify iconify--logos" width="31.88" height="32" preserveAspectRatio="xMidYMid meet" viewBox="0 0 256 257"><defs><linearGradient id="IconifyId1813088fe1fbc01fb466" x1="-.828%" x2="57.636%" y1="7.652%" y2="78.411%"><stop offset="0%" stop-color="#41D1FF"></stop><stop offset="100%" stop-color="#BD34FE"></stop></linearGradient><linearGradient id="IconifyId1813088fe1fbc01fb467" x1="43.376%" x2="50.316%" y1="2.242%" y2="89.03%"><stop offset="0%" stop-color="#FFEA83"></stop><stop offset="8.333%" stop-color="#FFDD35"></stop><stop offset="100%" stop-color="#FFA800"></stop></linearGradient></defs><path fill="url(#IconifyId1813088fe1fbc01fb466)" d="M255.153 37.938L134.897 252.976c-2.483 4.44-8.862 4.466-11.382.048L.875 37.958c-2.746-4.814 1.371-10.646 6.827-9.67l120.385 21.517a6.537 6.537 0 0 0 2.322-.004l117.867-21.483c5.438-.991 9.574 4.796 6.877 9.62Z"></path><path fill="url(#IconifyId1813088fe1fbc01fb467)" d="M185.432.063L96.44 17.501a3.268 3.268 0 0 0-2.634 3.014l-5.474 92.456a3.268 3.268 0 0 0 3.997 3.378l24.777-5.718c2.318-.535 4.413 1.507 3.936 3.838l-7.361 36.047c-.495 2.426 1.782 4.5 4.151 3.78l15.304-4.649c2.372-.72 4.652 1.36 4.15 3.788l-11.698 56.621c-.732 3.542 3.979 5.473 5.943 2.437l1.313-2.028l72.516-144.72c1.215-2.423-.88-5.186-3.54-4.672l-25.505 4.922c-2.396.462-4.435-1.77-3.759-4.114l16.646-57.705c.677-2.35-1.37-4.583-3.769-4.113Z"></path></svg>
+</file>
+
+<file path="drive-tracker/src/assets/react.svg">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" class="iconify iconify--logos" width="35.93" height="32" preserveAspectRatio="xMidYMid meet" viewBox="0 0 256 228"><path fill="#00D8FF" d="M210.483 73.824a171.49 171.49 0 0 0-8.24-2.597c.465-1.9.893-3.777 1.273-5.621c6.238-30.281 2.16-54.676-11.769-62.708c-13.355-7.7-35.196.329-57.254 19.526a171.23 171.23 0 0 0-6.375 5.848a155.866 155.866 0 0 0-4.241-3.917C100.759 3.829 77.587-4.822 63.673 3.233C50.33 10.957 46.379 33.89 51.995 62.588a170.974 170.974 0 0 0 1.892 8.48c-3.28.932-6.445 1.924-9.474 2.98C17.309 83.498 0 98.307 0 113.668c0 15.865 18.582 31.778 46.812 41.427a145.52 145.52 0 0 0 6.921 2.165a167.467 167.467 0 0 0-2.01 9.138c-5.354 28.2-1.173 50.591 12.134 58.266c13.744 7.926 36.812-.22 59.273-19.855a145.567 145.567 0 0 0 5.342-4.923a168.064 168.064 0 0 0 6.92 6.314c21.758 18.722 43.246 26.282 56.54 18.586c13.731-7.949 18.194-32.003 12.4-61.268a145.016 145.016 0 0 0-1.535-6.842c1.62-.48 3.21-.974 4.76-1.488c29.348-9.723 48.443-25.443 48.443-41.52c0-15.417-17.868-30.326-45.517-39.844Zm-6.365 70.984c-1.4.463-2.836.91-4.3 1.345c-3.24-10.257-7.612-21.163-12.963-32.432c5.106-11 9.31-21.767 12.459-31.957c2.619.758 5.16 1.557 7.61 2.4c23.69 8.156 38.14 20.213 38.14 29.504c0 9.896-15.606 22.743-40.946 31.14Zm-10.514 20.834c2.562 12.94 2.927 24.64 1.23 33.787c-1.524 8.219-4.59 13.698-8.382 15.893c-8.067 4.67-25.32-1.4-43.927-17.412a156.726 156.726 0 0 1-6.437-5.87c7.214-7.889 14.423-17.06 21.459-27.246c12.376-1.098 24.068-2.894 34.671-5.345a134.17 134.17 0 0 1 1.386 6.193ZM87.276 214.515c-7.882 2.783-14.16 2.863-17.955.675c-8.075-4.657-11.432-22.636-6.853-46.752a156.923 156.923 0 0 1 1.869-8.499c10.486 2.32 22.093 3.988 34.498 4.994c7.084 9.967 14.501 19.128 21.976 27.15a134.668 134.668 0 0 1-4.877 4.492c-9.933 8.682-19.886 14.842-28.658 17.94ZM50.35 144.747c-12.483-4.267-22.792-9.812-29.858-15.863c-6.35-5.437-9.555-10.836-9.555-15.216c0-9.322 13.897-21.212 37.076-29.293c2.813-.98 5.757-1.905 8.812-2.773c3.204 10.42 7.406 21.315 12.477 32.332c-5.137 11.18-9.399 22.249-12.634 32.792a134.718 134.718 0 0 1-6.318-1.979Zm12.378-84.26c-4.811-24.587-1.616-43.134 6.425-47.789c8.564-4.958 27.502 2.111 47.463 19.835a144.318 144.318 0 0 1 3.841 3.545c-7.438 7.987-14.787 17.08-21.808 26.988c-12.04 1.116-23.565 2.908-34.161 5.309a160.342 160.342 0 0 1-1.76-7.887Zm110.427 27.268a347.8 347.8 0 0 0-7.785-12.803c8.168 1.033 15.994 2.404 23.343 4.08c-2.206 7.072-4.956 14.465-8.193 22.045a381.151 381.151 0 0 0-7.365-13.322Zm-45.032-43.861c5.044 5.465 10.096 11.566 15.065 18.186a322.04 322.04 0 0 0-30.257-.006c4.974-6.559 10.069-12.652 15.192-18.18ZM82.802 87.83a323.167 323.167 0 0 0-7.227 13.238c-3.184-7.553-5.909-14.98-8.134-22.152c7.304-1.634 15.093-2.97 23.209-3.984a321.524 321.524 0 0 0-7.848 12.897Zm8.081 65.352c-8.385-.936-16.291-2.203-23.593-3.793c2.26-7.3 5.045-14.885 8.298-22.6a321.187 321.187 0 0 0 7.257 13.246c2.594 4.48 5.28 8.868 8.038 13.147Zm37.542 31.03c-5.184-5.592-10.354-11.779-15.403-18.433c4.902.192 9.899.29 14.978.29c5.218 0 10.376-.117 15.453-.343c-4.985 6.774-10.018 12.97-15.028 18.486Zm52.198-57.817c3.422 7.8 6.306 15.345 8.596 22.52c-7.422 1.694-15.436 3.058-23.88 4.071a382.417 382.417 0 0 0 7.859-13.026a347.403 347.403 0 0 0 7.425-13.565Zm-16.898 8.101a358.557 358.557 0 0 1-12.281 19.815a329.4 329.4 0 0 1-23.444.823c-7.967 0-15.716-.248-23.178-.732a310.202 310.202 0 0 1-12.513-19.846h.001a307.41 307.41 0 0 1-10.923-20.627a310.278 310.278 0 0 1 10.89-20.637l-.001.001a307.318 307.318 0 0 1 12.413-19.761c7.613-.576 15.42-.876 23.31-.876H128c7.926 0 15.743.303 23.354.883a329.357 329.357 0 0 1 12.335 19.695a358.489 358.489 0 0 1 11.036 20.54a329.472 329.472 0 0 1-11 20.722Zm22.56-122.124c8.572 4.944 11.906 24.881 6.52 51.026c-.344 1.668-.73 3.367-1.15 5.09c-10.622-2.452-22.155-4.275-34.23-5.408c-7.034-10.017-14.323-19.124-21.64-27.008a160.789 160.789 0 0 1 5.888-5.4c18.9-16.447 36.564-22.941 44.612-18.3ZM128 90.808c12.625 0 22.86 10.235 22.86 22.86s-10.235 22.86-22.86 22.86s-22.86-10.235-22.86-22.86s10.235-22.86 22.86-22.86Z"></path></svg>
+</file>
+
+<file path="drive-tracker/src/components/LoginScreen.tsx">
+import { useState } from 'react';
+
+// Questa prop 'onLoginSuccess' servirà per dire ad App.tsx di sbloccare la Mappa
+export default function LoginScreen({ onLoginSuccess }: { onLoginSuccess: () => void }) {
+  const [isRegistering, setIsRegistering] = useState(false);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+
+  // Finta funzione di login (che lo Sviluppatore 2 sostituirà con Supabase)
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsLoading(true);
+    
+    // Simuliamo 1.5 secondi di caricamento per fingere la verifica credenziali
+    setTimeout(() => {
+      setIsLoading(false);
+      onLoginSuccess(); // Chiama la funzione che sblocca l'app!
+    }, 1500);
+  };
+
+  return (
+    <div className="relative h-screen w-screen bg-gray-900 flex flex-col items-center justify-center p-6 overflow-hidden">
+      
+      {/* Sfondo Astratto sfocato */}
+      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-600/20 rounded-full blur-[100px] animate-pulse"></div>
+      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-blue-900/20 rounded-full blur-[100px] animate-pulse" style={{ animationDelay: '1s' }}></div>
+
+      <div className="relative z-10 w-full max-w-sm animate-in fade-in zoom-in-95 duration-500">
+        
+        {/* Header / Logo */}
+        <div className="flex flex-col items-center mb-10">
+          <div className="w-16 h-16 bg-gray-800 border border-white/10 rounded-2xl flex items-center justify-center mb-4 shadow-2xl shadow-blue-900/20">
+            <svg className="w-8 h-8 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
+          </div>
+          <h1 className="text-4xl font-black tracking-tighter text-white">Road<span className="text-blue-500">Record</span></h1>
+          <p className="text-gray-400 text-sm mt-2 font-medium tracking-wide">
+            {isRegistering ? 'Crea il tuo profilo pilota' : 'Accedi al computer di bordo'}
+          </p>
+        </div>
+
+        {/* Form di Login/Registrazione */}
+        <form onSubmit={handleSubmit} className="bg-gray-800/50 backdrop-blur-xl p-8 rounded-3xl border border-white/5 shadow-2xl flex flex-col gap-5">
+          
+          <div>
+            <label className="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Email</label>
+            <input 
+              type="email" 
+              required
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="w-full bg-gray-900/50 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+
+            />
+          </div>
+
+          <div>
+            <label className="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Password</label>
+            <input 
+              type="password" 
+              required
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className="w-full bg-gray-900/50 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+
+            />
+          </div>
+
+          <button 
+            type="submit" 
+            disabled={isLoading}
+            className="w-full mt-4 bg-blue-600 hover:bg-blue-500 text-white font-black text-lg py-4 rounded-2xl transition-all active:scale-95 shadow-lg shadow-blue-600/20 border-b-4 border-blue-800 disabled:opacity-70 disabled:active:scale-100 flex justify-center items-center gap-2"
+          >
+            {isLoading ? (
+              <svg className="animate-spin h-5 w-5 text-white" fill="none" viewBox="0 0 24 24"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
+            ) : isRegistering ? 'REGISTRATI' : 'ACCEDI'}
+          </button>
+        </form>
+
+        {/* Toggle Login/Registrazione */}
+        <div className="mt-8 text-center">
+          <p className="text-gray-400 text-sm">
+            {isRegistering ? 'Hai già un account?' : 'Non hai ancora le chiavi?'}
+            <button 
+              type="button" 
+              onClick={() => setIsRegistering(!isRegistering)}
+              className="ml-2 text-blue-400 font-bold hover:text-blue-300 transition-colors"
+            >
+              {isRegistering ? 'Accedi ora' : 'Registrati qui'}
+            </button>
+          </p>
+        </div>
+
+      </div>
+    </div>
+  );
+}
+</file>
+
+<file path="drive-tracker/src/services/authManager.ts">
+// src/services/authManager.ts
+import { supabase } from '../supabaseClient';
+
+export const authManager = {
+  // Registrazione nuovo utente
+  async signUp(email: string, password: string) {
+    const { data, error } = await supabase.auth.signUp({ email, password });
+    if (error) throw error;
+    return data;
+  },
+
+  // Login utente esistente
+  async signIn(email: string, password: string) {
+    const { data, error } = await supabase.auth.signInWithPassword({ email, password });
+    if (error) throw error;
+    return data;
+  },
+
+  // Logout
+  async signOut() {
+    const { error } = await supabase.auth.signOut();
+    if (error) throw error;
+  },
+
+  // Recupera l'utente attualmente loggato
+  async getCurrentUser() {
+    const { data: { session } } = await supabase.auth.getSession();
+    return session?.user || null;
+  }
+};
+</file>
+
+<file path="drive-tracker/src/utils/geo.ts">
+// src/utils/geo.ts
+
+// Funzione di utilità per convertire i gradi in radianti
+const toRad = (value: number) => (value * Math.PI) / 180;
+
+// Calcola la distanza in km tra due coordinate usando l'algoritmo Haversine
+export const calculateDistance = (lat1: number, lon1: number, lat2: number, lon2: number): number => {
+  const R = 6371; // Raggio medio della Terra in km
+  const dLat = toRad(lat2 - lat1);
+  const dLon = toRad(lon2 - lon1);
+  const a =
+    Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+    Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) *
+    Math.sin(dLon / 2) * Math.sin(dLon / 2);
+  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+  return R * c; // Ritorna la distanza in Km
+};
+
+// Calcola la velocità istantanea in km/h in base alla distanza e al tempo trascorso
+export const calculateSpeed = (distanceKm: number, timeDiffMs: number): number => {
+  if (timeDiffMs === 0) return 0;
+  const timeDiffHours = timeDiffMs / (1000 * 60 * 60);
+  return distanceKm / timeDiffHours;
+};
+</file>
+
+<file path="drive-tracker/src/index.css">
+@import "tailwindcss";
+
+/* Il nostro reset per l'app mobile */
+body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden; 
+  background-color: #f3f4f6; 
+}
+</file>
+
+<file path="drive-tracker/src/main.tsx">
+import { StrictMode } from 'react'
+import { createRoot } from 'react-dom/client'
+import './index.css'
+import App from './App.tsx'
+
+createRoot(document.getElementById('root')!).render(
+  <StrictMode>
+    <App />
+  </StrictMode>,
+)
+</file>
+
+<file path="drive-tracker/src/supabaseClient.ts">
+import { createClient } from '@supabase/supabase-js';
+
+// Vite espone le variabili d'ambiente tramite import.meta.env
+const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
+const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
+
+export const supabase = createClient(supabaseUrl, supabaseAnonKey);
+</file>
+
+<file path="drive-tracker/src/vite-env.d.ts">
+declare module 'react-map-gl';
+</file>
+
+<file path="drive-tracker/capacitor.config.ts">
+import type { CapacitorConfig } from '@capacitor/cli';
+
+const config: CapacitorConfig = {
+  appId: 'com.tuonome.drivetracker',
+  appName: 'DriveTracker',
+  webDir: 'dist'
+};
+
+export default config;
+</file>
+
+<file path="drive-tracker/eslint.config.js">
+import js from '@eslint/js'
+import globals from 'globals'
+import reactHooks from 'eslint-plugin-react-hooks'
+import reactRefresh from 'eslint-plugin-react-refresh'
+import tseslint from 'typescript-eslint'
+import { defineConfig, globalIgnores } from 'eslint/config'
+
+export default defineConfig([
+  globalIgnores(['dist']),
+  {
+    files: ['**/*.{ts,tsx}'],
+    extends: [
+      js.configs.recommended,
+      tseslint.configs.recommended,
+      reactHooks.configs.flat.recommended,
+      reactRefresh.configs.vite,
+    ],
+    languageOptions: {
+      ecmaVersion: 2020,
+      globals: globals.browser,
+    },
+  },
+])
+</file>
+
+<file path="drive-tracker/README.md">
+# React + TypeScript + Vite
+
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+
+Currently, two official plugins are available:
+
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+
+## React Compiler
+
+The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+
+## Expanding the ESLint configuration
+
+If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+
+```js
+export default defineConfig([
+  globalIgnores(['dist']),
+  {
+    files: ['**/*.{ts,tsx}'],
+    extends: [
+      // Other configs...
+
+      // Remove tseslint.configs.recommended and replace with this
+      tseslint.configs.recommendedTypeChecked,
+      // Alternatively, use this for stricter rules
+      tseslint.configs.strictTypeChecked,
+      // Optionally, add this for stylistic rules
+      tseslint.configs.stylisticTypeChecked,
+
+      // Other configs...
+    ],
+    languageOptions: {
+      parserOptions: {
+        project: ['./tsconfig.node.json', './tsconfig.app.json'],
+        tsconfigRootDir: import.meta.dirname,
+      },
+      // other options...
+    },
+  },
+])
+```
+
+You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+
+```js
+// eslint.config.js
+import reactX from 'eslint-plugin-react-x'
+import reactDom from 'eslint-plugin-react-dom'
+
+export default defineConfig([
+  globalIgnores(['dist']),
+  {
+    files: ['**/*.{ts,tsx}'],
+    extends: [
+      // Other configs...
+      // Enable lint rules for React
+      reactX.configs['recommended-typescript'],
+      // Enable lint rules for React DOM
+      reactDom.configs.recommended,
+    ],
+    languageOptions: {
+      parserOptions: {
+        project: ['./tsconfig.node.json', './tsconfig.app.json'],
+        tsconfigRootDir: import.meta.dirname,
+      },
+      // other options...
+    },
+  },
+])
+```
+</file>
+
+<file path="drive-tracker/tsconfig.app.json">
+{
+  "compilerOptions": {
+    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
+    "target": "ES2022",
+    "useDefineForClassFields": true,
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "module": "ESNext",
+    "types": ["vite/client"],
+    "skipLibCheck": true,
+
+    /* Bundler mode */
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    "verbatimModuleSyntax": true,
+    "moduleDetection": "force",
+    "noEmit": true,
+    "jsx": "react-jsx",
+
+    /* Linting */
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "erasableSyntaxOnly": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUncheckedSideEffectImports": true
+  },
+  "include": ["src"]
+}
+</file>
+
+<file path="drive-tracker/tsconfig.json">
+{
+  "files": [],
+  "references": [
+    { "path": "./tsconfig.app.json" },
+    { "path": "./tsconfig.node.json" }
+  ]
+}
+</file>
+
+<file path="drive-tracker/tsconfig.node.json">
+{
+  "compilerOptions": {
+    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.node.tsbuildinfo",
+    "target": "ES2023",
+    "lib": ["ES2023"],
+    "module": "ESNext",
+    "types": ["node"],
+    "skipLibCheck": true,
+
+    /* Bundler mode */
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    "verbatimModuleSyntax": true,
+    "moduleDetection": "force",
+    "noEmit": true,
+
+    /* Linting */
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "erasableSyntaxOnly": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUncheckedSideEffectImports": true
+  },
+  "include": ["vite.config.ts"]
+}
+</file>
+
+<file path="drive-tracker/vite.config.ts">
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+import tailwindcss from '@tailwindcss/vite'
+
+// https://vite.dev/config/
+export default defineConfig({
+  plugins: [
+    react(),
+    tailwindcss(),
+  ],
+})
+</file>
+
+<file path="drive-tracker/ios/App/CapApp-SPM/README.md">
+# CapApp-SPM
+
+This package is used to host SPM dependencies for your Capacitor project
+
+Do not modify the contents of it or there may be unintended consequences.
+</file>
+
+<file path="drive-tracker/src/components/SplashScreen.tsx">
+import { useEffect, useState } from 'react';
+
+export default function SplashScreen({ onFinish }: { onFinish: () => void }) {
+  const [isFading, setIsFading] = useState(false);
+
+  useEffect(() => {
+    // Inizia la transizione di scomparsa dopo 2.5 secondi
+    const fadeTimer = setTimeout(() => setIsFading(true), 2500);
+    
+    // Distrugge il componente e mostra la mappa dopo 3 secondi
+    const removeTimer = setTimeout(() => onFinish(), 3000);
+
+    return () => {
+      clearTimeout(fadeTimer);
+      clearTimeout(removeTimer);
+    };
+  }, [onFinish]);
+
+  return (
+    <div 
+      className={`fixed inset-0 z-50 flex flex-col items-center justify-center bg-gray-900 transition-opacity duration-500 ${
+        isFading ? 'opacity-0' : 'opacity-100'
+      }`}
+    >
+      {/* Icona Vettoriale (Senza Emoji) */}
+      <div className="relative flex items-center justify-center mb-6">
+        {/* Cerchio pulsante di background */}
+        <div className="absolute w-24 h-24 bg-blue-500/20 rounded-full animate-ping"></div>
+        
+        {/* Icona GPS/Strada */}
+        <svg 
+          className="w-20 h-20 text-blue-500 relative z-10" 
+          fill="none" 
+          stroke="currentColor" 
+          viewBox="0 0 24 24" 
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path 
+            strokeLinecap="round" 
+            strokeLinejoin="round" 
+            strokeWidth={1.5} 
+            d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" 
+          />
+          <path 
+            strokeLinecap="round" 
+            strokeLinejoin="round" 
+            strokeWidth={1.5} 
+            d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" 
+          />
+        </svg>
+      </div>
+
+      {/* Nome App: RoadRecord */}
+      <h1 className="text-5xl font-black tracking-tighter text-white mb-3 shadow-sm">
+        Road<span className="text-blue-500">Record</span>
+      </h1>
+      
+      {/* Sottotitolo tecnico */}
+      <p className="text-gray-400 font-medium tracking-[0.2em] text-xs uppercase">
+        Calibrazione Sistemi
+      </p>
+
+      {/* Indicatore di caricamento (3 pallini sequenziali) */}
+      <div className="mt-12 flex gap-3">
+        <div className="w-2 h-2 bg-blue-500 rounded-full animate-bounce" style={{ animationDelay: '0s' }}></div>
+        <div className="w-2 h-2 bg-blue-500 rounded-full animate-bounce" style={{ animationDelay: '0.15s' }}></div>
+        <div className="w-2 h-2 bg-blue-500 rounded-full animate-bounce" style={{ animationDelay: '0.3s' }}></div>
+      </div>
+    </div>
+  );
+}
+</file>
+
+<file path="drive-tracker/src/services/routeManager.ts">
+// src/services/routeManager.ts
+import { supabase } from '../supabaseClient';
+import { Network } from '@capacitor/network';
+import { Preferences } from '@capacitor/preferences';
+
+export interface RouteStats {
+  distance_km: number;
+  avg_speed_kmh: number;
+  max_speed_kmh: number;
+  total_time_seconds: number;
+  driving_time_seconds: number;
+  pause_time_seconds: number;
+  route_data?: any;
+}
+
+const OFFLINE_KEY = 'offline_pending_routes';
+
+export const routeManager = {
+
+  // FASE 4.2 & 5.2: Salvataggio con Auth
+  async saveRoute(base64Image: string, stats: RouteStats) {
+    const status = await Network.getStatus();
+    
+    if (!status.connected) {
+      console.warn("Nessuna connessione. Salvataggio in locale...");
+      await this.saveToOfflineStorage(base64Image, stats);
+      return { success: true, offline: true };
+    }
+
+    try {
+      // FASE 5: Controllo utente loggato
+      const { data: { session } } = await supabase.auth.getSession();
+      if (!session?.user) throw new Error("Devi effettuare il login per salvare nel Cloud.");
+      const userId = session.user.id;
+
+      // 1. Upload Immagine
+      const fileName = `${userId}_${Date.now()}.png`; // Rendiamo il nome file unico per utente
+      const res = await fetch(base64Image);
+      const blob = await res.blob();
+
+      const { error: uploadError } = await supabase.storage
+        .from('snapshots')
+        .upload(fileName, blob, { contentType: 'image/png' });
+
+      if (uploadError) throw uploadError;
+
+      const { data: publicUrlData } = supabase.storage
+        .from('snapshots')
+        .getPublicUrl(fileName);
+
+      // 2. Salvataggio Database con user_id!
+      const { error: dbError } = await supabase.from('routes').insert({
+        user_id: userId,
+        snapshot_url: publicUrlData.publicUrl,
+        ...stats
+      });
+
+      if (dbError) throw dbError;
+
+      return { success: true, offline: false };
+
+    } catch (error) {
+      console.error("Errore Cloud:", error);
+      await this.saveToOfflineStorage(base64Image, stats);
+      return { success: true, offline: true };
+    }
+  },
+
+  // FASE 5.2.2 & 5.2.3: Recupero Storico con Paginazione
+  // page = 0 (primi 10), page = 1 (da 11 a 20), ecc.
+  async getRoutes(page: number = 0, limit: number = 10) {
+    const { data: { session } } = await supabase.auth.getSession();
+    if (!session?.user) return []; // Se non c'è utente, niente storico
+
+    const from = page * limit;
+    const to = from + limit - 1;
+
+    // Grazie alle RLS di Supabase (Fase 1), questa query scaricherà AUTOMATICAMENTE
+    // solo i viaggi dell'utente loggato, senza bisogno di scrivere "WHERE user_id = ..."
+    const { data, error } = await supabase
+      .from('routes')
+      .select('*')
+      .order('created_at', { ascending: false }) // I più recenti prima
+      .range(from, to); // FASE 5.2.3: Paginazione!
+
+    if (error) {
+      console.error("Errore recupero storico:", error);
+      return [];
+    }
+
+    return data;
+  },
+
+  // --- LOGICA OFFLINE (Invariata) ---
+  async saveToOfflineStorage(base64Image: string, stats: RouteStats) {
+    const { value } = await Preferences.get({ key: OFFLINE_KEY });
+    const pendingRoutes = value ? JSON.parse(value) : [];
+    pendingRoutes.push({ base64Image, stats, timestamp: Date.now() });
+    await Preferences.set({ key: OFFLINE_KEY, value: JSON.stringify(pendingRoutes) });
+  },
+
+  async syncOfflineRoutes() {
+    const status = await Network.getStatus();
+    if (!status.connected) return;
+
+    const { value } = await Preferences.get({ key: OFFLINE_KEY });
+    if (!value) return;
+
+    const pendingRoutes = JSON.parse(value);
+    if (pendingRoutes.length === 0) return;
+    
+    const failedRoutes = [];
+    for (const route of pendingRoutes) {
+      try {
+        await this.saveRoute(route.base64Image, route.stats);
+      } catch (e) {
+        failedRoutes.push(route);
+      }
+    }
+    await Preferences.set({ key: OFFLINE_KEY, value: JSON.stringify(failedRoutes) });
+  }
+};
+</file>
+
+<file path="drive-tracker/.gitignore">
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+dist
+dist-ssr
+*.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+# Secrets
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+</file>
+
+<file path="drive-tracker/index.html">
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1, user-scalable=no" />
+    <title>drive-tracker</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+</file>
+
+<file path="package.json">
+{
+  "devDependencies": {
+    "@types/mapbox-gl": "^3.4.1"
+  }
+}
+</file>
+
+<file path="drive-tracker/ios/App/App.xcodeproj/project.pbxproj">
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 60;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		2FAD9763203C412B000D30F8 /* config.xml in Resources */ = {isa = PBXBuildFile; fileRef = 2FAD9762203C412B000D30F8 /* config.xml */; };
+		4D22ABE92AF431CB00220026 /* CapApp-SPM in Frameworks */ = {isa = PBXBuildFile; productRef = 4D22ABE82AF431CB00220026 /* CapApp-SPM */; };
+		50379B232058CBB4000EE86E /* capacitor.config.json in Resources */ = {isa = PBXBuildFile; fileRef = 50379B222058CBB4000EE86E /* capacitor.config.json */; };
+		504EC3081FED79650016851F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504EC3071FED79650016851F /* AppDelegate.swift */; };
+		504EC30D1FED79650016851F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 504EC30B1FED79650016851F /* Main.storyboard */; };
+		504EC30F1FED79650016851F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 504EC30E1FED79650016851F /* Assets.xcassets */; };
+		504EC3121FED79650016851F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 504EC3101FED79650016851F /* LaunchScreen.storyboard */; };
+		50B271D11FEDC1A000F3C39B /* public in Resources */ = {isa = PBXBuildFile; fileRef = 50B271D01FEDC1A000F3C39B /* public */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		2FAD9762203C412B000D30F8 /* config.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = config.xml; sourceTree = "<group>"; };
+		50379B222058CBB4000EE86E /* capacitor.config.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = capacitor.config.json; sourceTree = "<group>"; };
+		504EC3041FED79650016851F /* App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = App.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		504EC3071FED79650016851F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		504EC30C1FED79650016851F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		504EC30E1FED79650016851F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		504EC3111FED79650016851F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		504EC3131FED79650016851F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		50B271D01FEDC1A000F3C39B /* public */ = {isa = PBXFileReference; lastKnownFileType = folder; path = public; sourceTree = "<group>"; };
+		958DCC722DB07C7200EA8C5F /* debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = debug.xcconfig; path = ../debug.xcconfig; sourceTree = SOURCE_ROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		504EC3011FED79650016851F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4D22ABE92AF431CB00220026 /* CapApp-SPM in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		504EC2FB1FED79650016851F = {
+			isa = PBXGroup;
+			children = (
+				958DCC722DB07C7200EA8C5F /* debug.xcconfig */,
+				504EC3061FED79650016851F /* App */,
+				504EC3051FED79650016851F /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		504EC3051FED79650016851F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				504EC3041FED79650016851F /* App.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		504EC3061FED79650016851F /* App */ = {
+			isa = PBXGroup;
+			children = (
+				50379B222058CBB4000EE86E /* capacitor.config.json */,
+				504EC3071FED79650016851F /* AppDelegate.swift */,
+				504EC30B1FED79650016851F /* Main.storyboard */,
+				504EC30E1FED79650016851F /* Assets.xcassets */,
+				504EC3101FED79650016851F /* LaunchScreen.storyboard */,
+				504EC3131FED79650016851F /* Info.plist */,
+				2FAD9762203C412B000D30F8 /* config.xml */,
+				50B271D01FEDC1A000F3C39B /* public */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		504EC3031FED79650016851F /* App */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 504EC3161FED79650016851F /* Build configuration list for PBXNativeTarget "App" */;
+			buildPhases = (
+				504EC3001FED79650016851F /* Sources */,
+				504EC3011FED79650016851F /* Frameworks */,
+				504EC3021FED79650016851F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = App;
+			packageProductDependencies = (
+				4D22ABE82AF431CB00220026 /* CapApp-SPM */,
+			);
+			productName = App;
+			productReference = 504EC3041FED79650016851F /* App.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		504EC2FC1FED79650016851F /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0920;
+				LastUpgradeCheck = 0920;
+				TargetAttributes = {
+					504EC3031FED79650016851F = {
+						CreatedOnToolsVersion = 9.2;
+						LastSwiftMigration = 1100;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 504EC2FF1FED79650016851F /* Build configuration list for PBXProject "App" */;
+			compatibilityVersion = "Xcode 8.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 504EC2FB1FED79650016851F;
+			packageReferences = (
+				D4C12C0A2AAA248700AAC8A2 /* XCLocalSwiftPackageReference "CapApp-SPM" */,
+			);
+			productRefGroup = 504EC3051FED79650016851F /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				504EC3031FED79650016851F /* App */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		504EC3021FED79650016851F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				504EC3121FED79650016851F /* LaunchScreen.storyboard in Resources */,
+				50B271D11FEDC1A000F3C39B /* public in Resources */,
+				504EC30F1FED79650016851F /* Assets.xcassets in Resources */,
+				50379B232058CBB4000EE86E /* capacitor.config.json in Resources */,
+				504EC30D1FED79650016851F /* Main.storyboard in Resources */,
+				2FAD9763203C412B000D30F8 /* config.xml in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		504EC3001FED79650016851F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				504EC3081FED79650016851F /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		504EC30B1FED79650016851F /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				504EC30C1FED79650016851F /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		504EC3101FED79650016851F /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				504EC3111FED79650016851F /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		504EC3141FED79650016851F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 958DCC722DB07C7200EA8C5F /* debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		504EC3151FED79650016851F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		504EC3171FED79650016851F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 958DCC722DB07C7200EA8C5F /* debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = HP55SN9769;
+				INFOPLIST_FILE = App/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = ReadRecord;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.navigation";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" \"-DDEBUG\"";
+				PRODUCT_BUNDLE_IDENTIFIER = com.alessandro.drivetracker;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		504EC3181FED79650016851F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = HP55SN9769;
+				INFOPLIST_FILE = App/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = ReadRecord;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.navigation";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.alessandro.drivetracker;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		504EC2FF1FED79650016851F /* Build configuration list for PBXProject "App" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				504EC3141FED79650016851F /* Debug */,
+				504EC3151FED79650016851F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		504EC3161FED79650016851F /* Build configuration list for PBXNativeTarget "App" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				504EC3171FED79650016851F /* Debug */,
+				504EC3181FED79650016851F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		D4C12C0A2AAA248700AAC8A2 /* XCLocalSwiftPackageReference "CapApp-SPM" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = "CapApp-SPM";
+		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		4D22ABE82AF431CB00220026 /* CapApp-SPM */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D4C12C0A2AAA248700AAC8A2 /* XCLocalSwiftPackageReference "CapApp-SPM" */;
+			productName = "CapApp-SPM";
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 504EC2FC1FED79650016851F /* Project object */;
+}
+</file>
+
+<file path="drive-tracker/src/hooks/useDriveTracker.ts">
+import { useState, useRef, useEffect } from 'react';
+import { registerPlugin } from '@capacitor/core';
+import { calculateDistance, calculateSpeed } from '../utils/geo';
+
+// Inizializziamo il plugin di Background Geolocation
+const BackgroundGeolocation = registerPlugin<any>('BackgroundGeolocation');
+
+export interface TrackingData {
+  lat: number;
+  lng: number;
+  speed: number;
+  timestamp: number;
+}
+
+// Creiamo un tipo più semplice per l'ultima posizione, per slegarci dalle dipendenze del vecchio plugin
+interface SimplePosition {
+  lat: number;
+  lng: number;
+  timestamp: number;
+}
+
+export type TrackingStatus = 'idle' | 'countdown' | 'tracking' | 'paused' | 'finished';
+
+export const useDriveTracker = () => {
+  const [status, setStatus] = useState<TrackingStatus>('idle');
+  const [countdown, setCountdown] = useState(10);
+  
+  const [totalTime, setTotalTime] = useState(0);
+  const [effectiveTime, setEffectiveTime] = useState(0);
+  const [pauseTime, setPauseTime] = useState(0);
+
+  const [currentSpeed, setCurrentSpeed] = useState(0);
+  const [totalDistance, setTotalDistance] = useState(0);
+  const [route, setRoute] = useState<TrackingData[]>([]);
+
+  // Il Watcher ID con questo plugin è una stringa
+  const watchId = useRef<string | null>(null);
+  const lastPosition = useRef<SimplePosition | null>(null);
+  const isPausedRef = useRef(false);
+
+  // --- 1. GESTIONE SCORRIMENTO TEMPO ---
+  useEffect(() => {
+    let interval: ReturnType<typeof setInterval>;
+
+    if (status === 'countdown') {
+      interval = setInterval(() => {
+        setCountdown((prev) => prev - 1);
+      }, 1000);
+    } 
+    else if (status === 'tracking' || status === 'paused') {
+      interval = setInterval(() => {
+        setTotalTime((prev) => prev + 1);
+        if (status === 'tracking') setEffectiveTime((prev) => prev + 1);
+        else if (status === 'paused') setPauseTime((prev) => prev + 1);
+      }, 1000);
+    }
+
+    return () => {
+      if (interval) clearInterval(interval);
+    };
+  }, [status]);
+
+  // --- 2. CONTROLLO FINE COUNTDOWN ---
+  useEffect(() => {
+    if (status === 'countdown' && countdown <= 0) {
+      startActualTracking();
+    }
+  }, [status, countdown]);
+
+  const startCountdown = () => {
+    setTotalTime(0);
+    setEffectiveTime(0);
+    setPauseTime(0);
+    setTotalDistance(0);
+    setCurrentSpeed(0);
+    setRoute([]);
+    setCountdown(10);
+    setStatus('countdown');
+    isPausedRef.current = false;
+  };
+
+  const startActualTracking = async () => {
+    setStatus('tracking'); 
+    
+    try {
+      // Usiamo il nuovo plugin corazzato per il Background Tracking
+      const id = await BackgroundGeolocation.addWatcher(
+        {
+          backgroundTitle: "Tracciamento in corso",
+          backgroundMessage: "Drive Tracker sta registrando il tuo viaggio in background.",
+          requestPermissions: true, // Chiede in automatico i permessi "Sempre" su iOS
+          stale: false,
+          distanceFilter: 5 // Aggiorna ogni 5 metri per risparmiare un po' di batteria
+        },
+        (location: any, err: any) => {
+          if (err || !location) {
+            console.error("Errore GPS Background:", err);
+            return;
+          }
+          
+          if (isPausedRef.current) {
+            setCurrentSpeed(0);
+            return;
+          }
+
+          const latitude = location.latitude;
+          const longitude = location.longitude;
+          const timestamp = location.time || Date.now();
+          
+          // Il plugin restituisce la velocità in m/s (se disponibile)
+          let speed = location.speed != null ? (location.speed * 3.6) : 0; 
+
+          if (lastPosition.current) {
+              const distance = calculateDistance(
+                  lastPosition.current.lat,
+                  lastPosition.current.lng,
+                  latitude,
+                  longitude
+              );
+              
+              setTotalDistance(prev => prev + distance);
+
+              // Calcolo manuale se il GPS non fornisce la velocità nativa
+              if (location.speed == null) {
+                 const timeDiff = timestamp - lastPosition.current.timestamp;
+                 speed = calculateSpeed(distance, timeDiff);
+              }
+          }
+
+          setCurrentSpeed(speed);
+          lastPosition.current = { lat: latitude, lng: longitude, timestamp };
+          
+          setRoute(prev => [...prev, { lat: latitude, lng: longitude, speed, timestamp }]);
+        }
+      );
+
+      watchId.current = id;
+
+    } catch (error) {
+      console.error("Errore avvio Background Geolocation:", error);
+      // Fallback in caso di Safari su Mac che non supporta il plugin nativo
+      alert("Il tracciamento in background è supportato solo sui dispositivi nativi (iOS/Android).");
+    }
+  };
+
+  const pauseTracking = () => {
+    setStatus('paused');
+    isPausedRef.current = true;
+  };
+
+  const resumeTracking = () => {
+    setStatus('tracking');
+    isPausedRef.current = false;
+    lastPosition.current = null;
+  };
+
+  const stopTracking = async () => {
+    // Rimuoviamo l'osservatore di sistema per fermare l'uso della batteria
+    if (watchId.current) {
+      await BackgroundGeolocation.removeWatcher({ id: watchId.current });
+      watchId.current = null;
+    }
+    setStatus('finished');
+    isPausedRef.current = false;
+    lastPosition.current = null;
+  };
+
+  return {
+    status,
+    countdown,
+    totalTime,
+    effectiveTime,
+    pauseTime,
+    currentSpeed,
+    totalDistance,
+    route,
+    startCountdown,
+    pauseTracking,
+    resumeTracking,
+    stopTracking
+  };
+};
+</file>
+
+<file path="drive-tracker/android/app/capacitor.build.gradle">
+// DO NOT EDIT THIS FILE! IT IS GENERATED EACH TIME "capacitor update" IS RUN
+
+android {
+  compileOptions {
+      sourceCompatibility JavaVersion.VERSION_21
+      targetCompatibility JavaVersion.VERSION_21
+  }
+}
+
+apply from: "../capacitor-cordova-android-plugins/cordova.variables.gradle"
+dependencies {
+    implementation project(':capacitor-community-background-geolocation')
+    implementation project(':capacitor-geolocation')
+    implementation project(':capacitor-network')
+    implementation project(':capacitor-preferences')
+
+}
+
+
+if (hasProperty('postBuildExtras')) {
+  postBuildExtras()
+}
+</file>
+
+<file path="drive-tracker/android/capacitor.settings.gradle">
+// DO NOT EDIT THIS FILE! IT IS GENERATED EACH TIME "capacitor update" IS RUN
+include ':capacitor-android'
+project(':capacitor-android').projectDir = new File('../node_modules/@capacitor/android/capacitor')
+
+include ':capacitor-community-background-geolocation'
+project(':capacitor-community-background-geolocation').projectDir = new File('../node_modules/@capacitor-community/background-geolocation/android')
+
+include ':capacitor-geolocation'
+project(':capacitor-geolocation').projectDir = new File('../node_modules/@capacitor/geolocation/android')
+
+include ':capacitor-network'
+project(':capacitor-network').projectDir = new File('../node_modules/@capacitor/network/android')
+
+include ':capacitor-preferences'
+project(':capacitor-preferences').projectDir = new File('../node_modules/@capacitor/preferences/android')
+</file>
+
+<file path="drive-tracker/ios/App/App/Info.plist">
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CAPACITOR_DEBUG</key>
+	<string>$(CAPACITOR_DEBUG)</string>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>en</string>
+	<key>CFBundleDisplayName</key>
+	<string>DriveTracker</string>
+	<key>CFBundleExecutable</key>
+	<string>$(EXECUTABLE_NAME)</string>
+	<key>CFBundleIdentifier</key>
+	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleName</key>
+	<string>$(PRODUCT_NAME)</string>
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
+	<key>CFBundleShortVersionString</key>
+	<string>$(MARKETING_VERSION)</string>
+	<key>CFBundleVersion</key>
+	<string>$(CURRENT_PROJECT_VERSION)</string>
+	<key>LSRequiresIPhoneOS</key>
+	<true/>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Drive Tracker deve accedere al GPS in background per continuare a registrare i chilometri anche se spegni lo schermo dell'iPhone.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Drive Tracker ha bisogno del GPS per mostrarti sulla mappa e calcolare la velocità mentre guidi.</string>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>location</string>
+	</array>
+	<key>UILaunchStoryboardName</key>
+	<string>LaunchScreen</string>
+	<key>UIMainStoryboardFile</key>
+	<string>Main</string>
+	<key>UIRequiredDeviceCapabilities</key>
+	<array>
+		<string>armv7</string>
+	</array>
+	<key>UISupportedInterfaceOrientations</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationLandscapeLeft</string>
+		<string>UIInterfaceOrientationLandscapeRight</string>
+	</array>
+	<key>UISupportedInterfaceOrientations~ipad</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationPortraitUpsideDown</string>
+		<string>UIInterfaceOrientationLandscapeLeft</string>
+		<string>UIInterfaceOrientationLandscapeRight</string>
+	</array>
+	<key>UIViewControllerBasedStatusBarAppearance</key>
+	<true/>
+</dict>
+</plist>
+</file>
+
+<file path="drive-tracker/src/App.tsx">
+import { useState } from 'react';
+import MapOverlay from './components/MapOverlay';
+import SplashScreen from './components/SplashScreen';
+import LoginScreen from './components/LoginScreen';
+
+function App() {
+  // Stati per controllare quale schermata mostrare
+  const [showSplash, setShowSplash] = useState(true);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+  return (
+    <div className="h-screen w-screen bg-gray-900 overflow-hidden">
+      {/* 1. Mostra la Splash Screen per 3 secondi */}
+      {showSplash && (
+        <SplashScreen onFinish={() => setShowSplash(false)} />
+      )}
+
+      {/* 2. Finita la Splash, se NON sei loggato, mostra il Login */}
+      {!showSplash && !isAuthenticated && (
+        <LoginScreen onLoginSuccess={() => setIsAuthenticated(true)} />
+      )}
+
+      {/* 3. Finito il Login, mostra la Mappa */}
+      {!showSplash && isAuthenticated && (
+        <MapOverlay />
+      )}
+    </div>
+  );
+}
+
+export default App;
+</file>
+
+<file path="drive-tracker/ios/App/CapApp-SPM/Package.swift">
+// swift-tools-version: 5.9
+import PackageDescription
+
+// DO NOT MODIFY THIS FILE - managed by Capacitor CLI commands
+let package = Package(
+    name: "CapApp-SPM",
+    platforms: [.iOS(.v15)],
+    products: [
+        .library(
+            name: "CapApp-SPM",
+            targets: ["CapApp-SPM"])
+    ],
+    dependencies: [
+        .package(url: "https://github.com/ionic-team/capacitor-swift-pm.git", exact: "7.6.0"),
+        .package(name: "CapacitorCommunityBackgroundGeolocation", path: "../../../node_modules/@capacitor-community/background-geolocation"),
+        .package(name: "CapacitorNetwork", path: "../../../node_modules/@capacitor/network"),
+        .package(name: "CapacitorPreferences", path: "../../../node_modules/@capacitor/preferences")
+    ],
+    targets: [
+        .target(
+            name: "CapApp-SPM",
+            dependencies: [
+                .product(name: "Capacitor", package: "capacitor-swift-pm"),
+                .product(name: "Cordova", package: "capacitor-swift-pm"),
+                .product(name: "CapacitorCommunityBackgroundGeolocation", package: "CapacitorCommunityBackgroundGeolocation"),
+                .product(name: "CapacitorNetwork", package: "CapacitorNetwork"),
+                .product(name: "CapacitorPreferences", package: "CapacitorPreferences")
+            ]
+        )
+    ]
+)
+</file>
+
+<file path="ROADMAP.html">
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roadmap App "RoadRecord" (Aggiornata con BETA)</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; line-height: 1.6; color: #333; max-width: 900px; margin: 0 auto; padding: 20px; }
+        h1 { color: #2c3e50; border-bottom: 2px solid #3498db; padding-bottom: 10px; }
+        h2 { color: #2980b9; margin-top: 30px; }
+        h3 { color: #e67e22; margin-top: 20px; font-size: 1.1em; }
+        ul { list-style-type: none; padding-left: 0; }
+        li { margin-bottom: 8px; padding: 10px; background: #f8f9fa; border-left: 4px solid #bdc3c7; }
+        .dev1 { border-left-color: #3498db; }
+        .dev2 { border-left-color: #e74c3c; }
+        .step { font-weight: bold; color: #555; }
+        .legend { display: flex; gap: 20px; margin-bottom: 20px; padding: 15px; background: #eee; border-radius: 5px; }
+        .badge { padding: 4px 8px; border-radius: 4px; color: white; font-size: 0.85em; font-weight: bold; }
+        .bg-blue { background-color: #3498db; }
+        .bg-red { background-color: #e74c3c; }
+        .bg-purple { background-color: #8e44ad; }
+        .bonus { background-color: #fff3cd; border-left-color: #ffc107; }
+        .beta-title { color: #8e44ad; border-bottom: 2px dashed #8e44ad; }
+    </style>
+</head>
+<body>
+
+    <h1>Roadmap di Sviluppo: App Tracciamento Auto</h1>
+    
+    <div class="legend">
+        <div><span class="badge bg-blue">Sviluppatore 1</span> = Frontend (UI, React, Mappe)</div>
+        <div><span class="badge bg-red">Sviluppatore 2</span> = Backend & Core (Capacitor, GPS, DB)</div>
+        <div><span class="badge bg-purple">FASE BETA</span> = Funzionalità Post-Lancio</div>
+    </div>
+
+    <h2>1. FASE 1: Setup dell'Architettura e Database (Fondamenta) COMPLETATO</h2>
+    
+    <h3>1.1 Sviluppatore 1: Setup Progetto Frontend</h3>
+    <ul>
+        <li class="dev1"><span class="step">1.1.1</span> Inizializzazione repository Git e progetto React.</li>
+        <li class="dev1"><span class="step">1.1.2</span> Installazione e configurazione di Tailwind CSS.</li>
+        <li class="dev1"><span class="step">1.1.3</span> Creazione della struttura base delle cartelle.</li>
+    </ul>
+
+    <h3>1.2 Sviluppatore 2: Setup Database e Motore Nativo</h3>
+    <ul>
+        <li class="dev2"><span class="step">1.2.1</span> Creazione progetto Supabase e design schema Database.</li>
+        <li class="dev2"><span class="step">1.2.2</span> Installazione Capacitor nel progetto React e inizializzazione piattaforme.</li>
+        <li class="dev2"><span class="step">1.2.3</span> Configurazione variabili d'ambiente (.env).</li>
+    </ul>
+
+    <h2>2. FASE 2: La Mappa e il Cuore del Tracking GPS COMPLETATO</h2>
+    
+    <h3>2.1 Sviluppatore 1: Interfaccia Mappa e Schermate Iniziali</h3>
+    <ul>
+        <li class="dev1"><span class="step">2.1.1</span> Sviluppo schermata di caricamento.</li>
+        <li class="dev1"><span class="step">2.1.2</span> Integrazione libreria mappa (Mapbox GL JS).</li>
+        <li class="dev1"><span class="step">2.1.3</span> Sviluppo UI overlay: Bottone "START", menù.</li>
+    </ul>
+
+    <h3>2.2 Sviluppatore 2: Logica Geolocation e Calcoli</h3>
+    <ul>
+        <li class="dev2"><span class="step">2.2.1</span> Implementazione lettura coordinate (<code>watchPosition</code>).</li>
+        <li class="dev2"><span class="step">2.2.2</span> Sviluppo algoritmi per calcolo distanza e velocità.</li>
+        <li class="dev2"><span class="step">2.2.3</span> Creazione dello State Manager.</li>
+    </ul>
+
+    <h2>3. FASE 3: Logica del Percorso, Traffico e Soste COMPLETATO</h2>
+    
+    <h3>3.1 Sviluppatore 1: Rendering Dinamico della Linea</h3>
+    <ul>
+        <li class="dev1"><span class="step">3.1.1</span> Funzione per disegnare la Polyline sulla mappa.</li>
+        <li class="dev1"><span class="step">3.1.2</span> Logica cambio colore linea basata sulla velocità.</li>
+        <li class="dev1"><span class="step">3.1.3</span> Sviluppo UI per stato "In Pausa".</li>
+    </ul>
+
+    <h3>3.2 Sviluppatore 2: Gestione Timer e Flusso Dati</h3>
+    <ul>
+        <li class="dev2"><span class="step">3.2.1</span> Creazione timer di partenza (Countdown 10s).</li>
+        <li class="dev2"><span class="step">3.2.2</span> Sviluppo logica Cronometri (Totale, Effettivo, Sosta).</li>
+        <li class="dev2"><span class="step">3.2.3</span> Creazione struttura dati in memoria.</li>
+    </ul>
+
+    <h2>4. FASE 4: Chiusura Percorso, Snapshot Mappa e Salvataggio COMPLETATO</h2>
+    
+    <h3>4.1 Sviluppatore 1: Cattura Mappa e UI Resoconto</h3>
+    <ul>
+        <li class="dev1"><span class="step">4.1.1</span> Implementazione estrazione immagine mappa.</li>
+        <li class="dev1"><span class="step">4.1.2</span> Creazione Schermata "Resoconto Finale".</li>
+        <li class="dev1"><span class="step">4.1.3</span> Creazione stato di "Caricamento Salvataggio".</li>
+    </ul>
+
+    <h3>4.2 Sviluppatore 2: Elaborazione Dati e Storage Cloud</h3>
+    <ul>
+        <li class="dev2"><span class="step">4.2.1</span> Upload immagine su Cloud Storage.</li>
+        <li class="dev2"><span class="step">4.2.2</span> Salvataggio Database statistiche.</li>
+        <li class="dev2"><span class="step">4.2.3</span> Gestione salvataggio offline locale.</li>
+    </ul>
+
+    <h2>5. FASE 5: Menù, Impostazioni, Cronologia e Utenti</h2>
+    
+    <h3>5.1 Sviluppatore 1: UI Impostazioni e Storico</h3>
+    <ul>
+        <li class="dev1"><span class="step">5.1.1</span> Creazione UI Impostazioni generali.</li>
+        <li class="dev1"><span class="step">5.1.2</span> Sviluppo schermata "I Miei Percorsi".</li>
+        <li class="dev1"><span class="step">5.1.3</span> Sviluppo schermata "Dettaglio Storico".</li>
+    </ul>
+
+    <h3>5.2 Sviluppatore 2: Autenticazione e Query</h3>
+    <ul>
+        <li class="dev2"><span class="step">5.2.1</span> Integrazione sistema di Login/Registrazione con Supabase Auth.</li>
+        <li class="dev2"><span class="step">5.2.2</span> Creazione query per il recupero dei percorsi dal DB filtrati per l'utente loggato.</li>
+        <li class="dev2"><span class="step">5.2.3</span> Ottimizzazione: paginazione del database per lo storico.</li>
+    </ul>
+
+    <h2>6. FASE 6: Testing, iOS Build e Rifiniture</h2>
+    
+    <h3>6.1 Sviluppatore 1: Polish Interfaccia</h3>
+    <ul>
+        <li class="dev1"><span class="step">6.1.1</span> Controllo "Safe Area" per iOS.</li>
+        <li class="dev1"><span class="step">6.1.2</span> Aggiunta animazioni e transizioni di stato fluide.</li>
+        <li class="dev1"><span class="step">6.1.3</span> Supporto Dark Mode.</li>
+    </ul>
+
+    <h3>6.2 Sviluppatore 2: Compilazione Nativa e Background</h3>
+    <ul>
+        <li class="dev2"><span class="step">6.2.1</span> Configurazione del file <code>Info.plist</code> su Xcode per i permessi GPS.</li>
+        <li class="dev2"><span class="step">6.2.2</span> Configurazione plugin tracking GPS in background.</li>
+        <li class="dev2"><span class="step">6.2.3</span> Rilascio su TestFlight per test reali in auto.</li>
+    </ul>
+
+    <h2 class="beta-title">7. FASE BETA: Statistiche Globali, Personalizzazione e Widget</h2>
+    
+    <h3>7.1 Sviluppatore 1: UI Nuove Funzionalità</h3>
+    <ul>
+        <li class="dev1"><span class="step">7.1.1</span> <b>UI Statistiche Globali:</b> Sviluppo nuova sezione nel menù per mostrare i "Record Personali" (Velocità max assoluta, Media generale, Km totali, Tempo totale, Viaggio più lungo).</li>
+        <li class="dev1"><span class="step">7.1.2</span> <b>UI Personalizzazione Auto:</b> Schermata per selezionare il logo della propria auto (SVG) e il colore preferito per il cursore sulla mappa.</li>
+        <li class="dev1 bonus"><span class="step">7.1.3</span> <b>(Bonus) Widget Spotify:</b> Creazione di un overlay fluttuante per mostrare brano e copertina durante il viaggio.</li>
+    </ul>
+
+    <h3>7.2 Sviluppatore 2: Aggregazione Dati e Backend BETA</h3>
+    <ul>
+        <li class="dev2"><span class="step">7.2.1</span> <b>Query Aggregazione (Record Personali):</b> Creazione di una funzione RPC su Supabase o logica lato client per calcolare somme (SUM) e record (MAX) basati sull'intero storico dell'utente.</li>
+        <li class="dev2"><span class="step">7.2.2</span> <b>DB Preferenze:</b> Aggiornamento tabella <code>users</code> per poter salvare in cloud l'icona dell'auto e il colore scelto, così da mantenerli tra vari dispositivi.</li>
+        <li class="dev2 bonus"><span class="step">7.2.3</span> <b>(Bonus) API Spotify:</b> Setup dell'autenticazione OAuth con Spotify e polling dell'endpoint <code>/me/player/currently-playing</code>.</li>
+    </ul>
+
+    <h2 class="beta-title">8. FASE 8: Classifiche e Profilo Utente</h2>
+    
+    <h3>8.1 Sviluppatore 1: UI Classifiche e Profilo</h3>
+    <ul>
+        <li class="dev1"><span class="step">8.1.1</span> <b>Classifica Generale:</b> UI per mostrare la tabella degli utenti con Posizione, Nickname, Avatar e Categoria.</li>
+        <li class="dev1"><span class="step">8.1.2</span> <b>Filtri Classifica:</b> UI per filtrare la leaderboard in base a "Distanza Totale", "Velocità Massima", ecc.</li>
+        <li class="dev1"><span class="step">8.1.3</span> <b>Profilo Utente:</b> Sezione nelle impostazioni per modificare Nickname e fare l'upload dell'Immagine Profilo.</li>
+    </ul>
+
+    <h3>8.2 Sviluppatore 2: Backend Classifiche e DB Utenti</h3>
+    <ul>
+        <li class="dev2"><span class="step">8.2.1</span> <b>Aggiornamento DB Users:</b> Aggiunta colonne per <code>nickname</code> e <code>avatar_url</code>.</li>
+        <li class="dev2"><span class="step">8.2.2</span> <b>Query Classifica:</b> Creazione endpoint o funzione Supabase per scaricare le statistiche aggregate di tutti gli utenti, ordinabili per metrica.</li>
+    </ul>
+
+</body>
+</html>
+</file>
+
+<file path="drive-tracker/package.json">
+{
+  "name": "drive-tracker",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "lint": "eslint .",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@capacitor-community/background-geolocation": "^1.2.26",
+    "@capacitor/android": "^7.6.0",
+    "@capacitor/core": "^7.6.0",
+    "@capacitor/ios": "^7.6.0",
+    "@capacitor/network": "^7.0.4",
+    "@capacitor/preferences": "^7.0.4",
+    "@supabase/supabase-js": "^2.98.0",
+    "mapbox-gl": "^3.20.0",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "react-map-gl": "^7.1.9"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "^7.6.0",
+    "@eslint/js": "^9.39.1",
+    "@tailwindcss/vite": "^4.2.1",
+    "@types/mapbox-gl": "^3.4.1",
+    "@types/node": "^24.10.1",
+    "@types/react": "^19.2.7",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^5.1.1",
+    "autoprefixer": "^10.4.27",
+    "eslint": "^9.39.1",
+    "eslint-plugin-react-hooks": "^7.0.1",
+    "eslint-plugin-react-refresh": "^0.4.24",
+    "globals": "^16.5.0",
+    "postcss": "^8.5.8",
+    "tailwindcss": "^4.2.1",
+    "typescript": "~5.9.3",
+    "typescript-eslint": "^8.48.0",
+    "vite": "^7.3.1"
+  }
+}
+</file>
+
+<file path="drive-tracker/src/components/MapOverlay.tsx">
+import { useEffect, useRef, useState } from 'react';
+import Map, { GeolocateControl, NavigationControl, Source, Layer, Marker } from 'react-map-gl';
+import 'mapbox-gl/dist/mapbox-gl.css';
+import { useDriveTracker } from '../hooks/useDriveTracker';
+
+const MAPBOX_TOKEN = import.meta.env.VITE_MAPBOX_TOKEN;
+
+type TripStats = { distance: number; maxSpeed: number; avgSpeed: number; time: number } | null;
+type SavedTrip = { id: string; date: string; snapshot: string; distance: number; time: number; maxSpeed: number; avgSpeed: number; };
+
+const calculateDistance = (route: any[]) => {
+  let totalDist = 0;
+  for (let i = 1; i < route.length; i++) {
+    const p1 = route[i - 1]; const p2 = route[i];
+    const R = 6371;
+    const dLat = (p2.lat - p1.lat) * (Math.PI / 180); const dLon = (p2.lng - p1.lng) * (Math.PI / 180);
+    const a = Math.sin(dLat / 2) * Math.sin(dLat / 2) + Math.cos(p1.lat * (Math.PI / 180)) * Math.cos(p2.lat * (Math.PI / 180)) * Math.sin(dLon / 2) * Math.sin(dLon / 2);
+    totalDist += R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+  }
+  return totalDist;
+};
+
+export default function MapOverlay() {
+  const {
+    status, countdown, effectiveTime, currentSpeed, route,
+    startCountdown, pauseTracking, resumeTracking, stopTracking
+  } = useDriveTracker();
+
+  const mapRef = useRef<any>(null);
+
+  // --- STATI DI NAVIGAZIONE E DATI ---
+  const [activeView, setActiveView] = useState<'map' | 'menu' | 'history' | 'settings' | 'tripDetail' | 'stats' | 'garage'>('map');
+  const [selectedTrip, setSelectedTrip] = useState<SavedTrip | null>(null);
+
+  const [showReport, setShowReport] = useState(false);
+  const [mapSnapshot, setMapSnapshot] = useState<string | null>(null);
+  const [tripStats, setTripStats] = useState<TripStats>(null);
+  const [isSaving, setIsSaving] = useState(false);
+  const [history, setHistory] = useState<SavedTrip[]>([]);
+
+  // --- IMPOSTAZIONI ---
+  const [isDarkMode, setIsDarkMode] = useState(true);
+  const [carIcon, setCarIcon] = useState<'dot' | 'arrow' | 'sport'>('arrow');
+  const [carColor, setCarColor] = useState('#3b82f6'); 
+  const [enableSpotify, setEnableSpotify] = useState(true);
+  const [isPlaying, setIsPlaying] = useState(true);
+
+  const currentPos = route.length > 0 ? route[route.length - 1] : null;
+
+  // Movimento mappa durante il tracking
+  useEffect(() => {
+    if (currentPos && mapRef.current && activeView === 'map' && !showReport) {
+      mapRef.current.flyTo({ center: [currentPos.lng, currentPos.lat], zoom: 16, essential: true, duration: 1000 });
+    }
+  }, [currentPos, activeView, showReport]);
+
+  // FIX TEMPO: Calcolo che supporta anche le ore
+  const formatTime = (totalSeconds: number) => {
+    const h = Math.floor(totalSeconds / 3600);
+    const m = Math.floor((totalSeconds % 3600) / 60).toString().padStart(2, '0');
+    const s = (totalSeconds % 60).toString().padStart(2, '0');
+    return h > 0 ? `${h}:${m}:${s}` : `${m}:${s}`;
+  };
+
+  const handleCancelCountdown = () => stopTracking();
+
+  // FIX SNAPSHOT E VELOCITÀ MAX:
+  const handleEndJourney = () => {
+    const mapInstance = mapRef.current?.getMap();
+    if (mapInstance && route.length > 1) {
+      
+      // 1. Calcola il Bounding Box (il riquadro che contiene tutto il percorso)
+      const bounds = route.reduce(
+        (acc: number[], point: any) => [
+          Math.min(acc[0], point.lng), Math.min(acc[1], point.lat),
+          Math.max(acc[2], point.lng), Math.max(acc[3], point.lat)
+        ],
+        [180, 90, -180, -90]
+      );
+
+      // 2. Centra e zooma la mappa per mostrare tutto il viaggio
+      mapInstance.fitBounds(
+        [[bounds[0], bounds[1]], [bounds[2], bounds[3]]],
+        { padding: 50, duration: 1000 }
+      );
+
+      // 3. Aspetta l'animazione, scatta la foto e filtra i dati
+      setTimeout(() => {
+        const snapshot = mapInstance.getCanvas().toDataURL('image/png');
+        setMapSnapshot(snapshot);
+        
+        const dist = calculateDistance(route);
+        const avgS = effectiveTime > 0 ? (dist / (effectiveTime / 3600)) : 0;
+        
+        // FILTRO SBALZI GPS (L'intuizione dell'utente)
+        // Ignoriamo la velocità se differisce dal punto precedente di oltre 20 km/h in un secondo.
+        let maxS = 0;
+        if (route.length > 0) maxS = route[0].speed;
+        for (let i = 1; i < route.length; i++) {
+          const delta = Math.abs(route[i].speed - route[i - 1].speed);
+          if (delta <= 20) { // Soglia di tolleranza per salti "impossibili"
+            if (route[i].speed > maxS) maxS = route[i].speed;
+          }
+        }
+        
+        setTripStats({ distance: dist, maxSpeed: maxS, avgSpeed: avgS, time: effectiveTime });
+        setShowReport(true);
+      }, 1200);
+
+    } else {
+      // Se il percorso è troppo corto, spegni solo il tracking
+      resetForNewTrip();
+    }
+    stopTracking();
+  };
+
+  const resetForNewTrip = () => {
+    setShowReport(false); setTripStats(null); setMapSnapshot(null); setActiveView('map'); stopTracking();
+  };
+
+  const handleDiscard = () => {
+    if(window.confirm("Sicuro di voler scartare questo viaggio?")) resetForNewTrip();
+  };
+
+  const handleSaveToCloud = () => {
+    setIsSaving(true);
+    setTimeout(() => {
+      setIsSaving(false);
+      if (tripStats && mapSnapshot) {
+        const newTrip: SavedTrip = {
+          id: Date.now().toString(),
+          date: new Date().toLocaleDateString('it-IT', { day: '2-digit', month: 'short', hour: '2-digit', minute: '2-digit' }),
+          snapshot: mapSnapshot,
+          ...tripStats
+        };
+        setHistory(prev => [newTrip, ...prev]);
+      }
+      resetForNewTrip();
+      setActiveView('history'); 
+    }, 1000);
+  };
+
+  const handleDeleteTrip = () => {
+    if (selectedTrip && window.confirm("Eliminare definitivamente questo percorso?")) {
+      setHistory(prev => prev.filter(t => t.id !== selectedTrip.id));
+      setActiveView('history');
+      setSelectedTrip(null);
+    }
+  };
+
+  const routeGeoJSON: any = {
+    type: 'FeatureCollection',
+    features: route.map((point: any, index: number) => {
+      if (index === 0) return null;
+      const prev = route[index - 1];
+      let segmentColor = '#10B981';
+      if (point.speed > 50) segmentColor = '#EF4444';
+      else if (point.speed > 30) segmentColor = '#F59E0B';
+      return { type: 'Feature', properties: { color: segmentColor }, geometry: { type: 'LineString', coordinates: [[prev.lng, prev.lat], [point.lng, point.lat]] } };
+    }).filter(Boolean)
+  };
+
+  const themeBg = isDarkMode ? 'bg-gray-900' : 'bg-gray-50';
+  const themeText = isDarkMode ? 'text-white' : 'text-gray-900';
+  const themeCard = isDarkMode ? 'bg-gray-800 border-white/5' : 'bg-white border-gray-200 shadow-xl';
+  const themeGlass = isDarkMode ? 'bg-gray-900/90 border-white/10' : 'bg-white/90 border-gray-200 shadow-xl';
+
+  const totalKm = history.reduce((acc, curr) => acc + curr.distance, 0);
+  const totalSeconds = history.reduce((acc, curr) => acc + curr.time, 0);
+  const maxSpeedEver = history.length > 0 ? Math.max(...history.map(t => t.maxSpeed)) : 0;
+  const longestTrip = history.length > 0 ? Math.max(...history.map(t => t.distance)) : 0;
+  const avgOverallSpeed = totalSeconds > 0 ? (totalKm / (totalSeconds / 3600)) : 0;
+
+  return (
+    <div className={`relative h-screen w-screen overflow-hidden transition-colors duration-500 ${themeBg} ${themeText}`}>
+      
+      <Map
+        ref={mapRef}
+        initialViewState={{ longitude: 8.8251, latitude: 45.8206, zoom: 13 }}
+        mapStyle={isDarkMode ? "mapbox://styles/mapbox/dark-v11" : "mapbox://styles/mapbox/light-v11"}
+        mapboxAccessToken={MAPBOX_TOKEN}
+        preserveDrawingBuffer={true}
+      >
+        <GeolocateControl positionOptions={{ enableHighAccuracy: true }} trackUserLocation showUserHeading position="bottom-right" />
+        <NavigationControl position="bottom-right" />
+
+        {route.length > 1 && (
+          <Source id="route-source" type="geojson" data={routeGeoJSON}>
+            <Layer id="route-layer" type="line" layout={{ 'line-join': 'round', 'line-cap': 'round' }} paint={{ 'line-color': ['get', 'color'], 'line-width': 6 }} />
+          </Source>
+        )}
+
+        {currentPos && (
+          <Marker longitude={currentPos.lng} latitude={currentPos.lat} anchor="center">
+            <div className="relative flex items-center justify-center transition-transform duration-300 drop-shadow-xl" style={{ color: carColor }}>
+              {carIcon === 'dot' && (
+                <>
+                  <div className="absolute h-8 w-8 animate-ping rounded-full opacity-60" style={{ backgroundColor: carColor }}></div>
+                  <div className="relative z-10 h-5 w-5 rounded-full border-2 border-white shadow-lg" style={{ backgroundColor: carColor }}></div>
+                </>
+              )}
+              {carIcon === 'arrow' && (
+                <svg className="w-8 h-8 drop-shadow-lg transform -rotate-45" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M3 10.5L21 3L13.5 21L11.5 13.5L3 10.5Z" stroke="white" strokeWidth="1.5" strokeLinejoin="round"/>
+                </svg>
+              )}
+              {carIcon === 'sport' && (
+                <svg className="w-10 h-10 drop-shadow-xl" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5H6.5C5.84 5 5.28 5.42 5.08 6.01L3 12V20C3 20.55 3.45 21 4 21H5C5.55 21 6 20.55 6 20V19H18V20C18 20.55 18.45 21 19 21H20C20.55 21 21 20.55 21 20V12L18.92 6.01ZM6.5 6.5H17.5L18.5 9.5H5.5L6.5 6.5ZM7.5 16.5C6.67 16.5 6 15.83 6 15C6 14.17 6.67 13.5 7.5 13.5C8.33 13.5 9 14.17 9 15C9 15.83 8.33 16.5 7.5 16.5ZM16.5 16.5C15.67 16.5 15 15.83 15 15C15 14.17 15.67 13.5 16.5 13.5C17.33 13.5 18 14.17 18 15C18 15.83 17.33 16.5 16.5 16.5Z" />
+                </svg>
+              )}
+            </div>
+          </Marker>
+        )}
+      </Map>
+
+      {/* --- VISTA PRINCIPALE MAPPA --- */}
+      {activeView === 'map' && !showReport && (
+        <>
+          <div className="absolute top-6 right-6 z-10 mt-[env(safe-area-inset-top)]">
+            <button onClick={() => setActiveView('menu')} className={`${themeGlass} backdrop-blur-xl border p-3 rounded-full transition-all active:scale-95`}>
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" /></svg>
+            </button>
+          </div>
+
+          {status === 'countdown' && (
+            <div className="absolute inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-md animate-in fade-in duration-300">
+              <div className="flex flex-col items-center">
+                <span className="text-2xl font-bold tracking-widest mb-4 text-white">PARTENZA TRA</span>
+                <span className="text-9xl font-black text-blue-500 animate-pulse">{countdown}</span>
+                <button onClick={handleCancelCountdown} className="mt-12 px-8 py-3 rounded-full border-2 border-white/20 text-gray-300 hover:bg-white/10 hover:text-white font-bold tracking-widest uppercase transition-all active:scale-95">Annulla Partenza</button>
+              </div>
+            </div>
+          )}
+
+          <div className="absolute top-6 left-0 right-0 flex justify-center pointer-events-none px-4 z-10 mt-[env(safe-area-inset-top)]">
+            <div className={`flex items-center gap-3 ${themeGlass} backdrop-blur-xl border p-3 rounded-2xl transition-all`}>
+              <div className={`h-2 w-2 rounded-full ${status === 'paused' ? 'bg-yellow-500 animate-pulse' : status === 'tracking' ? 'bg-red-500 animate-pulse' : 'bg-green-500'}`} />
+              <span className={`font-medium text-sm tracking-tight uppercase ${status === 'paused' ? 'text-yellow-500' : ''}`}>
+                {status === 'paused' ? 'SESSION PAUSED' : status === 'tracking' ? 'LIVE TRACKING' : 'ONLINE'}
+              </span>
+            </div>
+          </div>
+
+          {(status === 'tracking' || status === 'paused') && (
+            <div className="absolute top-24 left-6 flex flex-col gap-3 z-10 mt-[env(safe-area-inset-top)]">
+               <div className={`${isDarkMode ? 'bg-black/50 border-white/10 text-white' : 'bg-white/80 border-gray-200 text-gray-900 shadow-xl'} backdrop-blur-md p-4 rounded-2xl border w-24 transition-colors`}>
+                  <p className="text-gray-400 text-[10px] font-bold uppercase">KM/H</p>
+                  <p className="text-3xl font-black">{currentSpeed.toFixed(0)}</p>
+               </div>
+               <div className={`${isDarkMode ? 'bg-black/50 border-white/10' : 'bg-white/80 border-gray-200 shadow-xl'} backdrop-blur-md p-4 rounded-2xl border w-24 transition-colors`}>
+                  <p className="text-gray-400 text-[10px] font-bold uppercase">TIME</p>
+                  <p className="text-xl font-black tracking-wider text-blue-500">{formatTime(effectiveTime)}</p>
+               </div>
+            </div>
+          )}
+
+          {enableSpotify && (status === 'tracking' || status === 'paused') && (
+            <div className={`absolute bottom-32 left-6 right-6 md:left-1/2 md:-translate-x-1/2 md:w-96 z-10 ${themeGlass} backdrop-blur-xl p-3 rounded-3xl border flex items-center gap-4 shadow-2xl animate-in slide-in-from-bottom-10 fade-in duration-500`}>
+              <div className="relative w-12 h-12 flex-shrink-0 rounded-xl overflow-hidden shadow-lg border border-white/10 bg-gray-800">
+                <img src="https://i.scdn.co/image/ab67616d0000b273130fa242b3636502da549d44" alt="Album Cover" className={`w-full h-full object-cover transition-transform duration-[10s] ${isPlaying ? 'scale-110' : 'scale-100 grayscale'}`} />
+                <div className="absolute top-1 left-1 bg-black/50 rounded-full p-0.5"><svg className="w-3 h-3 text-[#1DB954]" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.24 1.021zM18.84 14.4c-.3.42-.84.54-1.26.24-3.36-2.04-8.52-2.64-12.54-1.44-.48.12-1.02-.12-1.14-.6-.12-.48.12-1.02.6-1.14 4.56-1.32 10.32-.66 14.1 1.68.42.24.54.84.24 1.26zm.12-3.12c-4.02-2.4-10.56-2.64-14.4-1.44-.6.18-1.2-.18-1.38-.78-.18-.6.18-1.2.78-1.38 4.44-1.32 11.64-1.02 16.2 1.26.54.3.72 1.02.42 1.56-.3.54-1.02.72-1.62.42z"/></svg></div>
+              </div>
+              <div className="flex-1 min-w-0">
+                <p className={`text-sm font-black truncate ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>Nightcall</p>
+                <p className={`text-xs font-medium truncate ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>Kavinsky</p>
+              </div>
+              <div className="flex items-center gap-2 pr-2">
+                <button className="p-2 text-gray-400 hover:text-blue-500 transition-colors active:scale-90"><svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M11 18V6l-8.5 6 8.5 6zm.5-6l8.5 6V6l-8.5 6z"/></svg></button>
+                <button onClick={() => setIsPlaying(!isPlaying)} className={`p-3 rounded-full shadow-lg transition-transform active:scale-90 ${isDarkMode ? 'bg-white text-black' : 'bg-black text-white'}`}>
+                  {isPlaying ? <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg> : <svg className="w-5 h-5 ml-1" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>}
+                </button>
+                <button className="p-2 text-gray-400 hover:text-blue-500 transition-colors active:scale-90"><svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M4 18l8.5-6L4 6v12zm9-12v12l8.5-6L13 6z"/></svg></button>
+              </div>
+            </div>
+          )}
+
+          <div className="absolute bottom-8 left-0 right-0 px-6 z-10 flex gap-4 justify-center mb-[env(safe-area-inset-bottom)]">
+            {status === 'idle' && (
+              <button onClick={startCountdown} className="flex-1 max-w-[200px] py-5 rounded-3xl font-black text-lg text-white bg-blue-600 border-b-4 border-blue-800 hover:bg-blue-500 active:scale-95 shadow-2xl tracking-wide transition-all">START</button>
+            )}
+            {status === 'tracking' && (
+              <>
+                <button onClick={pauseTracking} className="w-16 h-16 rounded-full flex items-center justify-center font-black shadow-2xl bg-gray-800 border-b-4 border-gray-900 text-white active:scale-95 transition-all"><svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z"/></svg></button>
+                <button onClick={handleEndJourney} className="flex-1 max-w-[200px] py-5 rounded-3xl font-black text-lg bg-red-600 border-b-4 border-red-800 text-white hover:bg-red-500 active:scale-95 shadow-2xl tracking-wide transition-all">STOP</button>
+              </>
+            )}
+            {status === 'paused' && (
+              <button onClick={resumeTracking} className="flex-1 max-w-[200px] py-5 rounded-3xl font-black text-lg text-black bg-yellow-500 border-b-4 border-yellow-700 hover:bg-yellow-400 active:scale-95 shadow-2xl tracking-wide transition-all">RESUME</button>
+            )}
+          </div>
+        </>
+      )}
+
+      {/* --- SCHERMATA RESOCONTO (POST VIAGGIO) --- */}
+      {showReport && tripStats && (
+        <div className={`absolute inset-0 z-50 ${isDarkMode ? 'bg-gray-900/95' : 'bg-gray-100/95'} backdrop-blur-md flex flex-col items-center justify-between p-6 pt-[env(safe-area-inset-top)] pb-[env(safe-area-inset-bottom)] animate-in fade-in zoom-in-95 duration-300`}>
+          <div className="w-full max-w-md mt-8">
+            <h2 className="text-3xl font-black mb-6 text-center tracking-tight">Viaggio Completato!</h2>
+            <div className="w-full h-48 bg-gray-800 rounded-3xl overflow-hidden shadow-2xl border border-white/10 relative">
+              {mapSnapshot ? <img src={mapSnapshot} alt="Snapshot" className="w-full h-full object-cover" /> : null}
+            </div>
+            <div className="grid grid-cols-2 gap-4 mt-6">
+              <div className={`${themeCard} p-4 rounded-2xl border`}><p className="text-gray-400 text-xs font-bold uppercase mb-1">Distanza</p><p className="text-2xl font-black">{tripStats.distance.toFixed(2)} <span className="text-sm font-medium">km</span></p></div>
+              <div className={`${themeCard} p-4 rounded-2xl border`}><p className="text-gray-400 text-xs font-bold uppercase mb-1">Tempo</p><p className="text-2xl font-black">{formatTime(tripStats.time)}</p></div>
+              <div className={`${themeCard} p-4 rounded-2xl border`}><p className="text-gray-400 text-xs font-bold uppercase mb-1">Media</p><p className="text-2xl font-black">{Math.round(tripStats.avgSpeed)} <span className="text-sm font-medium">km/h</span></p></div>
+              <div className={`${themeCard} p-4 rounded-2xl border`}><p className="text-gray-400 text-xs font-bold uppercase mb-1">Vel Max</p><p className="text-2xl font-black text-red-500">{tripStats.maxSpeed.toFixed(1)} <span className="text-sm text-gray-500">km/h</span></p></div>
+            </div>
+          </div>
+          <div className="w-full max-w-md mb-8 flex flex-col gap-3">
+            <button onClick={handleSaveToCloud} disabled={isSaving} className={`w-full py-5 rounded-3xl font-black text-lg transition-all shadow-xl flex justify-center items-center gap-2 ${isSaving ? 'bg-blue-800 text-blue-300' : 'bg-blue-600 text-white hover:bg-blue-500 border-b-4 border-blue-800'}`}>
+              {isSaving ? 'INVIO DATI...' : 'SALVA NEL CLOUD'}
+            </button>
+            <button onClick={handleDiscard} disabled={isSaving} className="w-full py-4 rounded-3xl font-bold text-gray-500 hover:text-red-500 transition-colors">Scarta Dati e Azzera</button>
+          </div>
+        </div>
+      )}
+
+      {/* --- MENU LATERALE --- */}
+      {activeView === 'menu' && (
+        <div className={`absolute inset-0 z-50 ${isDarkMode ? 'bg-gray-900/98' : 'bg-white/98'} flex flex-col p-6 pt-[calc(1.5rem+env(safe-area-inset-top))] animate-in slide-in-from-right duration-300`}>
+          <div className="flex justify-between items-center mb-10">
+            <h2 className="text-4xl font-black tracking-tighter text-blue-500">Road<span className={themeText}>Record</span></h2>
+            <button onClick={() => setActiveView('map')} className={`p-2 ${themeCard} rounded-full transition-colors active:scale-95`}><svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg></button>
+          </div>
+          
+          <div className="flex flex-col gap-4">
+            <button onClick={() => setActiveView('stats')} className={`flex items-center gap-4 ${themeCard} p-5 rounded-2xl border active:scale-95 transition-all text-left`}>
+              <div className="p-2 bg-yellow-500/20 rounded-lg text-yellow-500"><svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" /></svg></div>
+              <span className="font-bold text-lg">Record Personali</span>
+            </button>
+
+            <button onClick={() => setActiveView('garage')} className={`flex items-center gap-4 ${themeCard} p-5 rounded-2xl border active:scale-95 transition-all text-left`}>
+              <div className="p-2 bg-purple-500/20 rounded-lg text-purple-500"><svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" /></svg></div>
+              <span className="font-bold text-lg">Garage e Icona</span>
+            </button>
+
+            <button onClick={() => setActiveView('history')} className={`flex items-center gap-4 ${themeCard} p-5 rounded-2xl border active:scale-95 transition-all text-left`}>
+              <div className="p-2 bg-blue-500/20 rounded-lg text-blue-500"><svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" /></svg></div>
+              <span className="font-bold text-lg">I Miei Percorsi</span>
+            </button>
+
+            <button onClick={() => setActiveView('settings')} className={`flex items-center gap-4 ${themeCard} p-5 rounded-2xl border active:scale-95 transition-all text-left`}>
+              <div className="p-2 bg-gray-500/20 rounded-lg text-gray-500"><svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /></svg></div>
+              <span className="font-bold text-lg">Settings</span>
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* --- SCHERMATE MENU (Statistiche, Garage, Storico, Settings, Dettaglio) --- */}
+      
+      {activeView === 'stats' && (
+        <div className={`absolute inset-0 z-50 ${themeBg} flex flex-col p-6 pt-[calc(1.5rem+env(safe-area-inset-top))] animate-in slide-in-from-right duration-300`}>
+          <div className="flex items-center gap-4 mb-8">
+            <button onClick={() => setActiveView('menu')} className={`p-2 ${themeCard} rounded-full transition-colors active:scale-95`}><svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg></button>
+            <h2 className="text-2xl font-black">I Tuoi Record</h2>
+          </div>
+          <div className="flex-1 overflow-y-auto pb-[env(safe-area-inset-bottom)] flex flex-col gap-4">
+            <div className={`p-8 rounded-3xl ${isDarkMode ? 'bg-gradient-to-br from-blue-900 to-gray-900 border border-blue-500/30' : 'bg-gradient-to-br from-blue-500 to-blue-600 text-white'} shadow-2xl`}>
+              <p className={`${isDarkMode ? 'text-blue-300' : 'text-blue-100'} text-sm font-bold uppercase mb-2 tracking-widest`}>Distanza Totale</p>
+              <div className="flex items-baseline gap-2"><span className="text-6xl font-black tracking-tighter">{totalKm.toFixed(1)}</span><span className="text-xl font-bold opacity-70">km</span></div>
+            </div>
+            <div className="grid grid-cols-2 gap-4">
+              <div className={`${themeCard} p-5 rounded-2xl border shadow-lg flex flex-col justify-center`}><p className="text-gray-400 text-[10px] font-bold uppercase mb-1">Velocità Massima</p><p className="text-2xl font-black text-red-500">{maxSpeedEver.toFixed(1)} <span className="text-sm text-gray-500">km/h</span></p></div>
+              <div className={`${themeCard} p-5 rounded-2xl border shadow-lg flex flex-col justify-center`}><p className="text-gray-400 text-[10px] font-bold uppercase mb-1">Media Globale</p><p className="text-2xl font-black text-blue-500">{avgOverallSpeed.toFixed(0)} <span className="text-sm text-gray-500">km/h</span></p></div>
+              <div className={`${themeCard} p-5 rounded-2xl border shadow-lg flex flex-col justify-center`}><p className="text-gray-400 text-[10px] font-bold uppercase mb-1">Viaggio più lungo</p><p className="text-2xl font-black">{longestTrip.toFixed(1)} <span className="text-sm text-gray-500">km</span></p></div>
+              <div className={`${themeCard} p-5 rounded-2xl border shadow-lg flex flex-col justify-center`}><p className="text-gray-400 text-[10px] font-bold uppercase mb-1">Tempo al volante</p><p className="text-2xl font-black">{formatTime(totalSeconds)}</p></div>
+            </div>
+            <div className={`mt-4 p-4 rounded-xl ${themeCard} border text-center text-sm font-medium text-gray-500`}>Basato su {history.length} viaggi salvati.</div>
+          </div>
+        </div>
+      )}
+
+      {activeView === 'garage' && (
+        <div className={`absolute inset-0 z-50 ${themeBg} flex flex-col p-6 pt-[calc(1.5rem+env(safe-area-inset-top))] animate-in slide-in-from-right duration-300`}>
+          <div className="flex items-center gap-4 mb-8">
+            <button onClick={() => setActiveView('menu')} className={`p-2 ${themeCard} rounded-full transition-colors active:scale-95`}><svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg></button>
+            <h2 className="text-2xl font-black">Garage</h2>
+          </div>
+          <div className="flex-1 overflow-y-auto pb-[env(safe-area-inset-bottom)] flex flex-col gap-8">
+            <div>
+              <p className="text-sm font-bold uppercase text-gray-500 mb-4 tracking-wider">Icona sulla Mappa</p>
+              <div className="grid grid-cols-3 gap-4">
+                <button onClick={() => setCarIcon('arrow')} className={`flex flex-col items-center gap-3 p-4 rounded-2xl border-2 transition-all ${carIcon === 'arrow' ? 'border-blue-500 bg-blue-500/10' : `border-transparent ${themeCard}`}`}><svg className="w-8 h-8 text-gray-400 transform -rotate-45" viewBox="0 0 24 24" fill="currentColor"><path d="M3 10.5L21 3L13.5 21L11.5 13.5L3 10.5Z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round"/></svg><span className="text-xs font-bold">Navigatore</span></button>
+                <button onClick={() => setCarIcon('sport')} className={`flex flex-col items-center gap-3 p-4 rounded-2xl border-2 transition-all ${carIcon === 'sport' ? 'border-blue-500 bg-blue-500/10' : `border-transparent ${themeCard}`}`}><svg className="w-8 h-8 text-gray-400" viewBox="0 0 24 24" fill="currentColor"><path d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5H6.5C5.84 5 5.28 5.42 5.08 6.01L3 12V20C3 20.55 3.45 21 4 21H5C5.55 21 6 20.55 6 20V19H18V20C18 20.55 18.45 21 19 21H20C20.55 21 21 20.55 21 20V12L18.92 6.01ZM6.5 6.5H17.5L18.5 9.5H5.5L6.5 6.5ZM7.5 16.5C6.67 16.5 6 15.83 6 15C6 14.17 6.67 13.5 7.5 13.5C8.33 13.5 9 14.17 9 15C9 15.83 8.33 16.5 7.5 16.5ZM16.5 16.5C15.67 16.5 15 15.83 15 15C15 14.17 15.67 13.5 16.5 13.5C17.33 13.5 18 14.17 18 15C18 15.83 17.33 16.5 16.5 16.5Z" /></svg><span className="text-xs font-bold">Sportiva</span></button>
+                <button onClick={() => setCarIcon('dot')} className={`flex flex-col items-center gap-3 p-4 rounded-2xl border-2 transition-all ${carIcon === 'dot' ? 'border-blue-500 bg-blue-500/10' : `border-transparent ${themeCard}`}`}><div className="w-8 h-8 rounded-full bg-gray-400"></div><span className="text-xs font-bold">Classico</span></button>
+              </div>
+            </div>
+            <div>
+              <p className="text-sm font-bold uppercase text-gray-500 mb-4 tracking-wider">Colore LED</p>
+              <div className="flex justify-between px-2">
+                {['#3b82f6', '#10b981', '#f59e0b', '#ef4444', '#8b5cf6', '#ec4899'].map(color => (
+                  <button key={color} onClick={() => setCarColor(color)} className={`w-10 h-10 rounded-full shadow-lg transition-transform active:scale-90 ${carColor === color ? 'scale-110 ring-4 ring-white/50' : 'opacity-70'}`} style={{ backgroundColor: color }} />
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {activeView === 'history' && (
+        <div className={`absolute inset-0 z-50 ${themeBg} flex flex-col p-6 pt-[calc(1.5rem+env(safe-area-inset-top))] animate-in slide-in-from-right duration-300`}>
+          <div className="flex items-center gap-4 mb-6">
+            <button onClick={() => setActiveView('menu')} className={`p-2 ${themeCard} rounded-full transition-colors active:scale-95`}><svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg></button>
+            <h2 className="text-2xl font-black">Archivio Viaggi</h2>
+          </div>
+          <div className="flex-1 overflow-y-auto pb-[env(safe-area-inset-bottom)] flex flex-col gap-4">
+            {history.length === 0 ? (
+              <div className="flex flex-col items-center justify-center h-full text-gray-500 gap-2"><p className="font-medium text-lg text-gray-400">L'archivio è vuoto.</p></div>
+            ) : (
+              history.map((trip) => (
+                <div key={trip.id} onClick={() => { setSelectedTrip(trip); setActiveView('tripDetail'); }} className={`${themeCard} rounded-2xl p-3 flex gap-4 border shadow-lg active:scale-[0.98] transition-all cursor-pointer`}>
+                  <div className="w-24 h-24 rounded-xl overflow-hidden bg-gray-900 flex-shrink-0 border border-black/10"><img src={trip.snapshot} alt="Mappa" className="w-full h-full object-cover" /></div>
+                  <div className="flex flex-col justify-center flex-1">
+                    <p className="text-gray-500 text-xs font-semibold uppercase">{trip.date}</p>
+                    <div className="flex items-baseline gap-1 mt-1"><p className="text-xl font-black">{trip.distance.toFixed(2)}</p><p className="text-gray-500 text-sm font-medium">km</p></div>
+                    <div className="flex gap-4 mt-2">
+                      <div className="flex items-center gap-1 text-blue-500"><p className="text-xs font-medium">{formatTime(trip.time)}</p></div>
+                      <div className="flex items-center gap-1 text-red-500"><p className="text-xs font-medium">{trip.maxSpeed.toFixed(1)} km/h</p></div>
+                    </div>
+                  </div>
+                </div>
+              ))
+            )}
+          </div>
+        </div>
+      )}
+
+      {activeView === 'settings' && (
+        <div className={`absolute inset-0 z-50 ${themeBg} flex flex-col p-6 pt-[calc(1.5rem+env(safe-area-inset-top))] animate-in slide-in-from-right duration-300`}>
+          <div className="flex items-center gap-4 mb-8">
+            <button onClick={() => setActiveView('menu')} className={`p-2 ${themeCard} rounded-full transition-colors active:scale-95`}><svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg></button>
+            <h2 className="text-2xl font-black">Settings</h2>
+          </div>
+          <div className="flex flex-col gap-4">
+            <div className={`${themeCard} p-5 rounded-2xl flex justify-between items-center border`}>
+              <div><p className="font-bold">Tema Scuro</p><p className="text-xs text-gray-500">Mappa e Interfaccia</p></div>
+              <input type="checkbox" checked={isDarkMode} onChange={() => setIsDarkMode(!isDarkMode)} className="w-6 h-6 accent-blue-500 rounded-md" />
+            </div>
+            <div className={`${themeCard} p-5 rounded-2xl flex justify-between items-center border`}>
+              <div><p className="font-bold">Widget Spotify</p><p className="text-xs text-gray-500">Mostra musica in viaggio</p></div>
+              <input type="checkbox" checked={enableSpotify} onChange={() => setEnableSpotify(!enableSpotify)} className="w-6 h-6 accent-green-500 rounded-md" />
+            </div>
+          </div>
+        </div>
+      )}
+
+      {activeView === 'tripDetail' && selectedTrip && (
+        <div className={`absolute inset-0 z-50 ${themeBg} flex flex-col animate-in zoom-in-95 duration-200`}>
+          <div className="relative h-[45%] w-full bg-black">
+            <img src={selectedTrip.snapshot} alt="Dettaglio Mappa" className="w-full h-full object-cover opacity-80" />
+            <div className="absolute top-0 left-0 right-0 p-6 pt-[calc(1.5rem+env(safe-area-inset-top))] bg-gradient-to-b from-black/80 to-transparent flex justify-between">
+              <button onClick={() => setActiveView('history')} className="p-3 bg-gray-900/80 backdrop-blur-md rounded-full text-white shadow-lg active:scale-95 transition-all"><svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg></button>
+              <button onClick={handleDeleteTrip} className="p-3 bg-red-600/90 hover:bg-red-500 backdrop-blur-md rounded-full text-white shadow-lg active:scale-95 transition-all"><svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" /></svg></button>
+            </div>
+            <div className={`absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t ${isDarkMode ? 'from-gray-900' : 'from-gray-50'} to-transparent`}></div>
+          </div>
+          <div className="flex-1 p-6 -mt-8 relative z-10 flex flex-col gap-4 pb-[env(safe-area-inset-bottom)]">
+            <div className={`${themeCard} p-6 rounded-3xl border shadow-2xl flex flex-col gap-6`}>
+              <div className={`flex justify-between items-end border-b ${isDarkMode ? 'border-gray-700' : 'border-gray-200'} pb-6`}>
+                <div><p className="text-gray-500 text-sm font-bold uppercase mb-1">Distanza Percorsa</p><p className="text-5xl font-black">{selectedTrip.distance.toFixed(2)} <span className="text-xl text-gray-500 font-bold">km</span></p></div>
+                <div className="text-right"><p className="text-gray-500 text-sm font-bold uppercase mb-1">Tempo</p><p className="text-2xl font-bold text-blue-500">{formatTime(selectedTrip.time)}</p></div>
+              </div>
+              <div className="grid grid-cols-2 gap-4">
+                 <div><p className="text-gray-500 text-xs font-bold uppercase mb-1">Velocità Media</p><p className="text-2xl font-black">{Math.round(selectedTrip.avgSpeed)} <span className="text-sm text-gray-500 font-bold">km/h</span></p></div>
+                 <div><p className="text-gray-500 text-xs font-bold uppercase mb-1">Vel. Massima</p><p className="text-2xl font-black text-red-500">{selectedTrip.maxSpeed.toFixed(1)} <span className="text-sm text-gray-500 font-bold">km/h</span></p></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+    </div>
+  );
+}
+</file>
+
+<file path="tmp-giangio.txt">
+https://pfnysxsjbiausyrwmqov.supabase.co
+
+sb_publishable_-Poaigk_9aHnMYy5ZOnRrQ_Uk4BVPAQ
+
+npx cap sync quando il frontend sarà pronto.
+
++parziali del tempo in pausa
+
+cd drive-tracker 
+npm run dev -- --force
+
+npm run dev
+
+PROPOSTE: 
+-anziché avere il pallino blu 
+mettiamo i loghi delle auto circoscritti in un cerchio di un colore selezionabile
+-impostazioni colori
+-dubito ma vedere dei player spotify interfacciabili (o dei log)
+
+
+---- MELK
+npm install @capacitor/network @capacitor/preferences
+npx cap sync
+
+
+----
+npm install @capacitor-community/background-geolocation
+npx cap sync
+
+
+---
+Fase 1: Il ponte tra Web e Nativo per iphone
+
+Prima di aprire Xcode, dobbiamo "impacchettare" il tuo codice React e iniettarlo nella cartella nativa di iOS, insieme al nuovo plugin del GPS.
+Apri il terminale nella tua cartella drive-tracker ed esegui in ordine questi tre comandi:
+
+npm run build
+npx cap sync ios
+npx cap open ios
+
+
+---
+4. Il Tempo Sbagliato ⏱️
+
+⚠️ FIX A METÀ (Serve lo Sviluppatore 2). Noi abbiamo risolto il problema di UI (ora il formato supporta anche le ore, HH:MM:SS, se il viaggio è lungo).
+Ma perché il tempo rallentava nel tuo test?
+Perché quando spegni lo schermo dell'iPhone, Apple "addormenta" l'app. Il timer di React (il setInterval fatto dallo Sviluppatore 2) si ferma.
+👉 Cosa devi dire allo Sviluppatore 2: "Ehi, per il tempo effettivo non usare un contatore che fa +1 ogni secondo, ma salva l'orario di partenza (es. 14:00) e calcola la differenza con l'orario attuale (es. 14:30 = 30 minuti), così anche se l'app va in background non perdiamo secondi!" (Questo è un task per la sua Fase 6.2).
+</file>
+
+</files>
