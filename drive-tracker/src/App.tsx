@@ -1,26 +1,39 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import MapOverlay from './components/MapOverlay';
 import SplashScreen from './components/SplashScreen';
 import LoginScreen from './components/LoginScreen';
+// Importiamo il manager di Spotify dello Sviluppatore 2
+import { spotifyManager } from './services/spotifyManager'; 
 
 function App() {
-  // Stati per controllare quale schermata mostrare
   const [showSplash, setShowSplash] = useState(true);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
+  // LOGICA SPOTIFY TOKEN (Al caricamento dell'app)
+  useEffect(() => {
+    // 1. Prova a estrarre il token dall'URL (se stiamo tornando dal login di Spotify)
+    const token = spotifyManager.extractTokenFromUrl();
+    if (token) {
+      // 2. Salvalo nella memoria del telefono
+      localStorage.setItem('spotifyToken', token);
+      // Pulisci l'URL per estetica
+      // 2. Salvalo nella memoria del telefono
+      localStorage.setItem('spotifyToken', token);
+      // Pulisci l'URL per estetica
+      window.location.hash = '';
+    }
+  }, []);
+
   return (
     <div className="h-screen w-screen bg-gray-900 overflow-hidden">
-      {/* 1. Mostra la Splash Screen per 3 secondi */}
       {showSplash && (
         <SplashScreen onFinish={() => setShowSplash(false)} />
       )}
 
-      {/* 2. Finita la Splash, se NON sei loggato, mostra il Login */}
       {!showSplash && !isAuthenticated && (
         <LoginScreen onLoginSuccess={() => setIsAuthenticated(true)} />
       )}
 
-      {/* 3. Finito il Login, mostra la Mappa */}
       {!showSplash && isAuthenticated && (
         <MapOverlay />
       )}
