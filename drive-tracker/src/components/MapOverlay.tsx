@@ -31,7 +31,7 @@ export default function MapOverlay() {
 
   const mapRef = useRef<any>(null);
 
-  const [activeView, setActiveView] = useState<'map' | 'menu' | 'history' | 'settings' | 'tripDetail' | 'stats' | 'garage'>('map');
+  const [activeView, setActiveView] = useState<'map' | 'menu' | 'history' | 'settings' | 'tripDetail' | 'stats' | 'garage' | 'leaderboard' | 'profile'>('map');
   const [selectedTrip, setSelectedTrip] = useState<SavedTrip | null>(null);
 
   const [showReport, setShowReport] = useState(false);
@@ -41,7 +41,6 @@ export default function MapOverlay() {
   const [history, setHistory] = useState<SavedTrip[]>([]);
 
   const [isDarkMode, setIsDarkMode] = useState(true);
-
   const [globalStats, setGlobalStats] = useState<any>(null);
 
   const [carIcon, setCarIcon] = useState<'dot' | 'arrow' | 'sport'>('arrow');
@@ -51,24 +50,49 @@ export default function MapOverlay() {
   const [currentSong, setCurrentSong] = useState<any>(null);
   const spotifyToken = localStorage.getItem('spotifyToken'); 
 
+  const [leaderboardFilter, setLeaderboardFilter] = useState<'distance' | 'maxSpeed'>('distance');
+  const [myNickname, setMyNickname] = useState('');
+  
+  // --- NUOVO STATO PER LA CLASSIFICA REALE ---
+  const [leaderboardData, setLeaderboardData] = useState<any[]>([]);
+  const [isLoadingLeaderboard, setIsLoadingLeaderboard] = useState(false);
+
   const currentPos = route.length > 0 ? route[route.length - 1] : null;
 
-  // Caricamento Preferenze Garage (Fix TypeScript con 'any')
+  // Caricamento Preferenze Garage & Profilo
   useEffect(() => {
     userManager.getPreferences().then((prefs: any) => {
       if (prefs) {
         if (prefs.icon) setCarIcon(prefs.icon);
         if (prefs.color) setCarColor(prefs.color);
+        if (prefs.nickname) setMyNickname(prefs.nickname); // Recupera il nickname
       }
     });
   }, []);
 
+  // Fetch Statistiche Personali
   useEffect(() => {
     if (activeView === 'stats') {
       userManager.getUserRecords().then(data => setGlobalStats(data));
     }
   }, [activeView]);
 
+  // --- NUOVO: Fetch Classifica Globale ---
+  useEffect(() => {
+    if (activeView === 'leaderboard') {
+      setIsLoadingLeaderboard(true);
+      // Sostituisci getLeaderboard con il nome esatto usato dallo Sviluppatore 2 se diverso
+      userManager.getLeaderboard?.().then((data: any) => {
+        setLeaderboardData(data || []);
+        setIsLoadingLeaderboard(false);
+      }).catch((e: any) => {
+        console.error("Errore classifica", e);
+        setIsLoadingLeaderboard(false);
+      });
+    }
+  }, [activeView]);
+
+  // Polling Spotify
   useEffect(() => {
     let interval: any;
     if ((status === 'tracking' || status === 'paused') && enableSpotify && spotifyToken) {
@@ -86,6 +110,7 @@ export default function MapOverlay() {
     return () => clearInterval(interval);
   }, [status, enableSpotify, spotifyToken]);
 
+  // Funzioni di salvataggio DB
   const handleCarIconChange = async (icon: string) => {
     setCarIcon(icon as any);
     await userManager.savePreferences(icon, carColor);
@@ -94,6 +119,18 @@ export default function MapOverlay() {
   const handleCarColorChange = async (color: string) => {
     setCarColor(color);
     await userManager.savePreferences(carIcon, color);
+  };
+
+  // --- NUOVO: Salva Profilo ---
+const handleSaveProfile = async () => {
+    try {
+      // Passiamo DUE parametri: il nickname e l'avatar (stringa vuota per ora)
+      await userManager.updateProfile?.(myNickname, ''); 
+      alert("Profilo aggiornato con successo! 🏁");
+      setActiveView('settings');
+    } catch (error) {
+      alert("Errore durante il salvataggio.");
+    }
   };
 
   useEffect(() => {
@@ -139,7 +176,6 @@ export default function MapOverlay() {
         setTripStats({ distance: dist, maxSpeed: maxS, avgSpeed: avgS, time: effectiveTime });
         setShowReport(true);
       }, 1200);
-
     } else {
       resetForNewTrip();
     }
@@ -179,6 +215,12 @@ export default function MapOverlay() {
       setSelectedTrip(null);
     }
   };
+
+  // --- LOGICA ORDINAMENTO CLASSIFICA REALE ---
+  const sortedLeaderboard = [...leaderboardData].sort((a, b) => {
+    if (leaderboardFilter === 'distance') return (b.distance || 0) - (a.distance || 0);
+    return (b.maxSpeed || 0) - (a.maxSpeed || 0);
+  });
 
   const routeGeoJSON: any = {
     type: 'FeatureCollection',
@@ -240,6 +282,7 @@ export default function MapOverlay() {
         )}
       </Map>
 
+      {/* --- VISTA PRINCIPALE MAPPA --- */}
       {activeView === 'map' && !showReport && (
         <>
           <div className="absolute top-6 right-6 z-10 mt-[env(safe-area-inset-top)]">
@@ -324,7 +367,7 @@ export default function MapOverlay() {
         </>
       )}
 
-      {/* --- SCHERMATA RESOCONTO (POST VIAGGIO) --- */}
+      {/* --- SCHERMATA RESOCONTO --- */}
       {showReport && tripStats && (
         <div className={`absolute inset-0 z-50 ${isDarkMode ? 'bg-gray-900/95' : 'bg-gray-100/95'} backdrop-blur-md flex flex-col items-center justify-between p-6 pt-[env(safe-area-inset-top)] pb-[env(safe-area-inset-bottom)] animate-in fade-in zoom-in-95 duration-300`}>
           <div className="w-full max-w-md mt-8">
@@ -357,6 +400,10 @@ export default function MapOverlay() {
           </div>
           
           <div className="flex flex-col gap-4">
+            <button onClick={() => setActiveView('leaderboard')} className={`flex items-center gap-4 ${themeCard} p-5 rounded-2xl border active:scale-95 transition-all text-left`}>
+              <div className="p-2 bg-emerald-500/20 rounded-lg text-emerald-500"><svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" /></svg></div>
+              <span className="font-bold text-lg">Classifica Globale</span>
+            </button>
             <button onClick={() => setActiveView('stats')} className={`flex items-center gap-4 ${themeCard} p-5 rounded-2xl border active:scale-95 transition-all text-left`}>
               <div className="p-2 bg-yellow-500/20 rounded-lg text-yellow-500"><svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" /></svg></div>
               <span className="font-bold text-lg">Record Personali</span>
@@ -378,6 +425,108 @@ export default function MapOverlay() {
       )}
 
       {/* --- SCHERMATE SOTTOPAGINE --- */}
+      
+      {activeView === 'leaderboard' && (
+        <div className={`absolute inset-0 z-50 ${themeBg} flex flex-col p-6 pt-[calc(1.5rem+env(safe-area-inset-top))] animate-in slide-in-from-right duration-300`}>
+          <div className="flex items-center gap-4 mb-6">
+            <button onClick={() => setActiveView('menu')} className={`p-2 ${themeCard} rounded-full transition-colors active:scale-95`}><svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg></button>
+            <h2 className="text-2xl font-black">Classifica</h2>
+          </div>
+
+          <div className={`flex p-1 rounded-xl mb-6 ${isDarkMode ? 'bg-gray-800' : 'bg-gray-200'}`}>
+            <button onClick={() => setLeaderboardFilter('distance')} className={`flex-1 py-2 text-sm font-bold rounded-lg transition-all ${leaderboardFilter === 'distance' ? 'bg-blue-600 text-white shadow-md' : 'text-gray-500'}`}>Km Totali</button>
+            <button onClick={() => setLeaderboardFilter('maxSpeed')} className={`flex-1 py-2 text-sm font-bold rounded-lg transition-all ${leaderboardFilter === 'maxSpeed' ? 'bg-blue-600 text-white shadow-md' : 'text-gray-500'}`}>Top Speed</button>
+          </div>
+
+          <div className="flex-1 overflow-y-auto pb-[env(safe-area-inset-bottom)] flex flex-col gap-3">
+            {isLoadingLeaderboard ? (
+               <div className="flex-1 flex items-center justify-center">
+                 <svg className="animate-spin w-8 h-8 text-blue-500" fill="none" viewBox="0 0 24 24"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
+               </div>
+            ) : sortedLeaderboard.map((user, index) => {
+              const rankColor = index === 0 ? 'text-yellow-400 bg-yellow-400/10 border-yellow-400/30' : 
+                                index === 1 ? 'text-gray-300 bg-gray-300/10 border-gray-300/30' : 
+                                index === 2 ? 'text-amber-600 bg-amber-600/10 border-amber-600/30' : 
+                                'text-gray-500 bg-gray-500/10 border-transparent';
+              return (
+                <div key={user.id || index} className={`flex items-center gap-4 ${themeCard} p-4 rounded-2xl border`}>
+                  <div className={`w-10 h-10 flex items-center justify-center rounded-xl font-black text-lg border ${rankColor}`}>#{index + 1}</div>
+                  <img src={user.avatar || 'https://i.pravatar.cc/150'} alt="avatar" className="w-12 h-12 rounded-full object-cover border border-white/10" />
+                  <div className="flex-1 min-w-0">
+                    <p className="font-bold truncate text-lg">{user.nickname || 'Pilota Anonimo'}</p>
+                    <span className="text-[10px] uppercase font-bold px-2 py-0.5 bg-blue-500/20 text-blue-500 rounded-md tracking-wider">{user.category || 'Novice'}</span>
+                  </div>
+                  <div className="text-right">
+                    <p className="text-2xl font-black">{leaderboardFilter === 'distance' ? (user.distance || 0).toFixed(0) : (user.maxSpeed || 0).toFixed(0)}</p>
+                    <p className="text-xs font-bold text-gray-500 uppercase tracking-widest">{leaderboardFilter === 'distance' ? 'km' : 'km/h'}</p>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      )}
+
+      {activeView === 'profile' && (
+        <div className={`absolute inset-0 z-50 ${themeBg} flex flex-col p-6 pt-[calc(1.5rem+env(safe-area-inset-top))] animate-in slide-in-from-right duration-300`}>
+          <div className="flex items-center gap-4 mb-8">
+            <button onClick={() => setActiveView('settings')} className={`p-2 ${themeCard} rounded-full transition-colors active:scale-95`}><svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg></button>
+            <h2 className="text-2xl font-black">Profilo Pilota</h2>
+          </div>
+          
+          <div className="flex flex-col items-center gap-8 mt-4">
+            <div className="relative group cursor-pointer">
+              <img src="https://i.pravatar.cc/150?u=kapitan" alt="Profile" className="w-32 h-32 rounded-full object-cover border-4 border-blue-500 shadow-xl" />
+              <div className="absolute inset-0 bg-black/50 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
+              </div>
+            </div>
+
+            <div className="w-full">
+              <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Nickname Pubblico</label>
+              <input 
+                type="text" 
+                value={myNickname} 
+                onChange={(e) => setMyNickname(e.target.value)} 
+                className={`w-full p-4 rounded-2xl border font-bold text-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all ${isDarkMode ? 'bg-gray-800 border-white/10 text-white' : 'bg-white border-gray-200 text-black'}`}
+              />
+            </div>
+
+            <button onClick={handleSaveProfile} className="w-full mt-4 py-4 bg-blue-600 hover:bg-blue-500 text-white font-black rounded-2xl shadow-lg border-b-4 border-blue-800 active:scale-95 transition-all">
+              SALVA PROFILO
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* --- MENU LATERALE IMPOSTAZIONI --- */}
+      {activeView === 'settings' && (
+        <div className={`absolute inset-0 z-50 ${themeBg} flex flex-col p-6 pt-[calc(1.5rem+env(safe-area-inset-top))] animate-in slide-in-from-right duration-300`}>
+          <div className="flex items-center gap-4 mb-8">
+            <button onClick={() => setActiveView('menu')} className={`p-2 ${themeCard} rounded-full transition-colors active:scale-95`}><svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg></button>
+            <h2 className="text-2xl font-black">Settings</h2>
+          </div>
+          <div className="flex flex-col gap-4">
+            <div className={`${themeCard} p-5 rounded-2xl flex justify-between items-center border`}>
+              <div><p className="font-bold">Tema Scuro</p><p className="text-xs text-gray-500">Mappa e Interfaccia</p></div>
+              <input type="checkbox" checked={isDarkMode} onChange={() => setIsDarkMode(!isDarkMode)} className="w-6 h-6 accent-blue-500 rounded-md" />
+            </div>
+            <div className={`${themeCard} p-5 rounded-2xl flex justify-between items-center border`}>
+              <div><p className="font-bold">Widget Spotify</p><p className="text-xs text-gray-500">Mostra musica in viaggio</p></div>
+              <div className="flex items-center gap-3">
+                {!spotifyToken && <button onClick={() => spotifyManager.login()} className="px-3 py-1.5 bg-[#1DB954] text-white rounded-lg font-bold text-xs shadow-md">Collega</button>}
+                <input type="checkbox" checked={enableSpotify} onChange={() => setEnableSpotify(!enableSpotify)} className="w-6 h-6 accent-green-500 rounded-md" />
+              </div>
+            </div>
+            <div className={`${themeCard} p-5 rounded-2xl flex justify-between items-center border`}>
+              <div><p className="font-bold">Personalizza Profilo</p><p className="text-xs text-gray-500">Nickname e Immagine</p></div>
+              <button onClick={() => setActiveView('profile')} className="px-4 py-2 bg-blue-600/20 text-blue-500 hover:bg-blue-600 hover:text-white rounded-lg font-bold text-sm transition-all">Modifica</button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Altre viste base... */}
       {activeView === 'stats' && (
         <div className={`absolute inset-0 z-50 ${themeBg} flex flex-col p-6 pt-[calc(1.5rem+env(safe-area-inset-top))] animate-in slide-in-from-right duration-300`}>
           <div className="flex items-center gap-4 mb-8">
@@ -458,28 +607,6 @@ export default function MapOverlay() {
                 </div>
               ))
             )}
-          </div>
-        </div>
-      )}
-
-      {activeView === 'settings' && (
-        <div className={`absolute inset-0 z-50 ${themeBg} flex flex-col p-6 pt-[calc(1.5rem+env(safe-area-inset-top))] animate-in slide-in-from-right duration-300`}>
-          <div className="flex items-center gap-4 mb-8">
-            <button onClick={() => setActiveView('menu')} className={`p-2 ${themeCard} rounded-full transition-colors active:scale-95`}><svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg></button>
-            <h2 className="text-2xl font-black">Settings</h2>
-          </div>
-          <div className="flex flex-col gap-4">
-            <div className={`${themeCard} p-5 rounded-2xl flex justify-between items-center border`}>
-              <div><p className="font-bold">Tema Scuro</p><p className="text-xs text-gray-500">Mappa e Interfaccia</p></div>
-              <input type="checkbox" checked={isDarkMode} onChange={() => setIsDarkMode(!isDarkMode)} className="w-6 h-6 accent-blue-500 rounded-md" />
-            </div>
-            <div className={`${themeCard} p-5 rounded-2xl flex justify-between items-center border`}>
-              <div><p className="font-bold">Widget Spotify</p><p className="text-xs text-gray-500">Mostra musica in viaggio</p></div>
-              <div className="flex items-center gap-3">
-                {!spotifyToken && <button onClick={() => spotifyManager.login()} className="px-3 py-1.5 bg-[#1DB954] text-white rounded-lg font-bold text-xs shadow-md">Collega</button>}
-                <input type="checkbox" checked={enableSpotify} onChange={() => setEnableSpotify(!enableSpotify)} className="w-6 h-6 accent-green-500 rounded-md" />
-              </div>
-            </div>
           </div>
         </div>
       )}
