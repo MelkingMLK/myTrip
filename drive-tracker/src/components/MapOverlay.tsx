@@ -28,6 +28,7 @@ export default function MapOverlay() {
 
   const mapRef = useRef<any>(null);
 
+  // --- STATI DI NAVIGAZIONE E DATI ---
   const [activeView, setActiveView] = useState<'map' | 'menu' | 'history' | 'settings' | 'tripDetail' | 'stats' | 'garage'>('map');
   const [selectedTrip, setSelectedTrip] = useState<SavedTrip | null>(null);
 
@@ -37,48 +38,84 @@ export default function MapOverlay() {
   const [isSaving, setIsSaving] = useState(false);
   const [history, setHistory] = useState<SavedTrip[]>([]);
 
+  // --- IMPOSTAZIONI ---
   const [isDarkMode, setIsDarkMode] = useState(true);
-
-  // 7.1.2 STATI PERSONALIZZAZIONE AUTO
   const [carIcon, setCarIcon] = useState<'dot' | 'arrow' | 'sport'>('arrow');
   const [carColor, setCarColor] = useState('#3b82f6'); 
-
-  // --- 7.1.3 STATI WIDGET SPOTIFY ---
   const [enableSpotify, setEnableSpotify] = useState(true);
   const [isPlaying, setIsPlaying] = useState(true);
 
   const currentPos = route.length > 0 ? route[route.length - 1] : null;
 
+  // Movimento mappa durante il tracking
   useEffect(() => {
     if (currentPos && mapRef.current && activeView === 'map' && !showReport) {
       mapRef.current.flyTo({ center: [currentPos.lng, currentPos.lat], zoom: 16, essential: true, duration: 1000 });
     }
   }, [currentPos, activeView, showReport]);
 
+  // FIX TEMPO: Calcolo che supporta anche le ore
   const formatTime = (totalSeconds: number) => {
-    const m = Math.floor(totalSeconds / 60).toString().padStart(2, '0');
+    const h = Math.floor(totalSeconds / 3600);
+    const m = Math.floor((totalSeconds % 3600) / 60).toString().padStart(2, '0');
     const s = (totalSeconds % 60).toString().padStart(2, '0');
-    return `${m}:${s}`;
+    return h > 0 ? `${h}:${m}:${s}` : `${m}:${s}`;
   };
 
   const handleCancelCountdown = () => stopTracking();
 
+  // FIX SNAPSHOT E VELOCITÀ MAX:
   const handleEndJourney = () => {
     const mapInstance = mapRef.current?.getMap();
     if (mapInstance && route.length > 1) {
-      const snapshot = mapInstance.getCanvas().toDataURL('image/png');
-      setMapSnapshot(snapshot);
-      const dist = calculateDistance(route);
-      const maxS = Math.max(...route.map((p: any) => p.speed));
-      const avgS = effectiveTime > 0 ? (dist / (effectiveTime / 3600)) : 0;
-      setTripStats({ distance: dist, maxSpeed: maxS, avgSpeed: avgS, time: effectiveTime });
-      setShowReport(true);
+      
+      // 1. Calcola il Bounding Box (il riquadro che contiene tutto il percorso)
+      const bounds = route.reduce(
+        (acc: number[], point: any) => [
+          Math.min(acc[0], point.lng), Math.min(acc[1], point.lat),
+          Math.max(acc[2], point.lng), Math.max(acc[3], point.lat)
+        ],
+        [180, 90, -180, -90]
+      );
+
+      // 2. Centra e zooma la mappa per mostrare tutto il viaggio
+      mapInstance.fitBounds(
+        [[bounds[0], bounds[1]], [bounds[2], bounds[3]]],
+        { padding: 50, duration: 1000 }
+      );
+
+      // 3. Aspetta l'animazione, scatta la foto e filtra i dati
+      setTimeout(() => {
+        const snapshot = mapInstance.getCanvas().toDataURL('image/png');
+        setMapSnapshot(snapshot);
+        
+        const dist = calculateDistance(route);
+        const avgS = effectiveTime > 0 ? (dist / (effectiveTime / 3600)) : 0;
+        
+        // FILTRO SBALZI GPS (L'intuizione dell'utente)
+        // Ignoriamo la velocità se differisce dal punto precedente di oltre 20 km/h in un secondo.
+        let maxS = 0;
+        if (route.length > 0) maxS = route[0].speed;
+        for (let i = 1; i < route.length; i++) {
+          const delta = Math.abs(route[i].speed - route[i - 1].speed);
+          if (delta <= 20) { // Soglia di tolleranza per salti "impossibili"
+            if (route[i].speed > maxS) maxS = route[i].speed;
+          }
+        }
+        
+        setTripStats({ distance: dist, maxSpeed: maxS, avgSpeed: avgS, time: effectiveTime });
+        setShowReport(true);
+      }, 1200);
+
+    } else {
+      // Se il percorso è troppo corto, spegni solo il tracking
+      resetForNewTrip();
     }
     stopTracking();
   };
 
   const resetForNewTrip = () => {
-    setShowReport(false); setTripStats(null); setMapSnapshot(null); setActiveView('map');
+    setShowReport(false); setTripStats(null); setMapSnapshot(null); setActiveView('map'); stopTracking();
   };
 
   const handleDiscard = () => {
@@ -177,7 +214,7 @@ export default function MapOverlay() {
         )}
       </Map>
 
-      {/* --- VISTA PRINCIPALE --- */}
+      {/* --- VISTA PRINCIPALE MAPPA --- */}
       {activeView === 'map' && !showReport && (
         <>
           <div className="absolute top-6 right-6 z-10 mt-[env(safe-area-inset-top)]">
@@ -218,46 +255,22 @@ export default function MapOverlay() {
             </div>
           )}
 
-          {/* --- 7.1.3 WIDGET SPOTIFY FLUTTUANTE --- */}
           {enableSpotify && (status === 'tracking' || status === 'paused') && (
             <div className={`absolute bottom-32 left-6 right-6 md:left-1/2 md:-translate-x-1/2 md:w-96 z-10 ${themeGlass} backdrop-blur-xl p-3 rounded-3xl border flex items-center gap-4 shadow-2xl animate-in slide-in-from-bottom-10 fade-in duration-500`}>
-              {/* Copertina Album */}
               <div className="relative w-12 h-12 flex-shrink-0 rounded-xl overflow-hidden shadow-lg border border-white/10 bg-gray-800">
-                <img 
-                  src="https://i.scdn.co/image/ab67616d0000b273130fa242b3636502da549d44" 
-                  alt="Album Cover" 
-                  className={`w-full h-full object-cover transition-transform duration-[10s] ${isPlaying ? 'scale-110' : 'scale-100 grayscale'}`} 
-                />
-                {/* Logo piccolino Spotify */}
-                <div className="absolute top-1 left-1 bg-black/50 rounded-full p-0.5">
-                  <svg className="w-3 h-3 text-[#1DB954]" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.24 1.021zM18.84 14.4c-.3.42-.84.54-1.26.24-3.36-2.04-8.52-2.64-12.54-1.44-.48.12-1.02-.12-1.14-.6-.12-.48.12-1.02.6-1.14 4.56-1.32 10.32-.66 14.1 1.68.42.24.54.84.24 1.26zm.12-3.12c-4.02-2.4-10.56-2.64-14.4-1.44-.6.18-1.2-.18-1.38-.78-.18-.6.18-1.2.78-1.38 4.44-1.32 11.64-1.02 16.2 1.26.54.3.72 1.02.42 1.56-.3.54-1.02.72-1.62.42z"/></svg>
-                </div>
+                <img src="https://i.scdn.co/image/ab67616d0000b273130fa242b3636502da549d44" alt="Album Cover" className={`w-full h-full object-cover transition-transform duration-[10s] ${isPlaying ? 'scale-110' : 'scale-100 grayscale'}`} />
+                <div className="absolute top-1 left-1 bg-black/50 rounded-full p-0.5"><svg className="w-3 h-3 text-[#1DB954]" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.24 1.021zM18.84 14.4c-.3.42-.84.54-1.26.24-3.36-2.04-8.52-2.64-12.54-1.44-.48.12-1.02-.12-1.14-.6-.12-.48.12-1.02.6-1.14 4.56-1.32 10.32-.66 14.1 1.68.42.24.54.84.24 1.26zm.12-3.12c-4.02-2.4-10.56-2.64-14.4-1.44-.6.18-1.2-.18-1.38-.78-.18-.6.18-1.2.78-1.38 4.44-1.32 11.64-1.02 16.2 1.26.54.3.72 1.02.42 1.56-.3.54-1.02.72-1.62.42z"/></svg></div>
               </div>
-              
-              {/* Titolo e Artista */}
               <div className="flex-1 min-w-0">
                 <p className={`text-sm font-black truncate ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>Nightcall</p>
                 <p className={`text-xs font-medium truncate ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>Kavinsky</p>
               </div>
-
-              {/* Controlli Media */}
               <div className="flex items-center gap-2 pr-2">
-                <button className="p-2 text-gray-400 hover:text-blue-500 transition-colors active:scale-90">
-                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M11 18V6l-8.5 6 8.5 6zm.5-6l8.5 6V6l-8.5 6z"/></svg>
+                <button className="p-2 text-gray-400 hover:text-blue-500 transition-colors active:scale-90"><svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M11 18V6l-8.5 6 8.5 6zm.5-6l8.5 6V6l-8.5 6z"/></svg></button>
+                <button onClick={() => setIsPlaying(!isPlaying)} className={`p-3 rounded-full shadow-lg transition-transform active:scale-90 ${isDarkMode ? 'bg-white text-black' : 'bg-black text-white'}`}>
+                  {isPlaying ? <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg> : <svg className="w-5 h-5 ml-1" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>}
                 </button>
-                <button 
-                  onClick={() => setIsPlaying(!isPlaying)}
-                  className={`p-3 rounded-full shadow-lg transition-transform active:scale-90 ${isDarkMode ? 'bg-white text-black' : 'bg-black text-white'}`}
-                >
-                  {isPlaying ? (
-                    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
-                  ) : (
-                    <svg className="w-5 h-5 ml-1" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-                  )}
-                </button>
-                <button className="p-2 text-gray-400 hover:text-blue-500 transition-colors active:scale-90">
-                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M4 18l8.5-6L4 6v12zm9-12v12l8.5-6L13 6z"/></svg>
-                </button>
+                <button className="p-2 text-gray-400 hover:text-blue-500 transition-colors active:scale-90"><svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M4 18l8.5-6L4 6v12zm9-12v12l8.5-6L13 6z"/></svg></button>
               </div>
             </div>
           )}
@@ -279,7 +292,7 @@ export default function MapOverlay() {
         </>
       )}
 
-      {/* --- SCHERMATA RESOCONTO --- */}
+      {/* --- SCHERMATA RESOCONTO (POST VIAGGIO) --- */}
       {showReport && tripStats && (
         <div className={`absolute inset-0 z-50 ${isDarkMode ? 'bg-gray-900/95' : 'bg-gray-100/95'} backdrop-blur-md flex flex-col items-center justify-between p-6 pt-[env(safe-area-inset-top)] pb-[env(safe-area-inset-bottom)] animate-in fade-in zoom-in-95 duration-300`}>
           <div className="w-full max-w-md mt-8">
@@ -291,7 +304,7 @@ export default function MapOverlay() {
               <div className={`${themeCard} p-4 rounded-2xl border`}><p className="text-gray-400 text-xs font-bold uppercase mb-1">Distanza</p><p className="text-2xl font-black">{tripStats.distance.toFixed(2)} <span className="text-sm font-medium">km</span></p></div>
               <div className={`${themeCard} p-4 rounded-2xl border`}><p className="text-gray-400 text-xs font-bold uppercase mb-1">Tempo</p><p className="text-2xl font-black">{formatTime(tripStats.time)}</p></div>
               <div className={`${themeCard} p-4 rounded-2xl border`}><p className="text-gray-400 text-xs font-bold uppercase mb-1">Media</p><p className="text-2xl font-black">{Math.round(tripStats.avgSpeed)} <span className="text-sm font-medium">km/h</span></p></div>
-              <div className={`${themeCard} p-4 rounded-2xl border`}><p className="text-gray-400 text-xs font-bold uppercase mb-1">Vel Max</p><p className="text-2xl font-black">{tripStats.maxSpeed.toFixed(1)} <span className="text-sm font-medium">km/h</span></p></div>
+              <div className={`${themeCard} p-4 rounded-2xl border`}><p className="text-gray-400 text-xs font-bold uppercase mb-1">Vel Max</p><p className="text-2xl font-black text-red-500">{tripStats.maxSpeed.toFixed(1)} <span className="text-sm text-gray-500">km/h</span></p></div>
             </div>
           </div>
           <div className="w-full max-w-md mb-8 flex flex-col gap-3">
@@ -335,36 +348,8 @@ export default function MapOverlay() {
         </div>
       )}
 
-      {/* --- IMPOSTAZIONI --- */}
-      {activeView === 'settings' && (
-        <div className={`absolute inset-0 z-50 ${themeBg} flex flex-col p-6 pt-[calc(1.5rem+env(safe-area-inset-top))] animate-in slide-in-from-right duration-300`}>
-          <div className="flex items-center gap-4 mb-8">
-            <button onClick={() => setActiveView('menu')} className={`p-2 ${themeCard} rounded-full transition-colors active:scale-95`}><svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg></button>
-            <h2 className="text-2xl font-black">Settings</h2>
-          </div>
-          
-          <div className="flex flex-col gap-4">
-            <div className={`${themeCard} p-5 rounded-2xl flex justify-between items-center border`}>
-              <div><p className="font-bold">Tema Scuro</p><p className="text-xs text-gray-500">Mappa e Interfaccia</p></div>
-              <input type="checkbox" checked={isDarkMode} onChange={() => setIsDarkMode(!isDarkMode)} className="w-6 h-6 accent-blue-500 rounded-md" />
-            </div>
-            
-            {/* 7.1.3 OPZIONE SPOTIFY */}
-            <div className={`${themeCard} p-5 rounded-2xl flex justify-between items-center border`}>
-              <div><p className="font-bold">Widget Spotify</p><p className="text-xs text-gray-500">Mostra musica in viaggio</p></div>
-              <input type="checkbox" checked={enableSpotify} onChange={() => setEnableSpotify(!enableSpotify)} className="w-6 h-6 accent-green-500 rounded-md" />
-            </div>
-            
-            <div className={`${themeCard} p-5 rounded-2xl flex justify-between items-center border`}>
-              <div><p className="font-bold">Personalizza Profilo</p><p className="text-xs text-gray-500">Nickname e Immagine</p></div>
-              <button className="px-4 py-2 bg-blue-600/20 text-blue-500 rounded-lg font-bold text-sm">Modifica</button>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* --- RESTO DELLE SCHERMATE (Stats, Garage, History, Details) NASCOSTE PER BREVITA' QUI, MA IDENTICHE A PRIMA --- */}
-      {/* 7.1.1 SCHERMATA STATISTICHE GLOBALI */}
+      {/* --- SCHERMATE MENU (Statistiche, Garage, Storico, Settings, Dettaglio) --- */}
+      
       {activeView === 'stats' && (
         <div className={`absolute inset-0 z-50 ${themeBg} flex flex-col p-6 pt-[calc(1.5rem+env(safe-area-inset-top))] animate-in slide-in-from-right duration-300`}>
           <div className="flex items-center gap-4 mb-8">
@@ -387,7 +372,6 @@ export default function MapOverlay() {
         </div>
       )}
 
-      {/* 7.1.2 SCHERMATA GARAGE */}
       {activeView === 'garage' && (
         <div className={`absolute inset-0 z-50 ${themeBg} flex flex-col p-6 pt-[calc(1.5rem+env(safe-area-inset-top))] animate-in slide-in-from-right duration-300`}>
           <div className="flex items-center gap-4 mb-8">
@@ -415,7 +399,6 @@ export default function MapOverlay() {
         </div>
       )}
 
-      {/* MENU STORICO E DETTAGLIO */}
       {activeView === 'history' && (
         <div className={`absolute inset-0 z-50 ${themeBg} flex flex-col p-6 pt-[calc(1.5rem+env(safe-area-inset-top))] animate-in slide-in-from-right duration-300`}>
           <div className="flex items-center gap-4 mb-6">
@@ -440,6 +423,25 @@ export default function MapOverlay() {
                 </div>
               ))
             )}
+          </div>
+        </div>
+      )}
+
+      {activeView === 'settings' && (
+        <div className={`absolute inset-0 z-50 ${themeBg} flex flex-col p-6 pt-[calc(1.5rem+env(safe-area-inset-top))] animate-in slide-in-from-right duration-300`}>
+          <div className="flex items-center gap-4 mb-8">
+            <button onClick={() => setActiveView('menu')} className={`p-2 ${themeCard} rounded-full transition-colors active:scale-95`}><svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg></button>
+            <h2 className="text-2xl font-black">Settings</h2>
+          </div>
+          <div className="flex flex-col gap-4">
+            <div className={`${themeCard} p-5 rounded-2xl flex justify-between items-center border`}>
+              <div><p className="font-bold">Tema Scuro</p><p className="text-xs text-gray-500">Mappa e Interfaccia</p></div>
+              <input type="checkbox" checked={isDarkMode} onChange={() => setIsDarkMode(!isDarkMode)} className="w-6 h-6 accent-blue-500 rounded-md" />
+            </div>
+            <div className={`${themeCard} p-5 rounded-2xl flex justify-between items-center border`}>
+              <div><p className="font-bold">Widget Spotify</p><p className="text-xs text-gray-500">Mostra musica in viaggio</p></div>
+              <input type="checkbox" checked={enableSpotify} onChange={() => setEnableSpotify(!enableSpotify)} className="w-6 h-6 accent-green-500 rounded-md" />
+            </div>
           </div>
         </div>
       )}
