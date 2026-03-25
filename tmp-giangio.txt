@@ -40,9 +40,6 @@ npx cap open ios
 
 
 ---
-4. Il Tempo Sbagliato ⏱️
 
-⚠️ FIX A METÀ (Serve lo Sviluppatore 2). Noi abbiamo risolto il problema di UI (ora il formato supporta anche le ore, HH:MM:SS, se il viaggio è lungo).
-Ma perché il tempo rallentava nel tuo test?
-Perché quando spegni lo schermo dell'iPhone, Apple "addormenta" l'app. Il timer di React (il setInterval fatto dallo Sviluppatore 2) si ferma.
-👉 Cosa devi dire allo Sviluppatore 2: "Ehi, per il tempo effettivo non usare un contatore che fa +1 ogni secondo, ma salva l'orario di partenza (es. 14:00) e calcola la differenza con l'orario attuale (es. 14:30 = 30 minuti), così anche se l'app va in background non perdiamo secondi!" (Questo è un task per la sua Fase 6.2).
+
+-l'icona sulla mappa deve essere il logo delle case madre di macchine (mercedes, audi Toyota, Citroen, ecc) circoscritto dentro un cerchio di un colore a propria scelta; 

@@ -1,88 +1,85 @@
 import { supabase } from '../supabaseClient';
 
 export const userManager = {
-  // 7.2.1: Recupera i Record Personali (Aggregazione)
+  // Recupera i Record Personali
   async getUserRecords() {
     const { data, error } = await supabase.rpc('get_user_records');
-    
-    if (error) {
-      console.error("Errore nel recupero dei record:", error);
-      return null;
-    }
+    if (error) { console.error("Errore nel recupero dei record:", error); return null; }
     return data;
   },
 
-  // 7.2.2: Recupera le preferenze del Garage
+  // Scarica dal DB anche Nickname e Avatar, non solo l'auto
   async getPreferences() {
     const { data: { session } } = await supabase.auth.getSession();
     if (!session?.user) return null;
 
     const { data, error } = await supabase
       .from('user_preferences')
-      .select('car_icon, car_color')
+      .select('car_icon, car_color, nickname, avatar_url')
       .eq('id', session.user.id)
       .single();
 
-    if (error && error.code !== 'PGRST116') { // Ignora l'errore se la riga non esiste ancora
+    if (error && error.code !== 'PGRST116') {
       console.error("Errore nel recupero preferenze:", error);
     }
     return data;
   },
 
-  // 7.2.2: Salva le preferenze del Garage
+  // Salva le preferenze del Garage
   async savePreferences(car_icon: string, car_color: string) {
     const { data: { session } } = await supabase.auth.getSession();
     if (!session?.user) return false;
 
     const { error } = await supabase
       .from('user_preferences')
-      .upsert({ 
-        id: session.user.id, 
-        car_icon, 
-        car_color, 
-        updated_at: new Date().toISOString() 
-      });
+      .upsert({ id: session.user.id, car_icon, car_color, updated_at: new Date().toISOString() });
 
-    if (error) {
-      console.error("Errore salvataggio preferenze:", error);
-      return false;
-    }
+    if (error) { console.error("Errore salvataggio preferenze:", error); return false; }
     return true;
   },
 
-  // FASE 8.2.1: Aggiornamento Profilo Utente
+  // LA FUNZIONE MANCANTE: Prende il file locale e lo spara nel Bucket di Supabase
+  async uploadAvatar(base64Image: string): Promise<string | null> {
+    const { data: { session } } = await supabase.auth.getSession();
+    if (!session?.user) return null;
+
+    try {
+      const res = await fetch(base64Image);
+      const blob = await res.blob();
+      // Chiamiamo il file col tuo ID, così se cambi foto sovrascrive la vecchia
+      const fileName = `${session.user.id}_avatar.png`; 
+
+      const { error } = await supabase.storage
+        .from('avatars')
+        .upload(fileName, blob, { contentType: 'image/png', upsert: true });
+
+      if (error) throw error;
+
+      const { data } = supabase.storage.from('avatars').getPublicUrl(fileName);
+      return `${data.publicUrl}?t=${Date.now()}`;
+    } catch (error) {
+      console.error("Errore upload avatar:", error);
+      return null;
+    }
+  },
+
+  // Aggiornamento Profilo Utente
   async updateProfile(nickname: string, avatar_url: string) {
     const { data: { session } } = await supabase.auth.getSession();
     if (!session?.user) return false;
 
     const { error } = await supabase
       .from('user_preferences')
-      .upsert({ 
-        id: session.user.id, 
-        nickname, 
-        avatar_url, 
-        updated_at: new Date().toISOString() 
-      });
+      .upsert({ id: session.user.id, nickname, avatar_url, updated_at: new Date().toISOString() });
 
-    if (error) {
-      console.error("Errore salvataggio profilo:", error);
-      return false;
-    }
+    if (error) { console.error("Errore salvataggio profilo:", error); return false; }
     return true;
   },
 
-  // FASE 8.2.2: Download della Classifica Globale
+  // Download della Classifica Globale
   async getLeaderboard() {
-    // Chiamiamo la RPC "Security Definer" che calcola i totali di tutti
     const { data, error } = await supabase.rpc('get_global_leaderboard');
-    
-    if (error) {
-      console.error("Errore nel recupero della classifica:", error);
-      return [];
-    }
-
-    // Il Frontend potrà prendere questo array di oggetti e ordinarlo
-    // facilmente con .sort() in base alla metrica scelta (Distanza, Vel Max, ecc.)
+    if (error) { console.error("Errore nel recupero della classifica:", error); return []; }
     return data;
   }
 };
