@@ -4,6 +4,7 @@ import 'mapbox-gl/dist/mapbox-gl.css';
 import { useDriveTracker } from '../hooks/useDriveTracker';
 import { userManager } from '../services/userManager';
 import { spotifyManager } from '../services/spotifyManager';
+import { routeManager } from '../services/routeManager';
 
 const MAPBOX_TOKEN = import.meta.env.VITE_MAPBOX_TOKEN;
 const CAR_BRANDS = ['Mercedes', 'Audi', 'Toyota', 'Citroen', 'BMW', 'Jeep', 'Tesla', 'Alfa'];
@@ -77,13 +78,24 @@ export default function MapOverlay({ onLogout }: { onLogout?: () => void }) {
 
   const [isSavingProfile, setIsSavingProfile] = useState(false);
 
-  // NUOVO: Stato per gestire i TAG
-  const [tripTag, setTripTag] = useState<string>(''); 
+  const [tripStartLoc, setTripStartLoc] = useState<string>(''); 
+  const [tripEndLoc, setTripEndLoc] = useState<string>(''); 
   const [activeFilterTags, setActiveFilterTags] = useState<string[]>([]); 
+  const [activeTagInput, setActiveTagInput] = useState<'start' | 'end'>('start');
 
-  // Crea la lista di tag disponibili unendo i default a quelli usati in passato
-  const availableTags = Array.from(new Set(history.map(t => t.tag).filter(Boolean)));
-  const allTags = Array.from(new Set(['Casa', 'Lavoro', 'Scuola', 'Svago', ...availableTags]));
+  const extractLocations = () => {
+    const locs = new Set(['Casa', 'Lavoro', 'Università', 'Palestra', 'Supermercato']);
+    history.forEach(trip => {
+      if (trip.tag) {
+        const parts = trip.tag.split(' ➔ ');
+        parts.forEach((p: string) => { if (p.trim()) locs.add(p.trim()); });
+      }
+    });
+    return Array.from(locs).slice(0, 10); 
+  };
+  const suggestedLocations = extractLocations();
+
+  const availableFilterTags = Array.from(new Set(history.map(t => t.tag).filter(Boolean)));
 
   const currentPos = route.length > 0 ? route[route.length - 1] : null;
 
@@ -154,10 +166,15 @@ export default function MapOverlay({ onLogout }: { onLogout?: () => void }) {
   };
 
   useEffect(() => {
-    if (activeView === 'stats') userManager.getUserRecords?.().then(data => setGlobalStats(data)).catch(() => {});
+    if (activeView === 'stats') {
+      userManager.getUserRecords?.().then((data: any) => setGlobalStats(data)).catch(() => {});
+    }
     if (activeView === 'leaderboard') {
       setIsLoadingLeaderboard(true);
-      userManager.getLeaderboard?.().then((data: any) => { setLeaderboardData(data || []); setIsLoadingLeaderboard(false); }).catch(() => setIsLoadingLeaderboard(false));
+      userManager.getLeaderboard?.().then((data: any) => { 
+        setLeaderboardData(data || []); 
+        setIsLoadingLeaderboard(false); 
+      }).catch(() => setIsLoadingLeaderboard(false));
     }
   }, [activeView]);
 
@@ -237,19 +254,57 @@ export default function MapOverlay({ onLogout }: { onLogout?: () => void }) {
     stopTracking();
   };
 
-  const resetForNewTrip = () => { setShowReport(false); setTripStats(null); setMapSnapshot(null); setTripTag(''); setActiveView('map'); stopTracking(); };
-  const handleDiscard = () => { if(window.confirm("Sicuro di voler scartare questo viaggio?")) resetForNewTrip(); };
-  
-  const handleSaveToCloud = () => {
-    setIsSaving(true); 
-    setTimeout(() => { 
-      setIsSaving(false);
-      // ORA SALVIAMO ANCHE IL TAG!
-      if (tripStats && mapSnapshot) setHistory(prev => [{ id: Date.now().toString(), date: new Date().toLocaleDateString('it-IT', { day: '2-digit', month: 'short', hour: '2-digit', minute: '2-digit' }), snapshot: mapSnapshot, tag: tripTag, ...tripStats }, ...prev]);
-      resetForNewTrip(); setActiveView('history'); 
-    }, 1000);
+  const resetForNewTrip = () => { 
+    setShowReport(false); 
+    setTripStats(null); 
+    setMapSnapshot(null); 
+    setTripStartLoc(''); 
+    setTripEndLoc(''); 
+    setActiveView('map'); 
+    stopTracking(); 
   };
   
+  const handleDiscard = () => { if(window.confirm("Sicuro di voler scartare questo viaggio?")) resetForNewTrip(); };
+  
+  const handleSaveToCloud = async () => {
+    if (!tripStats || !mapSnapshot) return;
+    setIsSaving(true); 
+    
+    try {
+      const combinedTag = tripStartLoc && tripEndLoc ? `${tripStartLoc} ➔ ${tripEndLoc}` : tripStartLoc || tripEndLoc || '';
+
+      const statsToSave = {
+        distance_km: tripStats.distance,
+        avg_speed_kmh: tripStats.avgSpeed,
+        max_speed_kmh: tripStats.maxSpeed,
+        total_time_seconds: tripStats.time,
+        driving_time_seconds: tripStats.time,
+        pause_time_seconds: 0,
+        tag: combinedTag
+      };
+
+      const result = await routeManager.saveRoute(mapSnapshot, statsToSave);
+
+      if (result.success) {
+        setHistory(prev => [{ 
+          id: Date.now().toString(), 
+          date: new Date().toLocaleDateString('it-IT', { day: '2-digit', month: 'short', hour: '2-digit', minute: '2-digit' }), 
+          snapshot: mapSnapshot, 
+          tag: combinedTag, 
+          ...tripStats 
+        }, ...prev]);
+        
+        resetForNewTrip(); 
+        setActiveView('history'); 
+      }
+    } catch (error) {
+      console.error("Errore fatale salvataggio percorso:", error);
+      alert("Errore di comunicazione col server. Riprova!");
+    } finally {
+      setIsSaving(false);
+    }
+  };
+
   const handleDeleteTrip = () => { if (selectedTrip && window.confirm("Eliminare?")) { setHistory(prev => prev.filter(t => t.id !== selectedTrip.id)); setActiveView('history'); setSelectedTrip(null); } };
 
   const getThemeColors = () => {
@@ -270,28 +325,27 @@ export default function MapOverlay({ onLogout }: { onLogout?: () => void }) {
   const cardClass = isDarkMode ? 'bg-zinc-900 border-zinc-800' : 'bg-white border-gray-200 shadow-xl';
   const subTextClass = isDarkMode ? 'text-zinc-400' : 'text-zinc-500';
 
-  // NUOVI COLORI DELLA MAPPA STILE TELEMETRIA F1!
   const routeGeoJSON: any = { type: 'FeatureCollection', features: route.map((point: any, index: number) => { 
     if (index === 0) return null; 
-    let segmentColor = '#10B981'; // Verde default
+    let segmentColor = '#10B981';
     
-    if (point.speed >= 90) segmentColor = '#9333ea'; // Viola (F1 - Alta velocità)
-    else if (point.speed >= 50) segmentColor = '#10b981'; // Verde (Scorrimento veloce)
-    else if (point.speed >= 30) segmentColor = '#eab308'; // Giallo (Rallentamenti)
-    else if (point.speed >= 10) segmentColor = '#f97316'; // Arancione (Traffico)
-    else segmentColor = '#9f1239'; // Bordeaux (Fermo / Traffico Estremo)
+    if (point.isBadSignal) segmentColor = '#71717a'; 
+    else if (point.speed >= 90) segmentColor = '#9333ea'; 
+    else if (point.speed >= 50) segmentColor = '#10b981'; 
+    else if (point.speed >= 30) segmentColor = '#eab308'; 
+    else if (point.speed >= 10) segmentColor = '#f97316'; 
+    else segmentColor = '#9f1239'; 
 
     return { type: 'Feature', properties: { color: segmentColor }, geometry: { type: 'LineString', coordinates: [[route[index - 1].lng, route[index - 1].lat], [point.lng, point.lat]] } }; 
   }).filter(Boolean) };
 
-  const sortedLeaderboard = [...leaderboardData].sort((a, b) => {
+  const sortedLeaderboard = [...leaderboardData].sort((a: any, b: any) => {
     if (leaderboardFilter === 'distance') return (b.distance || 0) - (a.distance || 0);
     if (leaderboardFilter === 'maxSpeed') return (b.maxSpeed || 0) - (a.maxSpeed || 0);
     if (leaderboardFilter === 'longestTrip') return (b.longestTrip || 0) - (a.longestTrip || 0);
     return 0;
   });
 
-  // Funzioni di filtro per i Tag nello Storico
   const toggleFilterTag = (tag: string) => {
     setActiveFilterTags(prev => prev.includes(tag) ? prev.filter(t => t !== tag) : [...prev, tag]);
   };
@@ -382,7 +436,7 @@ export default function MapOverlay({ onLogout }: { onLogout?: () => void }) {
 
           <div className="absolute bottom-8 left-0 right-0 px-6 z-10 flex gap-4 justify-center mb-[env(safe-area-inset-bottom)]">
             {(status === 'idle' || status === 'finished') && (
-              <button onClick={startCountdown} className="flex-1 max-w-[200px] py-5 rounded-3xl font-black text-lg shadow-2xl tracking-wide transition-all active:scale-95 border-b-4 text-white" style={{ backgroundColor: hexPrimary, borderColor: hexAccent }}>START</button>
+              <button onClick={startCountdown} className="flex-1 max-w-[200px] py-5 rounded-3xl font-black text-lg shadow-2xl tracking-wide transition-all active:scale-95 border-b-4" style={{ backgroundColor: hexPrimary, borderColor: hexAccent, color: hexAccent }}>START</button>
             )}
             {status === 'tracking' && (
               <>
@@ -397,7 +451,7 @@ export default function MapOverlay({ onLogout }: { onLogout?: () => void }) {
         </>
       )}
 
-      {/* --- SCHERMATA RESOCONTO (CON TAG) --- */}
+      {/* --- SCHERMATA RESOCONTO (CON DA-A) --- */}
       {showReport && tripStats && (
         <div className={`absolute inset-0 z-50 backdrop-blur-md flex flex-col items-center p-6 pt-[env(safe-area-inset-top)] pb-[env(safe-area-inset-bottom)] animate-in fade-in zoom-in-95 duration-300 overflow-y-auto ${bgClass}`}>
           <div className="w-full max-w-md mt-4">
@@ -413,15 +467,30 @@ export default function MapOverlay({ onLogout }: { onLogout?: () => void }) {
               <div className={`${cardClass} p-4 rounded-2xl border`}><p className={`text-xs font-bold uppercase mb-1 ${subTextClass}`}>Vel Max</p><p className="text-2xl font-black text-red-500">{tripStats.maxSpeed.toFixed(1)} <span className="text-sm font-medium">km/h</span></p></div>
             </div>
 
-            {/* SEZIONE AGGIUNGI TAG */}
+            {/* SEZIONE DA - A CON CHIPS */}
             <div className="w-full mt-6">
               <p className={`text-xs font-bold uppercase mb-2 ${subTextClass}`}>Etichetta Percorso</p>
-              <div className="flex flex-wrap gap-2 mb-3">
-                 {allTags.slice(0, 8).map(tag => (
-                   <button key={tag} onClick={() => setTripTag(tag)} className={`px-4 py-1.5 rounded-full text-xs font-bold border transition-all ${tripTag === tag ? 'border-white bg-white text-black shadow-lg' : 'border-zinc-700 text-zinc-400'}`}>{tag}</button>
-                 ))}
+              
+              <div className="flex gap-2 mb-3">
+                <input type="text" placeholder="Da (es. Casa)" value={tripStartLoc} onChange={(e) => setTripStartLoc(e.target.value)} onFocus={() => setActiveTagInput('start')} className={`w-full p-4 rounded-2xl font-bold text-sm focus:outline-none border transition-all ${cardClass}`} style={activeTagInput === 'start' ? { borderColor: hexPrimary, boxShadow: `0 0 0 2px ${hexPrimary}33` } : {}} />
+                <div className="flex items-center justify-center"><svg className="w-6 h-6 text-zinc-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg></div>
+                <input type="text" placeholder="A (es. Uni)" value={tripEndLoc} onChange={(e) => setTripEndLoc(e.target.value)} onFocus={() => setActiveTagInput('end')} className={`w-full p-4 rounded-2xl font-bold text-sm focus:outline-none border transition-all ${cardClass}`} style={activeTagInput === 'end' ? { borderColor: hexPrimary, boxShadow: `0 0 0 2px ${hexPrimary}33` } : {}} />
               </div>
-              <input type="text" placeholder="Scrivi un nuovo tag..." value={tripTag} onChange={(e) => setTripTag(e.target.value)} className={`w-full p-4 rounded-2xl font-bold text-sm focus:outline-none border ${cardClass}`} style={{ outlineColor: hexPrimary }} />
+
+              <div className="flex flex-wrap gap-2">
+                {suggestedLocations.map((loc: string) => (
+                  <button 
+                    key={loc} 
+                    onClick={() => {
+                      if (activeTagInput === 'start') setTripStartLoc(loc);
+                      else setTripEndLoc(loc);
+                    }}
+                    className={`px-3 py-1.5 rounded-full text-xs font-bold border transition-colors ${isDarkMode ? 'border-zinc-700 text-zinc-400 bg-zinc-800 hover:bg-zinc-700' : 'border-gray-300 text-gray-600 bg-white hover:bg-gray-100 shadow-sm'}`}
+                  >
+                    {loc}
+                  </button>
+                ))}
+              </div>
             </div>
 
           </div>
@@ -576,7 +645,7 @@ export default function MapOverlay({ onLogout }: { onLogout?: () => void }) {
             <div>
               <p className={`text-sm font-bold uppercase mb-4 tracking-wider ${subTextClass}`}>Costruttore Auto</p>
               <div className="grid grid-cols-4 gap-3">
-                {CAR_BRANDS.map(brand => (
+                {CAR_BRANDS.map((brand: string) => (
                   <button key={brand} onClick={() => handleBrandChange(brand)} className={`flex flex-col items-center justify-center p-3 rounded-2xl border-2 transition-all ${cardClass}`} style={carBrand === brand ? { borderColor: hexPrimary, color: hexPrimary, backgroundColor: `${hexPrimary}11` } : { borderColor: 'transparent' }}>
                     <span className="text-xs font-bold truncate w-full text-center">{brand.substring(0,3).toUpperCase()}</span>
                   </button>
@@ -586,7 +655,7 @@ export default function MapOverlay({ onLogout }: { onLogout?: () => void }) {
             <div>
               <p className={`text-sm font-bold uppercase mb-4 tracking-wider ${subTextClass}`}>Colore LED Mappa</p>
               <div className="flex flex-wrap justify-between px-2 gap-4">
-                {['#3b82f6', '#10b981', '#f59e0b', '#ef4444', '#8b5cf6', '#ec4899', '#ffffff', '#000000'].map(color => (
+                {['#3b82f6', '#10b981', '#f59e0b', '#ef4444', '#8b5cf6', '#ec4899', '#ffffff', '#000000'].map((color: string) => (
                   <button key={color} onClick={() => setCarColor(color)} className={`w-10 h-10 rounded-full shadow-lg transition-transform border border-white/20 active:scale-90 ${carColor === color ? 'scale-110 ring-4 ring-white/50' : 'opacity-70'}`} style={{ backgroundColor: color }} />
                 ))}
               </div>
@@ -644,7 +713,7 @@ export default function MapOverlay({ onLogout }: { onLogout?: () => void }) {
                <div className="flex-1 flex items-center justify-center"><svg className="animate-spin w-8 h-8" style={{ color: hexPrimary }} fill="none" viewBox="0 0 24 24"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg></div>
             ) : sortedLeaderboard.length === 0 ? (
                <p className={`text-sm text-center mt-10 ${subTextClass}`}>La classifica verrà sincronizzata a breve.</p>
-            ) : sortedLeaderboard.map((user, index) => {
+            ) : sortedLeaderboard.map((user: any, index: number) => {
               return (
                 <div key={user.id || index} className={`flex items-center gap-4 p-4 rounded-2xl border ${cardClass}`}>
                   <div className={`w-10 h-10 flex items-center justify-center rounded-xl font-black text-lg border ${index === 0 ? 'text-yellow-400 bg-yellow-400/10 border-yellow-400/30' : index === 1 ? 'text-gray-300 bg-gray-300/10 border-gray-300/30' : index === 2 ? 'text-amber-600 bg-amber-600/10 border-amber-600/30' : 'opacity-50 border-transparent'}`}>#{index + 1}</div>
@@ -675,7 +744,7 @@ export default function MapOverlay({ onLogout }: { onLogout?: () => void }) {
         </div>
       )}
 
-      {/* --- SCHERMATA STORICO (CON FILTRI TAG) --- */}
+      {/* --- SCHERMATA STORICO --- */}
       {activeView === 'history' && (
          <div className={`absolute inset-0 z-50 flex flex-col p-6 pt-[calc(1.5rem+env(safe-area-inset-top))] animate-in slide-in-from-right duration-300 ${bgClass}`}>
           <div className="flex items-center gap-4 mb-4">
@@ -683,9 +752,8 @@ export default function MapOverlay({ onLogout }: { onLogout?: () => void }) {
             <h2 className="text-2xl font-black">Archivio Viaggi</h2>
           </div>
 
-          {/* BARRA DEI FILTRI TAG */}
           <div className="flex gap-2 overflow-x-auto pb-4 mb-2 scrollbar-hide">
-             {allTags.map(tag => (
+             {availableFilterTags.map((tag: string) => (
                <button key={tag} onClick={() => toggleFilterTag(tag)} className={`px-4 py-2 rounded-full text-xs font-bold border whitespace-nowrap transition-all ${activeFilterTags.includes(tag) ? 'border-white bg-white text-black shadow-md' : `border-zinc-700 ${subTextClass}`}`}>
                  {tag}
                </button>
@@ -696,7 +764,7 @@ export default function MapOverlay({ onLogout }: { onLogout?: () => void }) {
             {filteredHistory.length === 0 ? (
               <div className="flex flex-col items-center justify-center h-full gap-2"><p className={`font-medium text-lg ${subTextClass}`}>Nessun viaggio trovato.</p></div>
             ) : (
-              filteredHistory.map((trip) => (
+              filteredHistory.map((trip: any) => (
                 <div key={trip.id} onClick={() => { setSelectedTrip(trip); setActiveView('tripDetail'); }} className={`rounded-2xl p-3 flex gap-4 border shadow-lg active:scale-[0.98] transition-all cursor-pointer relative ${cardClass}`}>
                   <div className="w-24 h-24 rounded-xl overflow-hidden bg-zinc-900 flex-shrink-0 border border-black/10"><img src={trip.snapshot} alt="Mappa" className="w-full h-full object-cover" /></div>
                   <div className="flex flex-col justify-center flex-1">

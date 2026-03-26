@@ -2,7 +2,6 @@
 import { supabase } from '../supabaseClient';
 import { Network } from '@capacitor/network';
 import { Preferences } from '@capacitor/preferences';
-
 export interface RouteStats {
   distance_km: number;
   avg_speed_kmh: number;
@@ -11,6 +10,7 @@ export interface RouteStats {
   driving_time_seconds: number;
   pause_time_seconds: number;
   route_data?: any;
+  tag?: string; // <--- AGGIUNGI QUESTO
 }
 
 const OFFLINE_KEY = 'offline_pending_routes';

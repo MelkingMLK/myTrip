@@ -38,7 +38,7 @@ export const userManager = {
     return true;
   },
 
-  // LA FUNZIONE MANCANTE: Prende il file locale e lo spara nel Bucket di Supabase
+  // Prende il file locale e lo spara nel Bucket di Supabase
   async uploadAvatar(base64Image: string): Promise<string | null> {
     const { data: { session } } = await supabase.auth.getSession();
     if (!session?.user) return null;

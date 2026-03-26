@@ -1,31 +1,7 @@
-https://pfnysxsjbiausyrwmqov.supabase.co
-
-sb_publishable_-Poaigk_9aHnMYy5ZOnRrQ_Uk4BVPAQ
-
-npx cap sync quando il frontend sarà pronto.
-
-+parziali del tempo in pausa
 
 cd drive-tracker 
 npm run dev -- --force
 
-npm run dev
-
-PROPOSTE: 
--anziché avere il pallino blu 
-mettiamo i loghi delle auto circoscritti in un cerchio di un colore selezionabile
--impostazioni colori
--dubito ma vedere dei player spotify interfacciabili (o dei log)
-
-
----- MELK
-npm install @capacitor/network @capacitor/preferences
-npx cap sync
-
-
-----
-npm install @capacitor-community/background-geolocation
-npx cap sync
 
 
 ---
@@ -40,6 +16,7 @@ npx cap open ios
 
 
 ---
+-scritta start colore 2
+-tag andata e ritorno
 
 
--l'icona sulla mappa deve essere il logo delle case madre di macchine (mercedes, audi Toyota, Citroen, ecc) circoscritto dentro un cerchio di un colore a propria scelta; 
