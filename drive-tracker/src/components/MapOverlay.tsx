@@ -43,7 +43,7 @@ const DefaultAvatar = ({ color, className }: { color: string, className?: string
 );
 
 export default function MapOverlay({ onLogout }: { onLogout?: () => void }) {
-  const { status, countdown, effectiveTime, currentSpeed, route, startCountdown, pauseTracking, resumeTracking, stopTracking } = useDriveTracker();
+  const { status, countdown, effectiveTime, pauseTime, currentSpeed, route, startCountdown, pauseTracking, resumeTracking, stopTracking } = useDriveTracker();
   const mapRef = useRef<any>(null);
 
   const [activeView, setActiveView] = useState<'map' | 'menu' | 'history' | 'settings' | 'tripDetail' | 'stats' | 'garage' | 'leaderboard' | 'profile'>('map');
@@ -264,7 +264,7 @@ export default function MapOverlay({ onLogout }: { onLogout?: () => void }) {
       for (let i = 1; i < route.length; i++) { 
         if (Math.abs(route[i].speed - route[i - 1].speed) <= 20 && route[i].speed > maxS) maxS = route[i].speed; 
       }
-      setTripStats({ distance: dist, maxSpeed: maxS, avgSpeed: avgS, time: effectiveTime });
+      setTripStats({ distance: dist, maxSpeed: maxS, avgSpeed: avgS, time: effectiveTime, pause: pauseTime });
       setShowReport(true);
     }, route.length > 1 ? 1200 : 100); 
     stopTracking();
@@ -293,7 +293,7 @@ export default function MapOverlay({ onLogout }: { onLogout?: () => void }) {
       max_speed_kmh: tripStats.maxSpeed,
       total_time_seconds: tripStats.time,
       driving_time_seconds: tripStats.time,
-      pause_time_seconds: 0
+      pause_time_seconds: tripStats.pause // <-- Usa il vero tempo di sosta!
     });
     
     resetForNewTrip();
@@ -473,12 +473,15 @@ export default function MapOverlay({ onLogout }: { onLogout?: () => void }) {
               {mapSnapshot ? <img src={mapSnapshot} alt="Snapshot" className="w-full h-full object-cover" /> : null}
             </div>
             
-            <div className="grid grid-cols-2 gap-3 mt-4">
-              <div className={`${cardClass} p-4 rounded-2xl border`}><p className={`text-xs font-bold uppercase mb-1 ${subTextClass}`}>Distanza</p><p className="text-2xl font-black">{tripStats.distance.toFixed(2)} <span className="text-sm font-medium">km</span></p></div>
-              <div className={`${cardClass} p-4 rounded-2xl border`}><p className={`text-xs font-bold uppercase mb-1 ${subTextClass}`}>Tempo</p><p className="text-2xl font-black" style={{ color: hexPrimary }}>{formatTime(tripStats.time)}</p></div>
-              <div className={`${cardClass} p-4 rounded-2xl border`}><p className={`text-xs font-bold uppercase mb-1 ${subTextClass}`}>Media</p><p className="text-2xl font-black">{Math.round(tripStats.avgSpeed)} <span className="text-sm font-medium">km/h</span></p></div>
-              <div className={`${cardClass} p-4 rounded-2xl border`}><p className={`text-xs font-bold uppercase mb-1 ${subTextClass}`}>Vel Max</p><p className="text-2xl font-black text-red-500">{tripStats.maxSpeed.toFixed(1)} <span className="text-sm font-medium">km/h</span></p></div>
-            </div>
+            <div className="grid grid-cols-2 gap-4">
+                <div className={`p-5 rounded-2xl border shadow-lg flex flex-col justify-center ${cardClass}`}><p className={`text-[10px] font-bold uppercase mb-1 ${subTextClass}`}>Velocità Massima</p><p className="text-2xl font-black text-red-500">{globalStats.max_speed?.toFixed(1) || '0.0'} <span className="text-sm opacity-50">km/h</span></p></div>
+                <div className={`p-5 rounded-2xl border shadow-lg flex flex-col justify-center ${cardClass}`}><p className={`text-[10px] font-bold uppercase mb-1 ${subTextClass}`}>Media Globale</p><p className="text-2xl font-black" style={{ color: hexPrimary }}>{globalStats.avg_speed?.toFixed(0) || '0'} <span className="text-sm opacity-50">km/h</span></p></div>
+                <div className={`p-5 rounded-2xl border shadow-lg flex flex-col justify-center ${cardClass}`}><p className={`text-[10px] font-bold uppercase mb-1 ${subTextClass}`}>Viaggio Più Lungo</p><p className="text-2xl font-black text-green-500">{globalStats.longest_trip?.toFixed(1) || '0.0'} <span className="text-sm opacity-50">km</span></p></div>
+                <div className={`p-5 rounded-2xl border shadow-lg flex flex-col justify-center ${cardClass}`}><p className={`text-[10px] font-bold uppercase mb-1 ${subTextClass}`}>Tempo Totale</p><p className="text-2xl font-black" style={{ color: hexPrimary }}>{formatTime(globalStats.total_time || 0)}</p></div>
+                {/* Nuovi riquadri: */}
+                <div className={`p-5 rounded-2xl border shadow-lg flex flex-col justify-center ${cardClass}`}><p className={`text-[10px] font-bold uppercase mb-1 ${subTextClass}`}>Viaggi Effettuati</p><p className="text-2xl font-black">{globalStats.total_trips || '0'}</p></div>
+                <div className={`p-5 rounded-2xl border shadow-lg flex flex-col justify-center ${cardClass}`}><p className={`text-[10px] font-bold uppercase mb-1 ${subTextClass}`}>Tempo in Pausa</p><p className="text-2xl font-black text-yellow-500">{formatTime(globalStats.total_pause_time || 0)}</p></div>
+              </div>
 
             {/* SEZIONE DA - A CON CHIPS */}
             <div className="w-full mt-6">
@@ -692,14 +695,12 @@ export default function MapOverlay({ onLogout }: { onLogout?: () => void }) {
                   <div className="flex items-baseline gap-2"><span className="text-6xl font-black tracking-tighter">{globalStats.total_distance?.toFixed(1) || '0.0'}</span><span className="text-xl font-bold opacity-70">km</span></div>
                 </div>
                 <div className="grid grid-cols-2 gap-4">
-                  <div className={`p-5 rounded-2xl border shadow-lg flex flex-col justify-center ${cardClass}`}>
-                    <p className={`text-[10px] font-bold uppercase mb-1 ${subTextClass}`}>Velocità Massima</p>
-                    <p className="text-2xl font-black text-red-500">{globalStats.max_speed?.toFixed(1) || '0.0'} <span className="text-sm opacity-50">km/h</span></p>
-                  </div>
-                  <div className={`p-5 rounded-2xl border shadow-lg flex flex-col justify-center ${cardClass}`}>
-                    <p className={`text-[10px] font-bold uppercase mb-1 ${subTextClass}`}>Viaggio Più Lungo</p>
-                    <p className="text-2xl font-black" style={{ color: hexPrimary }}>{globalStats.longest_trip?.toFixed(1) || '0.0'} <span className="text-sm opacity-50">km</span></p>
-                  </div>
+                  <div className={`p-5 rounded-2xl border shadow-lg flex flex-col justify-center ${cardClass}`}><p className={`text-[10px] font-bold uppercase mb-1 ${subTextClass}`}>Velocità Massima</p><p className="text-2xl font-black text-red-500">{globalStats.max_speed?.toFixed(1) || '0.0'} <span className="text-sm opacity-50">km/h</span></p></div>
+                  <div className={`p-5 rounded-2xl border shadow-lg flex flex-col justify-center ${cardClass}`}><p className={`text-[10px] font-bold uppercase mb-1 ${subTextClass}`}>Media Globale</p><p className="text-2xl font-black" style={{ color: hexPrimary }}>{globalStats.avg_speed?.toFixed(0) || '0'} <span className="text-sm opacity-50">km/h</span></p></div>
+                  <div className={`p-5 rounded-2xl border shadow-lg flex flex-col justify-center ${cardClass}`}><p className={`text-[10px] font-bold uppercase mb-1 ${subTextClass}`}>Viaggio Più Lungo</p><p className="text-2xl font-black text-green-500">{globalStats.longest_trip?.toFixed(1) || '0.0'} <span className="text-sm opacity-50">km</span></p></div>
+                  <div className={`p-5 rounded-2xl border shadow-lg flex flex-col justify-center ${cardClass}`}><p className={`text-[10px] font-bold uppercase mb-1 ${subTextClass}`}>Tempo Totale</p><p className="text-2xl font-black" style={{ color: hexPrimary }}>{formatTime(globalStats.total_time || 0)}</p></div>
+                  <div className={`p-5 rounded-2xl border shadow-lg flex flex-col justify-center ${cardClass}`}><p className={`text-[10px] font-bold uppercase mb-1 ${subTextClass}`}>Viaggi Effettuati</p><p className="text-2xl font-black">{globalStats.total_trips || '0'}</p></div>
+                  <div className={`p-5 rounded-2xl border shadow-lg flex flex-col justify-center ${cardClass}`}><p className={`text-[10px] font-bold uppercase mb-1 ${subTextClass}`}>Tempo in Pausa</p><p className="text-2xl font-black text-yellow-500">{formatTime(globalStats.total_pause_time || 0)}</p></div>
                 </div>
               </>
             ) : (<div className="flex-1 flex items-center justify-center"><svg className="animate-spin w-8 h-8" style={{ color: hexPrimary }} fill="none" viewBox="0 0 24 24"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg></div>)}
