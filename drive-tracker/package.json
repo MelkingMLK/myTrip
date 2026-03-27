@@ -13,6 +13,7 @@
     "@capacitor-community/background-geolocation": "^1.2.26",
     "@capacitor/android": "^7.6.0",
     "@capacitor/app": "^7.1.2",
+    "@capacitor/browser": "^7.0.5",
     "@capacitor/core": "^7.6.0",
     "@capacitor/ios": "^7.6.0",
     "@capacitor/network": "^7.0.4",

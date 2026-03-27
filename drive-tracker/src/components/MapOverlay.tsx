@@ -624,13 +624,30 @@ export default function MapOverlay({ onLogout }: { onLogout?: () => void }) {
               <CustomToggle checked={isDarkMode} onChange={() => setIsDarkMode(!isDarkMode)} activeColor={hexPrimary} />
             </div>
 
-            <div className={`p-5 rounded-2xl flex justify-between items-center border ${cardClass}`}>
-              <div><p className="font-bold">Widget Spotify</p><p className={`text-xs ${subTextClass}`}>Mostra musica in viaggio</p></div>
-              <div className="flex items-center gap-3">
-                {!spotifyToken && <button onClick={() => spotifyManager.login()} className="px-3 py-1.5 bg-[#1DB954] text-white rounded-lg font-bold text-xs shadow-md">Collega</button>}
-                <CustomToggle checked={enableSpotify} onChange={() => setEnableSpotify(!enableSpotify)} activeColor={hexPrimary} />
+            
+            {/* Sezione Settings in MapOverlay.tsx */}
+              <div className={`p-5 rounded-2xl flex justify-between items-center border ${cardClass}`}>
+                <div>
+                  <p className="font-bold">Widget Spotify</p>
+                  <p className={`text-xs ${subTextClass}`}>Mostra musica in viaggio</p>
+                </div>
+                <div className="flex items-center gap-3">
+                  {spotifyToken ? (
+                    <div className="px-3 py-1.5 bg-[#1DB954]/10 text-[#1DB954] rounded-lg font-black text-[10px] border border-[#1DB954]/30 uppercase tracking-wider">
+                      Connesso
+                    </div>
+                  ) : (
+                    <button 
+                      onClick={() => spotifyManager.login()} 
+                      className="px-3 py-1.5 bg-[#1DB954] text-white rounded-lg font-bold text-xs shadow-md active:scale-95 transition-all"
+                    >
+                      Collega
+                    </button>
+                  )}
+                  <CustomToggle checked={enableSpotify} onChange={() => setEnableSpotify(!enableSpotify)} activeColor={hexPrimary} />
+                </div>
               </div>
-            </div>
+            
 
             <div className={`p-5 rounded-2xl flex flex-col gap-4 border ${cardClass}`}>
               <div><p className="font-bold">Tema Generale App</p><p className={`text-xs ${subTextClass}`}>Scegli una combinazione</p></div>

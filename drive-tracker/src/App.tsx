@@ -5,66 +5,82 @@ import LoginScreen from './components/LoginScreen';
 import { spotifyManager } from './services/spotifyManager'; 
 import { authManager } from './services/authManager';
 import { App as CapApp } from '@capacitor/app';
+import { Browser } from '@capacitor/browser';
 
 function App() {
   const [showSplash, setShowSplash] = useState(true);
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean | null>(null);
 
   useEffect(() => {
-    // 1. Check Spotify Token (Ora gestito correttamente in asincrono!)
-    const checkSpotifyToken = async () => {
-      
-      const token = await spotifyManager.extractTokenFromUrl();
-      if (token) {
-        localStorage.setItem('spotifyToken', token);
-        window.location.hash = ''; 
-      }
-      
-    };
-    // Ascolta il ritorno da Safari con lo Schema URL Personalizzato
-    CapApp.addListener('appUrlOpen', async (event) => {
-      // Cerchiamo il codice generato da Spotify nell'URL
-      const codeMatch = event.url.match(/code=([^&]+)/);
-      if (codeMatch) {
-        const token = await spotifyManager.extractTokenFromCode(codeMatch[1]);
-        if (token) {
-          localStorage.setItem('spotifyToken', token);
-          window.location.reload(); // Ricarichiamo l'app per mostrare la musica!
-        }
-      }
-    });
-    checkSpotifyToken();
+    // 1. ASCOLTA IL RITORNO DA SPOTIFY
+    const setupListener = async () => {
+      const listener = await CapApp.addListener('appUrlOpen', async (event) => {
+        const url = event.url;
+        
+        if (url.includes('code=')) {
+          // 1. Chiudi subito la finestra nativa di login
+          await Browser.close();
 
-    // 2. AUTO-LOGIN 
-    const checkSession = async () => {
-      // Controlla prima se c'è il nostro salvataggio locale (il "Resta collegato")
+          // 2. Estrai il codice in modo sicuro
+          const code = url.split('code=')[1]?.split('&')[0];
+          if (code) {
+            const token = await spotifyManager.extractTokenFromCode(code);
+            if (token) {
+              localStorage.setItem('spotifyToken', token);
+              
+              // 3. Ricarica l'interfaccia React per mostrare "Connesso"
+              window.location.href = "/";
+            }
+          }
+        }
+      });
+      return listener;
+    };
+
+    const listenerPromise = setupListener();
+
+    // 2. AUTO-LOGIN SUPABASE
+    const checkAuth = async () => {
       if (localStorage.getItem('rr_logged_in') === 'true') {
         setIsAuthenticated(true);
       }
-      
       try {
-        const session = await authManager.getCurrentUser?.(); 
-        if (session) setIsAuthenticated(true);
-      } catch (error) {
-        console.log("Nessuna sessione backend attiva");
+        const user = await authManager.getCurrentUser?.();
+        if (user) {
+          setIsAuthenticated(true);
+        } else {
+          setIsAuthenticated(false);
+          localStorage.removeItem('rr_logged_in');
+        }
+      } catch (e) {
+        setIsAuthenticated(false);
       }
     };
-    checkSession();
+
+    checkAuth();
+
+    return () => {
+      listenerPromise.then(l => l.remove());
+    };
   }, []);
 
   const handleLogout = async () => {
-    try {
-      await authManager.signOut?.(); 
-    } catch(e) {}
-    localStorage.removeItem('rr_logged_in'); // Cancella la memoria!
+    try { await authManager.signOut?.(); } catch(e) {}
+    localStorage.removeItem('rr_logged_in'); 
     setIsAuthenticated(false); 
   };
 
+  if (isAuthenticated === null) return null;
+
   return (
-    <div className="h-screen w-screen bg-black overflow-hidden">
-      {showSplash && <SplashScreen onFinish={() => setShowSplash(false)} />}
-      {!showSplash && !isAuthenticated && <LoginScreen onLoginSuccess={() => setIsAuthenticated(true)} />}
-      {!showSplash && isAuthenticated && <MapOverlay onLogout={handleLogout} />}
+    <div className="h-screen w-screen bg-black overflow-hidden select-none">
+      {showSplash ? (
+        <SplashScreen onFinish={() => setShowSplash(false)} />
+      ) : isAuthenticated ? (
+        <MapOverlay onLogout={handleLogout} />
+      ) : (
+        <LoginScreen onLoginSuccess={() => setIsAuthenticated(true)} />
+      )}
     </div>
   );
 }

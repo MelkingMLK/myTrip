@@ -1596,16 +1596,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<true/>
 	<key>CFBundleURLTypes</key>
-	<array>
+		<array>
 		<dict>
 			<key>CFBundleURLName</key>
-			<string>com.alessandro.drivetracker</string>
+			<string>com.gianluca.drivetracker</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>drivetracker</string>
+			<string>com.gianluca.drivetracker</string>
 			</array>
 		</dict>
-	</array>
+		</array>
 </dict>
 </plist>
 </file>
@@ -2383,7 +2383,7 @@ import { spotifyManager } from '../services/spotifyManager';
 import { routeManager } from '../services/routeManager';
 
 const MAPBOX_TOKEN = import.meta.env.VITE_MAPBOX_TOKEN;
-const CAR_BRANDS = ['Mercedes', 'Audi', 'Toyota', 'Citroen', 'BMW', 'Jeep', 'Tesla', 'Alfa'];
+const CAR_BRANDS = ['Base', 'Mercedes', 'Audi', 'Toyota', 'Citroen', 'BMW', 'Jeep', 'Tesla', 'Alfa', 'KTM'];
 
 const BRAND_SLUGS: Record<string, string> = {
   'Mercedes': 'mercedes', 'Audi': 'audi', 'Toyota': 'toyota', 'Citroen': 'citroen',
@@ -2418,10 +2418,40 @@ const DefaultAvatar = ({ color, className }: { color: string, className?: string
   </div>
 );
 
+/// PIANO A: Loghi SVG colorabili (SimpleIcons)
+const getBrandLogoUrl = (brand: string, hexColor: string) => {
+  const slugs: Record<string, string> = {
+    'Mercedes': 'mercedes',
+    'Audi': 'audi',
+    'Toyota': 'toyota',
+    'Citroen': 'citroen',
+    'BMW': 'bmw',
+    'Jeep': 'jeep',
+    'Tesla': 'tesla',
+    'KTM': 'ktm'
+  };
+  const slug = slugs[brand];
+  if (!slug) return null; // Forza il passaggio al Piano B
+  const cleanColor = hexColor.replace('#', '');
+  return `https://cdn.simpleicons.org/${slug}/${cleanColor}`;
+};
+
+// PIANO B: Loghi PNG reali (Fallback per Alfa Romeo e altri)
+const getFallbackLogoUrl = (brand: string) => {
+  const slugs: Record<string, string> = {
+    'Mercedes': 'mercedes-benz',
+    'Alfa': 'alfa-romeo',
+    'KTM': 'ktm'
+  };
+  const finalSlug = slugs[brand] || brand.toLowerCase();
+  return `https://raw.githubusercontent.com/filippofilip95/car-logos-dataset/master/logos/optimized/${finalSlug}.png`;
+};
+
 export default function MapOverlay({ onLogout }: { onLogout?: () => void }) {
   const { status, countdown, effectiveTime, pauseTime, currentSpeed, route, startCountdown, pauseTracking, resumeTracking, stopTracking } = useDriveTracker();
 
   const mapRef = useRef<any>(null);
+  const geoControlRef = useRef<any>(null);
   const [activeView, setActiveView] = useState<'map' | 'menu' | 'history' | 'settings' | 'tripDetail' | 'stats' | 'garage' | 'leaderboard' | 'profile'>('map');
   const [selectedTrip, setSelectedTrip] = useState<any | null>(null);
   const [showReport, setShowReport] = useState(false);
@@ -2435,7 +2465,7 @@ export default function MapOverlay({ onLogout }: { onLogout?: () => void }) {
   const [customPrimary, setCustomPrimary] = useState(() => localStorage.getItem('rr_custom1') || '#10b981');
   const [customAccent, setCustomAccent] = useState(() => localStorage.getItem('rr_custom2') || '#f59e0b');
   
-  const [carBrand, setCarBrand] = useState(() => localStorage.getItem('rr_carBrand') || 'Audi');
+  const [carBrand, setCarBrand] = useState(() => localStorage.getItem('rr_carBrand') || 'Base');
   const [carColor, setCarColor] = useState(() => localStorage.getItem('rr_carColor') || '#3b82f6');
   const [carLogo, setCarLogo] = useState(() => localStorage.getItem('rr_carLogo') || DEFAULT_ARROW);
   
@@ -2474,6 +2504,16 @@ export default function MapOverlay({ onLogout }: { onLogout?: () => void }) {
   const availableFilterTags = Array.from(new Set(history.map(t => t.tag).filter(Boolean)));
 
   const currentPos = route.length > 0 ? route[route.length - 1] : null;
+  const [livePos, setLivePos] = useState<any>(null); // Salva la posizione da fermi
+  const markerPos = (status === 'tracking' || status === 'paused') ? (currentPos || livePos) : livePos;
+  // NUOVO: Accende il pallino blu in automatico all'avvio
+  useEffect(() => {
+    // Aspetta 1 secondo che la mappa si carichi, poi "preme" il pulsante del GPS
+    const timer = setTimeout(() => {
+      geoControlRef.current?.trigger();
+    }, 1000);
+    return () => clearTimeout(timer);
+  }, []);
 
   useEffect(() => {
     const loadUserData = async () => {
@@ -2751,17 +2791,46 @@ export default function MapOverlay({ onLogout }: { onLogout?: () => void }) {
     <div className={`relative h-screen w-screen overflow-hidden transition-colors duration-500 ${bgClass} ${textClass}`}>
       
       <Map ref={mapRef} initialViewState={{ longitude: 8.8251, latitude: 45.8206, zoom: 13 }} mapStyle={isDarkMode ? "mapbox://styles/mapbox/dark-v11" : "mapbox://styles/mapbox/light-v11"} mapboxAccessToken={MAPBOX_TOKEN} preserveDrawingBuffer={true}>
-        <GeolocateControl positionOptions={{ enableHighAccuracy: true }} trackUserLocation showUserHeading position="bottom-right" />
+        <GeolocateControl 
+          ref={geoControlRef} 
+          positionOptions={{ enableHighAccuracy: true }} 
+          trackUserLocation 
+          showUserHeading 
+          showUserLocation={false} 
+          onGeolocate={(e: any) => setLivePos({ lat: e.coords.latitude, lng: e.coords.longitude })}
+          position="bottom-right" 
+        />
         <NavigationControl position="bottom-right" />
         {route.length > 1 && <Source id="route-source" type="geojson" data={routeGeoJSON}><Layer id="route-layer" type="line" layout={{ 'line-join': 'round', 'line-cap': 'round' }} paint={{ 'line-color': ['get', 'color'], 'line-width': 6 }} /></Source>}
 
-        {currentPos && (
-          <Marker longitude={currentPos.lng} latitude={currentPos.lat} anchor="center">
+        {markerPos && (
+          <Marker longitude={markerPos.lng} latitude={markerPos.lat} anchor="center">
             <div className="relative flex items-center justify-center drop-shadow-xl transition-all">
+              {/* L'onda che pulsa sotto (uguale per tutti) */}
               <div className="absolute h-10 w-10 animate-ping rounded-full opacity-40" style={{ backgroundColor: carColor }}></div>
-              <div className="relative z-10 h-10 w-10 rounded-full border-4 flex items-center justify-center bg-black overflow-hidden shadow-lg" style={{ borderColor: carColor, color: carColor }}>
-                 <div className="flex items-center justify-center w-5 h-5 [&>svg]:w-full [&>svg]:h-full [&>svg]:fill-current" dangerouslySetInnerHTML={{ __html: carLogo }} />
-              </div>
+              
+              {/* Condizione: Pallino Base oppure Logo Auto VERO */}
+              {carBrand === 'Base' ? (
+                <div className="relative z-10 h-5 w-5 rounded-full border-2 border-white shadow-lg" style={{ backgroundColor: carColor }}></div>
+              ) : (
+                <div className="relative z-10 h-10 w-10 rounded-full border-4 flex items-center justify-center bg-white overflow-hidden shadow-lg" style={{ borderColor: carColor }}>
+                   <img 
+                     src={getBrandLogoUrl(carBrand, carColor) || getFallbackLogoUrl(carBrand)} 
+                     alt={carBrand} 
+                     className="w-5 h-5 object-contain" 
+                     onError={(e) => {
+                       // Se fallisce anche il primo caricamento (es. Alfa), prova il fallback PNG
+                       const fallback = getFallbackLogoUrl(carBrand);
+                       if (e.currentTarget.src !== fallback) {
+                         e.currentTarget.src = fallback;
+                       } else {
+                         // Se falliscono entrambi, metti le 3 lettere come ultima spiaggia
+                         e.currentTarget.outerHTML = `<span class="text-[9px] font-black text-black uppercase tracking-tighter leading-none">${carBrand.substring(0, 3)}</span>`;
+                       }
+                     }}
+                   />
+                </div>
+              )}
             </div>
           </Marker>
         )}
@@ -2931,13 +3000,30 @@ export default function MapOverlay({ onLogout }: { onLogout?: () => void }) {
               <CustomToggle checked={isDarkMode} onChange={() => setIsDarkMode(!isDarkMode)} activeColor={hexPrimary} />
             </div>
 
-            <div className={`p-5 rounded-2xl flex justify-between items-center border ${cardClass}`}>
-              <div><p className="font-bold">Widget Spotify</p><p className={`text-xs ${subTextClass}`}>Mostra musica in viaggio</p></div>
-              <div className="flex items-center gap-3">
-                {!spotifyToken && <button onClick={() => spotifyManager.login()} className="px-3 py-1.5 bg-[#1DB954] text-white rounded-lg font-bold text-xs shadow-md">Collega</button>}
-                <CustomToggle checked={enableSpotify} onChange={() => setEnableSpotify(!enableSpotify)} activeColor={hexPrimary} />
+            
+            {/* Sezione Settings in MapOverlay.tsx */}
+              <div className={`p-5 rounded-2xl flex justify-between items-center border ${cardClass}`}>
+                <div>
+                  <p className="font-bold">Widget Spotify</p>
+                  <p className={`text-xs ${subTextClass}`}>Mostra musica in viaggio</p>
+                </div>
+                <div className="flex items-center gap-3">
+                  {spotifyToken ? (
+                    <div className="px-3 py-1.5 bg-[#1DB954]/10 text-[#1DB954] rounded-lg font-black text-[10px] border border-[#1DB954]/30 uppercase tracking-wider">
+                      Connesso
+                    </div>
+                  ) : (
+                    <button 
+                      onClick={() => spotifyManager.login()} 
+                      className="px-3 py-1.5 bg-[#1DB954] text-white rounded-lg font-bold text-xs shadow-md active:scale-95 transition-all"
+                    >
+                      Collega
+                    </button>
+                  )}
+                  <CustomToggle checked={enableSpotify} onChange={() => setEnableSpotify(!enableSpotify)} activeColor={hexPrimary} />
+                </div>
               </div>
-            </div>
+            
 
             <div className={`p-5 rounded-2xl flex flex-col gap-4 border ${cardClass}`}>
               <div><p className="font-bold">Tema Generale App</p><p className={`text-xs ${subTextClass}`}>Scegli una combinazione</p></div>
@@ -3019,8 +3105,27 @@ export default function MapOverlay({ onLogout }: { onLogout?: () => void }) {
               <p className={`text-sm font-bold uppercase mb-4 tracking-wider ${subTextClass}`}>Costruttore Auto</p>
               <div className="grid grid-cols-4 gap-3">
                 {CAR_BRANDS.map((brand: string) => (
-                  <button key={brand} onClick={() => handleBrandChange(brand)} className={`flex flex-col items-center justify-center p-3 rounded-2xl border-2 transition-all ${cardClass}`} style={carBrand === brand ? { borderColor: hexPrimary, color: hexPrimary, backgroundColor: `${hexPrimary}11` } : { borderColor: 'transparent' }}>
-                    <span className="text-xs font-bold truncate w-full text-center">{brand.substring(0,3).toUpperCase()}</span>
+                  <button key={brand} onClick={() => setCarBrand(brand)} className={`flex flex-col items-center justify-center p-3 rounded-2xl border-2 transition-all ${cardClass}`} style={carBrand === brand ? { borderColor: hexPrimary, color: hexPrimary, backgroundColor: `${hexPrimary}11` } : { borderColor: 'transparent' }}>
+                    {brand === 'Base' ? (
+                       <span className="text-[10px] font-black truncate w-full text-center">BASE</span>
+                    ) : (
+                       <>
+                         <img 
+                           src={getBrandLogoUrl(brand, isDarkMode ? 'ffffff' : '000000') || getFallbackLogoUrl(brand)} 
+                           alt={brand} 
+                           className="w-8 h-8 object-contain mb-1 opacity-80" 
+                           onError={(e) => {
+                             const fallback = getFallbackLogoUrl(brand);
+                             if (e.currentTarget.src !== fallback) {
+                               e.currentTarget.src = fallback;
+                             } else {
+                               e.currentTarget.style.display = 'none';
+                             }
+                           }}
+                         />
+                         <span className={`text-[9px] font-bold uppercase tracking-wider ${subTextClass}`}>{brand}</span>
+                       </>
+                    )}
                   </button>
                 ))}
               </div>
@@ -3635,16 +3740,13 @@ export const routeManager = {
 </file>
 
 <file path="src/services/spotifyManager.ts">
-// Il tuo VERO Client ID
 const CLIENT_ID = 'c4eeceee848d474db514637906f13e5d'; 
-const REDIRECT_URI = 'drivetracker://callback/';
+const REDIRECT_URI = 'com.tuonome.drivetracker://callback'; 
 
-// --- INDIRIZZI UFFICIALI SPOTIFY ---
 const SPOTIFY_AUTH = 'https://accounts.spotify.com/authorize?';
 const SPOTIFY_TOKEN = 'https://accounts.spotify.com/api/token';
-const SPOTIFY_API = 'https://api.api.spotify.com/v1/me/player/currently-playing';
+const SPOTIFY_API = 'https://api.spotify.com/v1/me/player/currently-playing';
 
-// --- MOTORE CRITTOGRAFICO PKCE ---
 const generateRandomString = (length: number) => {
   const possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
   const values = crypto.getRandomValues(new Uint8Array(length));
@@ -3665,38 +3767,27 @@ const base64encode = (input: ArrayBuffer) => {
 };
 
 export const spotifyManager = {
-  // 1. Inizia il login chiedendo il "CODE" tramite PKCE
   async login() {
     const codeVerifier = generateRandomString(64);
-    window.localStorage.setItem('code_verifier', codeVerifier);
+    window.localStorage.setItem('spotify_code_verifier', codeVerifier);
     
     const hashed = await sha256(codeVerifier);
     const codeChallenge = base64encode(hashed);
-
-    // Chiediamo sia il current-playing che lo stato generale
-    const scopes = ['user-read-currently-playing', 'user-read-playback-state'];
     
     const params = new URLSearchParams({
       response_type: 'code',
       client_id: CLIENT_ID,
-      scope: scopes.join(' '),
+      scope: 'user-read-currently-playing user-read-playback-state',
       redirect_uri: REDIRECT_URI,
       code_challenge_method: 'S256',
       code_challenge: codeChallenge,
-      show_dialog: 'true' // Forza la finestra per farti fare un login pulito
     });
 
     window.location.href = SPOTIFY_AUTH + params.toString();
   },
 
-  // 2. Al ritorno nell'app, scambia il Code con il Token
-  async extractTokenFromUrl() {
-    const urlParams = new URLSearchParams(window.location.search);
-    const code = urlParams.get('code');
-    
-    if (!code) return null;
-
-    const codeVerifier = window.localStorage.getItem('code_verifier');
+  async extractTokenFromCode(code: string) {
+    const codeVerifier = window.localStorage.getItem('spotify_code_verifier');
     if (!codeVerifier) return null;
     
     try {
@@ -3715,77 +3806,44 @@ export const spotifyManager = {
       });
 
       const data = await response.json();
-      window.history.replaceState({}, document.title, window.location.pathname);
-      
       if (data.access_token) {
-        return data.access_token; 
+          window.localStorage.removeItem('spotify_code_verifier');
+          return data.access_token;
       }
+      return null;
     } catch (err) {
-      console.error('Errore durante lo scambio del token PKCE:', err);
+      return null;
     }
+  },
+
+  // Aggiunta per compatibilità col controllo iniziale
+  async extractTokenFromUrl() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const code = urlParams.get('code');
+    if (code) return this.extractTokenFromCode(code);
     return null;
   },
 
-  // 3. Polling per leggere la canzone in riproduzione
   async getCurrentlyPlaying(token: string) {
     try {
       const res = await fetch(SPOTIFY_API, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
-
-      // Se il token è scaduto, cancella e chiedi un nuovo login
       if (res.status === 401) {
-        console.warn("Token Spotify scaduto.");
         localStorage.removeItem('spotifyToken');
         return null;
       }
-
       if (res.status === 204 || res.status > 400) return null;
-
       const data = await res.json();
       if (!data || !data.item) return null;
-
       return {
         title: data.item.name,
         artist: data.item.artists.map((a: any) => a.name).join(', '),
         image: data.item.album.images[0]?.url,
         isPlaying: data.is_playing
       };
-    } catch (err) {
-      console.error("Errore fetch Spotify API:", err);
-      return null;
-    }
-  },
-  // 4. NUOVA: Funzione per l'app nativa
-  async extractTokenFromCode(code: string) {
-    const codeVerifier = window.localStorage.getItem('code_verifier');
-    if (!codeVerifier) return null;
-    
-    try {
-      const payload = new URLSearchParams({
-        client_id: CLIENT_ID,
-        grant_type: 'authorization_code',
-        code: code,
-        redirect_uri: REDIRECT_URI,
-        code_verifier: codeVerifier
-      });
-
-      const response = await fetch(SPOTIFY_TOKEN, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: payload
-      });
-
-      const data = await response.json();
-      if (data.access_token) {
-        return data.access_token; 
-      }
-    } catch (err) {
-      console.error('Errore PKCE Nativo:', err);
-    }
-    return null;
+    } catch (err) { return null; }
   }
-
 };
 </file>
 
@@ -3905,73 +3963,84 @@ export const calculateSpeed = (distanceKm: number, timeDiffMs: number): number =
 </file>
 
 <file path="src/App.tsx">
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import MapOverlay from './components/MapOverlay';
-import SplashScreen from './components/SplashScreen';
-import LoginScreen from './components/LoginScreen';
-import { spotifyManager } from './services/spotifyManager'; 
+import AuthScreen from './components/AuthScreen';
 import { authManager } from './services/authManager';
+import { spotifyManager } from './services/spotifyManager';
 import { App as CapApp } from '@capacitor/app';
 
 function App() {
-  const [showSplash, setShowSplash] = useState(true);
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean | null>(null);
 
   useEffect(() => {
-    // 1. Check Spotify Token (Ora gestito correttamente in asincrono!)
-    const checkSpotifyToken = async () => {
-      
-      const token = await spotifyManager.extractTokenFromUrl();
-      if (token) {
-        localStorage.setItem('spotifyToken', token);
-        window.location.hash = ''; 
-      }
-      
-    };
-    // Ascolta il ritorno da Safari con lo Schema URL Personalizzato
-    CapApp.addListener('appUrlOpen', async (event) => {
-      // Cerchiamo il codice generato da Spotify nell'URL
-      const codeMatch = event.url.match(/code=([^&]+)/);
-      if (codeMatch) {
-        const token = await spotifyManager.extractTokenFromCode(codeMatch[1]);
-        if (token) {
-          localStorage.setItem('spotifyToken', token);
-          window.location.reload(); // Ricarichiamo l'app per mostrare la musica!
+    // Funzione per gestire il ritorno da Spotify
+    const handleSpotifyRedirect = async (url: string) => {
+      if (url.includes('code=')) {
+        // Estraiamo il codice in modo sicuro anche su iOS
+        const code = url.split('code=')[1]?.split('&')[0];
+        
+        if (code) {
+          const token = await spotifyManager.extractTokenFromCode(code);
+          if (token) {
+            localStorage.setItem('spotifyToken', token);
+            window.location.href = "/"; // Ricarica per aggiornare tutto
+          }
         }
       }
-    });
-    checkSpotifyToken();
+    };
 
-    // 2. AUTO-LOGIN 
-    const checkSession = async () => {
-      // Controlla prima se c'è il nostro salvataggio locale (il "Resta collegato")
+    // FIX: Gestione corretta del listener di Capacitor
+    const setupListener = async () => {
+      const listener = await CapApp.addListener('appUrlOpen', (event) => {
+        handleSpotifyRedirect(event.url);
+      });
+      return listener;
+    };
+
+    const listenerPromise = setupListener();
+
+    // Controllo se siamo su web (es. test su browser)
+    if (window.location.search.includes('code=')) {
+      handleSpotifyRedirect(window.location.href);
+    }
+
+    // Controllo Sessione Supabase
+    const checkAuth = async () => {
       if (localStorage.getItem('rr_logged_in') === 'true') {
         setIsAuthenticated(true);
       }
-      
       try {
-        const session = await authManager.getCurrentUser?.(); 
-        if (session) setIsAuthenticated(true);
-      } catch (error) {
-        console.log("Nessuna sessione backend attiva");
+        const user = await authManager.getCurrentUser();
+        if (user) {
+          setIsAuthenticated(true);
+        } else {
+          setIsAuthenticated(false);
+          localStorage.removeItem('rr_logged_in');
+        }
+      } catch (e) {
+        setIsAuthenticated(false);
       }
     };
-    checkSession();
+
+    checkAuth();
+
+    // Cleanup corretto
+    return () => {
+      listenerPromise.then(l => l.remove());
+    };
   }, []);
 
-  const handleLogout = async () => {
-    try {
-      await authManager.signOut?.(); 
-    } catch(e) {}
-    localStorage.removeItem('rr_logged_in'); // Cancella la memoria!
-    setIsAuthenticated(false); 
-  };
+  if (isAuthenticated === null) return null;
 
   return (
-    <div className="h-screen w-screen bg-black overflow-hidden">
-      {showSplash && <SplashScreen onFinish={() => setShowSplash(false)} />}
-      {!showSplash && !isAuthenticated && <LoginScreen onLoginSuccess={() => setIsAuthenticated(true)} />}
-      {!showSplash && isAuthenticated && <MapOverlay onLogout={handleLogout} />}
+    <div className="h-screen w-screen bg-black text-white overflow-hidden select-none">
+      {isAuthenticated ? (
+        <MapOverlay />
+      ) : (
+        /* FIX: Passaggio esplicito della prop per evitare errori su riga 4/componente */
+        <AuthScreen onLogin={() => setIsAuthenticated(true)} />
+      )}
     </div>
   );
 }

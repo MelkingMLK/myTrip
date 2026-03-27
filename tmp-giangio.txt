@@ -25,3 +25,6 @@ VITE_SUPABASE_ANON_KEY=sb_publishable_-Poaigk_9aHnMYy5ZOnRrQ_Uk4BVPAQ
 
 npm install @capacitor/app@7
 npx cap sync ios
+
+npm install @capacitor/browser
+npx cap sync ios
