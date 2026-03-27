@@ -44,8 +44,8 @@ const DefaultAvatar = ({ color, className }: { color: string, className?: string
 
 export default function MapOverlay({ onLogout }: { onLogout?: () => void }) {
   const { status, countdown, effectiveTime, pauseTime, currentSpeed, route, startCountdown, pauseTracking, resumeTracking, stopTracking } = useDriveTracker();
-  const mapRef = useRef<any>(null);
 
+  const mapRef = useRef<any>(null);
   const [activeView, setActiveView] = useState<'map' | 'menu' | 'history' | 'settings' | 'tripDetail' | 'stats' | 'garage' | 'leaderboard' | 'profile'>('map');
   const [selectedTrip, setSelectedTrip] = useState<any | null>(null);
   const [showReport, setShowReport] = useState(false);
@@ -252,21 +252,30 @@ export default function MapOverlay({ onLogout }: { onLogout?: () => void }) {
     const mapInstance = mapRef.current?.getMap();
     if (mapInstance && route.length > 1) { 
       const bounds = route.reduce((acc: number[], point: any) => [Math.min(acc[0], point.lng), Math.min(acc[1], point.lat), Math.max(acc[2], point.lng), Math.max(acc[3], point.lat)], [180, 90, -180, -90]);
-      mapInstance.fitBounds([[bounds[0], bounds[1]], [bounds[2], bounds[3]]], { padding: 50, duration: 1000 });
+      mapInstance.fitBounds([[bounds[0], bounds[1]], [bounds[2], bounds[3]]], { padding: 50, duration: 1000, maxZoom: 16 });
     }
+    
     setTimeout(() => {
       let snapshot = null;
       try { if (mapInstance) snapshot = mapInstance.getCanvas().toDataURL('image/png'); } catch(e) {}
       setMapSnapshot(snapshot);
-      const dist = calculateDistance(route); 
+      
+      // Protezioni Anti-Crash sui calcoli
+      const dist = (route && route.length > 1) ? calculateDistance(route) : 0; 
       const avgS = effectiveTime > 0 ? (dist / (effectiveTime / 3600)) : 0;
-      let maxS = route.length > 0 ? route[0].speed : 0;
-      for (let i = 1; i < route.length; i++) { 
-        if (Math.abs(route[i].speed - route[i - 1].speed) <= 20 && route[i].speed > maxS) maxS = route[i].speed; 
+      let maxS = (route && route.length > 0) ? (route[0].speed || 0) : 0;
+      
+      if (route && route.length > 1) {
+        for (let i = 1; i < route.length; i++) { 
+          if (Math.abs(route[i].speed - route[i - 1].speed) <= 20 && route[i].speed > maxS) maxS = route[i].speed; 
+        }
       }
+      
+      // Aggiunto pauseTime per il cloud!
       setTripStats({ distance: dist, maxSpeed: maxS, avgSpeed: avgS, time: effectiveTime, pause: pauseTime });
       setShowReport(true);
     }, route.length > 1 ? 1200 : 100); 
+    
     stopTracking();
   };
 
@@ -283,39 +292,37 @@ export default function MapOverlay({ onLogout }: { onLogout?: () => void }) {
   const handleDiscard = () => { if(window.confirm("Sicuro di voler scartare questo viaggio?")) resetForNewTrip(); };
   
   const handleSaveToCloud = async () => {
-  if (!tripStats || !mapSnapshot) return;
-  setIsSaving(true);
-  
-  try {
-    await routeManager.saveRoute(mapSnapshot, {
-      distance_km: tripStats.distance,
-      avg_speed_kmh: tripStats.avgSpeed,
-      max_speed_kmh: tripStats.maxSpeed,
-      total_time_seconds: tripStats.time,
-      driving_time_seconds: tripStats.time,
-      pause_time_seconds: tripStats.pause // <-- Usa il vero tempo di sosta!
-    });
     
-    resetForNewTrip();
-    setActiveView('history'); 
-  } catch (error) {
-    console.error("Salvataggio fallito", error);
-  } finally {
-    setIsSaving(false);
-  }
-};
+    if (!tripStats || !mapSnapshot) return;
+    setIsSaving(true);
+    try {
+      await routeManager.saveRoute(mapSnapshot, {
+        distance_km: tripStats.distance,
+        avg_speed_kmh: tripStats.avgSpeed,
+        max_speed_kmh: tripStats.maxSpeed,
+        total_time_seconds: tripStats.time,
+        driving_time_seconds: tripStats.time,
+        pause_time_seconds: tripStats.pause
+      });
+      resetForNewTrip();
+      setActiveView('history');
+      setShowReport(false);
+    } catch (error) {
+      console.error("Salvataggio fallito", error);
+    } finally {
+      setIsSaving(false);
+    }
+  };
+
   const handleDeleteTrip = async () => { 
     if (selectedTrip && window.confirm("Eliminare definitivamente questo viaggio?")) { 
       try {
-        // 1. Elimina dal Cloud tramite il nostro manager
         await routeManager.deleteRoute(selectedTrip.id);
-        
-        // 2. Rimuovi dalla lista visiva
         setHistory(prev => prev.filter(t => t.id !== selectedTrip.id)); 
         setActiveView('history'); 
         setSelectedTrip(null); 
       } catch (error) {
-        alert("Ops! C'è stato un problema nell'eliminare il viaggio.");
+        alert("Errore nell'eliminazione.");
       }
     } 
   };
@@ -466,56 +473,30 @@ export default function MapOverlay({ onLogout }: { onLogout?: () => void }) {
 
       {/* --- SCHERMATA RESOCONTO (CON DA-A) --- */}
       {showReport && tripStats && (
-        <div className={`absolute inset-0 z-50 backdrop-blur-md flex flex-col items-center p-6 pt-[env(safe-area-inset-top)] pb-[env(safe-area-inset-bottom)] animate-in fade-in zoom-in-95 duration-300 overflow-y-auto ${bgClass}`}>
-          <div className="w-full max-w-md mt-4">
-            <h2 className="text-3xl font-black mb-4 text-center tracking-tight">Viaggio Completato!</h2>
-            <div className="w-full h-40 bg-black rounded-3xl overflow-hidden shadow-2xl border border-white/10 relative">
-              {mapSnapshot ? <img src={mapSnapshot} alt="Snapshot" className="w-full h-full object-cover" /> : null}
+        <div className={`absolute inset-0 z-50 backdrop-blur-md flex flex-col items-center justify-between p-6 pt-[env(safe-area-inset-top)] pb-[env(safe-area-inset-bottom)] animate-in fade-in zoom-in-95 duration-300 ${bgClass}`}>
+          <div className="w-full max-w-md mt-8">
+            <h2 className="text-3xl font-black mb-6 text-center tracking-tight">Viaggio Completato!</h2>
+            
+            {/* La tua Mappa */}
+            <div className="w-full h-48 bg-black rounded-3xl overflow-hidden shadow-2xl border border-white/10 relative">
+              {mapSnapshot && <img src={mapSnapshot} alt="Snapshot" className="w-full h-full object-cover" />}
             </div>
             
-            <div className="grid grid-cols-2 gap-4">
-                <div className={`p-5 rounded-2xl border shadow-lg flex flex-col justify-center ${cardClass}`}><p className={`text-[10px] font-bold uppercase mb-1 ${subTextClass}`}>Velocità Massima</p><p className="text-2xl font-black text-red-500">{globalStats.max_speed?.toFixed(1) || '0.0'} <span className="text-sm opacity-50">km/h</span></p></div>
-                <div className={`p-5 rounded-2xl border shadow-lg flex flex-col justify-center ${cardClass}`}><p className={`text-[10px] font-bold uppercase mb-1 ${subTextClass}`}>Media Globale</p><p className="text-2xl font-black" style={{ color: hexPrimary }}>{globalStats.avg_speed?.toFixed(0) || '0'} <span className="text-sm opacity-50">km/h</span></p></div>
-                <div className={`p-5 rounded-2xl border shadow-lg flex flex-col justify-center ${cardClass}`}><p className={`text-[10px] font-bold uppercase mb-1 ${subTextClass}`}>Viaggio Più Lungo</p><p className="text-2xl font-black text-green-500">{globalStats.longest_trip?.toFixed(1) || '0.0'} <span className="text-sm opacity-50">km</span></p></div>
-                <div className={`p-5 rounded-2xl border shadow-lg flex flex-col justify-center ${cardClass}`}><p className={`text-[10px] font-bold uppercase mb-1 ${subTextClass}`}>Tempo Totale</p><p className="text-2xl font-black" style={{ color: hexPrimary }}>{formatTime(globalStats.total_time || 0)}</p></div>
-                {/* Nuovi riquadri: */}
-                <div className={`p-5 rounded-2xl border shadow-lg flex flex-col justify-center ${cardClass}`}><p className={`text-[10px] font-bold uppercase mb-1 ${subTextClass}`}>Viaggi Effettuati</p><p className="text-2xl font-black">{globalStats.total_trips || '0'}</p></div>
-                <div className={`p-5 rounded-2xl border shadow-lg flex flex-col justify-center ${cardClass}`}><p className={`text-[10px] font-bold uppercase mb-1 ${subTextClass}`}>Tempo in Pausa</p><p className="text-2xl font-black text-yellow-500">{formatTime(globalStats.total_pause_time || 0)}</p></div>
-              </div>
-
-            {/* SEZIONE DA - A CON CHIPS */}
-            <div className="w-full mt-6">
-              <p className={`text-xs font-bold uppercase mb-2 ${subTextClass}`}>Etichetta Percorso</p>
-              
-              <div className="flex gap-2 mb-3">
-                <input type="text" placeholder="Da (es. Casa)" value={tripStartLoc} onChange={(e) => setTripStartLoc(e.target.value)} onFocus={() => setActiveTagInput('start')} className={`w-full p-4 rounded-2xl font-bold text-sm focus:outline-none border transition-all ${cardClass}`} style={activeTagInput === 'start' ? { borderColor: hexPrimary, boxShadow: `0 0 0 2px ${hexPrimary}33` } : {}} />
-                <div className="flex items-center justify-center"><svg className="w-6 h-6 text-zinc-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg></div>
-                <input type="text" placeholder="A (es. Uni)" value={tripEndLoc} onChange={(e) => setTripEndLoc(e.target.value)} onFocus={() => setActiveTagInput('end')} className={`w-full p-4 rounded-2xl font-bold text-sm focus:outline-none border transition-all ${cardClass}`} style={activeTagInput === 'end' ? { borderColor: hexPrimary, boxShadow: `0 0 0 2px ${hexPrimary}33` } : {}} />
-              </div>
-
-              <div className="flex flex-wrap gap-2">
-                {suggestedLocations.map((loc: string) => (
-                  <button 
-                    key={loc} 
-                    onClick={() => {
-                      if (activeTagInput === 'start') setTripStartLoc(loc);
-                      else setTripEndLoc(loc);
-                    }}
-                    className={`px-3 py-1.5 rounded-full text-xs font-bold border transition-colors ${isDarkMode ? 'border-zinc-700 text-zinc-400 bg-zinc-800 hover:bg-zinc-700' : 'border-gray-300 text-gray-600 bg-white hover:bg-gray-100 shadow-sm'}`}
-                  >
-                    {loc}
-                  </button>
-                ))}
-              </div>
+            {/* I tuoi 4 Riquadri */}
+            <div className="grid grid-cols-2 gap-4 mt-6">
+              <div className={`${cardClass} p-4 rounded-2xl border`}><p className={`text-xs font-bold uppercase mb-1 ${subTextClass}`}>Distanza</p><p className="text-2xl font-black">{Number(tripStats.distance || 0).toFixed(2)} <span className="text-sm font-medium">km</span></p></div>
+              <div className={`${cardClass} p-4 rounded-2xl border`}><p className={`text-xs font-bold uppercase mb-1 ${subTextClass}`}>Tempo</p><p className="text-2xl font-black" style={{ color: hexPrimary }}>{formatTime(tripStats.time || 0)}</p></div>
+              <div className={`${cardClass} p-4 rounded-2xl border`}><p className={`text-xs font-bold uppercase mb-1 ${subTextClass}`}>Media</p><p className="text-2xl font-black">{Math.round(tripStats.avgSpeed || 0)} <span className="text-sm font-medium">km/h</span></p></div>
+              <div className={`${cardClass} p-4 rounded-2xl border`}><p className={`text-xs font-bold uppercase mb-1 ${subTextClass}`}>Vel Max</p><p className="text-2xl font-black text-red-500">{Number(tripStats.maxSpeed || 0).toFixed(1)} <span className="text-sm font-medium">km/h</span></p></div>
             </div>
-
           </div>
-
-          <div className="w-full max-w-md mt-auto pt-6 flex flex-col gap-3">
+          
+          {/* I tuoi Pulsanti Originali */}
+          <div className="w-full max-w-md mb-8 flex flex-col gap-3">
             <button onClick={handleSaveToCloud} disabled={isSaving} className={`w-full py-5 rounded-3xl font-black text-lg transition-all shadow-xl text-white ${isSaving ? 'opacity-50' : ''}`} style={{ backgroundColor: hexPrimary }}>
               {isSaving ? 'INVIO DATI...' : 'SALVA NEL CLOUD'}
             </button>
-            <button onClick={handleDiscard} disabled={isSaving} className={`w-full py-3 rounded-3xl font-bold transition-colors ${subTextClass} hover:text-red-500`}>Scarta Dati</button>
+            <button onClick={handleDiscard} disabled={isSaving} className={`w-full py-4 rounded-3xl font-bold transition-colors ${subTextClass} hover:text-red-500`}>Scarta Dati e Azzera</button>
           </div>
         </div>
       )}

@@ -4,6 +4,7 @@ import SplashScreen from './components/SplashScreen';
 import LoginScreen from './components/LoginScreen';
 import { spotifyManager } from './services/spotifyManager'; 
 import { authManager } from './services/authManager';
+import { App as CapApp } from '@capacitor/app';
 
 function App() {
   const [showSplash, setShowSplash] = useState(true);
@@ -12,12 +13,26 @@ function App() {
   useEffect(() => {
     // 1. Check Spotify Token (Ora gestito correttamente in asincrono!)
     const checkSpotifyToken = async () => {
+      
       const token = await spotifyManager.extractTokenFromUrl();
       if (token) {
         localStorage.setItem('spotifyToken', token);
         window.location.hash = ''; 
       }
+      
     };
+    // Ascolta il ritorno da Safari con lo Schema URL Personalizzato
+    CapApp.addListener('appUrlOpen', async (event) => {
+      // Cerchiamo il codice generato da Spotify nell'URL
+      const codeMatch = event.url.match(/code=([^&]+)/);
+      if (codeMatch) {
+        const token = await spotifyManager.extractTokenFromCode(codeMatch[1]);
+        if (token) {
+          localStorage.setItem('spotifyToken', token);
+          window.location.reload(); // Ricarichiamo l'app per mostrare la musica!
+        }
+      }
+    });
     checkSpotifyToken();
 
     // 2. AUTO-LOGIN 

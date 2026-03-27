@@ -1,11 +1,11 @@
 // Il tuo VERO Client ID
 const CLIENT_ID = 'c4eeceee848d474db514637906f13e5d'; 
-const REDIRECT_URI = window.location.origin + '/'; 
+const REDIRECT_URI = 'drivetracker://callback/';
 
-// Costruiamo gli indirizzi ufficiali spezzandoli per evitare i filtri di censura
-const SPOTIFY_AUTH = 'https://' + 'accounts.spotify.com' + '/authorize?';
-const SPOTIFY_TOKEN = 'https://' + 'accounts.spotify.com' + '/api/token';
-const SPOTIFY_API = 'https://' + 'api.spotify.com' + '/v1/me/player/currently-playing';
+// --- INDIRIZZI UFFICIALI SPOTIFY ---
+const SPOTIFY_AUTH = 'https://accounts.spotify.com/authorize?';
+const SPOTIFY_TOKEN = 'https://accounts.spotify.com/api/token';
+const SPOTIFY_API = 'https://api.api.spotify.com/v1/me/player/currently-playing';
 
 // --- MOTORE CRITTOGRAFICO PKCE ---
 const generateRandomString = (length: number) => {
@@ -118,5 +118,35 @@ export const spotifyManager = {
       console.error("Errore fetch Spotify API:", err);
       return null;
     }
+  },
+  // 4. NUOVA: Funzione per l'app nativa
+  async extractTokenFromCode(code: string) {
+    const codeVerifier = window.localStorage.getItem('code_verifier');
+    if (!codeVerifier) return null;
+    
+    try {
+      const payload = new URLSearchParams({
+        client_id: CLIENT_ID,
+        grant_type: 'authorization_code',
+        code: code,
+        redirect_uri: REDIRECT_URI,
+        code_verifier: codeVerifier
+      });
+
+      const response = await fetch(SPOTIFY_TOKEN, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: payload
+      });
+
+      const data = await response.json();
+      if (data.access_token) {
+        return data.access_token; 
+      }
+    } catch (err) {
+      console.error('Errore PKCE Nativo:', err);
+    }
+    return null;
   }
+
 };
