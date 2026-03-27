@@ -14,9 +14,11 @@ npm run build
 npx cap sync ios
 npx cap open ios
 
-
+open ios/App/App.xcodeproj
 ---
 -scritta start colore 2
 -tag andata e ritorno
 
 
+VITE_SUPABASE_URL=https://pfnysxsjbiausyrwmqov.supabase.co
+VITE_SUPABASE_ANON_KEY=sb_publishable_-Poaigk_9aHnMYy5ZOnRrQ_Uk4BVPAQ

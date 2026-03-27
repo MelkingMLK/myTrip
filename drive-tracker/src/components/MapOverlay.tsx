@@ -176,6 +176,22 @@ export default function MapOverlay({ onLogout }: { onLogout?: () => void }) {
         setIsLoadingLeaderboard(false); 
       }).catch(() => setIsLoadingLeaderboard(false));
     }
+    // --- NUOVO: Scarica i viaggi veri dal database! ---
+    if (activeView === 'history') {
+      routeManager.getRoutes().then((data: any) => {
+        // Mappiamo i dati del DB nel formato che la UI si aspetta
+        const formattedHistory = data.map((route: any) => ({
+          id: route.id,
+          date: new Date(route.created_at).toLocaleDateString('it-IT', { day: '2-digit', month: 'short', hour: '2-digit', minute: '2-digit' }),
+          snapshot: route.snapshot_url,
+          distance: route.distance_km,
+          time: route.total_time_seconds,
+          maxSpeed: route.max_speed_kmh,
+          avgSpeed: route.avg_speed_kmh
+        }));
+        setHistory(formattedHistory);
+      });
+    }
   }, [activeView]);
 
   useEffect(() => {
@@ -267,45 +283,42 @@ export default function MapOverlay({ onLogout }: { onLogout?: () => void }) {
   const handleDiscard = () => { if(window.confirm("Sicuro di voler scartare questo viaggio?")) resetForNewTrip(); };
   
   const handleSaveToCloud = async () => {
-    if (!tripStats || !mapSnapshot) return;
-    setIsSaving(true); 
+  if (!tripStats || !mapSnapshot) return;
+  setIsSaving(true);
+  
+  try {
+    await routeManager.saveRoute(mapSnapshot, {
+      distance_km: tripStats.distance,
+      avg_speed_kmh: tripStats.avgSpeed,
+      max_speed_kmh: tripStats.maxSpeed,
+      total_time_seconds: tripStats.time,
+      driving_time_seconds: tripStats.time,
+      pause_time_seconds: 0
+    });
     
-    try {
-      const combinedTag = tripStartLoc && tripEndLoc ? `${tripStartLoc} ➔ ${tripEndLoc}` : tripStartLoc || tripEndLoc || '';
-
-      const statsToSave = {
-        distance_km: tripStats.distance,
-        avg_speed_kmh: tripStats.avgSpeed,
-        max_speed_kmh: tripStats.maxSpeed,
-        total_time_seconds: tripStats.time,
-        driving_time_seconds: tripStats.time,
-        pause_time_seconds: 0,
-        tag: combinedTag
-      };
-
-      const result = await routeManager.saveRoute(mapSnapshot, statsToSave);
-
-      if (result.success) {
-        setHistory(prev => [{ 
-          id: Date.now().toString(), 
-          date: new Date().toLocaleDateString('it-IT', { day: '2-digit', month: 'short', hour: '2-digit', minute: '2-digit' }), 
-          snapshot: mapSnapshot, 
-          tag: combinedTag, 
-          ...tripStats 
-        }, ...prev]);
+    resetForNewTrip();
+    setActiveView('history'); 
+  } catch (error) {
+    console.error("Salvataggio fallito", error);
+  } finally {
+    setIsSaving(false);
+  }
+};
+  const handleDeleteTrip = async () => { 
+    if (selectedTrip && window.confirm("Eliminare definitivamente questo viaggio?")) { 
+      try {
+        // 1. Elimina dal Cloud tramite il nostro manager
+        await routeManager.deleteRoute(selectedTrip.id);
         
-        resetForNewTrip(); 
+        // 2. Rimuovi dalla lista visiva
+        setHistory(prev => prev.filter(t => t.id !== selectedTrip.id)); 
         setActiveView('history'); 
+        setSelectedTrip(null); 
+      } catch (error) {
+        alert("Ops! C'è stato un problema nell'eliminare il viaggio.");
       }
-    } catch (error) {
-      console.error("Errore fatale salvataggio percorso:", error);
-      alert("Errore di comunicazione col server. Riprova!");
-    } finally {
-      setIsSaving(false);
-    }
+    } 
   };
-
-  const handleDeleteTrip = () => { if (selectedTrip && window.confirm("Eliminare?")) { setHistory(prev => prev.filter(t => t.id !== selectedTrip.id)); setActiveView('history'); setSelectedTrip(null); } };
 
   const getThemeColors = () => {
     let hexPrimary = '#3b82f6'; let hexAccent = '#60a5fa';

@@ -118,5 +118,19 @@ export const routeManager = {
       }
     }
     await Preferences.set({ key: OFFLINE_KEY, value: JSON.stringify(failedRoutes) });
-  }
+  },
+
+  // Elimina un viaggio dal Database
+  async deleteRoute(routeId: string) {
+    const { error } = await supabase
+      .from('routes')
+      .delete()
+      .eq('id', routeId);
+
+    if (error) {
+      console.error("Errore durante l'eliminazione:", error);
+      throw error;
+    }
+    return true;
+  },
 };

@@ -1,0 +1,4025 @@
+This file is a merged representation of the entire codebase, combined into a single document by Repomix.
+
+<file_summary>
+This section contains a summary of this file.
+
+<purpose>
+This file contains a packed representation of the entire repository's contents.
+It is designed to be easily consumable by AI systems for analysis, code review,
+or other automated processes.
+</purpose>
+
+<file_format>
+The content is organized as follows:
+1. This summary section
+2. Repository information
+3. Directory structure
+4. Repository files (if enabled)
+5. Multiple file entries, each consisting of:
+  - File path as an attribute
+  - Full contents of the file
+</file_format>
+
+<usage_guidelines>
+- This file should be treated as read-only. Any changes should be made to the
+  original repository files, not this packed version.
+- When processing this file, use the file path to distinguish
+  between different files in the repository.
+- Be aware that this file may contain sensitive information. Handle it with
+  the same level of security as you would the original repository.
+</usage_guidelines>
+
+<notes>
+- Some files may have been excluded based on .gitignore rules and Repomix's configuration
+- Binary files are not included in this packed representation. Please refer to the Repository Structure section for a complete list of file paths, including binary files
+- Files matching patterns in .gitignore are excluded
+- Files matching default ignore patterns are excluded
+- Files are sorted by Git change count (files with more changes are at the bottom)
+</notes>
+
+</file_summary>
+
+<directory_structure>
+android/
+  app/
+    src/
+      androidTest/
+        java/
+          com/
+            getcapacitor/
+              myapp/
+                ExampleInstrumentedTest.java
+      main/
+        java/
+          com/
+            tuonome/
+              drivetracker/
+                MainActivity.java
+        res/
+          drawable/
+            ic_launcher_background.xml
+            splash.png
+          drawable-land-hdpi/
+            splash.png
+          drawable-land-mdpi/
+            splash.png
+          drawable-land-xhdpi/
+            splash.png
+          drawable-land-xxhdpi/
+            splash.png
+          drawable-land-xxxhdpi/
+            splash.png
+          drawable-port-hdpi/
+            splash.png
+          drawable-port-mdpi/
+            splash.png
+          drawable-port-xhdpi/
+            splash.png
+          drawable-port-xxhdpi/
+            splash.png
+          drawable-port-xxxhdpi/
+            splash.png
+          drawable-v24/
+            ic_launcher_foreground.xml
+          layout/
+            activity_main.xml
+          mipmap-anydpi-v26/
+            ic_launcher_round.xml
+            ic_launcher.xml
+          mipmap-hdpi/
+            ic_launcher_foreground.png
+            ic_launcher_round.png
+            ic_launcher.png
+          mipmap-mdpi/
+            ic_launcher_foreground.png
+            ic_launcher_round.png
+            ic_launcher.png
+          mipmap-xhdpi/
+            ic_launcher_foreground.png
+            ic_launcher_round.png
+            ic_launcher.png
+          mipmap-xxhdpi/
+            ic_launcher_foreground.png
+            ic_launcher_round.png
+            ic_launcher.png
+          mipmap-xxxhdpi/
+            ic_launcher_foreground.png
+            ic_launcher_round.png
+            ic_launcher.png
+          values/
+            ic_launcher_background.xml
+            strings.xml
+            styles.xml
+          xml/
+            file_paths.xml
+        AndroidManifest.xml
+      test/
+        java/
+          com/
+            getcapacitor/
+              myapp/
+                ExampleUnitTest.java
+    .gitignore
+    build.gradle
+    capacitor.build.gradle
+    proguard-rules.pro
+  gradle/
+    wrapper/
+      gradle-wrapper.jar
+      gradle-wrapper.properties
+  .gitignore
+  build.gradle
+  capacitor.settings.gradle
+  gradle.properties
+  gradlew
+  gradlew.bat
+  settings.gradle
+  variables.gradle
+assets/
+  icona.png
+ios/
+  App/
+    App/
+      Assets.xcassets/
+        AppIcon.appiconset/
+          AppIcon-512@2x.png
+          Contents.json
+        Splash.imageset/
+          Contents.json
+          splash-2732x2732-1.png
+          splash-2732x2732-2.png
+          splash-2732x2732.png
+        Contents.json
+      Base.lproj/
+        LaunchScreen.storyboard
+        Main.storyboard
+      AppDelegate.swift
+      Info.plist
+    App.xcodeproj/
+      project.xcworkspace/
+        xcshareddata/
+          swiftpm/
+            Package.resolved
+          IDEWorkspaceChecks.plist
+        contents.xcworkspacedata
+      project.pbxproj
+    CapApp-SPM/
+      Sources/
+        CapApp-SPM/
+          CapApp-SPM.swift
+      .gitignore
+      Package.swift
+      README.md
+  .gitignore
+  debug.xcconfig
+public/
+  vite.svg
+src/
+  assets/
+    react.svg
+  components/
+    LoginScreen.tsx
+    MapOverlay.tsx
+    SplashScreen.tsx
+  hooks/
+    useDriveTracker.ts
+  services/
+    authManager.ts
+    routeManager.ts
+    spotifyManager.ts
+    userManager.ts
+  utils/
+    geo.ts
+  App.tsx
+  index.css
+  main.tsx
+  supabaseClient.ts
+  vite-env.d.ts
+.gitignore
+capacitor.config.ts
+eslint.config.js
+index.html
+package.json
+README.md
+tsconfig.app.json
+tsconfig.json
+tsconfig.node.json
+vite.config.ts
+</directory_structure>
+
+<files>
+This section contains the contents of the repository's files.
+
+<file path="android/app/src/androidTest/java/com/getcapacitor/myapp/ExampleInstrumentedTest.java">
+package com.getcapacitor.myapp;
+
+import static org.junit.Assert.*;
+
+import android.content.Context;
+import androidx.test.ext.junit.runners.AndroidJUnit4;
+import androidx.test.platform.app.InstrumentationRegistry;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+
+/**
+ * Instrumented test, which will execute on an Android device.
+ *
+ * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
+ */
+@RunWith(AndroidJUnit4.class)
+public class ExampleInstrumentedTest {
+
+    @Test
+    public void useAppContext() throws Exception {
+        // Context of the app under test.
+        Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
+
+        assertEquals("com.getcapacitor.app", appContext.getPackageName());
+    }
+}
+</file>
+
+<file path="android/app/src/main/java/com/tuonome/drivetracker/MainActivity.java">
+package com.tuonome.drivetracker;
+
+import com.getcapacitor.BridgeActivity;
+
+public class MainActivity extends BridgeActivity {}
+</file>
+
+<file path="android/app/src/main/res/drawable/ic_launcher_background.xml">
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportHeight="108"
+    android:viewportWidth="108">
+    <path
+        android:fillColor="#26A69A"
+        android:pathData="M0,0h108v108h-108z" />
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M9,0L9,108"
+        android:strokeColor="#33FFFFFF"
+        android:strokeWidth="0.8" />
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M19,0L19,108"
+        android:strokeColor="#33FFFFFF"
+        android:strokeWidth="0.8" />
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M29,0L29,108"
+        android:strokeColor="#33FFFFFF"
+        android:strokeWidth="0.8" />
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M39,0L39,108"
+        android:strokeColor="#33FFFFFF"
+        android:strokeWidth="0.8" />
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M49,0L49,108"
+        android:strokeColor="#33FFFFFF"
+        android:strokeWidth="0.8" />
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M59,0L59,108"
+        android:strokeColor="#33FFFFFF"
+        android:strokeWidth="0.8" />
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M69,0L69,108"
+        android:strokeColor="#33FFFFFF"
+        android:strokeWidth="0.8" />
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M79,0L79,108"
+        android:strokeColor="#33FFFFFF"
+        android:strokeWidth="0.8" />
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M89,0L89,108"
+        android:strokeColor="#33FFFFFF"
+        android:strokeWidth="0.8" />
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M99,0L99,108"
+        android:strokeColor="#33FFFFFF"
+        android:strokeWidth="0.8" />
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M0,9L108,9"
+        android:strokeColor="#33FFFFFF"
+        android:strokeWidth="0.8" />
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M0,19L108,19"
+        android:strokeColor="#33FFFFFF"
+        android:strokeWidth="0.8" />
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M0,29L108,29"
+        android:strokeColor="#33FFFFFF"
+        android:strokeWidth="0.8" />
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M0,39L108,39"
+        android:strokeColor="#33FFFFFF"
+        android:strokeWidth="0.8" />
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M0,49L108,49"
+        android:strokeColor="#33FFFFFF"
+        android:strokeWidth="0.8" />
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M0,59L108,59"
+        android:strokeColor="#33FFFFFF"
+        android:strokeWidth="0.8" />
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M0,69L108,69"
+        android:strokeColor="#33FFFFFF"
+        android:strokeWidth="0.8" />
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M0,79L108,79"
+        android:strokeColor="#33FFFFFF"
+        android:strokeWidth="0.8" />
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M0,89L108,89"
+        android:strokeColor="#33FFFFFF"
+        android:strokeWidth="0.8" />
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M0,99L108,99"
+        android:strokeColor="#33FFFFFF"
+        android:strokeWidth="0.8" />
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M19,29L89,29"
+        android:strokeColor="#33FFFFFF"
+        android:strokeWidth="0.8" />
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M19,39L89,39"
+        android:strokeColor="#33FFFFFF"
+        android:strokeWidth="0.8" />
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M19,49L89,49"
+        android:strokeColor="#33FFFFFF"
+        android:strokeWidth="0.8" />
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M19,59L89,59"
+        android:strokeColor="#33FFFFFF"
+        android:strokeWidth="0.8" />
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M19,69L89,69"
+        android:strokeColor="#33FFFFFF"
+        android:strokeWidth="0.8" />
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M19,79L89,79"
+        android:strokeColor="#33FFFFFF"
+        android:strokeWidth="0.8" />
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M29,19L29,89"
+        android:strokeColor="#33FFFFFF"
+        android:strokeWidth="0.8" />
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M39,19L39,89"
+        android:strokeColor="#33FFFFFF"
+        android:strokeWidth="0.8" />
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M49,19L49,89"
+        android:strokeColor="#33FFFFFF"
+        android:strokeWidth="0.8" />
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M59,19L59,89"
+        android:strokeColor="#33FFFFFF"
+        android:strokeWidth="0.8" />
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M69,19L69,89"
+        android:strokeColor="#33FFFFFF"
+        android:strokeWidth="0.8" />
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M79,19L79,89"
+        android:strokeColor="#33FFFFFF"
+        android:strokeWidth="0.8" />
+</vector>
+</file>
+
+<file path="android/app/src/main/res/drawable-v24/ic_launcher_foreground.xml">
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportHeight="108"
+    android:viewportWidth="108">
+    <path
+        android:fillType="evenOdd"
+        android:pathData="M32,64C32,64 38.39,52.99 44.13,50.95C51.37,48.37 70.14,49.57 70.14,49.57L108.26,87.69L108,109.01L75.97,107.97L32,64Z"
+        android:strokeColor="#00000000"
+        android:strokeWidth="1">
+        <aapt:attr name="android:fillColor">
+            <gradient
+                android:endX="78.5885"
+                android:endY="90.9159"
+                android:startX="48.7653"
+                android:startY="61.0927"
+                android:type="linear">
+                <item
+                    android:color="#44000000"
+                    android:offset="0.0" />
+                <item
+                    android:color="#00000000"
+                    android:offset="1.0" />
+            </gradient>
+        </aapt:attr>
+    </path>
+    <path
+        android:fillColor="#FFFFFF"
+        android:fillType="nonZero"
+        android:pathData="M66.94,46.02L66.94,46.02C72.44,50.07 76,56.61 76,64L32,64C32,56.61 35.56,50.11 40.98,46.06L36.18,41.19C35.45,40.45 35.45,39.3 36.18,38.56C36.91,37.81 38.05,37.81 38.78,38.56L44.25,44.05C47.18,42.57 50.48,41.71 54,41.71C57.48,41.71 60.78,42.57 63.68,44.05L69.11,38.56C69.84,37.81 70.98,37.81 71.71,38.56C72.44,39.3 72.44,40.45 71.71,41.19L66.94,46.02ZM62.94,56.92C64.08,56.92 65,56.01 65,54.88C65,53.76 64.08,52.85 62.94,52.85C61.8,52.85 60.88,53.76 60.88,54.88C60.88,56.01 61.8,56.92 62.94,56.92ZM45.06,56.92C46.2,56.92 47.13,56.01 47.13,54.88C47.13,53.76 46.2,52.85 45.06,52.85C43.92,52.85 43,53.76 43,54.88C43,56.01 43.92,56.92 45.06,56.92Z"
+        android:strokeColor="#00000000"
+        android:strokeWidth="1" />
+</vector>
+</file>
+
+<file path="android/app/src/main/res/layout/activity_main.xml">
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <WebView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
+</file>
+
+<file path="android/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml">
+<?xml version="1.0" encoding="utf-8"?>
+<adaptive-icon xmlns:android="http://schemas.android.com/apk/res/android">
+    <background android:drawable="@color/ic_launcher_background"/>
+    <foreground android:drawable="@mipmap/ic_launcher_foreground"/>
+</adaptive-icon>
+</file>
+
+<file path="android/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml">
+<?xml version="1.0" encoding="utf-8"?>
+<adaptive-icon xmlns:android="http://schemas.android.com/apk/res/android">
+    <background android:drawable="@color/ic_launcher_background"/>
+    <foreground android:drawable="@mipmap/ic_launcher_foreground"/>
+</adaptive-icon>
+</file>
+
+<file path="android/app/src/main/res/values/ic_launcher_background.xml">
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="ic_launcher_background">#FFFFFF</color>
+</resources>
+</file>
+
+<file path="android/app/src/main/res/values/strings.xml">
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">DriveTracker</string>
+    <string name="title_activity_main">DriveTracker</string>
+    <string name="package_name">com.tuonome.drivetracker</string>
+    <string name="custom_url_scheme">com.tuonome.drivetracker</string>
+</resources>
+</file>
+
+<file path="android/app/src/main/res/values/styles.xml">
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="AppTheme.NoActionBar" parent="Theme.AppCompat.DayNight.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:background">@null</item>
+    </style>
+
+
+    <style name="AppTheme.NoActionBarLaunch" parent="Theme.SplashScreen">
+        <item name="android:background">@drawable/splash</item>
+    </style>
+</resources>
+</file>
+
+<file path="android/app/src/main/res/xml/file_paths.xml">
+<?xml version="1.0" encoding="utf-8"?>
+<paths xmlns:android="http://schemas.android.com/apk/res/android">
+    <external-path name="my_images" path="." />
+    <cache-path name="my_cache_images" path="." />
+</paths>
+</file>
+
+<file path="android/app/src/main/AndroidManifest.xml">
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+
+        <activity
+            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale|smallestScreenSize|screenLayout|uiMode|navigation|density"
+            android:name=".MainActivity"
+            android:label="@string/title_activity_main"
+            android:theme="@style/AppTheme.NoActionBarLaunch"
+            android:launchMode="singleTask"
+            android:exported="true">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+        </activity>
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths"></meta-data>
+        </provider>
+    </application>
+
+    <!-- Permissions -->
+
+    <uses-permission android:name="android.permission.INTERNET" />
+</manifest>
+</file>
+
+<file path="android/app/src/test/java/com/getcapacitor/myapp/ExampleUnitTest.java">
+package com.getcapacitor.myapp;
+
+import static org.junit.Assert.*;
+
+import org.junit.Test;
+
+/**
+ * Example local unit test, which will execute on the development machine (host).
+ *
+ * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
+ */
+public class ExampleUnitTest {
+
+    @Test
+    public void addition_isCorrect() throws Exception {
+        assertEquals(4, 2 + 2);
+    }
+}
+</file>
+
+<file path="android/app/.gitignore">
+/build/*
+!/build/.npmkeep
+</file>
+
+<file path="android/app/build.gradle">
+apply plugin: 'com.android.application'
+
+android {
+    namespace = "com.tuonome.drivetracker"
+    compileSdk = rootProject.ext.compileSdkVersion
+    defaultConfig {
+        applicationId "com.tuonome.drivetracker"
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        aaptOptions {
+             // Files and dirs to omit from the packaged assets dir, modified to accommodate modern web apps.
+             // Default: https://android.googlesource.com/platform/frameworks/base/+/282e181b58cf72b6ca770dc7ca5f91f135444502/tools/aapt/AaptAssets.cpp#61
+            ignoreAssetsPattern = '!.svn:!.git:!.ds_store:!*.scc:.*:!CVS:!thumbs.db:!picasa.ini:!*~'
+        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+repositories {
+    flatDir{
+        dirs '../capacitor-cordova-android-plugins/src/main/libs', 'libs'
+    }
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation "androidx.appcompat:appcompat:$androidxAppCompatVersion"
+    implementation "androidx.coordinatorlayout:coordinatorlayout:$androidxCoordinatorLayoutVersion"
+    implementation "androidx.core:core-splashscreen:$coreSplashScreenVersion"
+    implementation project(':capacitor-android')
+    testImplementation "junit:junit:$junitVersion"
+    androidTestImplementation "androidx.test.ext:junit:$androidxJunitVersion"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$androidxEspressoCoreVersion"
+    implementation project(':capacitor-cordova-android-plugins')
+}
+
+apply from: 'capacitor.build.gradle'
+
+try {
+    def servicesJSON = file('google-services.json')
+    if (servicesJSON.text) {
+        apply plugin: 'com.google.gms.google-services'
+    }
+} catch(Exception e) {
+    logger.info("google-services.json not found, google-services plugin not applied. Push Notifications won't work")
+}
+</file>
+
+<file path="android/app/capacitor.build.gradle">
+// DO NOT EDIT THIS FILE! IT IS GENERATED EACH TIME "capacitor update" IS RUN
+
+android {
+  compileOptions {
+      sourceCompatibility JavaVersion.VERSION_21
+      targetCompatibility JavaVersion.VERSION_21
+  }
+}
+
+apply from: "../capacitor-cordova-android-plugins/cordova.variables.gradle"
+dependencies {
+    implementation project(':capacitor-community-background-geolocation')
+    implementation project(':capacitor-geolocation')
+    implementation project(':capacitor-network')
+    implementation project(':capacitor-preferences')
+
+}
+
+
+if (hasProperty('postBuildExtras')) {
+  postBuildExtras()
+}
+</file>
+
+<file path="android/app/proguard-rules.pro">
+# Add project specific ProGuard rules here.
+# You can control the set of applied configuration files using the
+# proguardFiles setting in build.gradle.
+#
+# For more details, see
+#   http://developer.android.com/guide/developing/tools/proguard.html
+
+# If your project uses WebView with JS, uncomment the following
+# and specify the fully qualified class name to the JavaScript interface
+# class:
+#-keepclassmembers class fqcn.of.javascript.interface.for.webview {
+#   public *;
+#}
+
+# Uncomment this to preserve the line number information for
+# debugging stack traces.
+#-keepattributes SourceFile,LineNumberTable
+
+# If you keep the line number information, uncomment this to
+# hide the original source file name.
+#-renamesourcefileattribute SourceFile
+</file>
+
+<file path="android/gradle/wrapper/gradle-wrapper.properties">
+distributionBase=GRADLE_USER_HOME
+distributionPath=wrapper/dists
+distributionUrl=https\://services.gradle.org/distributions/gradle-8.14.3-all.zip
+networkTimeout=10000
+validateDistributionUrl=true
+zipStoreBase=GRADLE_USER_HOME
+zipStorePath=wrapper/dists
+</file>
+
+<file path="android/.gitignore">
+# Using Android gitignore template: https://github.com/github/gitignore/blob/HEAD/Android.gitignore
+
+# Built application files
+*.apk
+*.aar
+*.ap_
+*.aab
+
+# Files for the ART/Dalvik VM
+*.dex
+
+# Java class files
+*.class
+
+# Generated files
+bin/
+gen/
+out/
+#  Uncomment the following line in case you need and you don't have the release build type files in your app
+# release/
+
+# Gradle files
+.gradle/
+build/
+
+# Local configuration file (sdk path, etc)
+local.properties
+
+# Proguard folder generated by Eclipse
+proguard/
+
+# Log Files
+*.log
+
+# Android Studio Navigation editor temp files
+.navigation/
+
+# Android Studio captures folder
+captures/
+
+# IntelliJ
+*.iml
+.idea/workspace.xml
+.idea/tasks.xml
+.idea/gradle.xml
+.idea/assetWizardSettings.xml
+.idea/dictionaries
+.idea/libraries
+# Android Studio 3 in .gitignore file.
+.idea/caches
+.idea/modules.xml
+# Comment next line if keeping position of elements in Navigation Editor is relevant for you
+.idea/navEditor.xml
+
+# Keystore files
+# Uncomment the following lines if you do not want to check your keystore files in.
+#*.jks
+#*.keystore
+
+# External native build folder generated in Android Studio 2.2 and later
+.externalNativeBuild
+.cxx/
+
+# Google Services (e.g. APIs or Firebase)
+# google-services.json
+
+# Freeline
+freeline.py
+freeline/
+freeline_project_description.json
+
+# fastlane
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots
+fastlane/test_output
+fastlane/readme.md
+
+# Version control
+vcs.xml
+
+# lint
+lint/intermediates/
+lint/generated/
+lint/outputs/
+lint/tmp/
+# lint/reports/
+
+# Android Profiling
+*.hprof
+
+# Cordova plugins for Capacitor
+capacitor-cordova-android-plugins
+
+# Copied web assets
+app/src/main/assets/public
+
+# Generated Config files
+app/src/main/assets/capacitor.config.json
+app/src/main/assets/capacitor.plugins.json
+app/src/main/res/xml/config.xml
+</file>
+
+<file path="android/build.gradle">
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+buildscript {
+    
+    repositories {
+        google()
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:8.13.0'
+        classpath 'com.google.gms:google-services:4.4.4'
+
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+    }
+}
+
+apply from: "variables.gradle"
+
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
+</file>
+
+<file path="android/capacitor.settings.gradle">
+// DO NOT EDIT THIS FILE! IT IS GENERATED EACH TIME "capacitor update" IS RUN
+include ':capacitor-android'
+project(':capacitor-android').projectDir = new File('../node_modules/@capacitor/android/capacitor')
+
+include ':capacitor-community-background-geolocation'
+project(':capacitor-community-background-geolocation').projectDir = new File('../node_modules/@capacitor-community/background-geolocation/android')
+
+include ':capacitor-geolocation'
+project(':capacitor-geolocation').projectDir = new File('../node_modules/@capacitor/geolocation/android')
+
+include ':capacitor-network'
+project(':capacitor-network').projectDir = new File('../node_modules/@capacitor/network/android')
+
+include ':capacitor-preferences'
+project(':capacitor-preferences').projectDir = new File('../node_modules/@capacitor/preferences/android')
+</file>
+
+<file path="android/gradle.properties">
+# Project-wide Gradle settings.
+
+# IDE (e.g. Android Studio) users:
+# Gradle settings configured through the IDE *will override*
+# any settings specified in this file.
+
+# For more details on how to configure your build environment visit
+# http://www.gradle.org/docs/current/userguide/build_environment.html
+
+# Specifies the JVM arguments used for the daemon process.
+# The setting is particularly useful for tweaking memory settings.
+org.gradle.jvmargs=-Xmx1536m
+
+# When configured, Gradle will run in incubating parallel mode.
+# This option should only be used with decoupled projects. More details, visit
+# http://www.gradle.org/docs/current/userguide/multi_project_builds.html#sec:decoupled_projects
+# org.gradle.parallel=true
+
+# AndroidX package structure to make it clearer which packages are bundled with the
+# Android operating system, and which are packaged with your app's APK
+# https://developer.android.com/topic/libraries/support-library/androidx-rn
+android.useAndroidX=true
+</file>
+
+<file path="android/gradlew">
+#!/bin/sh
+
+#
+# Copyright © 2015-2021 the original authors.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      https://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+# SPDX-License-Identifier: Apache-2.0
+#
+
+##############################################################################
+#
+#   Gradle start up script for POSIX generated by Gradle.
+#
+#   Important for running:
+#
+#   (1) You need a POSIX-compliant shell to run this script. If your /bin/sh is
+#       noncompliant, but you have some other compliant shell such as ksh or
+#       bash, then to run this script, type that shell name before the whole
+#       command line, like:
+#
+#           ksh Gradle
+#
+#       Busybox and similar reduced shells will NOT work, because this script
+#       requires all of these POSIX shell features:
+#         * functions;
+#         * expansions «$var», «${var}», «${var:-default}», «${var+SET}»,
+#           «${var#prefix}», «${var%suffix}», and «$( cmd )»;
+#         * compound commands having a testable exit status, especially «case»;
+#         * various built-in commands including «command», «set», and «ulimit».
+#
+#   Important for patching:
+#
+#   (2) This script targets any POSIX shell, so it avoids extensions provided
+#       by Bash, Ksh, etc; in particular arrays are avoided.
+#
+#       The "traditional" practice of packing multiple parameters into a
+#       space-separated string is a well documented source of bugs and security
+#       problems, so this is (mostly) avoided, by progressively accumulating
+#       options in "$@", and eventually passing that to Java.
+#
+#       Where the inherited environment variables (DEFAULT_JVM_OPTS, JAVA_OPTS,
+#       and GRADLE_OPTS) rely on word-splitting, this is performed explicitly;
+#       see the in-line comments for details.
+#
+#       There are tweaks for specific operating systems such as AIX, CygWin,
+#       Darwin, MinGW, and NonStop.
+#
+#   (3) This script is generated from the Groovy template
+#       https://github.com/gradle/gradle/blob/HEAD/platforms/jvm/plugins-application/src/main/resources/org/gradle/api/internal/plugins/unixStartScript.txt
+#       within the Gradle project.
+#
+#       You can find Gradle at https://github.com/gradle/gradle/.
+#
+##############################################################################
+
+# Attempt to set APP_HOME
+
+# Resolve links: $0 may be a link
+app_path=$0
+
+# Need this for daisy-chained symlinks.
+while
+    APP_HOME=${app_path%"${app_path##*/}"}  # leaves a trailing /; empty if no leading path
+    [ -h "$app_path" ]
+do
+    ls=$( ls -ld "$app_path" )
+    link=${ls#*' -> '}
+    case $link in             #(
+      /*)   app_path=$link ;; #(
+      *)    app_path=$APP_HOME$link ;;
+    esac
+done
+
+# This is normally unused
+# shellcheck disable=SC2034
+APP_BASE_NAME=${0##*/}
+# Discard cd standard output in case $CDPATH is set (https://github.com/gradle/gradle/issues/25036)
+APP_HOME=$( cd -P "${APP_HOME:-./}" > /dev/null && printf '%s\n' "$PWD" ) || exit
+
+# Use the maximum available, or set MAX_FD != -1 to use that value.
+MAX_FD=maximum
+
+warn () {
+    echo "$*"
+} >&2
+
+die () {
+    echo
+    echo "$*"
+    echo
+    exit 1
+} >&2
+
+# OS specific support (must be 'true' or 'false').
+cygwin=false
+msys=false
+darwin=false
+nonstop=false
+case "$( uname )" in                #(
+  CYGWIN* )         cygwin=true  ;; #(
+  Darwin* )         darwin=true  ;; #(
+  MSYS* | MINGW* )  msys=true    ;; #(
+  NONSTOP* )        nonstop=true ;;
+esac
+
+CLASSPATH="\\\"\\\""
+
+
+# Determine the Java command to use to start the JVM.
+if [ -n "$JAVA_HOME" ] ; then
+    if [ -x "$JAVA_HOME/jre/sh/java" ] ; then
+        # IBM's JDK on AIX uses strange locations for the executables
+        JAVACMD=$JAVA_HOME/jre/sh/java
+    else
+        JAVACMD=$JAVA_HOME/bin/java
+    fi
+    if [ ! -x "$JAVACMD" ] ; then
+        die "ERROR: JAVA_HOME is set to an invalid directory: $JAVA_HOME
+
+Please set the JAVA_HOME variable in your environment to match the
+location of your Java installation."
+    fi
+else
+    JAVACMD=java
+    if ! command -v java >/dev/null 2>&1
+    then
+        die "ERROR: JAVA_HOME is not set and no 'java' command could be found in your PATH.
+
+Please set the JAVA_HOME variable in your environment to match the
+location of your Java installation."
+    fi
+fi
+
+# Increase the maximum file descriptors if we can.
+if ! "$cygwin" && ! "$darwin" && ! "$nonstop" ; then
+    case $MAX_FD in #(
+      max*)
+        # In POSIX sh, ulimit -H is undefined. That's why the result is checked to see if it worked.
+        # shellcheck disable=SC2039,SC3045
+        MAX_FD=$( ulimit -H -n ) ||
+            warn "Could not query maximum file descriptor limit"
+    esac
+    case $MAX_FD in  #(
+      '' | soft) :;; #(
+      *)
+        # In POSIX sh, ulimit -n is undefined. That's why the result is checked to see if it worked.
+        # shellcheck disable=SC2039,SC3045
+        ulimit -n "$MAX_FD" ||
+            warn "Could not set maximum file descriptor limit to $MAX_FD"
+    esac
+fi
+
+# Collect all arguments for the java command, stacking in reverse order:
+#   * args from the command line
+#   * the main class name
+#   * -classpath
+#   * -D...appname settings
+#   * --module-path (only if needed)
+#   * DEFAULT_JVM_OPTS, JAVA_OPTS, and GRADLE_OPTS environment variables.
+
+# For Cygwin or MSYS, switch paths to Windows format before running java
+if "$cygwin" || "$msys" ; then
+    APP_HOME=$( cygpath --path --mixed "$APP_HOME" )
+    CLASSPATH=$( cygpath --path --mixed "$CLASSPATH" )
+
+    JAVACMD=$( cygpath --unix "$JAVACMD" )
+
+    # Now convert the arguments - kludge to limit ourselves to /bin/sh
+    for arg do
+        if
+            case $arg in                                #(
+              -*)   false ;;                            # don't mess with options #(
+              /?*)  t=${arg#/} t=/${t%%/*}              # looks like a POSIX filepath
+                    [ -e "$t" ] ;;                      #(
+              *)    false ;;
+            esac
+        then
+            arg=$( cygpath --path --ignore --mixed "$arg" )
+        fi
+        # Roll the args list around exactly as many times as the number of
+        # args, so each arg winds up back in the position where it started, but
+        # possibly modified.
+        #
+        # NB: a `for` loop captures its iteration list before it begins, so
+        # changing the positional parameters here affects neither the number of
+        # iterations, nor the values presented in `arg`.
+        shift                   # remove old arg
+        set -- "$@" "$arg"      # push replacement arg
+    done
+fi
+
+
+# Add default JVM options here. You can also use JAVA_OPTS and GRADLE_OPTS to pass JVM options to this script.
+DEFAULT_JVM_OPTS='"-Xmx64m" "-Xms64m"'
+
+# Collect all arguments for the java command:
+#   * DEFAULT_JVM_OPTS, JAVA_OPTS, and optsEnvironmentVar are not allowed to contain shell fragments,
+#     and any embedded shellness will be escaped.
+#   * For example: A user cannot expect ${Hostname} to be expanded, as it is an environment variable and will be
+#     treated as '${Hostname}' itself on the command line.
+
+set -- \
+        "-Dorg.gradle.appname=$APP_BASE_NAME" \
+        -classpath "$CLASSPATH" \
+        -jar "$APP_HOME/gradle/wrapper/gradle-wrapper.jar" \
+        "$@"
+
+# Stop when "xargs" is not available.
+if ! command -v xargs >/dev/null 2>&1
+then
+    die "xargs is not available"
+fi
+
+# Use "xargs" to parse quoted args.
+#
+# With -n1 it outputs one arg per line, with the quotes and backslashes removed.
+#
+# In Bash we could simply go:
+#
+#   readarray ARGS < <( xargs -n1 <<<"$var" ) &&
+#   set -- "${ARGS[@]}" "$@"
+#
+# but POSIX shell has neither arrays nor command substitution, so instead we
+# post-process each arg (as a line of input to sed) to backslash-escape any
+# character that might be a shell metacharacter, then use eval to reverse
+# that process (while maintaining the separation between arguments), and wrap
+# the whole thing up as a single "set" statement.
+#
+# This will of course break if any of these variables contains a newline or
+# an unmatched quote.
+#
+
+eval "set -- $(
+        printf '%s\n' "$DEFAULT_JVM_OPTS $JAVA_OPTS $GRADLE_OPTS" |
+        xargs -n1 |
+        sed ' s~[^-[:alnum:]+,./:=@_]~\\&~g; ' |
+        tr '\n' ' '
+    )" '"$@"'
+
+exec "$JAVACMD" "$@"
+</file>
+
+<file path="android/gradlew.bat">
+@rem
+@rem Copyright 2015 the original author or authors.
+@rem
+@rem Licensed under the Apache License, Version 2.0 (the "License");
+@rem you may not use this file except in compliance with the License.
+@rem You may obtain a copy of the License at
+@rem
+@rem      https://www.apache.org/licenses/LICENSE-2.0
+@rem
+@rem Unless required by applicable law or agreed to in writing, software
+@rem distributed under the License is distributed on an "AS IS" BASIS,
+@rem WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+@rem See the License for the specific language governing permissions and
+@rem limitations under the License.
+@rem
+@rem SPDX-License-Identifier: Apache-2.0
+@rem
+
+@if "%DEBUG%"=="" @echo off
+@rem ##########################################################################
+@rem
+@rem  Gradle startup script for Windows
+@rem
+@rem ##########################################################################
+
+@rem Set local scope for the variables with windows NT shell
+if "%OS%"=="Windows_NT" setlocal
+
+set DIRNAME=%~dp0
+if "%DIRNAME%"=="" set DIRNAME=.
+@rem This is normally unused
+set APP_BASE_NAME=%~n0
+set APP_HOME=%DIRNAME%
+
+@rem Resolve any "." and ".." in APP_HOME to make it shorter.
+for %%i in ("%APP_HOME%") do set APP_HOME=%%~fi
+
+@rem Add default JVM options here. You can also use JAVA_OPTS and GRADLE_OPTS to pass JVM options to this script.
+set DEFAULT_JVM_OPTS="-Xmx64m" "-Xms64m"
+
+@rem Find java.exe
+if defined JAVA_HOME goto findJavaFromJavaHome
+
+set JAVA_EXE=java.exe
+%JAVA_EXE% -version >NUL 2>&1
+if %ERRORLEVEL% equ 0 goto execute
+
+echo. 1>&2
+echo ERROR: JAVA_HOME is not set and no 'java' command could be found in your PATH. 1>&2
+echo. 1>&2
+echo Please set the JAVA_HOME variable in your environment to match the 1>&2
+echo location of your Java installation. 1>&2
+
+goto fail
+
+:findJavaFromJavaHome
+set JAVA_HOME=%JAVA_HOME:"=%
+set JAVA_EXE=%JAVA_HOME%/bin/java.exe
+
+if exist "%JAVA_EXE%" goto execute
+
+echo. 1>&2
+echo ERROR: JAVA_HOME is set to an invalid directory: %JAVA_HOME% 1>&2
+echo. 1>&2
+echo Please set the JAVA_HOME variable in your environment to match the 1>&2
+echo location of your Java installation. 1>&2
+
+goto fail
+
+:execute
+@rem Setup the command line
+
+set CLASSPATH=
+
+
+@rem Execute Gradle
+"%JAVA_EXE%" %DEFAULT_JVM_OPTS% %JAVA_OPTS% %GRADLE_OPTS% "-Dorg.gradle.appname=%APP_BASE_NAME%" -classpath "%CLASSPATH%" -jar "%APP_HOME%\gradle\wrapper\gradle-wrapper.jar" %*
+
+:end
+@rem End local scope for the variables with windows NT shell
+if %ERRORLEVEL% equ 0 goto mainEnd
+
+:fail
+rem Set variable GRADLE_EXIT_CONSOLE if you need the _script_ return code instead of
+rem the _cmd.exe /c_ return code!
+set EXIT_CODE=%ERRORLEVEL%
+if %EXIT_CODE% equ 0 set EXIT_CODE=1
+if not ""=="%GRADLE_EXIT_CONSOLE%" exit %EXIT_CODE%
+exit /b %EXIT_CODE%
+
+:mainEnd
+if "%OS%"=="Windows_NT" endlocal
+
+:omega
+</file>
+
+<file path="android/settings.gradle">
+include ':app'
+include ':capacitor-cordova-android-plugins'
+project(':capacitor-cordova-android-plugins').projectDir = new File('./capacitor-cordova-android-plugins/')
+
+apply from: 'capacitor.settings.gradle'
+</file>
+
+<file path="android/variables.gradle">
+ext {
+    minSdkVersion = 24
+    compileSdkVersion = 36
+    targetSdkVersion = 36
+    androidxActivityVersion = '1.11.0'
+    androidxAppCompatVersion = '1.7.1'
+    androidxCoordinatorLayoutVersion = '1.3.0'
+    androidxCoreVersion = '1.17.0'
+    androidxFragmentVersion = '1.8.9'
+    coreSplashScreenVersion = '1.2.0'
+    androidxWebkitVersion = '1.14.0'
+    junitVersion = '4.13.2'
+    androidxJunitVersion = '1.3.0'
+    androidxEspressoCoreVersion = '3.7.0'
+    cordovaAndroidVersion = '14.0.1'
+}
+</file>
+
+<file path="ios/App/App/Assets.xcassets/AppIcon.appiconset/Contents.json">
+{
+  "images" : [
+    {
+      "filename" : "AppIcon-512@2x.png",
+      "idiom" : "universal",
+      "platform" : "ios",
+      "size" : "1024x1024"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}
+</file>
+
+<file path="ios/App/App/Assets.xcassets/Splash.imageset/Contents.json">
+{
+  "images" : [
+    {
+      "idiom" : "universal",
+      "filename" : "splash-2732x2732-2.png",
+      "scale" : "1x"
+    },
+    {
+      "idiom" : "universal",
+      "filename" : "splash-2732x2732-1.png",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "universal",
+      "filename" : "splash-2732x2732.png",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "version" : 1,
+    "author" : "xcode"
+  }
+}
+</file>
+
+<file path="ios/App/App/Assets.xcassets/Contents.json">
+{
+  "info" : {
+    "version" : 1,
+    "author" : "xcode"
+  }
+}
+</file>
+
+<file path="ios/App/App/Base.lproj/LaunchScreen.storyboard">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17132" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17105"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="EHf-IW-A2E">
+            <objects>
+                <viewController id="01J-lp-oVM" sceneMemberID="viewController">
+                    <imageView key="view" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Splash" id="snD-IY-ifK">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </imageView>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="53" y="375"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="Splash" width="1366" height="1366"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
+</file>
+
+<file path="ios/App/App/Base.lproj/Main.storyboard">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14111" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+    </dependencies>
+    <scenes>
+        <!--Bridge View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="CAPBridgeViewController" customModule="Capacitor" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
+    </scenes>
+</document>
+</file>
+
+<file path="ios/App/App/AppDelegate.swift">
+import UIKit
+import Capacitor
+
+@UIApplicationMain
+class AppDelegate: UIResponder, UIApplicationDelegate {
+
+    var window: UIWindow?
+
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        // Override point for customization after application launch.
+        return true
+    }
+
+    func applicationWillResignActive(_ application: UIApplication) {
+        // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
+        // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
+    }
+
+    func applicationDidEnterBackground(_ application: UIApplication) {
+        // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
+        // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+    }
+
+    func applicationWillEnterForeground(_ application: UIApplication) {
+        // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
+    }
+
+    func applicationDidBecomeActive(_ application: UIApplication) {
+        // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    }
+
+    func applicationWillTerminate(_ application: UIApplication) {
+        // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    }
+
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
+        // Called when the app was launched with a url. Feel free to add additional processing here,
+        // but if you want the App API to support tracking app url opens, make sure to keep this call
+        return ApplicationDelegateProxy.shared.application(app, open: url, options: options)
+    }
+
+    func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
+        // Called when the app was launched with an activity, including Universal Links.
+        // Feel free to add additional processing here, but if you want the App API to support
+        // tracking app url opens, make sure to keep this call
+        return ApplicationDelegateProxy.shared.application(application, continue: userActivity, restorationHandler: restorationHandler)
+    }
+
+}
+</file>
+
+<file path="ios/App/App/Info.plist">
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CAPACITOR_DEBUG</key>
+	<string>$(CAPACITOR_DEBUG)</string>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>en</string>
+	<key>CFBundleDisplayName</key>
+	<string>DriveTracker</string>
+	<key>CFBundleExecutable</key>
+	<string>$(EXECUTABLE_NAME)</string>
+	<key>CFBundleIdentifier</key>
+	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleName</key>
+	<string>$(PRODUCT_NAME)</string>
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
+	<key>CFBundleShortVersionString</key>
+	<string>$(MARKETING_VERSION)</string>
+	<key>CFBundleVersion</key>
+	<string>$(CURRENT_PROJECT_VERSION)</string>
+	<key>LSRequiresIPhoneOS</key>
+	<true/>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Drive Tracker deve accedere al GPS in background per continuare a registrare i chilometri anche se spegni lo schermo dell'iPhone.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Drive Tracker ha bisogno del GPS per mostrarti sulla mappa e calcolare la velocità mentre guidi.</string>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>location</string>
+	</array>
+	<key>UILaunchStoryboardName</key>
+	<string>LaunchScreen</string>
+	<key>UIMainStoryboardFile</key>
+	<string>Main</string>
+	<key>UIRequiredDeviceCapabilities</key>
+	<array>
+		<string>armv7</string>
+	</array>
+	<key>UISupportedInterfaceOrientations</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationLandscapeLeft</string>
+		<string>UIInterfaceOrientationLandscapeRight</string>
+	</array>
+	<key>UISupportedInterfaceOrientations~ipad</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationPortraitUpsideDown</string>
+		<string>UIInterfaceOrientationLandscapeLeft</string>
+		<string>UIInterfaceOrientationLandscapeRight</string>
+	</array>
+	<key>UIViewControllerBasedStatusBarAppearance</key>
+	<true/>
+</dict>
+</plist>
+</file>
+
+<file path="ios/App/App.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved">
+{
+  "originHash" : "6c71de60b6f7fa3e63c5118d526c28165f6fd01b60924a5cb50e935d52eab28b",
+  "pins" : [
+    {
+      "identity" : "capacitor-swift-pm",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/ionic-team/capacitor-swift-pm.git",
+      "state" : {
+        "revision" : "de1d86e8b7a9b3ddfd19d6304aa3850023536505",
+        "version" : "7.6.0"
+      }
+    }
+  ],
+  "version" : 3
+}
+</file>
+
+<file path="ios/App/App.xcodeproj/project.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist">
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDEDidComputeMac32BitWarning</key>
+	<true/>
+</dict>
+</plist>
+</file>
+
+<file path="ios/App/App.xcodeproj/project.xcworkspace/contents.xcworkspacedata">
+<?xml version="1.0" encoding="UTF-8"?>
+<Workspace
+   version = "1.0">
+   <FileRef
+      location = "self:">
+   </FileRef>
+</Workspace>
+</file>
+
+<file path="ios/App/App.xcodeproj/project.pbxproj">
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 60;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		2FAD9763203C412B000D30F8 /* config.xml in Resources */ = {isa = PBXBuildFile; fileRef = 2FAD9762203C412B000D30F8 /* config.xml */; };
+		4D22ABE92AF431CB00220026 /* CapApp-SPM in Frameworks */ = {isa = PBXBuildFile; productRef = 4D22ABE82AF431CB00220026 /* CapApp-SPM */; };
+		50379B232058CBB4000EE86E /* capacitor.config.json in Resources */ = {isa = PBXBuildFile; fileRef = 50379B222058CBB4000EE86E /* capacitor.config.json */; };
+		504EC3081FED79650016851F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504EC3071FED79650016851F /* AppDelegate.swift */; };
+		504EC30D1FED79650016851F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 504EC30B1FED79650016851F /* Main.storyboard */; };
+		504EC30F1FED79650016851F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 504EC30E1FED79650016851F /* Assets.xcassets */; };
+		504EC3121FED79650016851F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 504EC3101FED79650016851F /* LaunchScreen.storyboard */; };
+		50B271D11FEDC1A000F3C39B /* public in Resources */ = {isa = PBXBuildFile; fileRef = 50B271D01FEDC1A000F3C39B /* public */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		2FAD9762203C412B000D30F8 /* config.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = config.xml; sourceTree = "<group>"; };
+		50379B222058CBB4000EE86E /* capacitor.config.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = capacitor.config.json; sourceTree = "<group>"; };
+		504EC3041FED79650016851F /* App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = App.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		504EC3071FED79650016851F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		504EC30C1FED79650016851F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		504EC30E1FED79650016851F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		504EC3111FED79650016851F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		504EC3131FED79650016851F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		50B271D01FEDC1A000F3C39B /* public */ = {isa = PBXFileReference; lastKnownFileType = folder; path = public; sourceTree = "<group>"; };
+		958DCC722DB07C7200EA8C5F /* debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = debug.xcconfig; path = ../debug.xcconfig; sourceTree = SOURCE_ROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		504EC3011FED79650016851F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4D22ABE92AF431CB00220026 /* CapApp-SPM in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		504EC2FB1FED79650016851F = {
+			isa = PBXGroup;
+			children = (
+				958DCC722DB07C7200EA8C5F /* debug.xcconfig */,
+				504EC3061FED79650016851F /* App */,
+				504EC3051FED79650016851F /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		504EC3051FED79650016851F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				504EC3041FED79650016851F /* App.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		504EC3061FED79650016851F /* App */ = {
+			isa = PBXGroup;
+			children = (
+				50379B222058CBB4000EE86E /* capacitor.config.json */,
+				504EC3071FED79650016851F /* AppDelegate.swift */,
+				504EC30B1FED79650016851F /* Main.storyboard */,
+				504EC30E1FED79650016851F /* Assets.xcassets */,
+				504EC3101FED79650016851F /* LaunchScreen.storyboard */,
+				504EC3131FED79650016851F /* Info.plist */,
+				2FAD9762203C412B000D30F8 /* config.xml */,
+				50B271D01FEDC1A000F3C39B /* public */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		504EC3031FED79650016851F /* App */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 504EC3161FED79650016851F /* Build configuration list for PBXNativeTarget "App" */;
+			buildPhases = (
+				504EC3001FED79650016851F /* Sources */,
+				504EC3011FED79650016851F /* Frameworks */,
+				504EC3021FED79650016851F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = App;
+			packageProductDependencies = (
+				4D22ABE82AF431CB00220026 /* CapApp-SPM */,
+			);
+			productName = App;
+			productReference = 504EC3041FED79650016851F /* App.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		504EC2FC1FED79650016851F /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0920;
+				LastUpgradeCheck = 0920;
+				TargetAttributes = {
+					504EC3031FED79650016851F = {
+						CreatedOnToolsVersion = 9.2;
+						LastSwiftMigration = 1100;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 504EC2FF1FED79650016851F /* Build configuration list for PBXProject "App" */;
+			compatibilityVersion = "Xcode 8.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 504EC2FB1FED79650016851F;
+			packageReferences = (
+				D4C12C0A2AAA248700AAC8A2 /* XCLocalSwiftPackageReference "CapApp-SPM" */,
+			);
+			productRefGroup = 504EC3051FED79650016851F /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				504EC3031FED79650016851F /* App */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		504EC3021FED79650016851F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				504EC3121FED79650016851F /* LaunchScreen.storyboard in Resources */,
+				50B271D11FEDC1A000F3C39B /* public in Resources */,
+				504EC30F1FED79650016851F /* Assets.xcassets in Resources */,
+				50379B232058CBB4000EE86E /* capacitor.config.json in Resources */,
+				504EC30D1FED79650016851F /* Main.storyboard in Resources */,
+				2FAD9763203C412B000D30F8 /* config.xml in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		504EC3001FED79650016851F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				504EC3081FED79650016851F /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		504EC30B1FED79650016851F /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				504EC30C1FED79650016851F /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		504EC3101FED79650016851F /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				504EC3111FED79650016851F /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		504EC3141FED79650016851F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 958DCC722DB07C7200EA8C5F /* debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		504EC3151FED79650016851F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		504EC3171FED79650016851F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 958DCC722DB07C7200EA8C5F /* debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = HP55SN9769;
+				INFOPLIST_FILE = App/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = ReadRecord;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.navigation";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" \"-DDEBUG\"";
+				PRODUCT_BUNDLE_IDENTIFIER = com.alessandro.drivetracker;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		504EC3181FED79650016851F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = HP55SN9769;
+				INFOPLIST_FILE = App/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = ReadRecord;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.navigation";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.alessandro.drivetracker;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		504EC2FF1FED79650016851F /* Build configuration list for PBXProject "App" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				504EC3141FED79650016851F /* Debug */,
+				504EC3151FED79650016851F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		504EC3161FED79650016851F /* Build configuration list for PBXNativeTarget "App" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				504EC3171FED79650016851F /* Debug */,
+				504EC3181FED79650016851F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		D4C12C0A2AAA248700AAC8A2 /* XCLocalSwiftPackageReference "CapApp-SPM" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = "CapApp-SPM";
+		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		4D22ABE82AF431CB00220026 /* CapApp-SPM */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D4C12C0A2AAA248700AAC8A2 /* XCLocalSwiftPackageReference "CapApp-SPM" */;
+			productName = "CapApp-SPM";
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 504EC2FC1FED79650016851F /* Project object */;
+}
+</file>
+
+<file path="ios/App/CapApp-SPM/Sources/CapApp-SPM/CapApp-SPM.swift">
+public let isCapacitorApp = true
+</file>
+
+<file path="ios/App/CapApp-SPM/.gitignore">
+.DS_Store
+/.build
+/Packages
+/*.xcodeproj
+xcuserdata/
+DerivedData/
+.swiftpm/config/registries.json
+.swiftpm/xcode/package.xcworkspace/contents.xcworkspacedata
+.netrc
+</file>
+
+<file path="ios/App/CapApp-SPM/Package.swift">
+// swift-tools-version: 5.9
+import PackageDescription
+
+// DO NOT MODIFY THIS FILE - managed by Capacitor CLI commands
+let package = Package(
+    name: "CapApp-SPM",
+    platforms: [.iOS(.v15)],
+    products: [
+        .library(
+            name: "CapApp-SPM",
+            targets: ["CapApp-SPM"])
+    ],
+    dependencies: [
+        .package(url: "https://github.com/ionic-team/capacitor-swift-pm.git", exact: "7.6.0"),
+        .package(name: "CapacitorCommunityBackgroundGeolocation", path: "../../../node_modules/@capacitor-community/background-geolocation"),
+        .package(name: "CapacitorNetwork", path: "../../../node_modules/@capacitor/network"),
+        .package(name: "CapacitorPreferences", path: "../../../node_modules/@capacitor/preferences")
+    ],
+    targets: [
+        .target(
+            name: "CapApp-SPM",
+            dependencies: [
+                .product(name: "Capacitor", package: "capacitor-swift-pm"),
+                .product(name: "Cordova", package: "capacitor-swift-pm"),
+                .product(name: "CapacitorCommunityBackgroundGeolocation", package: "CapacitorCommunityBackgroundGeolocation"),
+                .product(name: "CapacitorNetwork", package: "CapacitorNetwork"),
+                .product(name: "CapacitorPreferences", package: "CapacitorPreferences")
+            ]
+        )
+    ]
+)
+</file>
+
+<file path="ios/App/CapApp-SPM/README.md">
+# CapApp-SPM
+
+This package is used to host SPM dependencies for your Capacitor project
+
+Do not modify the contents of it or there may be unintended consequences.
+</file>
+
+<file path="ios/.gitignore">
+App/build
+App/Pods
+App/output
+App/App/public
+DerivedData
+xcuserdata
+
+# Cordova plugins for Capacitor
+capacitor-cordova-ios-plugins
+
+# Generated Config files
+App/App/capacitor.config.json
+App/App/config.xml
+</file>
+
+<file path="ios/debug.xcconfig">
+CAPACITOR_DEBUG = true
+</file>
+
+<file path="public/vite.svg">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" class="iconify iconify--logos" width="31.88" height="32" preserveAspectRatio="xMidYMid meet" viewBox="0 0 256 257"><defs><linearGradient id="IconifyId1813088fe1fbc01fb466" x1="-.828%" x2="57.636%" y1="7.652%" y2="78.411%"><stop offset="0%" stop-color="#41D1FF"></stop><stop offset="100%" stop-color="#BD34FE"></stop></linearGradient><linearGradient id="IconifyId1813088fe1fbc01fb467" x1="43.376%" x2="50.316%" y1="2.242%" y2="89.03%"><stop offset="0%" stop-color="#FFEA83"></stop><stop offset="8.333%" stop-color="#FFDD35"></stop><stop offset="100%" stop-color="#FFA800"></stop></linearGradient></defs><path fill="url(#IconifyId1813088fe1fbc01fb466)" d="M255.153 37.938L134.897 252.976c-2.483 4.44-8.862 4.466-11.382.048L.875 37.958c-2.746-4.814 1.371-10.646 6.827-9.67l120.385 21.517a6.537 6.537 0 0 0 2.322-.004l117.867-21.483c5.438-.991 9.574 4.796 6.877 9.62Z"></path><path fill="url(#IconifyId1813088fe1fbc01fb467)" d="M185.432.063L96.44 17.501a3.268 3.268 0 0 0-2.634 3.014l-5.474 92.456a3.268 3.268 0 0 0 3.997 3.378l24.777-5.718c2.318-.535 4.413 1.507 3.936 3.838l-7.361 36.047c-.495 2.426 1.782 4.5 4.151 3.78l15.304-4.649c2.372-.72 4.652 1.36 4.15 3.788l-11.698 56.621c-.732 3.542 3.979 5.473 5.943 2.437l1.313-2.028l72.516-144.72c1.215-2.423-.88-5.186-3.54-4.672l-25.505 4.922c-2.396.462-4.435-1.77-3.759-4.114l16.646-57.705c.677-2.35-1.37-4.583-3.769-4.113Z"></path></svg>
+</file>
+
+<file path="src/assets/react.svg">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" class="iconify iconify--logos" width="35.93" height="32" preserveAspectRatio="xMidYMid meet" viewBox="0 0 256 228"><path fill="#00D8FF" d="M210.483 73.824a171.49 171.49 0 0 0-8.24-2.597c.465-1.9.893-3.777 1.273-5.621c6.238-30.281 2.16-54.676-11.769-62.708c-13.355-7.7-35.196.329-57.254 19.526a171.23 171.23 0 0 0-6.375 5.848a155.866 155.866 0 0 0-4.241-3.917C100.759 3.829 77.587-4.822 63.673 3.233C50.33 10.957 46.379 33.89 51.995 62.588a170.974 170.974 0 0 0 1.892 8.48c-3.28.932-6.445 1.924-9.474 2.98C17.309 83.498 0 98.307 0 113.668c0 15.865 18.582 31.778 46.812 41.427a145.52 145.52 0 0 0 6.921 2.165a167.467 167.467 0 0 0-2.01 9.138c-5.354 28.2-1.173 50.591 12.134 58.266c13.744 7.926 36.812-.22 59.273-19.855a145.567 145.567 0 0 0 5.342-4.923a168.064 168.064 0 0 0 6.92 6.314c21.758 18.722 43.246 26.282 56.54 18.586c13.731-7.949 18.194-32.003 12.4-61.268a145.016 145.016 0 0 0-1.535-6.842c1.62-.48 3.21-.974 4.76-1.488c29.348-9.723 48.443-25.443 48.443-41.52c0-15.417-17.868-30.326-45.517-39.844Zm-6.365 70.984c-1.4.463-2.836.91-4.3 1.345c-3.24-10.257-7.612-21.163-12.963-32.432c5.106-11 9.31-21.767 12.459-31.957c2.619.758 5.16 1.557 7.61 2.4c23.69 8.156 38.14 20.213 38.14 29.504c0 9.896-15.606 22.743-40.946 31.14Zm-10.514 20.834c2.562 12.94 2.927 24.64 1.23 33.787c-1.524 8.219-4.59 13.698-8.382 15.893c-8.067 4.67-25.32-1.4-43.927-17.412a156.726 156.726 0 0 1-6.437-5.87c7.214-7.889 14.423-17.06 21.459-27.246c12.376-1.098 24.068-2.894 34.671-5.345a134.17 134.17 0 0 1 1.386 6.193ZM87.276 214.515c-7.882 2.783-14.16 2.863-17.955.675c-8.075-4.657-11.432-22.636-6.853-46.752a156.923 156.923 0 0 1 1.869-8.499c10.486 2.32 22.093 3.988 34.498 4.994c7.084 9.967 14.501 19.128 21.976 27.15a134.668 134.668 0 0 1-4.877 4.492c-9.933 8.682-19.886 14.842-28.658 17.94ZM50.35 144.747c-12.483-4.267-22.792-9.812-29.858-15.863c-6.35-5.437-9.555-10.836-9.555-15.216c0-9.322 13.897-21.212 37.076-29.293c2.813-.98 5.757-1.905 8.812-2.773c3.204 10.42 7.406 21.315 12.477 32.332c-5.137 11.18-9.399 22.249-12.634 32.792a134.718 134.718 0 0 1-6.318-1.979Zm12.378-84.26c-4.811-24.587-1.616-43.134 6.425-47.789c8.564-4.958 27.502 2.111 47.463 19.835a144.318 144.318 0 0 1 3.841 3.545c-7.438 7.987-14.787 17.08-21.808 26.988c-12.04 1.116-23.565 2.908-34.161 5.309a160.342 160.342 0 0 1-1.76-7.887Zm110.427 27.268a347.8 347.8 0 0 0-7.785-12.803c8.168 1.033 15.994 2.404 23.343 4.08c-2.206 7.072-4.956 14.465-8.193 22.045a381.151 381.151 0 0 0-7.365-13.322Zm-45.032-43.861c5.044 5.465 10.096 11.566 15.065 18.186a322.04 322.04 0 0 0-30.257-.006c4.974-6.559 10.069-12.652 15.192-18.18ZM82.802 87.83a323.167 323.167 0 0 0-7.227 13.238c-3.184-7.553-5.909-14.98-8.134-22.152c7.304-1.634 15.093-2.97 23.209-3.984a321.524 321.524 0 0 0-7.848 12.897Zm8.081 65.352c-8.385-.936-16.291-2.203-23.593-3.793c2.26-7.3 5.045-14.885 8.298-22.6a321.187 321.187 0 0 0 7.257 13.246c2.594 4.48 5.28 8.868 8.038 13.147Zm37.542 31.03c-5.184-5.592-10.354-11.779-15.403-18.433c4.902.192 9.899.29 14.978.29c5.218 0 10.376-.117 15.453-.343c-4.985 6.774-10.018 12.97-15.028 18.486Zm52.198-57.817c3.422 7.8 6.306 15.345 8.596 22.52c-7.422 1.694-15.436 3.058-23.88 4.071a382.417 382.417 0 0 0 7.859-13.026a347.403 347.403 0 0 0 7.425-13.565Zm-16.898 8.101a358.557 358.557 0 0 1-12.281 19.815a329.4 329.4 0 0 1-23.444.823c-7.967 0-15.716-.248-23.178-.732a310.202 310.202 0 0 1-12.513-19.846h.001a307.41 307.41 0 0 1-10.923-20.627a310.278 310.278 0 0 1 10.89-20.637l-.001.001a307.318 307.318 0 0 1 12.413-19.761c7.613-.576 15.42-.876 23.31-.876H128c7.926 0 15.743.303 23.354.883a329.357 329.357 0 0 1 12.335 19.695a358.489 358.489 0 0 1 11.036 20.54a329.472 329.472 0 0 1-11 20.722Zm22.56-122.124c8.572 4.944 11.906 24.881 6.52 51.026c-.344 1.668-.73 3.367-1.15 5.09c-10.622-2.452-22.155-4.275-34.23-5.408c-7.034-10.017-14.323-19.124-21.64-27.008a160.789 160.789 0 0 1 5.888-5.4c18.9-16.447 36.564-22.941 44.612-18.3ZM128 90.808c12.625 0 22.86 10.235 22.86 22.86s-10.235 22.86-22.86 22.86s-22.86-10.235-22.86-22.86s10.235-22.86 22.86-22.86Z"></path></svg>
+</file>
+
+<file path="src/components/LoginScreen.tsx">
+import { useState } from 'react';
+import { authManager } from '../services/authManager';
+
+export default function LoginScreen({ onLoginSuccess }: { onLoginSuccess: () => void }) {
+  const [isRegistering, setIsRegistering] = useState(false);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const [rememberMe, setRememberMe] = useState(true); // Nuovo stato per "Resta collegato"
+
+  const [isDarkMode] = useState(() => localStorage.getItem('rr_dark') !== 'false');
+  const [appTheme] = useState(() => localStorage.getItem('rr_theme') || 'blue');
+  const [customPrimary] = useState(() => localStorage.getItem('rr_custom1') || '#10b981');
+  const [customAccent] = useState(() => localStorage.getItem('rr_custom2') || '#f59e0b');
+
+  const getThemeColors = () => {
+    let hexPrimary = '#3b82f6'; let hexAccent = '#60a5fa';
+    switch (appTheme) {
+      case 'black-white': hexPrimary = isDarkMode ? '#ffffff' : '#000000'; hexAccent = isDarkMode ? '#9ca3af' : '#4b5563'; break;
+      case 'black-orange': hexPrimary = isDarkMode ? '#ffffff' : '#000000'; hexAccent = '#f97316'; break;
+      case 'purple-yellow': hexPrimary = '#9611fe'; hexAccent = '#facc15'; break;
+      case 'red-white': hexPrimary = '#ef4444'; hexAccent = isDarkMode ? '#ffffff' : '#000000'; break;
+      case 'custom': hexPrimary = customPrimary; hexAccent = customAccent; break;
+    }
+    return { hexPrimary, hexAccent };
+  };
+
+  const { hexPrimary, hexAccent } = getThemeColors();
+  const bgClass = isDarkMode ? 'bg-black' : 'bg-gray-100';
+  const textClass = isDarkMode ? 'text-white' : 'text-black';
+  const cardClass = isDarkMode ? 'bg-zinc-900 border-zinc-800' : 'bg-white border-gray-200 shadow-xl';
+  const subTextClass = isDarkMode ? 'text-zinc-400' : 'text-zinc-500';
+const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsLoading(true);
+    try {
+      if (isRegistering) {
+        await authManager.signUp(email, password);
+        alert("Registrazione completata! Ora puoi accedere.");
+        setIsRegistering(false);
+      } else {
+        await authManager.signIn(email, password);
+        
+        // NUOVO: Se ha spuntato "Resta collegato", salviamolo in memoria!
+        if (rememberMe) {
+          localStorage.setItem('rr_logged_in', 'true');
+        } else {
+          localStorage.removeItem('rr_logged_in');
+        }
+        
+        onLoginSuccess();
+      }
+    } catch (error: any) {
+      alert(`Errore: ${error.message || "Credenziali errate"}`);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  return (
+    <div className={`relative h-screen w-screen flex flex-col items-center justify-center p-6 overflow-hidden transition-colors duration-500 ${bgClass} ${textClass}`}>
+      <div className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full blur-[100px] animate-pulse opacity-20" style={{ backgroundColor: hexPrimary }}></div>
+      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 rounded-full blur-[100px] animate-pulse opacity-20" style={{ backgroundColor: hexAccent, animationDelay: '1s' }}></div>
+
+      <div className="relative z-10 w-full max-w-sm animate-in fade-in zoom-in-95 duration-500">
+        
+        <div className="flex flex-col items-center mb-10">
+          <div className={`w-16 h-16 rounded-2xl flex items-center justify-center mb-4 shadow-2xl border ${cardClass}`}>
+            <svg className="w-8 h-8" style={{ color: hexPrimary }} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
+          </div>
+          <h1 className="text-4xl font-black tracking-tighter">
+            <span style={{ color: hexPrimary }}>Road</span>
+            <span style={{ color: hexAccent }}>Record</span>
+          </h1>
+          <p className={`text-sm mt-2 font-medium tracking-wide ${subTextClass}`}>
+            {isRegistering ? 'Crea il tuo profilo ' : 'Accedi al sistema'}
+          </p>
+        </div>
+
+        <form onSubmit={handleSubmit} className={`p-8 rounded-3xl border shadow-2xl flex flex-col gap-4 ${cardClass}`}>
+          <div>
+            <label className={`block text-xs font-bold uppercase tracking-wider mb-2 ${subTextClass}`}>Email</label>
+            <input type="email" required value={email} onChange={(e) => setEmail(e.target.value)} className={`w-full bg-transparent border rounded-xl px-4 py-3 focus:outline-none focus:ring-2 transition-all ${isDarkMode ? 'border-zinc-700 text-white' : 'border-gray-300 text-black'}`} style={{ outlineColor: hexPrimary }} />
+          </div>
+
+          <div>
+            <label className={`block text-xs font-bold uppercase tracking-wider mb-2 ${subTextClass}`}>Password</label>
+            <input type="password" required value={password} onChange={(e) => setPassword(e.target.value)} className={`w-full bg-transparent border rounded-xl px-4 py-3 focus:outline-none focus:ring-2 transition-all ${isDarkMode ? 'border-zinc-700 text-white' : 'border-gray-300 text-black'}`} style={{ outlineColor: hexPrimary }} />
+          </div>
+
+          {/* NUOVO: Resta collegato e Password dimenticata */}
+          {!isRegistering && (
+            <div className="flex items-center justify-between mt-1">
+              <label className="flex items-center gap-2 cursor-pointer">
+                <input type="checkbox" checked={rememberMe} onChange={() => setRememberMe(!rememberMe)} className="w-4 h-4 rounded cursor-pointer" style={{ accentColor: hexPrimary }} />
+                <span className={`text-xs font-bold ${subTextClass}`}>Resta collegato</span>
+              </label>
+              <button type="button" className="text-xs font-bold transition-opacity hover:opacity-80" style={{ color: hexAccent }}>Psw persa?</button>
+            </div>
+          )}
+
+          <button type="submit" disabled={isLoading} className="w-full mt-2 font-black text-lg py-4 rounded-2xl transition-all active:scale-95 shadow-lg border-b-4 text-white flex justify-center items-center" style={{ backgroundColor: hexPrimary, borderColor: hexAccent, opacity: isLoading ? 0.7 : 1 }}>
+            {isLoading ? <svg className="animate-spin h-5 w-5 text-white" fill="none" viewBox="0 0 24 24"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg> : isRegistering ? 'REGISTRATI' : 'ACCEDI'}
+          </button>
+        </form>
+
+        <div className="mt-8 text-center">
+          <p className={`text-sm ${subTextClass}`}>
+            {isRegistering ? 'Hai già un account?' : 'Non hai ancora le chiavi?'}
+            <button type="button" onClick={() => setIsRegistering(!isRegistering)} className="ml-2 font-bold transition-colors hover:opacity-80" style={{ color: hexAccent }}>
+              {isRegistering ? 'Accedi ora' : 'Registrati qui'}
+            </button>
+          </p>
+        </div>
+
+      </div>
+    </div>
+  );
+}
+</file>
+
+<file path="src/components/MapOverlay.tsx">
+import { useEffect, useRef, useState } from 'react';
+import Map, { GeolocateControl, NavigationControl, Source, Layer, Marker } from 'react-map-gl';
+import 'mapbox-gl/dist/mapbox-gl.css';
+import { useDriveTracker } from '../hooks/useDriveTracker';
+import { userManager } from '../services/userManager';
+import { spotifyManager } from '../services/spotifyManager';
+import { routeManager } from '../services/routeManager';
+
+const MAPBOX_TOKEN = import.meta.env.VITE_MAPBOX_TOKEN;
+const CAR_BRANDS = ['Mercedes', 'Audi', 'Toyota', 'Citroen', 'BMW', 'Jeep', 'Tesla', 'Alfa'];
+
+const BRAND_SLUGS: Record<string, string> = {
+  'Mercedes': 'mercedes', 'Audi': 'audi', 'Toyota': 'toyota', 'Citroen': 'citroen',
+  'BMW': 'bmw', 'Jeep': 'jeep', 'Tesla': 'tesla', 'Alfa': 'alfaromeo'
+};
+
+const DEFAULT_ARROW = `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L4.5 20.29l.71.71L12 18l6.79 3 .71-.71z"/></svg>`;
+
+const calculateDistance = (route: any[]) => {
+  let totalDist = 0;
+  for (let i = 1; i < route.length; i++) {
+    const p1 = route[i - 1]; const p2 = route[i];
+    const R = 6371;
+    const dLat = (p2.lat - p1.lat) * (Math.PI / 180); const dLon = (p2.lng - p1.lng) * (Math.PI / 180);
+    const a = Math.sin(dLat / 2) * Math.sin(dLat / 2) + Math.cos(p1.lat * (Math.PI / 180)) * Math.cos(p2.lat * (Math.PI / 180)) * Math.sin(dLon / 2) * Math.sin(dLon / 2);
+    totalDist += R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+  }
+  return totalDist;
+};
+
+const CustomToggle = ({ checked, onChange, activeColor }: { checked: boolean, onChange: () => void, activeColor: string }) => (
+  <div onClick={onChange} className="w-12 h-6 rounded-full p-1 cursor-pointer transition-colors duration-300 ease-in-out flex items-center shadow-inner" style={{ backgroundColor: checked ? activeColor : '#3f3f46' }}>
+    <div className={`w-4 h-4 bg-white rounded-full shadow-md transform transition-transform duration-300 ${checked ? 'translate-x-6' : 'translate-x-0'}`} />
+  </div>
+);
+
+const DefaultAvatar = ({ color, className }: { color: string, className?: string }) => (
+  <div className={`flex items-center justify-center bg-zinc-800 ${className}`} style={{ color: color }}>
+    <svg fill="currentColor" viewBox="0 0 24 24" className="w-3/5 h-3/5 opacity-80">
+      <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+    </svg>
+  </div>
+);
+
+export default function MapOverlay({ onLogout }: { onLogout?: () => void }) {
+  const { status, countdown, effectiveTime, currentSpeed, route, startCountdown, pauseTracking, resumeTracking, stopTracking } = useDriveTracker();
+  const mapRef = useRef<any>(null);
+
+  const [activeView, setActiveView] = useState<'map' | 'menu' | 'history' | 'settings' | 'tripDetail' | 'stats' | 'garage' | 'leaderboard' | 'profile'>('map');
+  const [selectedTrip, setSelectedTrip] = useState<any | null>(null);
+  const [showReport, setShowReport] = useState(false);
+  const [mapSnapshot, setMapSnapshot] = useState<string | null>(null);
+  const [tripStats, setTripStats] = useState<any | null>(null);
+  const [isSaving, setIsSaving] = useState(false);
+  const [history, setHistory] = useState<any[]>([]);
+
+  const [isDarkMode, setIsDarkMode] = useState(() => localStorage.getItem('rr_dark') !== 'false');
+  const [appTheme, setAppTheme] = useState<'blue' | 'black-white' | 'black-orange' | 'purple-yellow' | 'red-white' | 'custom'>(() => localStorage.getItem('rr_theme') as any || 'blue');
+  const [customPrimary, setCustomPrimary] = useState(() => localStorage.getItem('rr_custom1') || '#10b981');
+  const [customAccent, setCustomAccent] = useState(() => localStorage.getItem('rr_custom2') || '#f59e0b');
+  
+  const [carBrand, setCarBrand] = useState(() => localStorage.getItem('rr_carBrand') || 'Audi');
+  const [carColor, setCarColor] = useState(() => localStorage.getItem('rr_carColor') || '#3b82f6');
+  const [carLogo, setCarLogo] = useState(() => localStorage.getItem('rr_carLogo') || DEFAULT_ARROW);
+  
+  const [myNickname, setMyNickname] = useState(() => localStorage.getItem('rr_nickname') || 'Pilota');
+  const [avatarUrl, setAvatarUrl] = useState(() => localStorage.getItem('rr_avatar') || '');
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
+  const [enableSpotify, setEnableSpotify] = useState(true);
+  const [currentSong, setCurrentSong] = useState<any>(null);
+  const spotifyToken = localStorage.getItem('spotifyToken');
+
+  const [globalStats, setGlobalStats] = useState<any>(null);
+  const [leaderboardData, setLeaderboardData] = useState<any[]>([]);
+  const [isLoadingLeaderboard, setIsLoadingLeaderboard] = useState(false);
+  const [leaderboardFilter, setLeaderboardFilter] = useState<'distance' | 'maxSpeed' | 'longestTrip'>('distance');
+
+  const [isSavingProfile, setIsSavingProfile] = useState(false);
+
+  const [tripStartLoc, setTripStartLoc] = useState<string>(''); 
+  const [tripEndLoc, setTripEndLoc] = useState<string>(''); 
+  const [activeFilterTags, setActiveFilterTags] = useState<string[]>([]); 
+  const [activeTagInput, setActiveTagInput] = useState<'start' | 'end'>('start');
+
+  const extractLocations = () => {
+    const locs = new Set(['Casa', 'Lavoro', 'Università', 'Palestra', 'Supermercato']);
+    history.forEach(trip => {
+      if (trip.tag) {
+        const parts = trip.tag.split(' ➔ ');
+        parts.forEach((p: string) => { if (p.trim()) locs.add(p.trim()); });
+      }
+    });
+    return Array.from(locs).slice(0, 10); 
+  };
+  const suggestedLocations = extractLocations();
+
+  const availableFilterTags = Array.from(new Set(history.map(t => t.tag).filter(Boolean)));
+
+  const currentPos = route.length > 0 ? route[route.length - 1] : null;
+
+  useEffect(() => {
+    const loadUserData = async () => {
+      const prefs = await userManager.getPreferences();
+      if (prefs) {
+        if (prefs.nickname) { setMyNickname(prefs.nickname); localStorage.setItem('rr_nickname', prefs.nickname); }
+        if (prefs.avatar_url) { setAvatarUrl(prefs.avatar_url); localStorage.setItem('rr_avatar', prefs.avatar_url); }
+        if (prefs.car_color) { setCarColor(prefs.car_color); localStorage.setItem('rr_carColor', prefs.car_color); }
+        if (prefs.car_icon) { setCarLogo(prefs.car_icon); localStorage.setItem('rr_carLogo', prefs.car_icon); }
+      }
+    };
+    loadUserData();
+  }, []);
+
+  const handleBrandChange = async (brand: string) => {
+    setCarBrand(brand);
+    localStorage.setItem('rr_carBrand', brand);
+    const slug = BRAND_SLUGS[brand];
+    const cachedKey = `rr_logo_${slug}`;
+    const cachedLogo = localStorage.getItem(cachedKey);
+
+    if (cachedLogo) {
+      setCarLogo(cachedLogo);
+      localStorage.setItem('rr_carLogo', cachedLogo);
+      return;
+    }
+
+    if (navigator.onLine) {
+      try {
+        const res = await fetch(`https://cdn.simpleicons.org/${slug}`);
+        if (res.ok) {
+          const svgText = await res.text();
+          localStorage.setItem(cachedKey, svgText);
+          setCarLogo(svgText);
+          localStorage.setItem('rr_carLogo', svgText);
+          return;
+        }
+      } catch (error) { console.warn("Download logo fallito", error); }
+    }
+    setCarLogo(DEFAULT_ARROW);
+    localStorage.setItem('rr_carLogo', DEFAULT_ARROW);
+  };
+
+  useEffect(() => { if (carLogo === DEFAULT_ARROW && navigator.onLine) handleBrandChange(carBrand); }, []);
+
+  useEffect(() => {
+    localStorage.setItem('rr_dark', isDarkMode.toString());
+    localStorage.setItem('rr_theme', appTheme);
+    localStorage.setItem('rr_custom1', customPrimary);
+    localStorage.setItem('rr_custom2', customAccent);
+    localStorage.setItem('rr_carColor', carColor);
+    localStorage.setItem('rr_nickname', myNickname);
+  }, [isDarkMode, appTheme, customPrimary, customAccent, carColor, myNickname]);
+
+  const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files[0]) {
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        if (event.target?.result) {
+          const base64Img = event.target.result as string;
+          setAvatarUrl(base64Img);
+        }
+      };
+      reader.readAsDataURL(e.target.files[0]);
+    }
+  };
+
+  useEffect(() => {
+    if (activeView === 'stats') {
+      userManager.getUserRecords?.().then((data: any) => setGlobalStats(data)).catch(() => {});
+    }
+    if (activeView === 'leaderboard') {
+      setIsLoadingLeaderboard(true);
+      userManager.getLeaderboard?.().then((data: any) => { 
+        setLeaderboardData(data || []); 
+        setIsLoadingLeaderboard(false); 
+      }).catch(() => setIsLoadingLeaderboard(false));
+    }
+  }, [activeView]);
+
+  useEffect(() => {
+    let interval: any;
+    if ((status === 'tracking' || status === 'paused') && enableSpotify && spotifyToken) {
+      const fetchSong = async () => { try { const song = await spotifyManager.getCurrentlyPlaying(spotifyToken); setCurrentSong(song); } catch (e) { } };
+      fetchSong(); interval = setInterval(fetchSong, 5000); 
+    } else { setCurrentSong(null); }
+    return () => clearInterval(interval);
+  }, [status, enableSpotify, spotifyToken]);
+
+  const handleSaveProfile = async () => {
+    setIsSavingProfile(true);
+    try {
+      let finalAvatarUrl = avatarUrl;
+      if (avatarUrl.startsWith('data:image')) {
+        const uploadedUrl = await userManager.uploadAvatar(avatarUrl);
+        if (uploadedUrl) {
+          finalAvatarUrl = uploadedUrl;
+          setAvatarUrl(uploadedUrl); 
+          localStorage.setItem('rr_avatar', uploadedUrl); 
+        } else {
+          alert("Upload dell'immagine fallito! Controlla le Policies del bucket 'avatars' su Supabase.");
+          setIsSavingProfile(false);
+          return; 
+        }
+      }
+      const profileOk = await userManager.updateProfile(myNickname, finalAvatarUrl);
+      const prefsOk = await userManager.savePreferences(carLogo, carColor);
+
+      if (!profileOk || !prefsOk) {
+         alert("Salvataggio rifiutato dal Database. Controlla le regole RLS della tabella!");
+         return;
+      }
+
+      alert("Profilo e Garage sincronizzati nel Cloud! ☁️🏁");
+      setActiveView('settings');
+    } catch (error: any) {
+      console.error("ERRORE CRITICO JS:", error);
+      alert(`Errore fatale: ${error.message}`);
+    } finally {
+      setIsSavingProfile(false);
+    }
+  };
+
+  useEffect(() => {
+    if (currentPos && mapRef.current && activeView === 'map' && !showReport) {
+      mapRef.current.flyTo({ center: [currentPos.lng, currentPos.lat], zoom: 16, essential: true, duration: 1000 });
+    }
+  }, [currentPos, activeView, showReport]);
+
+  const formatTime = (totalSeconds: number) => {
+    const h = Math.floor(totalSeconds / 3600); const m = Math.floor((totalSeconds % 3600) / 60).toString().padStart(2, '0'); const s = (totalSeconds % 60).toString().padStart(2, '0');
+    return h > 0 ? `${h}:${m}:${s}` : `${m}:${s}`;
+  };
+
+  const handleEndJourney = () => {
+    const mapInstance = mapRef.current?.getMap();
+    if (mapInstance && route.length > 1) { 
+      const bounds = route.reduce((acc: number[], point: any) => [Math.min(acc[0], point.lng), Math.min(acc[1], point.lat), Math.max(acc[2], point.lng), Math.max(acc[3], point.lat)], [180, 90, -180, -90]);
+      mapInstance.fitBounds([[bounds[0], bounds[1]], [bounds[2], bounds[3]]], { padding: 50, duration: 1000 });
+    }
+    setTimeout(() => {
+      let snapshot = null;
+      try { if (mapInstance) snapshot = mapInstance.getCanvas().toDataURL('image/png'); } catch(e) {}
+      setMapSnapshot(snapshot);
+      const dist = calculateDistance(route); 
+      const avgS = effectiveTime > 0 ? (dist / (effectiveTime / 3600)) : 0;
+      let maxS = route.length > 0 ? route[0].speed : 0;
+      for (let i = 1; i < route.length; i++) { 
+        if (Math.abs(route[i].speed - route[i - 1].speed) <= 20 && route[i].speed > maxS) maxS = route[i].speed; 
+      }
+      setTripStats({ distance: dist, maxSpeed: maxS, avgSpeed: avgS, time: effectiveTime });
+      setShowReport(true);
+    }, route.length > 1 ? 1200 : 100); 
+    stopTracking();
+  };
+
+  const resetForNewTrip = () => { 
+    setShowReport(false); 
+    setTripStats(null); 
+    setMapSnapshot(null); 
+    setTripStartLoc(''); 
+    setTripEndLoc(''); 
+    setActiveView('map'); 
+    stopTracking(); 
+  };
+  
+  const handleDiscard = () => { if(window.confirm("Sicuro di voler scartare questo viaggio?")) resetForNewTrip(); };
+  
+  const handleSaveToCloud = async () => {
+    if (!tripStats || !mapSnapshot) return;
+    setIsSaving(true); 
+    
+    try {
+      const combinedTag = tripStartLoc && tripEndLoc ? `${tripStartLoc} ➔ ${tripEndLoc}` : tripStartLoc || tripEndLoc || '';
+
+      const statsToSave = {
+        distance_km: tripStats.distance,
+        avg_speed_kmh: tripStats.avgSpeed,
+        max_speed_kmh: tripStats.maxSpeed,
+        total_time_seconds: tripStats.time,
+        driving_time_seconds: tripStats.time,
+        pause_time_seconds: 0,
+        tag: combinedTag
+      };
+
+      const result = await routeManager.saveRoute(mapSnapshot, statsToSave);
+
+      if (result.success) {
+        setHistory(prev => [{ 
+          id: Date.now().toString(), 
+          date: new Date().toLocaleDateString('it-IT', { day: '2-digit', month: 'short', hour: '2-digit', minute: '2-digit' }), 
+          snapshot: mapSnapshot, 
+          tag: combinedTag, 
+          ...tripStats 
+        }, ...prev]);
+        
+        resetForNewTrip(); 
+        setActiveView('history'); 
+      }
+    } catch (error) {
+      console.error("Errore fatale salvataggio percorso:", error);
+      alert("Errore di comunicazione col server. Riprova!");
+    } finally {
+      setIsSaving(false);
+    }
+  };
+
+  const handleDeleteTrip = () => { if (selectedTrip && window.confirm("Eliminare?")) { setHistory(prev => prev.filter(t => t.id !== selectedTrip.id)); setActiveView('history'); setSelectedTrip(null); } };
+
+  const getThemeColors = () => {
+    let hexPrimary = '#3b82f6'; let hexAccent = '#60a5fa';
+    switch (appTheme) {
+      case 'black-white': hexPrimary = isDarkMode ? '#ffffff' : '#000000'; hexAccent = isDarkMode ? '#9ca3af' : '#4b5563'; break;
+      case 'black-orange': hexPrimary = isDarkMode ? '#ffffff' : '#000000'; hexAccent = '#f97316'; break;
+      case 'purple-yellow': hexPrimary = '#9611fe'; hexAccent = '#facc15'; break;
+      case 'red-white': hexPrimary = '#ef4444'; hexAccent = isDarkMode ? '#ffffff' : '#000000'; break;
+      case 'custom': hexPrimary = customPrimary; hexAccent = customAccent; break;
+    }
+    return { hexPrimary, hexAccent };
+  };
+
+  const { hexPrimary, hexAccent } = getThemeColors();
+  const bgClass = isDarkMode ? 'bg-black' : 'bg-gray-100';
+  const textClass = isDarkMode ? 'text-white' : 'text-black';
+  const cardClass = isDarkMode ? 'bg-zinc-900 border-zinc-800' : 'bg-white border-gray-200 shadow-xl';
+  const subTextClass = isDarkMode ? 'text-zinc-400' : 'text-zinc-500';
+
+  const routeGeoJSON: any = { type: 'FeatureCollection', features: route.map((point: any, index: number) => { 
+    if (index === 0) return null; 
+    let segmentColor = '#10B981';
+    
+    if (point.isBadSignal) segmentColor = '#71717a'; 
+    else if (point.speed >= 90) segmentColor = '#9333ea'; 
+    else if (point.speed >= 50) segmentColor = '#10b981'; 
+    else if (point.speed >= 30) segmentColor = '#eab308'; 
+    else if (point.speed >= 10) segmentColor = '#f97316'; 
+    else segmentColor = '#9f1239'; 
+
+    return { type: 'Feature', properties: { color: segmentColor }, geometry: { type: 'LineString', coordinates: [[route[index - 1].lng, route[index - 1].lat], [point.lng, point.lat]] } }; 
+  }).filter(Boolean) };
+
+  const sortedLeaderboard = [...leaderboardData].sort((a: any, b: any) => {
+    if (leaderboardFilter === 'distance') return (b.distance || 0) - (a.distance || 0);
+    if (leaderboardFilter === 'maxSpeed') return (b.maxSpeed || 0) - (a.maxSpeed || 0);
+    if (leaderboardFilter === 'longestTrip') return (b.longestTrip || 0) - (a.longestTrip || 0);
+    return 0;
+  });
+
+  const toggleFilterTag = (tag: string) => {
+    setActiveFilterTags(prev => prev.includes(tag) ? prev.filter(t => t !== tag) : [...prev, tag]);
+  };
+  const filteredHistory = history.filter(trip => activeFilterTags.length === 0 || (trip.tag && activeFilterTags.includes(trip.tag)));
+
+  return (
+    <div className={`relative h-screen w-screen overflow-hidden transition-colors duration-500 ${bgClass} ${textClass}`}>
+      
+      <Map ref={mapRef} initialViewState={{ longitude: 8.8251, latitude: 45.8206, zoom: 13 }} mapStyle={isDarkMode ? "mapbox://styles/mapbox/dark-v11" : "mapbox://styles/mapbox/light-v11"} mapboxAccessToken={MAPBOX_TOKEN} preserveDrawingBuffer={true}>
+        <GeolocateControl positionOptions={{ enableHighAccuracy: true }} trackUserLocation showUserHeading position="bottom-right" />
+        <NavigationControl position="bottom-right" />
+        {route.length > 1 && <Source id="route-source" type="geojson" data={routeGeoJSON}><Layer id="route-layer" type="line" layout={{ 'line-join': 'round', 'line-cap': 'round' }} paint={{ 'line-color': ['get', 'color'], 'line-width': 6 }} /></Source>}
+
+        {currentPos && (
+          <Marker longitude={currentPos.lng} latitude={currentPos.lat} anchor="center">
+            <div className="relative flex items-center justify-center drop-shadow-xl transition-all">
+              <div className="absolute h-10 w-10 animate-ping rounded-full opacity-40" style={{ backgroundColor: carColor }}></div>
+              <div className="relative z-10 h-10 w-10 rounded-full border-4 flex items-center justify-center bg-black overflow-hidden shadow-lg" style={{ borderColor: carColor, color: carColor }}>
+                 <div className="flex items-center justify-center w-5 h-5 [&>svg]:w-full [&>svg]:h-full [&>svg]:fill-current" dangerouslySetInnerHTML={{ __html: carLogo }} />
+              </div>
+            </div>
+          </Marker>
+        )}
+      </Map>
+
+      {/* --- VISTA PRINCIPALE MAPPA --- */}
+      {activeView === 'map' && !showReport && (
+        <>
+          <div className="absolute top-6 right-6 z-10 mt-[env(safe-area-inset-top)]">
+            <button onClick={() => setActiveView('menu')} className={`backdrop-blur-xl border p-3 rounded-full transition-all active:scale-95 ${cardClass}`}>
+              <svg className="w-6 h-6" style={{ color: hexPrimary }} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" /></svg>
+            </button>
+          </div>
+
+          {status === 'countdown' && (
+            <div className="absolute inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-md animate-in fade-in duration-300">
+              <div className="flex flex-col items-center">
+                <span className="text-2xl font-bold tracking-widest mb-4 text-white">PARTENZA TRA</span>
+                <span className="text-9xl font-black animate-pulse" style={{ color: hexAccent }}>{countdown}</span>
+                <button onClick={stopTracking} className="mt-12 px-8 py-3 rounded-full border-2 border-white/20 text-gray-300 hover:bg-white/10 hover:text-white font-bold tracking-widest uppercase transition-all active:scale-95">Annulla Partenza</button>
+              </div>
+            </div>
+          )}
+
+          <div className="absolute top-6 left-0 right-0 flex justify-center pointer-events-none px-4 z-10 mt-[env(safe-area-inset-top)]">
+            <div className={`flex items-center gap-3 backdrop-blur-xl border p-3 rounded-2xl transition-all ${cardClass}`}>
+              <div className={`h-2 w-2 rounded-full ${status === 'paused' ? 'bg-yellow-500 animate-pulse' : status === 'tracking' ? 'bg-red-500 animate-pulse' : 'bg-green-500'}`} />
+              <span className={`font-medium text-sm tracking-tight uppercase ${status === 'paused' ? 'text-yellow-500' : ''}`}>
+                {status === 'paused' ? 'SESSION PAUSED' : status === 'tracking' ? 'LIVE TRACKING' : 'ONLINE'}
+              </span>
+            </div>
+          </div>
+
+          {(status === 'tracking' || status === 'paused') && (
+            <div className="absolute top-24 left-6 flex flex-col gap-3 z-10 mt-[env(safe-area-inset-top)]">
+               <div className={`backdrop-blur-md p-4 rounded-2xl border w-24 transition-colors ${cardClass}`}>
+                  <p className={`text-[10px] font-bold uppercase ${subTextClass}`}>KM/H</p>
+                  <p className="text-3xl font-black">{currentSpeed.toFixed(0)}</p>
+               </div>
+               <div className={`backdrop-blur-md p-4 rounded-2xl border w-24 transition-colors ${cardClass}`}>
+                  <p className={`text-[10px] font-bold uppercase ${subTextClass}`}>TIME</p>
+                  <p className="text-xl font-black tracking-wider" style={{ color: hexPrimary }}>{formatTime(effectiveTime)}</p>
+               </div>
+            </div>
+          )}
+
+          {enableSpotify && (status === 'tracking' || status === 'paused') && (
+            <div className={`absolute bottom-32 left-6 right-6 md:left-1/2 md:-translate-x-1/2 md:w-96 z-10 backdrop-blur-xl p-3 rounded-3xl border flex items-center gap-4 shadow-2xl animate-in slide-in-from-bottom-10 fade-in duration-500 ${cardClass}`}>
+              {currentSong ? (
+                <>
+                  <div className="relative w-12 h-12 flex-shrink-0 rounded-xl overflow-hidden shadow-lg border border-white/10 bg-zinc-800">
+                    <img src={currentSong.image} alt="Album Cover" className={`w-full h-full object-cover transition-transform duration-[10s] ${currentSong.is_playing ? 'scale-110' : 'scale-100 grayscale'}`} />
+                    <div className="absolute top-1 left-1 bg-black/50 rounded-full p-0.5"><svg className="w-3 h-3 text-[#1DB954]" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.24 1.021zM18.84 14.4c-.3.42-.84.54-1.26.24-3.36-2.04-8.52-2.64-12.54-1.44-.48.12-1.02-.12-1.14-.6-.12-.48.12-1.02.6-1.14 4.56-1.32 10.32-.66 14.1 1.68.42.24.54.84.24 1.26zm.12-3.12c-4.02-2.4-10.56-2.64-14.4-1.44-.6.18-1.2-.18-1.38-.78-.18-.6.18-1.2.78-1.38 4.44-1.32 11.64-1.02 16.2 1.26.54.3.72 1.02.42 1.56-.3.54-1.02.72-1.62.42z"/></svg></div>
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <p className={`text-sm font-black truncate ${textClass}`}>{currentSong.title}</p>
+                    <p className={`text-xs font-medium truncate ${subTextClass}`}>{currentSong.artist}</p>
+                  </div>
+                </>
+              ) : (
+                <div className="flex-1 min-w-0 px-2 flex items-center gap-3">
+                  <div className="p-2 rounded-full" style={{ backgroundColor: `${hexAccent}33`, color: hexAccent }}><svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.24 1.021zM18.84 14.4c-.3.42-.84.54-1.26.24-3.36-2.04-8.52-2.64-12.54-1.44-.48.12-1.02-.12-1.14-.6-.12-.48.12-1.02.6-1.14 4.56-1.32 10.32-.66 14.1 1.68.42.24.54.84.24 1.26zm.12-3.12c-4.02-2.4-10.56-2.64-14.4-1.44-.6.18-1.2-.18-1.38-.78-.18-.6.18-1.2.78-1.38 4.44-1.32 11.64-1.02 16.2 1.26.54.3.72 1.02.42 1.56-.3.54-1.02.72-1.62.42z"/></svg></div>
+                  <p className={`text-sm font-bold ${subTextClass}`}>{!spotifyToken ? 'Accedi da Settings' : 'Nessun brano in riproduzione'}</p>
+                </div>
+              )}
+            </div>
+          )}
+
+          <div className="absolute bottom-8 left-0 right-0 px-6 z-10 flex gap-4 justify-center mb-[env(safe-area-inset-bottom)]">
+            {(status === 'idle' || status === 'finished') && (
+              <button onClick={startCountdown} className="flex-1 max-w-[200px] py-5 rounded-3xl font-black text-lg shadow-2xl tracking-wide transition-all active:scale-95 border-b-4" style={{ backgroundColor: hexPrimary, borderColor: hexAccent, color: hexAccent }}>START</button>
+            )}
+            {status === 'tracking' && (
+              <>
+                <button onClick={pauseTracking} className="w-16 h-16 rounded-full flex items-center justify-center font-black shadow-2xl bg-zinc-800 border-b-4 border-zinc-900 text-white active:scale-95 transition-all"><svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z"/></svg></button>
+                <button onClick={handleEndJourney} className="flex-1 max-w-[200px] py-5 rounded-3xl font-black text-lg bg-red-600 border-b-4 border-red-800 text-white active:scale-95 shadow-2xl tracking-wide transition-all">STOP</button>
+              </>
+            )}
+            {status === 'paused' && (
+              <button onClick={resumeTracking} className="flex-1 max-w-[200px] py-5 rounded-3xl font-black text-lg text-black bg-yellow-500 border-b-4 border-yellow-700 active:scale-95 shadow-2xl tracking-wide transition-all">RESUME</button>
+            )}
+          </div>
+        </>
+      )}
+
+      {/* --- SCHERMATA RESOCONTO (CON DA-A) --- */}
+      {showReport && tripStats && (
+        <div className={`absolute inset-0 z-50 backdrop-blur-md flex flex-col items-center p-6 pt-[env(safe-area-inset-top)] pb-[env(safe-area-inset-bottom)] animate-in fade-in zoom-in-95 duration-300 overflow-y-auto ${bgClass}`}>
+          <div className="w-full max-w-md mt-4">
+            <h2 className="text-3xl font-black mb-4 text-center tracking-tight">Viaggio Completato!</h2>
+            <div className="w-full h-40 bg-black rounded-3xl overflow-hidden shadow-2xl border border-white/10 relative">
+              {mapSnapshot ? <img src={mapSnapshot} alt="Snapshot" className="w-full h-full object-cover" /> : null}
+            </div>
+            
+            <div className="grid grid-cols-2 gap-3 mt-4">
+              <div className={`${cardClass} p-4 rounded-2xl border`}><p className={`text-xs font-bold uppercase mb-1 ${subTextClass}`}>Distanza</p><p className="text-2xl font-black">{tripStats.distance.toFixed(2)} <span className="text-sm font-medium">km</span></p></div>
+              <div className={`${cardClass} p-4 rounded-2xl border`}><p className={`text-xs font-bold uppercase mb-1 ${subTextClass}`}>Tempo</p><p className="text-2xl font-black" style={{ color: hexPrimary }}>{formatTime(tripStats.time)}</p></div>
+              <div className={`${cardClass} p-4 rounded-2xl border`}><p className={`text-xs font-bold uppercase mb-1 ${subTextClass}`}>Media</p><p className="text-2xl font-black">{Math.round(tripStats.avgSpeed)} <span className="text-sm font-medium">km/h</span></p></div>
+              <div className={`${cardClass} p-4 rounded-2xl border`}><p className={`text-xs font-bold uppercase mb-1 ${subTextClass}`}>Vel Max</p><p className="text-2xl font-black text-red-500">{tripStats.maxSpeed.toFixed(1)} <span className="text-sm font-medium">km/h</span></p></div>
+            </div>
+
+            {/* SEZIONE DA - A CON CHIPS */}
+            <div className="w-full mt-6">
+              <p className={`text-xs font-bold uppercase mb-2 ${subTextClass}`}>Etichetta Percorso</p>
+              
+              <div className="flex gap-2 mb-3">
+                <input type="text" placeholder="Da (es. Casa)" value={tripStartLoc} onChange={(e) => setTripStartLoc(e.target.value)} onFocus={() => setActiveTagInput('start')} className={`w-full p-4 rounded-2xl font-bold text-sm focus:outline-none border transition-all ${cardClass}`} style={activeTagInput === 'start' ? { borderColor: hexPrimary, boxShadow: `0 0 0 2px ${hexPrimary}33` } : {}} />
+                <div className="flex items-center justify-center"><svg className="w-6 h-6 text-zinc-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg></div>
+                <input type="text" placeholder="A (es. Uni)" value={tripEndLoc} onChange={(e) => setTripEndLoc(e.target.value)} onFocus={() => setActiveTagInput('end')} className={`w-full p-4 rounded-2xl font-bold text-sm focus:outline-none border transition-all ${cardClass}`} style={activeTagInput === 'end' ? { borderColor: hexPrimary, boxShadow: `0 0 0 2px ${hexPrimary}33` } : {}} />
+              </div>
+
+              <div className="flex flex-wrap gap-2">
+                {suggestedLocations.map((loc: string) => (
+                  <button 
+                    key={loc} 
+                    onClick={() => {
+                      if (activeTagInput === 'start') setTripStartLoc(loc);
+                      else setTripEndLoc(loc);
+                    }}
+                    className={`px-3 py-1.5 rounded-full text-xs font-bold border transition-colors ${isDarkMode ? 'border-zinc-700 text-zinc-400 bg-zinc-800 hover:bg-zinc-700' : 'border-gray-300 text-gray-600 bg-white hover:bg-gray-100 shadow-sm'}`}
+                  >
+                    {loc}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+          </div>
+
+          <div className="w-full max-w-md mt-auto pt-6 flex flex-col gap-3">
+            <button onClick={handleSaveToCloud} disabled={isSaving} className={`w-full py-5 rounded-3xl font-black text-lg transition-all shadow-xl text-white ${isSaving ? 'opacity-50' : ''}`} style={{ backgroundColor: hexPrimary }}>
+              {isSaving ? 'INVIO DATI...' : 'SALVA NEL CLOUD'}
+            </button>
+            <button onClick={handleDiscard} disabled={isSaving} className={`w-full py-3 rounded-3xl font-bold transition-colors ${subTextClass} hover:text-red-500`}>Scarta Dati</button>
+          </div>
+        </div>
+      )}
+
+      {/* --- MENU LATERALE --- */}
+      {activeView === 'menu' && (
+        <div className={`absolute inset-0 z-50 flex flex-col p-6 pt-[calc(1.5rem+env(safe-area-inset-top))] animate-in slide-in-from-right duration-300 ${bgClass}`}>
+          <div className="flex justify-between items-center mb-10">
+            <h2 className="text-4xl font-black tracking-tighter">
+              <span style={{ color: hexPrimary }}>Road</span>
+              <span style={{ color: hexAccent }}>Record</span>
+            </h2>
+            <button onClick={() => setActiveView('map')} className={`p-2 rounded-full transition-colors active:scale-95 ${cardClass}`}><svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg></button>
+          </div>
+          <div className="flex flex-col gap-4">
+            <button onClick={() => setActiveView('leaderboard')} className={`flex items-center gap-4 p-5 rounded-2xl border active:scale-95 transition-all text-left ${cardClass}`}>
+              <div className="p-2 rounded-lg" style={{ backgroundColor: `${hexAccent}33`, color: hexAccent }}><svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" /></svg></div>
+              <span className="font-bold text-lg">Classifica Globale</span>
+            </button>
+            <button onClick={() => setActiveView('stats')} className={`flex items-center gap-4 p-5 rounded-2xl border active:scale-95 transition-all text-left ${cardClass}`}>
+              <div className="p-2 rounded-lg" style={{ backgroundColor: `${hexPrimary}33`, color: hexPrimary }}><svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" /></svg></div>
+              <span className="font-bold text-lg">Record Personali</span>
+            </button>
+            <button onClick={() => setActiveView('garage')} className={`flex items-center gap-4 p-5 rounded-2xl border active:scale-95 transition-all text-left ${cardClass}`}>
+              <div className="p-2 rounded-lg" style={{ backgroundColor: `${hexAccent}33`, color: hexAccent }}><svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" /></svg></div>
+              <span className="font-bold text-lg">Garage e Icona</span>
+            </button>
+            <button onClick={() => setActiveView('history')} className={`flex items-center gap-4 p-5 rounded-2xl border active:scale-95 transition-all text-left ${cardClass}`}>
+              <div className="p-2 rounded-lg" style={{ backgroundColor: `${hexPrimary}33`, color: hexPrimary }}><svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" /></svg></div>
+              <span className="font-bold text-lg">I Miei Percorsi</span>
+            </button>
+            <button onClick={() => setActiveView('settings')} className={`flex items-center gap-4 p-5 rounded-2xl border active:scale-95 transition-all text-left ${cardClass}`}>
+              <div className={`p-2 rounded-lg bg-zinc-500/20 ${subTextClass}`}><svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /></svg></div>
+              <span className="font-bold text-lg">Settings</span>
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* --- SCHERMATA IMPOSTAZIONI --- */}
+      {activeView === 'settings' && (
+        <div className={`absolute inset-0 z-50 flex flex-col p-6 pt-[calc(1.5rem+env(safe-area-inset-top))] animate-in slide-in-from-right duration-300 ${bgClass}`}>
+          <div className="flex items-center gap-4 mb-8">
+            <button onClick={() => setActiveView('menu')} className={`p-2 rounded-full transition-colors active:scale-95 ${cardClass}`}><svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg></button>
+            <h2 className="text-2xl font-black">Settings</h2>
+          </div>
+          <div className="flex-1 overflow-y-auto pb-[env(safe-area-inset-bottom)] flex flex-col gap-4">
+            
+            <div className={`p-5 rounded-2xl flex justify-between items-center border ${cardClass}`}>
+              <div><p className="font-bold">Il Mio Account</p><p className={`text-xs ${subTextClass}`}>{myNickname}</p></div>
+              <button onClick={() => setActiveView('profile')} className="px-4 py-2 rounded-lg font-bold text-sm transition-all" style={{ backgroundColor: `${hexPrimary}33`, color: hexPrimary }}>Modifica</button>
+            </div>
+
+            <div className={`p-5 rounded-2xl flex justify-between items-center border ${cardClass}`}>
+              <div><p className="font-bold">Tema Scuro Base</p><p className={`text-xs ${subTextClass}`}>Sfondi Mappa e UI</p></div>
+              <CustomToggle checked={isDarkMode} onChange={() => setIsDarkMode(!isDarkMode)} activeColor={hexPrimary} />
+            </div>
+
+            <div className={`p-5 rounded-2xl flex justify-between items-center border ${cardClass}`}>
+              <div><p className="font-bold">Widget Spotify</p><p className={`text-xs ${subTextClass}`}>Mostra musica in viaggio</p></div>
+              <div className="flex items-center gap-3">
+                {!spotifyToken && <button onClick={() => spotifyManager.login()} className="px-3 py-1.5 bg-[#1DB954] text-white rounded-lg font-bold text-xs shadow-md">Collega</button>}
+                <CustomToggle checked={enableSpotify} onChange={() => setEnableSpotify(!enableSpotify)} activeColor={hexPrimary} />
+              </div>
+            </div>
+
+            <div className={`p-5 rounded-2xl flex flex-col gap-4 border ${cardClass}`}>
+              <div><p className="font-bold">Tema Generale App</p><p className={`text-xs ${subTextClass}`}>Scegli una combinazione</p></div>
+              <div className="grid grid-cols-2 gap-2">
+                <button onClick={() => setAppTheme('blue')} className="p-3 rounded-xl border-2 font-bold text-xs transition-all" style={appTheme === 'blue' ? { borderColor: hexPrimary, color: hexPrimary, backgroundColor: `${hexPrimary}11` } : { borderColor: 'transparent', opacity: 0.6 }}>Blu Standard</button>
+                <button onClick={() => setAppTheme('black-white')} className="p-3 rounded-xl border-2 font-bold text-xs transition-all" style={appTheme === 'black-white' ? { borderColor: hexPrimary, color: hexPrimary, backgroundColor: `${hexPrimary}11` } : { borderColor: 'transparent', opacity: 0.6 }}>Bianco & Nero</button>
+                <button onClick={() => setAppTheme('black-orange')} className="p-3 rounded-xl border-2 font-bold text-xs transition-all" style={appTheme === 'black-orange' ? { borderColor: hexPrimary, color: hexPrimary, backgroundColor: `${hexPrimary}11` } : { borderColor: 'transparent', opacity: 0.6 }}>Nero & Arancio</button>
+                <button onClick={() => setAppTheme('purple-yellow')} className="p-3 rounded-xl border-2 font-bold text-xs transition-all" style={appTheme === 'purple-yellow' ? { borderColor: hexPrimary, color: hexPrimary, backgroundColor: `${hexPrimary}11` } : { borderColor: 'transparent', opacity: 0.6 }}>Viola & Giallo</button>
+                <button onClick={() => setAppTheme('red-white')} className="p-3 rounded-xl border-2 font-bold text-xs transition-all col-span-2" style={appTheme === 'red-white' ? { borderColor: hexPrimary, color: hexPrimary, backgroundColor: `${hexPrimary}11` } : { borderColor: 'transparent', opacity: 0.6 }}>Rosso & Bianco</button>
+              </div>
+
+              <div className="mt-2 pt-4 border-t border-zinc-700">
+                 <p className="font-bold text-sm mb-3">Crea Tema Personalizzato</p>
+                 <div className="flex items-center gap-6 justify-center">
+                    <div className="flex flex-col items-center gap-2">
+                       <span className={`text-[10px] font-bold uppercase ${subTextClass}`}>Road</span>
+                       <input type="color" value={customPrimary} onChange={(e) => { setCustomPrimary(e.target.value); setAppTheme('custom'); }} className="w-14 h-14 rounded-xl cursor-pointer bg-transparent border-0 p-0 shadow-lg" />
+                    </div>
+                    <div className="flex flex-col items-center gap-2">
+                       <span className={`text-[10px] font-bold uppercase ${subTextClass}`}>Record</span>
+                       <input type="color" value={customAccent} onChange={(e) => { setCustomAccent(e.target.value); setAppTheme('custom'); }} className="w-14 h-14 rounded-xl cursor-pointer bg-transparent border-0 p-0 shadow-lg" />
+                    </div>
+                 </div>
+              </div>
+            </div>
+
+            <div className="mt-8 mb-6 border-t border-zinc-700/50 pt-6">
+               <button onClick={() => { if(window.confirm("Sei sicuro di voler uscire dal tuo account?")) { if(onLogout) onLogout(); } }} className="w-full py-4 rounded-2xl font-black shadow-lg active:scale-95 transition-all text-white bg-red-600 border-b-4 border-red-800">
+                 ESCI DALL'ACCOUNT
+               </button>
+            </div>
+            
+          </div>
+        </div>
+      )}
+
+      {/* --- SCHERMATA PROFILO --- */}
+      {activeView === 'profile' && (
+        <div className={`absolute inset-0 z-50 flex flex-col p-6 pt-[calc(1.5rem+env(safe-area-inset-top))] animate-in slide-in-from-right duration-300 ${bgClass}`}>
+          <div className="flex items-center gap-4 mb-8">
+            <button onClick={() => setActiveView('settings')} className={`p-2 rounded-full transition-colors active:scale-95 ${cardClass}`}><svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg></button>
+            <h2 className="text-2xl font-black">Profilo Pilota</h2>
+          </div>
+          <div className="flex flex-col items-center gap-8 mt-4">
+            <input type="file" ref={fileInputRef} onChange={handleImageUpload} accept="image/*" className="hidden" />
+            
+            <div className="relative group cursor-pointer" onClick={() => fileInputRef.current?.click()}>
+              {avatarUrl ? (
+                <img src={avatarUrl} alt="Profile" className="w-32 h-32 rounded-full object-cover border-4 shadow-xl bg-black" style={{ borderColor: hexPrimary }} />
+              ) : (
+                <DefaultAvatar color={hexPrimary} className="w-32 h-32 rounded-full border-4 shadow-xl bg-zinc-900" />
+              )}
+              
+              <div className="absolute inset-0 bg-black/60 rounded-full flex flex-col items-center justify-center transition-all opacity-0 hover:opacity-100">
+                <svg className="w-8 h-8 text-white mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" /></svg>
+              </div>
+            </div>
+
+            <div className="w-full">
+              <label className={`block text-xs font-bold uppercase mb-2 ${subTextClass}`}>Nickname Pubblico</label>
+              <input type="text" value={myNickname} onChange={(e) => setMyNickname(e.target.value)} className={`w-full p-4 rounded-2xl font-bold text-lg focus:outline-none ${cardClass}`} />
+            </div>
+            <button onClick={handleSaveProfile} disabled={isSavingProfile} className={`w-full mt-4 py-4 rounded-2xl font-black shadow-lg active:scale-95 transition-all text-white border-b-4 ${isSavingProfile ? 'opacity-50 cursor-not-allowed' : ''}`} style={{ backgroundColor: hexPrimary, borderColor: hexAccent }}>
+              {isSavingProfile ? 'SALVATAGGIO IN CORSO...' : 'SALVA PROFILO E GARAGE'}
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* --- SCHERMATA GARAGE --- */}
+      {activeView === 'garage' && (
+        <div className={`absolute inset-0 z-50 flex flex-col p-6 pt-[calc(1.5rem+env(safe-area-inset-top))] animate-in slide-in-from-right duration-300 ${bgClass}`}>
+          <div className="flex items-center gap-4 mb-8">
+            <button onClick={() => setActiveView('menu')} className={`p-2 rounded-full transition-colors active:scale-95 ${cardClass}`}><svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg></button>
+            <h2 className="text-2xl font-black">Garage</h2>
+          </div>
+          <div className="flex-1 overflow-y-auto pb-[env(safe-area-inset-bottom)] flex flex-col gap-8">
+            <div>
+              <p className={`text-sm font-bold uppercase mb-4 tracking-wider ${subTextClass}`}>Costruttore Auto</p>
+              <div className="grid grid-cols-4 gap-3">
+                {CAR_BRANDS.map((brand: string) => (
+                  <button key={brand} onClick={() => handleBrandChange(brand)} className={`flex flex-col items-center justify-center p-3 rounded-2xl border-2 transition-all ${cardClass}`} style={carBrand === brand ? { borderColor: hexPrimary, color: hexPrimary, backgroundColor: `${hexPrimary}11` } : { borderColor: 'transparent' }}>
+                    <span className="text-xs font-bold truncate w-full text-center">{brand.substring(0,3).toUpperCase()}</span>
+                  </button>
+                ))}
+              </div>
+            </div>
+            <div>
+              <p className={`text-sm font-bold uppercase mb-4 tracking-wider ${subTextClass}`}>Colore LED Mappa</p>
+              <div className="flex flex-wrap justify-between px-2 gap-4">
+                {['#3b82f6', '#10b981', '#f59e0b', '#ef4444', '#8b5cf6', '#ec4899', '#ffffff', '#000000'].map((color: string) => (
+                  <button key={color} onClick={() => setCarColor(color)} className={`w-10 h-10 rounded-full shadow-lg transition-transform border border-white/20 active:scale-90 ${carColor === color ? 'scale-110 ring-4 ring-white/50' : 'opacity-70'}`} style={{ backgroundColor: color }} />
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* --- SCHERMATA RECORD --- */}
+      {activeView === 'stats' && (
+        <div className={`absolute inset-0 z-50 flex flex-col p-6 pt-[calc(1.5rem+env(safe-area-inset-top))] animate-in slide-in-from-right duration-300 ${bgClass}`}>
+          <div className="flex items-center gap-4 mb-8">
+            <button onClick={() => setActiveView('menu')} className={`p-2 rounded-full transition-colors active:scale-95 ${cardClass}`}><svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg></button>
+            <h2 className="text-2xl font-black">I Tuoi Record</h2>
+          </div>
+          <div className="flex-1 overflow-y-auto pb-[env(safe-area-inset-bottom)] flex flex-col gap-4">
+            {globalStats ? (
+              <>
+                <div className="p-8 rounded-3xl shadow-2xl border" style={{ backgroundColor: `${hexPrimary}22`, borderColor: `${hexPrimary}55`, color: hexPrimary }}>
+                  <p className="text-sm font-bold uppercase mb-2 tracking-widest opacity-80">Distanza Totale</p>
+                  <div className="flex items-baseline gap-2"><span className="text-6xl font-black tracking-tighter">{globalStats.total_distance?.toFixed(1) || '0.0'}</span><span className="text-xl font-bold opacity-70">km</span></div>
+                </div>
+                <div className="grid grid-cols-2 gap-4">
+                  <div className={`p-5 rounded-2xl border shadow-lg flex flex-col justify-center ${cardClass}`}>
+                    <p className={`text-[10px] font-bold uppercase mb-1 ${subTextClass}`}>Velocità Massima</p>
+                    <p className="text-2xl font-black text-red-500">{globalStats.max_speed?.toFixed(1) || '0.0'} <span className="text-sm opacity-50">km/h</span></p>
+                  </div>
+                  <div className={`p-5 rounded-2xl border shadow-lg flex flex-col justify-center ${cardClass}`}>
+                    <p className={`text-[10px] font-bold uppercase mb-1 ${subTextClass}`}>Viaggio Più Lungo</p>
+                    <p className="text-2xl font-black" style={{ color: hexPrimary }}>{globalStats.longest_trip?.toFixed(1) || '0.0'} <span className="text-sm opacity-50">km</span></p>
+                  </div>
+                </div>
+              </>
+            ) : (<div className="flex-1 flex items-center justify-center"><svg className="animate-spin w-8 h-8" style={{ color: hexPrimary }} fill="none" viewBox="0 0 24 24"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg></div>)}
+          </div>
+        </div>
+      )}
+
+      {/* --- SCHERMATA CLASSIFICA --- */}
+      {activeView === 'leaderboard' && (
+        <div className={`absolute inset-0 z-50 flex flex-col p-6 pt-[calc(1.5rem+env(safe-area-inset-top))] animate-in slide-in-from-right duration-300 ${bgClass}`}>
+          <div className="flex items-center gap-4 mb-6">
+            <button onClick={() => setActiveView('menu')} className={`p-2 rounded-full transition-colors active:scale-95 ${cardClass}`}><svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg></button>
+            <h2 className="text-2xl font-black">Classifica</h2>
+          </div>
+          
+          <div className={`flex p-1 rounded-xl mb-4 shadow-inner ${isDarkMode ? 'bg-zinc-800' : 'bg-gray-200'}`}>
+            <button onClick={() => setLeaderboardFilter('distance')} className={`flex-1 py-2 rounded-lg text-[10px] sm:text-xs font-black tracking-widest uppercase transition-all ${leaderboardFilter === 'distance' ? (isDarkMode ? 'bg-zinc-600 text-white shadow' : 'bg-white text-black shadow') : subTextClass}`}>Totale</button>
+            <button onClick={() => setLeaderboardFilter('maxSpeed')} className={`flex-1 py-2 rounded-lg text-[10px] sm:text-xs font-black tracking-widest uppercase transition-all ${leaderboardFilter === 'maxSpeed' ? (isDarkMode ? 'bg-zinc-600 text-white shadow' : 'bg-white text-black shadow') : subTextClass}`}>Vel Max</button>
+            <button onClick={() => setLeaderboardFilter('longestTrip')} className={`flex-1 py-2 rounded-lg text-[10px] sm:text-xs font-black tracking-widest uppercase transition-all ${leaderboardFilter === 'longestTrip' ? (isDarkMode ? 'bg-zinc-600 text-white shadow' : 'bg-white text-black shadow') : subTextClass}`}>Più Lungo</button>
+          </div>
+
+          <div className="flex-1 overflow-y-auto pb-[env(safe-area-inset-bottom)] flex flex-col gap-3">
+            {isLoadingLeaderboard ? (
+               <div className="flex-1 flex items-center justify-center"><svg className="animate-spin w-8 h-8" style={{ color: hexPrimary }} fill="none" viewBox="0 0 24 24"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg></div>
+            ) : sortedLeaderboard.length === 0 ? (
+               <p className={`text-sm text-center mt-10 ${subTextClass}`}>La classifica verrà sincronizzata a breve.</p>
+            ) : sortedLeaderboard.map((user: any, index: number) => {
+              return (
+                <div key={user.id || index} className={`flex items-center gap-4 p-4 rounded-2xl border ${cardClass}`}>
+                  <div className={`w-10 h-10 flex items-center justify-center rounded-xl font-black text-lg border ${index === 0 ? 'text-yellow-400 bg-yellow-400/10 border-yellow-400/30' : index === 1 ? 'text-gray-300 bg-gray-300/10 border-gray-300/30' : index === 2 ? 'text-amber-600 bg-amber-600/10 border-amber-600/30' : 'opacity-50 border-transparent'}`}>#{index + 1}</div>
+                  
+                  {user.avatar_url || user.avatar ? (
+                    <img src={user.avatar_url || user.avatar} alt="avatar" className="w-12 h-12 rounded-full object-cover border border-white/10" />
+                  ) : (
+                    <DefaultAvatar color={hexPrimary} className="w-12 h-12 rounded-full border border-white/10" />
+                  )}
+                  
+                  <div className="flex-1 min-w-0">
+                    <p className="font-bold truncate text-lg">{user.nickname || 'Pilota Anonimo'}</p>
+                  </div>
+                  <div className="text-right">
+                    <p className="text-2xl font-black">
+                      {leaderboardFilter === 'distance' ? (user.distance || 0).toFixed(0) : 
+                       leaderboardFilter === 'maxSpeed' ? (user.maxSpeed || 0).toFixed(0) : 
+                       (user.longestTrip || 0).toFixed(1)}
+                    </p>
+                    <p className={`text-xs font-bold uppercase tracking-widest ${subTextClass}`}>
+                      {leaderboardFilter === 'maxSpeed' ? 'km/h' : 'km'}
+                    </p>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      )}
+
+      {/* --- SCHERMATA STORICO --- */}
+      {activeView === 'history' && (
+         <div className={`absolute inset-0 z-50 flex flex-col p-6 pt-[calc(1.5rem+env(safe-area-inset-top))] animate-in slide-in-from-right duration-300 ${bgClass}`}>
+          <div className="flex items-center gap-4 mb-4">
+            <button onClick={() => setActiveView('menu')} className={`p-2 rounded-full transition-colors active:scale-95 ${cardClass}`}><svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg></button>
+            <h2 className="text-2xl font-black">Archivio Viaggi</h2>
+          </div>
+
+          <div className="flex gap-2 overflow-x-auto pb-4 mb-2 scrollbar-hide">
+             {availableFilterTags.map((tag: string) => (
+               <button key={tag} onClick={() => toggleFilterTag(tag)} className={`px-4 py-2 rounded-full text-xs font-bold border whitespace-nowrap transition-all ${activeFilterTags.includes(tag) ? 'border-white bg-white text-black shadow-md' : `border-zinc-700 ${subTextClass}`}`}>
+                 {tag}
+               </button>
+             ))}
+          </div>
+
+          <div className="flex-1 overflow-y-auto pb-[env(safe-area-inset-bottom)] flex flex-col gap-4">
+            {filteredHistory.length === 0 ? (
+              <div className="flex flex-col items-center justify-center h-full gap-2"><p className={`font-medium text-lg ${subTextClass}`}>Nessun viaggio trovato.</p></div>
+            ) : (
+              filteredHistory.map((trip: any) => (
+                <div key={trip.id} onClick={() => { setSelectedTrip(trip); setActiveView('tripDetail'); }} className={`rounded-2xl p-3 flex gap-4 border shadow-lg active:scale-[0.98] transition-all cursor-pointer relative ${cardClass}`}>
+                  <div className="w-24 h-24 rounded-xl overflow-hidden bg-zinc-900 flex-shrink-0 border border-black/10"><img src={trip.snapshot} alt="Mappa" className="w-full h-full object-cover" /></div>
+                  <div className="flex flex-col justify-center flex-1">
+                    <p className={`text-xs font-semibold uppercase ${subTextClass}`}>{trip.date}</p>
+                    <div className="flex items-baseline gap-1 mt-1"><p className="text-xl font-black">{trip.distance.toFixed(2)}</p><p className={`text-sm font-medium ${subTextClass}`}>km</p></div>
+                    {trip.tag && (
+                       <span className="mt-2 px-2 py-0.5 rounded text-[10px] font-bold w-fit bg-zinc-800 text-zinc-300 border border-zinc-700">{trip.tag}</span>
+                    )}
+                  </div>
+                </div>
+              ))
+            )}
+          </div>
+        </div>
+      )}
+
+      {/* --- DETTAGLIO VIAGGIO --- */}
+      {activeView === 'tripDetail' && selectedTrip && (
+        <div className={`absolute inset-0 z-50 flex flex-col animate-in zoom-in-95 duration-200 ${bgClass}`}>
+          <div className="relative h-[45%] w-full bg-black">
+            <img src={selectedTrip.snapshot} alt="Dettaglio Mappa" className="w-full h-full object-cover opacity-80" />
+            <div className="absolute top-0 left-0 right-0 p-6 pt-[calc(1.5rem+env(safe-area-inset-top))] bg-gradient-to-b from-black/80 to-transparent flex justify-between">
+              <button onClick={() => setActiveView('history')} className="p-3 bg-zinc-900/80 backdrop-blur-md rounded-full text-white shadow-lg active:scale-95 transition-all"><svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg></button>
+              <button onClick={handleDeleteTrip} className="p-3 bg-red-600/90 hover:bg-red-500 backdrop-blur-md rounded-full text-white shadow-lg active:scale-95 transition-all"><svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" /></svg></button>
+            </div>
+            <div className={`absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t ${isDarkMode ? 'from-black' : 'from-gray-100'} to-transparent`}></div>
+          </div>
+          <div className="flex-1 p-6 -mt-8 relative z-10 flex flex-col gap-4 pb-[env(safe-area-inset-bottom)]">
+            <div className={`p-6 rounded-3xl border shadow-2xl flex flex-col gap-6 ${cardClass}`}>
+              <div className={`flex justify-between items-end border-b ${isDarkMode ? 'border-zinc-800' : 'border-zinc-200'} pb-6`}>
+                <div>
+                  <p className={`text-sm font-bold uppercase mb-1 ${subTextClass}`}>Distanza Percorsa</p>
+                  <p className="text-5xl font-black">{selectedTrip.distance.toFixed(2)} <span className={`text-xl font-bold ${subTextClass}`}>km</span></p>
+                  {selectedTrip.tag && <span className="mt-2 inline-block px-3 py-1 rounded text-xs font-bold bg-zinc-800 text-zinc-300 border border-zinc-700">{selectedTrip.tag}</span>}
+                </div>
+                <div className="text-right"><p className={`text-sm font-bold uppercase mb-1 ${subTextClass}`}>Tempo</p><p className="text-2xl font-bold" style={{ color: hexPrimary }}>{formatTime(selectedTrip.time)}</p></div>
+              </div>
+              <div className="grid grid-cols-2 gap-4">
+                 <div><p className={`text-xs font-bold uppercase mb-1 ${subTextClass}`}>Velocità Media</p><p className="text-2xl font-black">{Math.round(selectedTrip.avgSpeed)} <span className={`text-sm font-bold ${subTextClass}`}>km/h</span></p></div>
+                 <div><p className={`text-xs font-bold uppercase mb-1 ${subTextClass}`}>Vel. Massima</p><p className="text-2xl font-black text-red-500">{selectedTrip.maxSpeed.toFixed(1)} <span className={`text-sm font-bold ${subTextClass}`}>km/h</span></p></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+    </div>
+  );
+}
+</file>
+
+<file path="src/components/SplashScreen.tsx">
+import { useEffect, useState } from 'react';
+
+export default function SplashScreen({ onFinish }: { onFinish: () => void }) {
+  // --- LETTURA TEMA GLOBALE DA MEMORIA ---
+  const [isDarkMode] = useState(() => localStorage.getItem('rr_dark') !== 'false');
+  const [appTheme] = useState(() => localStorage.getItem('rr_theme') || 'blue');
+  const [customPrimary] = useState(() => localStorage.getItem('rr_custom1') || '#10b981');
+  const [customAccent] = useState(() => localStorage.getItem('rr_custom2') || '#f59e0b');
+
+  const getThemeColors = () => {
+    let hexPrimary = '#3b82f6'; let hexAccent = '#60a5fa';
+    switch (appTheme) {
+      case 'black-white': hexPrimary = isDarkMode ? '#ffffff' : '#000000'; hexAccent = isDarkMode ? '#9ca3af' : '#4b5563'; break;
+      case 'black-orange': hexPrimary = isDarkMode ? '#ffffff' : '#000000'; hexAccent = '#f97316'; break;
+      case 'purple-yellow': hexPrimary = '#9611fe'; hexAccent = '#facc15'; break;
+      case 'red-white': hexPrimary = '#ef4444'; hexAccent = isDarkMode ? '#ffffff' : '#000000'; break;
+      case 'custom': hexPrimary = customPrimary; hexAccent = customAccent; break;
+    }
+    return { hexPrimary, hexAccent };
+  };
+
+  const { hexPrimary, hexAccent } = getThemeColors();
+  const bgClass = isDarkMode ? 'bg-black' : 'bg-gray-100';
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      onFinish();
+    }, 2500); // Rimane sullo schermo 2.5 secondi, poi sparisce
+    return () => clearTimeout(timer);
+  }, [onFinish]);
+
+  return (
+    <div className={`h-screen w-screen flex flex-col items-center justify-center relative overflow-hidden transition-colors duration-500 ${bgClass}`}>
+      
+      {/* Sfondo sfocato luminoso */}
+      <div className="absolute w-96 h-96 rounded-full blur-[100px] animate-pulse opacity-20" style={{ backgroundColor: hexPrimary }}></div>
+
+      <div className="relative z-10 flex flex-col items-center animate-in zoom-in duration-1000">
+        
+        {/* Icona Mappa che rimbalza */}
+        <div className="w-24 h-24 rounded-3xl flex items-center justify-center mb-6 shadow-2xl animate-bounce" style={{ backgroundColor: isDarkMode ? '#111' : '#fff' }}>
+          <svg className="w-12 h-12" style={{ color: hexPrimary }} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
+        </div>
+        
+        <h1 className="text-5xl font-black tracking-tighter drop-shadow-lg">
+          <span style={{ color: hexPrimary }}>Road</span>
+          <span style={{ color: hexAccent }}>Record</span>
+        </h1>
+        
+        {/* Puntino di caricamento */}
+        <div className="mt-8 flex gap-2">
+          <div className="w-3 h-3 rounded-full animate-ping" style={{ backgroundColor: hexAccent }}></div>
+        </div>
+
+      </div>
+    </div>
+  );
+}
+</file>
+
+<file path="src/hooks/useDriveTracker.ts">
+import { useState, useRef, useEffect } from 'react';
+import { registerPlugin } from '@capacitor/core';
+import { calculateDistance, calculateSpeed } from '../utils/geo';
+
+// Inizializziamo il plugin di Background Geolocation
+const BackgroundGeolocation = registerPlugin<any>('BackgroundGeolocation');
+
+export interface TrackingData {
+  lat: number;
+  lng: number;
+  speed: number;
+  timestamp: number;
+}
+
+interface SimplePosition {
+  lat: number;
+  lng: number;
+  timestamp: number;
+}
+
+export type TrackingStatus = 'idle' | 'countdown' | 'tracking' | 'paused' | 'finished';
+
+export const useDriveTracker = () => {
+  const [status, setStatus] = useState<TrackingStatus>('idle');
+  const [countdown, setCountdown] = useState(10);
+  
+  // Stati per la UI (in secondi)
+  const [totalTime, setTotalTime] = useState(0);
+  const [effectiveTime, setEffectiveTime] = useState(0);
+  const [pauseTime, setPauseTime] = useState(0);
+
+  const [currentSpeed, setCurrentSpeed] = useState(0);
+  const [totalDistance, setTotalDistance] = useState(0);
+  const [route, setRoute] = useState<TrackingData[]>([]);
+
+  const watchId = useRef<string | null>(null);
+  const lastPosition = useRef<SimplePosition | null>(null);
+  const isPausedRef = useRef(false);
+
+  // --- REFS PER IL TEMPO ASSOLUTO (ANTI-BACKGROUND) ---
+  const segmentStartTimestamp = useRef<number>(0);
+  const accumulatedActiveTime = useRef<number>(0); // In millisecondi
+  const accumulatedPauseTime = useRef<number>(0);  // In millisecondi
+
+  // --- 1. GESTIONE SCORRIMENTO TEMPO ---
+  useEffect(() => {
+    let interval: ReturnType<typeof setInterval>;
+
+    if (status === 'countdown') {
+      interval = setInterval(() => {
+        setCountdown((prev) => prev - 1);
+      }, 1000);
+    } 
+    else if (status === 'tracking' || status === 'paused') {
+      // Aggiorniamo la UI ogni secondo, ma calcolando la VERA differenza di tempo!
+      interval = setInterval(() => {
+        const now = Date.now();
+        
+        if (status === 'tracking') {
+          const currentActive = accumulatedActiveTime.current + (now - segmentStartTimestamp.current);
+          setEffectiveTime(Math.floor(currentActive / 1000));
+          setPauseTime(Math.floor(accumulatedPauseTime.current / 1000));
+          setTotalTime(Math.floor((currentActive + accumulatedPauseTime.current) / 1000));
+        } 
+        else if (status === 'paused') {
+          const currentPause = accumulatedPauseTime.current + (now - segmentStartTimestamp.current);
+          setEffectiveTime(Math.floor(accumulatedActiveTime.current / 1000));
+          setPauseTime(Math.floor(currentPause / 1000));
+          setTotalTime(Math.floor((accumulatedActiveTime.current + currentPause) / 1000));
+        }
+      }, 1000);
+    }
+
+    return () => {
+      if (interval) clearInterval(interval);
+    };
+  }, [status]);
+
+  // --- 2. CONTROLLO FINE COUNTDOWN ---
+  useEffect(() => {
+    if (status === 'countdown' && countdown <= 0) {
+      startActualTracking();
+    }
+  }, [status, countdown]);
+
+  const startCountdown = () => {
+    // Reset di tutti i tempi e dati
+    setTotalTime(0);
+    setEffectiveTime(0);
+    setPauseTime(0);
+    accumulatedActiveTime.current = 0;
+    accumulatedPauseTime.current = 0;
+    
+    setTotalDistance(0);
+    setCurrentSpeed(0);
+    setRoute([]);
+    setCountdown(10);
+    setStatus('countdown');
+    isPausedRef.current = false;
+  };
+
+  const startActualTracking = async () => {
+    setStatus('tracking'); 
+    segmentStartTimestamp.current = Date.now(); // Inizio del tempo effettivo!
+    
+    try {
+      const id = await BackgroundGeolocation.addWatcher(
+        {
+          backgroundTitle: "Tracciamento in corso",
+          backgroundMessage: "Drive Tracker sta registrando il tuo viaggio in background.",
+          requestPermissions: true,
+          stale: false,
+          distanceFilter: 5 
+        },
+        (location: any, err: any) => {
+          if (err || !location) return;
+          
+          if (isPausedRef.current) {
+            setCurrentSpeed(0);
+            return;
+          }
+
+          const latitude = location.latitude;
+          const longitude = location.longitude;
+          const timestamp = location.time || Date.now();
+          
+          let speed = location.speed != null ? (location.speed * 3.6) : 0; 
+
+          if (lastPosition.current) {
+              const distance = calculateDistance(
+                  lastPosition.current.lat,
+                  lastPosition.current.lng,
+                  latitude,
+                  longitude
+              );
+              
+              setTotalDistance(prev => prev + distance);
+
+              if (location.speed == null) {
+                 const timeDiff = timestamp - lastPosition.current.timestamp;
+                 speed = calculateSpeed(distance, timeDiff);
+              }
+          }
+
+          setCurrentSpeed(speed);
+          lastPosition.current = { lat: latitude, lng: longitude, timestamp };
+          
+          setRoute(prev => [...prev, { lat: latitude, lng: longitude, speed, timestamp }]);
+        }
+      );
+
+      watchId.current = id;
+
+    } catch (error) {
+      console.error("Errore avvio Background Geolocation:", error);
+      alert("Il tracciamento in background è supportato solo sui dispositivi nativi (iOS/Android).");
+    }
+  };
+
+  const pauseTracking = () => {
+    // Aggiungiamo il tempo trascorso finora al "serbatoio" del tempo attivo
+    accumulatedActiveTime.current += (Date.now() - segmentStartTimestamp.current);
+    segmentStartTimestamp.current = Date.now(); // Facciamo partire il cronometro della pausa
+    
+    setStatus('paused');
+    isPausedRef.current = true;
+  };
+
+  const resumeTracking = () => {
+    // Aggiungiamo il tempo trascorso finora al "serbatoio" della pausa
+    accumulatedPauseTime.current += (Date.now() - segmentStartTimestamp.current);
+    segmentStartTimestamp.current = Date.now(); // Facciamo ripartire il cronometro attivo
+    
+    setStatus('tracking');
+    isPausedRef.current = false;
+    lastPosition.current = null; // Resettiamo l'ultima posizione per non fare sbalzi di km
+  };
+
+  const stopTracking = async () => {
+    if (watchId.current) {
+      await BackgroundGeolocation.removeWatcher({ id: watchId.current });
+      watchId.current = null;
+    }
+    
+    // Calcoliamo l'ultimo spezzone di tempo prima di chiudere
+    if (status === 'tracking') {
+      accumulatedActiveTime.current += (Date.now() - segmentStartTimestamp.current);
+    } else if (status === 'paused') {
+      accumulatedPauseTime.current += (Date.now() - segmentStartTimestamp.current);
+    }
+
+    setStatus('finished');
+    isPausedRef.current = false;
+    lastPosition.current = null;
+  };
+
+  return {
+    status,
+    countdown,
+    totalTime,
+    effectiveTime,
+    pauseTime,
+    currentSpeed,
+    totalDistance,
+    route,
+    startCountdown,
+    pauseTracking,
+    resumeTracking,
+    stopTracking
+  };
+};
+</file>
+
+<file path="src/services/authManager.ts">
+// src/services/authManager.ts
+import { supabase } from '../supabaseClient';
+
+export const authManager = {
+  // Registrazione nuovo utente
+  async signUp(email: string, password: string) {
+    const { data, error } = await supabase.auth.signUp({ email, password });
+    if (error) throw error;
+    return data;
+  },
+
+  // Login utente esistente
+  async signIn(email: string, password: string) {
+    const { data, error } = await supabase.auth.signInWithPassword({ email, password });
+    if (error) throw error;
+    return data;
+  },
+
+  // Logout
+  async signOut() {
+    const { error } = await supabase.auth.signOut();
+    if (error) throw error;
+  },
+
+  // Recupera l'utente attualmente loggato
+  async getCurrentUser() {
+    const { data: { session } } = await supabase.auth.getSession();
+    return session?.user || null;
+  }
+};
+</file>
+
+<file path="src/services/routeManager.ts">
+// src/services/routeManager.ts
+import { supabase } from '../supabaseClient';
+import { Network } from '@capacitor/network';
+import { Preferences } from '@capacitor/preferences';
+export interface RouteStats {
+  distance_km: number;
+  avg_speed_kmh: number;
+  max_speed_kmh: number;
+  total_time_seconds: number;
+  driving_time_seconds: number;
+  pause_time_seconds: number;
+  route_data?: any;
+  tag?: string; // <--- AGGIUNGI QUESTO
+}
+
+const OFFLINE_KEY = 'offline_pending_routes';
+
+export const routeManager = {
+
+  // FASE 4.2 & 5.2: Salvataggio con Auth
+  async saveRoute(base64Image: string, stats: RouteStats) {
+    const status = await Network.getStatus();
+    
+    if (!status.connected) {
+      console.warn("Nessuna connessione. Salvataggio in locale...");
+      await this.saveToOfflineStorage(base64Image, stats);
+      return { success: true, offline: true };
+    }
+
+    try {
+      // FASE 5: Controllo utente loggato
+      const { data: { session } } = await supabase.auth.getSession();
+      if (!session?.user) throw new Error("Devi effettuare il login per salvare nel Cloud.");
+      const userId = session.user.id;
+
+      // 1. Upload Immagine
+      const fileName = `${userId}_${Date.now()}.png`; // Rendiamo il nome file unico per utente
+      const res = await fetch(base64Image);
+      const blob = await res.blob();
+
+      const { error: uploadError } = await supabase.storage
+        .from('snapshots')
+        .upload(fileName, blob, { contentType: 'image/png' });
+
+      if (uploadError) throw uploadError;
+
+      const { data: publicUrlData } = supabase.storage
+        .from('snapshots')
+        .getPublicUrl(fileName);
+
+      // 2. Salvataggio Database con user_id!
+      const { error: dbError } = await supabase.from('routes').insert({
+        user_id: userId,
+        snapshot_url: publicUrlData.publicUrl,
+        ...stats
+      });
+
+      if (dbError) throw dbError;
+
+      return { success: true, offline: false };
+
+    } catch (error) {
+      console.error("Errore Cloud:", error);
+      await this.saveToOfflineStorage(base64Image, stats);
+      return { success: true, offline: true };
+    }
+  },
+
+  // FASE 5.2.2 & 5.2.3: Recupero Storico con Paginazione
+  // page = 0 (primi 10), page = 1 (da 11 a 20), ecc.
+  async getRoutes(page: number = 0, limit: number = 10) {
+    const { data: { session } } = await supabase.auth.getSession();
+    if (!session?.user) return []; // Se non c'è utente, niente storico
+
+    const from = page * limit;
+    const to = from + limit - 1;
+
+    // Grazie alle RLS di Supabase (Fase 1), questa query scaricherà AUTOMATICAMENTE
+    // solo i viaggi dell'utente loggato, senza bisogno di scrivere "WHERE user_id = ..."
+    const { data, error } = await supabase
+      .from('routes')
+      .select('*')
+      .order('created_at', { ascending: false }) // I più recenti prima
+      .range(from, to); // FASE 5.2.3: Paginazione!
+
+    if (error) {
+      console.error("Errore recupero storico:", error);
+      return [];
+    }
+
+    return data;
+  },
+
+  // --- LOGICA OFFLINE (Invariata) ---
+  async saveToOfflineStorage(base64Image: string, stats: RouteStats) {
+    const { value } = await Preferences.get({ key: OFFLINE_KEY });
+    const pendingRoutes = value ? JSON.parse(value) : [];
+    pendingRoutes.push({ base64Image, stats, timestamp: Date.now() });
+    await Preferences.set({ key: OFFLINE_KEY, value: JSON.stringify(pendingRoutes) });
+  },
+
+  async syncOfflineRoutes() {
+    const status = await Network.getStatus();
+    if (!status.connected) return;
+
+    const { value } = await Preferences.get({ key: OFFLINE_KEY });
+    if (!value) return;
+
+    const pendingRoutes = JSON.parse(value);
+    if (pendingRoutes.length === 0) return;
+    
+    const failedRoutes = [];
+    for (const route of pendingRoutes) {
+      try {
+        await this.saveRoute(route.base64Image, route.stats);
+      } catch (e) {
+        failedRoutes.push(route);
+      }
+    }
+    await Preferences.set({ key: OFFLINE_KEY, value: JSON.stringify(failedRoutes) });
+  }
+};
+</file>
+
+<file path="src/services/spotifyManager.ts">
+// Il tuo VERO Client ID
+const CLIENT_ID = 'c4eeceee848d474db514637906f13e5d'; 
+const REDIRECT_URI = window.location.origin + '/'; 
+
+// Costruiamo gli indirizzi ufficiali spezzandoli per evitare i filtri di censura
+const SPOTIFY_AUTH = 'https://' + 'accounts.spotify.com' + '/authorize?';
+const SPOTIFY_TOKEN = 'https://' + 'accounts.spotify.com' + '/api/token';
+const SPOTIFY_API = 'https://' + 'api.spotify.com' + '/v1/me/player/currently-playing';
+
+// --- MOTORE CRITTOGRAFICO PKCE ---
+const generateRandomString = (length: number) => {
+  const possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  const values = crypto.getRandomValues(new Uint8Array(length));
+  return values.reduce((acc, x) => acc + possible[x % possible.length], "");
+};
+
+const sha256 = async (plain: string) => {
+  const encoder = new TextEncoder();
+  const data = encoder.encode(plain);
+  return window.crypto.subtle.digest('SHA-256', data);
+};
+
+const base64encode = (input: ArrayBuffer) => {
+  return btoa(String.fromCharCode(...new Uint8Array(input)))
+    .replace(/=/g, '')
+    .replace(/\+/g, '-')
+    .replace(/\//g, '_');
+};
+
+export const spotifyManager = {
+  // 1. Inizia il login chiedendo il "CODE" tramite PKCE
+  async login() {
+    const codeVerifier = generateRandomString(64);
+    window.localStorage.setItem('code_verifier', codeVerifier);
+    
+    const hashed = await sha256(codeVerifier);
+    const codeChallenge = base64encode(hashed);
+
+    // Chiediamo sia il current-playing che lo stato generale
+    const scopes = ['user-read-currently-playing', 'user-read-playback-state'];
+    
+    const params = new URLSearchParams({
+      response_type: 'code',
+      client_id: CLIENT_ID,
+      scope: scopes.join(' '),
+      redirect_uri: REDIRECT_URI,
+      code_challenge_method: 'S256',
+      code_challenge: codeChallenge,
+      show_dialog: 'true' // Forza la finestra per farti fare un login pulito
+    });
+
+    window.location.href = SPOTIFY_AUTH + params.toString();
+  },
+
+  // 2. Al ritorno nell'app, scambia il Code con il Token
+  async extractTokenFromUrl() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const code = urlParams.get('code');
+    
+    if (!code) return null;
+
+    const codeVerifier = window.localStorage.getItem('code_verifier');
+    if (!codeVerifier) return null;
+    
+    try {
+      const payload = new URLSearchParams({
+        client_id: CLIENT_ID,
+        grant_type: 'authorization_code',
+        code: code,
+        redirect_uri: REDIRECT_URI,
+        code_verifier: codeVerifier
+      });
+
+      const response = await fetch(SPOTIFY_TOKEN, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: payload
+      });
+
+      const data = await response.json();
+      window.history.replaceState({}, document.title, window.location.pathname);
+      
+      if (data.access_token) {
+        return data.access_token; 
+      }
+    } catch (err) {
+      console.error('Errore durante lo scambio del token PKCE:', err);
+    }
+    return null;
+  },
+
+  // 3. Polling per leggere la canzone in riproduzione
+  async getCurrentlyPlaying(token: string) {
+    try {
+      const res = await fetch(SPOTIFY_API, {
+        headers: { 'Authorization': `Bearer ${token}` }
+      });
+
+      // Se il token è scaduto, cancella e chiedi un nuovo login
+      if (res.status === 401) {
+        console.warn("Token Spotify scaduto.");
+        localStorage.removeItem('spotifyToken');
+        return null;
+      }
+
+      if (res.status === 204 || res.status > 400) return null;
+
+      const data = await res.json();
+      if (!data || !data.item) return null;
+
+      return {
+        title: data.item.name,
+        artist: data.item.artists.map((a: any) => a.name).join(', '),
+        image: data.item.album.images[0]?.url,
+        isPlaying: data.is_playing
+      };
+    } catch (err) {
+      console.error("Errore fetch Spotify API:", err);
+      return null;
+    }
+  }
+};
+</file>
+
+<file path="src/services/userManager.ts">
+import { supabase } from '../supabaseClient';
+
+export const userManager = {
+  // Recupera i Record Personali
+  async getUserRecords() {
+    const { data, error } = await supabase.rpc('get_user_records');
+    if (error) { console.error("Errore nel recupero dei record:", error); return null; }
+    return data;
+  },
+
+  // Scarica dal DB anche Nickname e Avatar, non solo l'auto
+  async getPreferences() {
+    const { data: { session } } = await supabase.auth.getSession();
+    if (!session?.user) return null;
+
+    const { data, error } = await supabase
+      .from('user_preferences')
+      .select('car_icon, car_color, nickname, avatar_url')
+      .eq('id', session.user.id)
+      .single();
+
+    if (error && error.code !== 'PGRST116') {
+      console.error("Errore nel recupero preferenze:", error);
+    }
+    return data;
+  },
+
+  // Salva le preferenze del Garage
+  async savePreferences(car_icon: string, car_color: string) {
+    const { data: { session } } = await supabase.auth.getSession();
+    if (!session?.user) return false;
+
+    const { error } = await supabase
+      .from('user_preferences')
+      .upsert({ id: session.user.id, car_icon, car_color, updated_at: new Date().toISOString() });
+
+    if (error) { console.error("Errore salvataggio preferenze:", error); return false; }
+    return true;
+  },
+
+  // Prende il file locale e lo spara nel Bucket di Supabase
+  async uploadAvatar(base64Image: string): Promise<string | null> {
+    const { data: { session } } = await supabase.auth.getSession();
+    if (!session?.user) return null;
+
+    try {
+      const res = await fetch(base64Image);
+      const blob = await res.blob();
+      // Chiamiamo il file col tuo ID, così se cambi foto sovrascrive la vecchia
+      const fileName = `${session.user.id}_avatar.png`; 
+
+      const { error } = await supabase.storage
+        .from('avatars')
+        .upload(fileName, blob, { contentType: 'image/png', upsert: true });
+
+      if (error) throw error;
+
+      const { data } = supabase.storage.from('avatars').getPublicUrl(fileName);
+      return `${data.publicUrl}?t=${Date.now()}`;
+    } catch (error) {
+      console.error("Errore upload avatar:", error);
+      return null;
+    }
+  },
+
+  // Aggiornamento Profilo Utente
+  async updateProfile(nickname: string, avatar_url: string) {
+    const { data: { session } } = await supabase.auth.getSession();
+    if (!session?.user) return false;
+
+    const { error } = await supabase
+      .from('user_preferences')
+      .upsert({ id: session.user.id, nickname, avatar_url, updated_at: new Date().toISOString() });
+
+    if (error) { console.error("Errore salvataggio profilo:", error); return false; }
+    return true;
+  },
+
+  // Download della Classifica Globale
+  async getLeaderboard() {
+    const { data, error } = await supabase.rpc('get_global_leaderboard');
+    if (error) { console.error("Errore nel recupero della classifica:", error); return []; }
+    return data;
+  }
+};
+</file>
+
+<file path="src/utils/geo.ts">
+// src/utils/geo.ts
+
+// Funzione di utilità per convertire i gradi in radianti
+const toRad = (value: number) => (value * Math.PI) / 180;
+
+// Calcola la distanza in km tra due coordinate usando l'algoritmo Haversine
+export const calculateDistance = (lat1: number, lon1: number, lat2: number, lon2: number): number => {
+  const R = 6371; // Raggio medio della Terra in km
+  const dLat = toRad(lat2 - lat1);
+  const dLon = toRad(lon2 - lon1);
+  const a =
+    Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+    Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) *
+    Math.sin(dLon / 2) * Math.sin(dLon / 2);
+  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+  return R * c; // Ritorna la distanza in Km
+};
+
+// Calcola la velocità istantanea in km/h in base alla distanza e al tempo trascorso
+export const calculateSpeed = (distanceKm: number, timeDiffMs: number): number => {
+  if (timeDiffMs === 0) return 0;
+  const timeDiffHours = timeDiffMs / (1000 * 60 * 60);
+  return distanceKm / timeDiffHours;
+};
+</file>
+
+<file path="src/App.tsx">
+import { useState, useEffect } from 'react';
+import MapOverlay from './components/MapOverlay';
+import SplashScreen from './components/SplashScreen';
+import LoginScreen from './components/LoginScreen';
+import { spotifyManager } from './services/spotifyManager'; 
+import { authManager } from './services/authManager';
+
+function App() {
+  const [showSplash, setShowSplash] = useState(true);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+  useEffect(() => {
+    // 1. Check Spotify Token (Ora gestito correttamente in asincrono!)
+    const checkSpotifyToken = async () => {
+      const token = await spotifyManager.extractTokenFromUrl();
+      if (token) {
+        localStorage.setItem('spotifyToken', token);
+        window.location.hash = ''; 
+      }
+    };
+    checkSpotifyToken();
+
+    // 2. AUTO-LOGIN 
+    const checkSession = async () => {
+      // Controlla prima se c'è il nostro salvataggio locale (il "Resta collegato")
+      if (localStorage.getItem('rr_logged_in') === 'true') {
+        setIsAuthenticated(true);
+      }
+      
+      try {
+        const session = await authManager.getCurrentUser?.(); 
+        if (session) setIsAuthenticated(true);
+      } catch (error) {
+        console.log("Nessuna sessione backend attiva");
+      }
+    };
+    checkSession();
+  }, []);
+
+  const handleLogout = async () => {
+    try {
+      await authManager.signOut?.(); 
+    } catch(e) {}
+    localStorage.removeItem('rr_logged_in'); // Cancella la memoria!
+    setIsAuthenticated(false); 
+  };
+
+  return (
+    <div className="h-screen w-screen bg-black overflow-hidden">
+      {showSplash && <SplashScreen onFinish={() => setShowSplash(false)} />}
+      {!showSplash && !isAuthenticated && <LoginScreen onLoginSuccess={() => setIsAuthenticated(true)} />}
+      {!showSplash && isAuthenticated && <MapOverlay onLogout={handleLogout} />}
+    </div>
+  );
+}
+
+export default App;
+</file>
+
+<file path="src/index.css">
+@import "tailwindcss";
+
+/* Il nostro reset per l'app mobile */
+body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden; 
+  background-color: #f3f4f6; 
+}
+</file>
+
+<file path="src/main.tsx">
+import { StrictMode } from 'react'
+import { createRoot } from 'react-dom/client'
+import './index.css'
+import App from './App.tsx'
+
+createRoot(document.getElementById('root')!).render(
+  <StrictMode>
+    <App />
+  </StrictMode>,
+)
+</file>
+
+<file path="src/supabaseClient.ts">
+import { createClient } from '@supabase/supabase-js';
+
+// Vite espone le variabili d'ambiente tramite import.meta.env
+const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
+const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
+
+export const supabase = createClient(supabaseUrl, supabaseAnonKey);
+</file>
+
+<file path="src/vite-env.d.ts">
+declare module 'react-map-gl';
+</file>
+
+<file path=".gitignore">
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+dist
+dist-ssr
+*.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+# Secrets
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+</file>
+
+<file path="capacitor.config.ts">
+import type { CapacitorConfig } from '@capacitor/cli';
+
+const config: CapacitorConfig = {
+  appId: 'com.tuonome.drivetracker',
+  appName: 'DriveTracker',
+  webDir: 'dist'
+};
+
+export default config;
+</file>
+
+<file path="eslint.config.js">
+import js from '@eslint/js'
+import globals from 'globals'
+import reactHooks from 'eslint-plugin-react-hooks'
+import reactRefresh from 'eslint-plugin-react-refresh'
+import tseslint from 'typescript-eslint'
+import { defineConfig, globalIgnores } from 'eslint/config'
+
+export default defineConfig([
+  globalIgnores(['dist']),
+  {
+    files: ['**/*.{ts,tsx}'],
+    extends: [
+      js.configs.recommended,
+      tseslint.configs.recommended,
+      reactHooks.configs.flat.recommended,
+      reactRefresh.configs.vite,
+    ],
+    languageOptions: {
+      ecmaVersion: 2020,
+      globals: globals.browser,
+    },
+  },
+])
+</file>
+
+<file path="index.html">
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1, user-scalable=no" />
+    <title>drive-tracker</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+</file>
+
+<file path="package.json">
+{
+  "name": "drive-tracker",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "lint": "eslint .",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@capacitor-community/background-geolocation": "^1.2.26",
+    "@capacitor/android": "^7.6.0",
+    "@capacitor/core": "^7.6.0",
+    "@capacitor/ios": "^7.6.0",
+    "@capacitor/network": "^7.0.4",
+    "@capacitor/preferences": "^7.0.4",
+    "@supabase/supabase-js": "^2.98.0",
+    "mapbox-gl": "^3.20.0",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "react-map-gl": "^7.1.9"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "^7.6.0",
+    "@eslint/js": "^9.39.1",
+    "@tailwindcss/vite": "^4.2.1",
+    "@types/mapbox-gl": "^3.4.1",
+    "@types/node": "^24.10.1",
+    "@types/react": "^19.2.7",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^5.1.1",
+    "autoprefixer": "^10.4.27",
+    "eslint": "^9.39.1",
+    "eslint-plugin-react-hooks": "^7.0.1",
+    "eslint-plugin-react-refresh": "^0.4.24",
+    "globals": "^16.5.0",
+    "postcss": "^8.5.8",
+    "tailwindcss": "^4.2.1",
+    "typescript": "~5.9.3",
+    "typescript-eslint": "^8.48.0",
+    "vite": "^7.3.1"
+  }
+}
+</file>
+
+<file path="README.md">
+# React + TypeScript + Vite
+
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+
+Currently, two official plugins are available:
+
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+
+## React Compiler
+
+The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+
+## Expanding the ESLint configuration
+
+If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+
+```js
+export default defineConfig([
+  globalIgnores(['dist']),
+  {
+    files: ['**/*.{ts,tsx}'],
+    extends: [
+      // Other configs...
+
+      // Remove tseslint.configs.recommended and replace with this
+      tseslint.configs.recommendedTypeChecked,
+      // Alternatively, use this for stricter rules
+      tseslint.configs.strictTypeChecked,
+      // Optionally, add this for stylistic rules
+      tseslint.configs.stylisticTypeChecked,
+
+      // Other configs...
+    ],
+    languageOptions: {
+      parserOptions: {
+        project: ['./tsconfig.node.json', './tsconfig.app.json'],
+        tsconfigRootDir: import.meta.dirname,
+      },
+      // other options...
+    },
+  },
+])
+```
+
+You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+
+```js
+// eslint.config.js
+import reactX from 'eslint-plugin-react-x'
+import reactDom from 'eslint-plugin-react-dom'
+
+export default defineConfig([
+  globalIgnores(['dist']),
+  {
+    files: ['**/*.{ts,tsx}'],
+    extends: [
+      // Other configs...
+      // Enable lint rules for React
+      reactX.configs['recommended-typescript'],
+      // Enable lint rules for React DOM
+      reactDom.configs.recommended,
+    ],
+    languageOptions: {
+      parserOptions: {
+        project: ['./tsconfig.node.json', './tsconfig.app.json'],
+        tsconfigRootDir: import.meta.dirname,
+      },
+      // other options...
+    },
+  },
+])
+```
+</file>
+
+<file path="tsconfig.app.json">
+{
+  "compilerOptions": {
+    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
+    "target": "ES2022",
+    "useDefineForClassFields": true,
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "module": "ESNext",
+    "types": ["vite/client"],
+    "skipLibCheck": true,
+
+    /* Bundler mode */
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    "verbatimModuleSyntax": true,
+    "moduleDetection": "force",
+    "noEmit": true,
+    "jsx": "react-jsx",
+
+    /* Linting */
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "erasableSyntaxOnly": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUncheckedSideEffectImports": true
+  },
+  "include": ["src"]
+}
+</file>
+
+<file path="tsconfig.json">
+{
+  "files": [],
+  "references": [
+    { "path": "./tsconfig.app.json" },
+    { "path": "./tsconfig.node.json" }
+  ]
+}
+</file>
+
+<file path="tsconfig.node.json">
+{
+  "compilerOptions": {
+    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.node.tsbuildinfo",
+    "target": "ES2023",
+    "lib": ["ES2023"],
+    "module": "ESNext",
+    "types": ["node"],
+    "skipLibCheck": true,
+
+    /* Bundler mode */
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    "verbatimModuleSyntax": true,
+    "moduleDetection": "force",
+    "noEmit": true,
+
+    /* Linting */
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "erasableSyntaxOnly": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUncheckedSideEffectImports": true
+  },
+  "include": ["vite.config.ts"]
+}
+</file>
+
+<file path="vite.config.ts">
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+import tailwindcss from '@tailwindcss/vite'
+
+// https://vite.dev/config/
+export default defineConfig({
+  plugins: [
+    react(),
+    tailwindcss(),
+  ],
+})
+</file>
+
+</files>
