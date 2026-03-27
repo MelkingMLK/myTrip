@@ -61,7 +61,21 @@ android/
             splash.png
           drawable-land-hdpi/
             splash.png
+          drawable-land-ldpi/
+            splash.png
           drawable-land-mdpi/
+            splash.png
+          drawable-land-night-hdpi/
+            splash.png
+          drawable-land-night-ldpi/
+            splash.png
+          drawable-land-night-mdpi/
+            splash.png
+          drawable-land-night-xhdpi/
+            splash.png
+          drawable-land-night-xxhdpi/
+            splash.png
+          drawable-land-night-xxxhdpi/
             splash.png
           drawable-land-xhdpi/
             splash.png
@@ -69,9 +83,25 @@ android/
             splash.png
           drawable-land-xxxhdpi/
             splash.png
+          drawable-night/
+            splash.png
           drawable-port-hdpi/
             splash.png
+          drawable-port-ldpi/
+            splash.png
           drawable-port-mdpi/
+            splash.png
+          drawable-port-night-hdpi/
+            splash.png
+          drawable-port-night-ldpi/
+            splash.png
+          drawable-port-night-mdpi/
+            splash.png
+          drawable-port-night-xhdpi/
+            splash.png
+          drawable-port-night-xxhdpi/
+            splash.png
+          drawable-port-night-xxxhdpi/
             splash.png
           drawable-port-xhdpi/
             splash.png
@@ -87,22 +117,32 @@ android/
             ic_launcher_round.xml
             ic_launcher.xml
           mipmap-hdpi/
+            ic_launcher_background.png
+            ic_launcher_foreground.png
+            ic_launcher_round.png
+            ic_launcher.png
+          mipmap-ldpi/
+            ic_launcher_background.png
             ic_launcher_foreground.png
             ic_launcher_round.png
             ic_launcher.png
           mipmap-mdpi/
+            ic_launcher_background.png
             ic_launcher_foreground.png
             ic_launcher_round.png
             ic_launcher.png
           mipmap-xhdpi/
+            ic_launcher_background.png
             ic_launcher_foreground.png
             ic_launcher_round.png
             ic_launcher.png
           mipmap-xxhdpi/
+            ic_launcher_background.png
             ic_launcher_foreground.png
             ic_launcher_round.png
             ic_launcher.png
           mipmap-xxxhdpi/
+            ic_launcher_background.png
             ic_launcher_foreground.png
             ic_launcher_round.png
             ic_launcher.png
@@ -136,7 +176,15 @@ android/
   settings.gradle
   variables.gradle
 assets/
-  icona.png
+  icon.png
+icons/
+  icon-128.webp
+  icon-192.webp
+  icon-256.webp
+  icon-48.webp
+  icon-512.webp
+  icon-72.webp
+  icon-96.webp
 ios/
   App/
     App/
@@ -146,6 +194,12 @@ ios/
           Contents.json
         Splash.imageset/
           Contents.json
+          Default@1x~universal~anyany-dark.png
+          Default@1x~universal~anyany.png
+          Default@2x~universal~anyany-dark.png
+          Default@2x~universal~anyany.png
+          Default@3x~universal~anyany-dark.png
+          Default@3x~universal~anyany.png
           splash-2732x2732-1.png
           splash-2732x2732-2.png
           splash-2732x2732.png
@@ -164,6 +218,11 @@ ios/
         contents.xcworkspacedata
       project.pbxproj
     CapApp-SPM/
+      .swiftpm/
+        xcode/
+          xcshareddata/
+            xcschemes/
+              CapApp-SPM.xcscheme
       Sources/
         CapApp-SPM/
           CapApp-SPM.swift
@@ -173,6 +232,7 @@ ios/
   .gitignore
   debug.xcconfig
 public/
+  manifest.webmanifest
   vite.svg
 src/
   assets/
@@ -475,16 +535,24 @@ public class MainActivity extends BridgeActivity {}
 <file path="android/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml">
 <?xml version="1.0" encoding="utf-8"?>
 <adaptive-icon xmlns:android="http://schemas.android.com/apk/res/android">
-    <background android:drawable="@color/ic_launcher_background"/>
-    <foreground android:drawable="@mipmap/ic_launcher_foreground"/>
+    <background>
+        <inset android:drawable="@mipmap/ic_launcher_background" android:inset="16.7%" />
+    </background>
+    <foreground>
+        <inset android:drawable="@mipmap/ic_launcher_foreground" android:inset="16.7%" />
+    </foreground>
 </adaptive-icon>
 </file>
 
 <file path="android/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml">
 <?xml version="1.0" encoding="utf-8"?>
 <adaptive-icon xmlns:android="http://schemas.android.com/apk/res/android">
-    <background android:drawable="@color/ic_launcher_background"/>
-    <foreground android:drawable="@mipmap/ic_launcher_foreground"/>
+    <background>
+        <inset android:drawable="@mipmap/ic_launcher_background" android:inset="16.7%" />
+    </background>
+    <foreground>
+        <inset android:drawable="@mipmap/ic_launcher_foreground" android:inset="16.7%" />
+    </foreground>
 </adaptive-icon>
 </file>
 
@@ -539,9 +607,8 @@ public class MainActivity extends BridgeActivity {}
 </file>
 
 <file path="android/app/src/main/AndroidManifest.xml">
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -549,7 +616,6 @@ public class MainActivity extends BridgeActivity {}
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
         <activity
             android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale|smallestScreenSize|screenLayout|uiMode|navigation|density"
             android:name=".MainActivity"
@@ -557,12 +623,10 @@ public class MainActivity extends BridgeActivity {}
             android:theme="@style/AppTheme.NoActionBarLaunch"
             android:launchMode="singleTask"
             android:exported="true">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
 
         <provider
@@ -570,9 +634,7 @@ public class MainActivity extends BridgeActivity {}
             android:authorities="${applicationId}.fileprovider"
             android:exported="false"
             android:grantUriPermissions="true">
-            <meta-data
-                android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/file_paths"></meta-data>
+            <meta-data android:name="android.support.FILE_PROVIDER_PATHS" android:resource="@xml/file_paths" />
         </provider>
     </application>
 
@@ -1283,43 +1345,76 @@ ext {
 
 <file path="ios/App/App/Assets.xcassets/AppIcon.appiconset/Contents.json">
 {
-  "images" : [
+  "images": [
     {
-      "filename" : "AppIcon-512@2x.png",
-      "idiom" : "universal",
-      "platform" : "ios",
-      "size" : "1024x1024"
+      "idiom": "universal",
+      "size": "1024x1024",
+      "filename": "AppIcon-512@2x.png",
+      "platform": "ios"
     }
   ],
-  "info" : {
-    "author" : "xcode",
-    "version" : 1
+  "info": {
+    "author": "xcode",
+    "version": 1
   }
 }
 </file>
 
 <file path="ios/App/App/Assets.xcassets/Splash.imageset/Contents.json">
 {
-  "images" : [
+  "images": [
     {
-      "idiom" : "universal",
-      "filename" : "splash-2732x2732-2.png",
-      "scale" : "1x"
+      "idiom": "universal",
+      "filename": "Default@1x~universal~anyany.png",
+      "scale": "1x"
     },
     {
-      "idiom" : "universal",
-      "filename" : "splash-2732x2732-1.png",
-      "scale" : "2x"
+      "idiom": "universal",
+      "filename": "Default@2x~universal~anyany.png",
+      "scale": "2x"
     },
     {
-      "idiom" : "universal",
-      "filename" : "splash-2732x2732.png",
-      "scale" : "3x"
+      "idiom": "universal",
+      "filename": "Default@3x~universal~anyany.png",
+      "scale": "3x"
+    },
+    {
+      "appearances": [
+        {
+          "appearance": "luminosity",
+          "value": "dark"
+        }
+      ],
+      "idiom": "universal",
+      "scale": "1x",
+      "filename": "Default@1x~universal~anyany-dark.png"
+    },
+    {
+      "appearances": [
+        {
+          "appearance": "luminosity",
+          "value": "dark"
+        }
+      ],
+      "idiom": "universal",
+      "scale": "2x",
+      "filename": "Default@2x~universal~anyany-dark.png"
+    },
+    {
+      "appearances": [
+        {
+          "appearance": "luminosity",
+          "value": "dark"
+        }
+      ],
+      "idiom": "universal",
+      "scale": "3x",
+      "filename": "Default@3x~universal~anyany-dark.png"
     }
   ],
-  "info" : {
-    "version" : 1,
-    "author" : "xcode"
+  "info": {
+    "version": 1,
+    "author": "xcode"
   }
 }
 </file>
@@ -1452,7 +1547,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
-	<string>DriveTracker</string>
+	<string>RoadRecord</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -1470,9 +1565,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>Drive Tracker deve accedere al GPS in background per continuare a registrare i chilometri anche se spegni lo schermo dell'iPhone.</string>
+	<string>RoadRecord deve accedere al GPS in background per continuare a registrare i chilometri anche se spegni lo schermo dell'iPhone.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Drive Tracker ha bisogno del GPS per mostrarti sulla mappa e calcolare la velocità mentre guidi.</string>
+	<string>RoadRecord ha bisogno del GPS per mostrarti sulla mappa e calcolare la velocità mentre guidi.</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>location</string>
@@ -1500,6 +1595,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<true/>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLName</key>
+			<string>com.alessandro.drivetracker</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>drivetracker</string>
+			</array>
+		</dict>
+	</array>
 </dict>
 </plist>
 </file>
@@ -1649,8 +1755,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		504EC2FC1FED79650016851F /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0920;
-				LastUpgradeCheck = 0920;
+				LastSwiftUpdateCheck = 920;
+				LastUpgradeCheck = 920;
 				TargetAttributes = {
 					504EC3031FED79650016851F = {
 						CreatedOnToolsVersion = 9.2;
@@ -1843,7 +1949,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = HP55SN9769;
+				DEVELOPMENT_TEAM = ZLQZRZDYUL;
 				INFOPLIST_FILE = App/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = ReadRecord;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.navigation";
@@ -1854,7 +1960,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 				);
 				MARKETING_VERSION = 1.0;
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" \"-DDEBUG\"";
-				PRODUCT_BUNDLE_IDENTIFIER = com.alessandro.drivetracker;
+				PRODUCT_BUNDLE_IDENTIFIER = com.gianluca.drivetracker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_VERSION = 5.0;
@@ -1868,7 +1974,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = HP55SN9769;
+				DEVELOPMENT_TEAM = ZLQZRZDYUL;
 				INFOPLIST_FILE = App/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = ReadRecord;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.navigation";
@@ -1878,7 +1984,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.alessandro.drivetracker;
+				PRODUCT_BUNDLE_IDENTIFIER = com.gianluca.drivetracker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "";
 				SWIFT_VERSION = 5.0;
@@ -1928,6 +2034,86 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 }
 </file>
 
+<file path="ios/App/CapApp-SPM/.swiftpm/xcode/xcshareddata/xcschemes/CapApp-SPM.xcscheme">
+<?xml version="1.0" encoding="UTF-8"?>
+<Scheme
+   LastUpgradeVersion = "1640"
+   version = "1.7">
+   <BuildAction
+      parallelizeBuildables = "YES"
+      buildImplicitDependencies = "YES"
+      buildArchitectures = "Automatic">
+      <BuildActionEntries>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "CapApp-SPM"
+               BuildableName = "CapApp-SPM"
+               BlueprintName = "CapApp-SPM"
+               ReferencedContainer = "container:">
+            </BuildableReference>
+         </BuildActionEntry>
+      </BuildActionEntries>
+   </BuildAction>
+   <TestAction
+      buildConfiguration = "Debug"
+      selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
+      selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
+      shouldUseLaunchSchemeArgsEnv = "YES"
+      shouldAutocreateTestPlan = "YES">
+   </TestAction>
+   <LaunchAction
+      buildConfiguration = "Debug"
+      selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
+      selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
+      launchStyle = "0"
+      useCustomWorkingDirectory = "NO"
+      ignoresPersistentStateOnLaunch = "NO"
+      debugDocumentVersioning = "YES"
+      debugServiceExtension = "internal"
+      allowLocationSimulation = "YES">
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "504EC3031FED79650016851F"
+            BuildableName = "App.app"
+            BlueprintName = "App"
+            ReferencedContainer = "container:../App.xcodeproj">
+         </BuildableReference>
+      </BuildableProductRunnable>
+   </LaunchAction>
+   <ProfileAction
+      buildConfiguration = "Release"
+      shouldUseLaunchSchemeArgsEnv = "YES"
+      savedToolIdentifier = ""
+      useCustomWorkingDirectory = "NO"
+      debugDocumentVersioning = "YES">
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "CapApp-SPM"
+            BuildableName = "CapApp-SPM"
+            BlueprintName = "CapApp-SPM"
+            ReferencedContainer = "container:">
+         </BuildableReference>
+      </MacroExpansion>
+   </ProfileAction>
+   <AnalyzeAction
+      buildConfiguration = "Debug">
+   </AnalyzeAction>
+   <ArchiveAction
+      buildConfiguration = "Release"
+      revealArchiveInOrganizer = "YES">
+   </ArchiveAction>
+</Scheme>
+</file>
+
 <file path="ios/App/CapApp-SPM/Sources/CapApp-SPM/CapApp-SPM.swift">
 public let isCapacitorApp = true
 </file>
@@ -1960,6 +2146,7 @@ let package = Package(
     dependencies: [
         .package(url: "https://github.com/ionic-team/capacitor-swift-pm.git", exact: "7.6.0"),
         .package(name: "CapacitorCommunityBackgroundGeolocation", path: "../../../node_modules/@capacitor-community/background-geolocation"),
+        .package(name: "CapacitorApp", path: "../../../node_modules/@capacitor/app"),
         .package(name: "CapacitorNetwork", path: "../../../node_modules/@capacitor/network"),
         .package(name: "CapacitorPreferences", path: "../../../node_modules/@capacitor/preferences")
     ],
@@ -1970,6 +2157,7 @@ let package = Package(
                 .product(name: "Capacitor", package: "capacitor-swift-pm"),
                 .product(name: "Cordova", package: "capacitor-swift-pm"),
                 .product(name: "CapacitorCommunityBackgroundGeolocation", package: "CapacitorCommunityBackgroundGeolocation"),
+                .product(name: "CapacitorApp", package: "CapacitorApp"),
                 .product(name: "CapacitorNetwork", package: "CapacitorNetwork"),
                 .product(name: "CapacitorPreferences", package: "CapacitorPreferences")
             ]
@@ -2004,6 +2192,55 @@ App/App/config.xml
 
 <file path="ios/debug.xcconfig">
 CAPACITOR_DEBUG = true
+</file>
+
+<file path="public/manifest.webmanifest">
+{
+  "icons": [
+    {
+      "src": "../icons/icon-48.webp",
+      "type": "image/png",
+      "sizes": "48x48",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "../icons/icon-72.webp",
+      "type": "image/png",
+      "sizes": "72x72",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "../icons/icon-96.webp",
+      "type": "image/png",
+      "sizes": "96x96",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "../icons/icon-128.webp",
+      "type": "image/png",
+      "sizes": "128x128",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "../icons/icon-192.webp",
+      "type": "image/png",
+      "sizes": "192x192",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "../icons/icon-256.webp",
+      "type": "image/png",
+      "sizes": "256x256",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "../icons/icon-512.webp",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "any maskable"
+    }
+  ]
+}
 </file>
 
 <file path="public/vite.svg">
@@ -2182,9 +2419,9 @@ const DefaultAvatar = ({ color, className }: { color: string, className?: string
 );
 
 export default function MapOverlay({ onLogout }: { onLogout?: () => void }) {
-  const { status, countdown, effectiveTime, currentSpeed, route, startCountdown, pauseTracking, resumeTracking, stopTracking } = useDriveTracker();
-  const mapRef = useRef<any>(null);
+  const { status, countdown, effectiveTime, pauseTime, currentSpeed, route, startCountdown, pauseTracking, resumeTracking, stopTracking } = useDriveTracker();
 
+  const mapRef = useRef<any>(null);
   const [activeView, setActiveView] = useState<'map' | 'menu' | 'history' | 'settings' | 'tripDetail' | 'stats' | 'garage' | 'leaderboard' | 'profile'>('map');
   const [selectedTrip, setSelectedTrip] = useState<any | null>(null);
   const [showReport, setShowReport] = useState(false);
@@ -2315,6 +2552,22 @@ export default function MapOverlay({ onLogout }: { onLogout?: () => void }) {
         setIsLoadingLeaderboard(false); 
       }).catch(() => setIsLoadingLeaderboard(false));
     }
+    // --- NUOVO: Scarica i viaggi veri dal database! ---
+    if (activeView === 'history') {
+      routeManager.getRoutes().then((data: any) => {
+        // Mappiamo i dati del DB nel formato che la UI si aspetta
+        const formattedHistory = data.map((route: any) => ({
+          id: route.id,
+          date: new Date(route.created_at).toLocaleDateString('it-IT', { day: '2-digit', month: 'short', hour: '2-digit', minute: '2-digit' }),
+          snapshot: route.snapshot_url,
+          distance: route.distance_km,
+          time: route.total_time_seconds,
+          maxSpeed: route.max_speed_kmh,
+          avgSpeed: route.avg_speed_kmh
+        }));
+        setHistory(formattedHistory);
+      });
+    }
   }, [activeView]);
 
   useEffect(() => {
@@ -2375,21 +2628,30 @@ export default function MapOverlay({ onLogout }: { onLogout?: () => void }) {
     const mapInstance = mapRef.current?.getMap();
     if (mapInstance && route.length > 1) { 
       const bounds = route.reduce((acc: number[], point: any) => [Math.min(acc[0], point.lng), Math.min(acc[1], point.lat), Math.max(acc[2], point.lng), Math.max(acc[3], point.lat)], [180, 90, -180, -90]);
-      mapInstance.fitBounds([[bounds[0], bounds[1]], [bounds[2], bounds[3]]], { padding: 50, duration: 1000 });
+      mapInstance.fitBounds([[bounds[0], bounds[1]], [bounds[2], bounds[3]]], { padding: 50, duration: 1000, maxZoom: 16 });
     }
+    
     setTimeout(() => {
       let snapshot = null;
       try { if (mapInstance) snapshot = mapInstance.getCanvas().toDataURL('image/png'); } catch(e) {}
       setMapSnapshot(snapshot);
-      const dist = calculateDistance(route); 
+      
+      // Protezioni Anti-Crash sui calcoli
+      const dist = (route && route.length > 1) ? calculateDistance(route) : 0; 
       const avgS = effectiveTime > 0 ? (dist / (effectiveTime / 3600)) : 0;
-      let maxS = route.length > 0 ? route[0].speed : 0;
-      for (let i = 1; i < route.length; i++) { 
-        if (Math.abs(route[i].speed - route[i - 1].speed) <= 20 && route[i].speed > maxS) maxS = route[i].speed; 
+      let maxS = (route && route.length > 0) ? (route[0].speed || 0) : 0;
+      
+      if (route && route.length > 1) {
+        for (let i = 1; i < route.length; i++) { 
+          if (Math.abs(route[i].speed - route[i - 1].speed) <= 20 && route[i].speed > maxS) maxS = route[i].speed; 
+        }
       }
-      setTripStats({ distance: dist, maxSpeed: maxS, avgSpeed: avgS, time: effectiveTime });
+      
+      // Aggiunto pauseTime per il cloud!
+      setTripStats({ distance: dist, maxSpeed: maxS, avgSpeed: avgS, time: effectiveTime, pause: pauseTime });
       setShowReport(true);
     }, route.length > 1 ? 1200 : 100); 
+    
     stopTracking();
   };
 
@@ -2406,45 +2668,40 @@ export default function MapOverlay({ onLogout }: { onLogout?: () => void }) {
   const handleDiscard = () => { if(window.confirm("Sicuro di voler scartare questo viaggio?")) resetForNewTrip(); };
   
   const handleSaveToCloud = async () => {
-    if (!tripStats || !mapSnapshot) return;
-    setIsSaving(true); 
     
+    if (!tripStats || !mapSnapshot) return;
+    setIsSaving(true);
     try {
-      const combinedTag = tripStartLoc && tripEndLoc ? `${tripStartLoc} ➔ ${tripEndLoc}` : tripStartLoc || tripEndLoc || '';
-
-      const statsToSave = {
+      await routeManager.saveRoute(mapSnapshot, {
         distance_km: tripStats.distance,
         avg_speed_kmh: tripStats.avgSpeed,
         max_speed_kmh: tripStats.maxSpeed,
         total_time_seconds: tripStats.time,
         driving_time_seconds: tripStats.time,
-        pause_time_seconds: 0,
-        tag: combinedTag
-      };
-
-      const result = await routeManager.saveRoute(mapSnapshot, statsToSave);
-
-      if (result.success) {
-        setHistory(prev => [{ 
-          id: Date.now().toString(), 
-          date: new Date().toLocaleDateString('it-IT', { day: '2-digit', month: 'short', hour: '2-digit', minute: '2-digit' }), 
-          snapshot: mapSnapshot, 
-          tag: combinedTag, 
-          ...tripStats 
-        }, ...prev]);
-        
-        resetForNewTrip(); 
-        setActiveView('history'); 
-      }
+        pause_time_seconds: tripStats.pause
+      });
+      resetForNewTrip();
+      setActiveView('history');
+      setShowReport(false);
     } catch (error) {
-      console.error("Errore fatale salvataggio percorso:", error);
-      alert("Errore di comunicazione col server. Riprova!");
+      console.error("Salvataggio fallito", error);
     } finally {
       setIsSaving(false);
     }
   };
 
-  const handleDeleteTrip = () => { if (selectedTrip && window.confirm("Eliminare?")) { setHistory(prev => prev.filter(t => t.id !== selectedTrip.id)); setActiveView('history'); setSelectedTrip(null); } };
+  const handleDeleteTrip = async () => { 
+    if (selectedTrip && window.confirm("Eliminare definitivamente questo viaggio?")) { 
+      try {
+        await routeManager.deleteRoute(selectedTrip.id);
+        setHistory(prev => prev.filter(t => t.id !== selectedTrip.id)); 
+        setActiveView('history'); 
+        setSelectedTrip(null); 
+      } catch (error) {
+        alert("Errore nell'eliminazione.");
+      }
+    } 
+  };
 
   const getThemeColors = () => {
     let hexPrimary = '#3b82f6'; let hexAccent = '#60a5fa';
@@ -2592,53 +2849,30 @@ export default function MapOverlay({ onLogout }: { onLogout?: () => void }) {
 
       {/* --- SCHERMATA RESOCONTO (CON DA-A) --- */}
       {showReport && tripStats && (
-        <div className={`absolute inset-0 z-50 backdrop-blur-md flex flex-col items-center p-6 pt-[env(safe-area-inset-top)] pb-[env(safe-area-inset-bottom)] animate-in fade-in zoom-in-95 duration-300 overflow-y-auto ${bgClass}`}>
-          <div className="w-full max-w-md mt-4">
-            <h2 className="text-3xl font-black mb-4 text-center tracking-tight">Viaggio Completato!</h2>
-            <div className="w-full h-40 bg-black rounded-3xl overflow-hidden shadow-2xl border border-white/10 relative">
-              {mapSnapshot ? <img src={mapSnapshot} alt="Snapshot" className="w-full h-full object-cover" /> : null}
+        <div className={`absolute inset-0 z-50 backdrop-blur-md flex flex-col items-center justify-between p-6 pt-[env(safe-area-inset-top)] pb-[env(safe-area-inset-bottom)] animate-in fade-in zoom-in-95 duration-300 ${bgClass}`}>
+          <div className="w-full max-w-md mt-8">
+            <h2 className="text-3xl font-black mb-6 text-center tracking-tight">Viaggio Completato!</h2>
+            
+            {/* La tua Mappa */}
+            <div className="w-full h-48 bg-black rounded-3xl overflow-hidden shadow-2xl border border-white/10 relative">
+              {mapSnapshot && <img src={mapSnapshot} alt="Snapshot" className="w-full h-full object-cover" />}
             </div>
             
-            <div className="grid grid-cols-2 gap-3 mt-4">
-              <div className={`${cardClass} p-4 rounded-2xl border`}><p className={`text-xs font-bold uppercase mb-1 ${subTextClass}`}>Distanza</p><p className="text-2xl font-black">{tripStats.distance.toFixed(2)} <span className="text-sm font-medium">km</span></p></div>
-              <div className={`${cardClass} p-4 rounded-2xl border`}><p className={`text-xs font-bold uppercase mb-1 ${subTextClass}`}>Tempo</p><p className="text-2xl font-black" style={{ color: hexPrimary }}>{formatTime(tripStats.time)}</p></div>
-              <div className={`${cardClass} p-4 rounded-2xl border`}><p className={`text-xs font-bold uppercase mb-1 ${subTextClass}`}>Media</p><p className="text-2xl font-black">{Math.round(tripStats.avgSpeed)} <span className="text-sm font-medium">km/h</span></p></div>
-              <div className={`${cardClass} p-4 rounded-2xl border`}><p className={`text-xs font-bold uppercase mb-1 ${subTextClass}`}>Vel Max</p><p className="text-2xl font-black text-red-500">{tripStats.maxSpeed.toFixed(1)} <span className="text-sm font-medium">km/h</span></p></div>
+            {/* I tuoi 4 Riquadri */}
+            <div className="grid grid-cols-2 gap-4 mt-6">
+              <div className={`${cardClass} p-4 rounded-2xl border`}><p className={`text-xs font-bold uppercase mb-1 ${subTextClass}`}>Distanza</p><p className="text-2xl font-black">{Number(tripStats.distance || 0).toFixed(2)} <span className="text-sm font-medium">km</span></p></div>
+              <div className={`${cardClass} p-4 rounded-2xl border`}><p className={`text-xs font-bold uppercase mb-1 ${subTextClass}`}>Tempo</p><p className="text-2xl font-black" style={{ color: hexPrimary }}>{formatTime(tripStats.time || 0)}</p></div>
+              <div className={`${cardClass} p-4 rounded-2xl border`}><p className={`text-xs font-bold uppercase mb-1 ${subTextClass}`}>Media</p><p className="text-2xl font-black">{Math.round(tripStats.avgSpeed || 0)} <span className="text-sm font-medium">km/h</span></p></div>
+              <div className={`${cardClass} p-4 rounded-2xl border`}><p className={`text-xs font-bold uppercase mb-1 ${subTextClass}`}>Vel Max</p><p className="text-2xl font-black text-red-500">{Number(tripStats.maxSpeed || 0).toFixed(1)} <span className="text-sm font-medium">km/h</span></p></div>
             </div>
-
-            {/* SEZIONE DA - A CON CHIPS */}
-            <div className="w-full mt-6">
-              <p className={`text-xs font-bold uppercase mb-2 ${subTextClass}`}>Etichetta Percorso</p>
-              
-              <div className="flex gap-2 mb-3">
-                <input type="text" placeholder="Da (es. Casa)" value={tripStartLoc} onChange={(e) => setTripStartLoc(e.target.value)} onFocus={() => setActiveTagInput('start')} className={`w-full p-4 rounded-2xl font-bold text-sm focus:outline-none border transition-all ${cardClass}`} style={activeTagInput === 'start' ? { borderColor: hexPrimary, boxShadow: `0 0 0 2px ${hexPrimary}33` } : {}} />
-                <div className="flex items-center justify-center"><svg className="w-6 h-6 text-zinc-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg></div>
-                <input type="text" placeholder="A (es. Uni)" value={tripEndLoc} onChange={(e) => setTripEndLoc(e.target.value)} onFocus={() => setActiveTagInput('end')} className={`w-full p-4 rounded-2xl font-bold text-sm focus:outline-none border transition-all ${cardClass}`} style={activeTagInput === 'end' ? { borderColor: hexPrimary, boxShadow: `0 0 0 2px ${hexPrimary}33` } : {}} />
-              </div>
-
-              <div className="flex flex-wrap gap-2">
-                {suggestedLocations.map((loc: string) => (
-                  <button 
-                    key={loc} 
-                    onClick={() => {
-                      if (activeTagInput === 'start') setTripStartLoc(loc);
-                      else setTripEndLoc(loc);
-                    }}
-                    className={`px-3 py-1.5 rounded-full text-xs font-bold border transition-colors ${isDarkMode ? 'border-zinc-700 text-zinc-400 bg-zinc-800 hover:bg-zinc-700' : 'border-gray-300 text-gray-600 bg-white hover:bg-gray-100 shadow-sm'}`}
-                  >
-                    {loc}
-                  </button>
-                ))}
-              </div>
-            </div>
-
           </div>
-
-          <div className="w-full max-w-md mt-auto pt-6 flex flex-col gap-3">
+          
+          {/* I tuoi Pulsanti Originali */}
+          <div className="w-full max-w-md mb-8 flex flex-col gap-3">
             <button onClick={handleSaveToCloud} disabled={isSaving} className={`w-full py-5 rounded-3xl font-black text-lg transition-all shadow-xl text-white ${isSaving ? 'opacity-50' : ''}`} style={{ backgroundColor: hexPrimary }}>
               {isSaving ? 'INVIO DATI...' : 'SALVA NEL CLOUD'}
             </button>
-            <button onClick={handleDiscard} disabled={isSaving} className={`w-full py-3 rounded-3xl font-bold transition-colors ${subTextClass} hover:text-red-500`}>Scarta Dati</button>
+            <button onClick={handleDiscard} disabled={isSaving} className={`w-full py-4 rounded-3xl font-bold transition-colors ${subTextClass} hover:text-red-500`}>Scarta Dati e Azzera</button>
           </div>
         </div>
       )}
@@ -2818,14 +3052,12 @@ export default function MapOverlay({ onLogout }: { onLogout?: () => void }) {
                   <div className="flex items-baseline gap-2"><span className="text-6xl font-black tracking-tighter">{globalStats.total_distance?.toFixed(1) || '0.0'}</span><span className="text-xl font-bold opacity-70">km</span></div>
                 </div>
                 <div className="grid grid-cols-2 gap-4">
-                  <div className={`p-5 rounded-2xl border shadow-lg flex flex-col justify-center ${cardClass}`}>
-                    <p className={`text-[10px] font-bold uppercase mb-1 ${subTextClass}`}>Velocità Massima</p>
-                    <p className="text-2xl font-black text-red-500">{globalStats.max_speed?.toFixed(1) || '0.0'} <span className="text-sm opacity-50">km/h</span></p>
-                  </div>
-                  <div className={`p-5 rounded-2xl border shadow-lg flex flex-col justify-center ${cardClass}`}>
-                    <p className={`text-[10px] font-bold uppercase mb-1 ${subTextClass}`}>Viaggio Più Lungo</p>
-                    <p className="text-2xl font-black" style={{ color: hexPrimary }}>{globalStats.longest_trip?.toFixed(1) || '0.0'} <span className="text-sm opacity-50">km</span></p>
-                  </div>
+                  <div className={`p-5 rounded-2xl border shadow-lg flex flex-col justify-center ${cardClass}`}><p className={`text-[10px] font-bold uppercase mb-1 ${subTextClass}`}>Velocità Massima</p><p className="text-2xl font-black text-red-500">{globalStats.max_speed?.toFixed(1) || '0.0'} <span className="text-sm opacity-50">km/h</span></p></div>
+                  <div className={`p-5 rounded-2xl border shadow-lg flex flex-col justify-center ${cardClass}`}><p className={`text-[10px] font-bold uppercase mb-1 ${subTextClass}`}>Media Globale</p><p className="text-2xl font-black" style={{ color: hexPrimary }}>{globalStats.avg_speed?.toFixed(0) || '0'} <span className="text-sm opacity-50">km/h</span></p></div>
+                  <div className={`p-5 rounded-2xl border shadow-lg flex flex-col justify-center ${cardClass}`}><p className={`text-[10px] font-bold uppercase mb-1 ${subTextClass}`}>Viaggio Più Lungo</p><p className="text-2xl font-black text-green-500">{globalStats.longest_trip?.toFixed(1) || '0.0'} <span className="text-sm opacity-50">km</span></p></div>
+                  <div className={`p-5 rounded-2xl border shadow-lg flex flex-col justify-center ${cardClass}`}><p className={`text-[10px] font-bold uppercase mb-1 ${subTextClass}`}>Tempo Totale</p><p className="text-2xl font-black" style={{ color: hexPrimary }}>{formatTime(globalStats.total_time || 0)}</p></div>
+                  <div className={`p-5 rounded-2xl border shadow-lg flex flex-col justify-center ${cardClass}`}><p className={`text-[10px] font-bold uppercase mb-1 ${subTextClass}`}>Viaggi Effettuati</p><p className="text-2xl font-black">{globalStats.total_trips || '0'}</p></div>
+                  <div className={`p-5 rounded-2xl border shadow-lg flex flex-col justify-center ${cardClass}`}><p className={`text-[10px] font-bold uppercase mb-1 ${subTextClass}`}>Tempo in Pausa</p><p className="text-2xl font-black text-yellow-500">{formatTime(globalStats.total_pause_time || 0)}</p></div>
                 </div>
               </>
             ) : (<div className="flex-1 flex items-center justify-center"><svg className="animate-spin w-8 h-8" style={{ color: hexPrimary }} fill="none" viewBox="0 0 24 24"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg></div>)}
@@ -3384,19 +3616,33 @@ export const routeManager = {
       }
     }
     await Preferences.set({ key: OFFLINE_KEY, value: JSON.stringify(failedRoutes) });
-  }
+  },
+
+  // Elimina un viaggio dal Database
+  async deleteRoute(routeId: string) {
+    const { error } = await supabase
+      .from('routes')
+      .delete()
+      .eq('id', routeId);
+
+    if (error) {
+      console.error("Errore durante l'eliminazione:", error);
+      throw error;
+    }
+    return true;
+  },
 };
 </file>
 
 <file path="src/services/spotifyManager.ts">
 // Il tuo VERO Client ID
 const CLIENT_ID = 'c4eeceee848d474db514637906f13e5d'; 
-const REDIRECT_URI = window.location.origin + '/'; 
+const REDIRECT_URI = 'drivetracker://callback/';
 
-// Costruiamo gli indirizzi ufficiali spezzandoli per evitare i filtri di censura
-const SPOTIFY_AUTH = 'https://' + 'accounts.spotify.com' + '/authorize?';
-const SPOTIFY_TOKEN = 'https://' + 'accounts.spotify.com' + '/api/token';
-const SPOTIFY_API = 'https://' + 'api.spotify.com' + '/v1/me/player/currently-playing';
+// --- INDIRIZZI UFFICIALI SPOTIFY ---
+const SPOTIFY_AUTH = 'https://accounts.spotify.com/authorize?';
+const SPOTIFY_TOKEN = 'https://accounts.spotify.com/api/token';
+const SPOTIFY_API = 'https://api.api.spotify.com/v1/me/player/currently-playing';
 
 // --- MOTORE CRITTOGRAFICO PKCE ---
 const generateRandomString = (length: number) => {
@@ -3509,7 +3755,37 @@ export const spotifyManager = {
       console.error("Errore fetch Spotify API:", err);
       return null;
     }
+  },
+  // 4. NUOVA: Funzione per l'app nativa
+  async extractTokenFromCode(code: string) {
+    const codeVerifier = window.localStorage.getItem('code_verifier');
+    if (!codeVerifier) return null;
+    
+    try {
+      const payload = new URLSearchParams({
+        client_id: CLIENT_ID,
+        grant_type: 'authorization_code',
+        code: code,
+        redirect_uri: REDIRECT_URI,
+        code_verifier: codeVerifier
+      });
+
+      const response = await fetch(SPOTIFY_TOKEN, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: payload
+      });
+
+      const data = await response.json();
+      if (data.access_token) {
+        return data.access_token; 
+      }
+    } catch (err) {
+      console.error('Errore PKCE Nativo:', err);
+    }
+    return null;
   }
+
 };
 </file>
 
@@ -3635,6 +3911,7 @@ import SplashScreen from './components/SplashScreen';
 import LoginScreen from './components/LoginScreen';
 import { spotifyManager } from './services/spotifyManager'; 
 import { authManager } from './services/authManager';
+import { App as CapApp } from '@capacitor/app';
 
 function App() {
   const [showSplash, setShowSplash] = useState(true);
@@ -3643,12 +3920,26 @@ function App() {
   useEffect(() => {
     // 1. Check Spotify Token (Ora gestito correttamente in asincrono!)
     const checkSpotifyToken = async () => {
+      
       const token = await spotifyManager.extractTokenFromUrl();
       if (token) {
         localStorage.setItem('spotifyToken', token);
         window.location.hash = ''; 
       }
+      
     };
+    // Ascolta il ritorno da Safari con lo Schema URL Personalizzato
+    CapApp.addListener('appUrlOpen', async (event) => {
+      // Cerchiamo il codice generato da Spotify nell'URL
+      const codeMatch = event.url.match(/code=([^&]+)/);
+      if (codeMatch) {
+        const token = await spotifyManager.extractTokenFromCode(codeMatch[1]);
+        if (token) {
+          localStorage.setItem('spotifyToken', token);
+          window.location.reload(); // Ricarichiamo l'app per mostrare la musica!
+        }
+      }
+    });
     checkSpotifyToken();
 
     // 2. AUTO-LOGIN 
@@ -3829,6 +4120,7 @@ export default defineConfig([
   "dependencies": {
     "@capacitor-community/background-geolocation": "^1.2.26",
     "@capacitor/android": "^7.6.0",
+    "@capacitor/app": "^7.1.2",
     "@capacitor/core": "^7.6.0",
     "@capacitor/ios": "^7.6.0",
     "@capacitor/network": "^7.0.4",
@@ -3840,6 +4132,7 @@ export default defineConfig([
     "react-map-gl": "^7.1.9"
   },
   "devDependencies": {
+    "@capacitor/assets": "^3.0.5",
     "@capacitor/cli": "^7.6.0",
     "@eslint/js": "^9.39.1",
     "@tailwindcss/vite": "^4.2.1",

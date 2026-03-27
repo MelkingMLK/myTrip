@@ -7,7 +7,7 @@ import { spotifyManager } from '../services/spotifyManager';
 import { routeManager } from '../services/routeManager';
 
 const MAPBOX_TOKEN = import.meta.env.VITE_MAPBOX_TOKEN;
-const CAR_BRANDS = ['Mercedes', 'Audi', 'Toyota', 'Citroen', 'BMW', 'Jeep', 'Tesla', 'Alfa'];
+const CAR_BRANDS = ['Base', 'Mercedes', 'Audi', 'Toyota', 'Citroen', 'BMW', 'Jeep', 'Tesla', 'Alfa', 'KTM'];
 
 const BRAND_SLUGS: Record<string, string> = {
   'Mercedes': 'mercedes', 'Audi': 'audi', 'Toyota': 'toyota', 'Citroen': 'citroen',
@@ -42,10 +42,40 @@ const DefaultAvatar = ({ color, className }: { color: string, className?: string
   </div>
 );
 
+/// PIANO A: Loghi SVG colorabili (SimpleIcons)
+const getBrandLogoUrl = (brand: string, hexColor: string) => {
+  const slugs: Record<string, string> = {
+    'Mercedes': 'mercedes',
+    'Audi': 'audi',
+    'Toyota': 'toyota',
+    'Citroen': 'citroen',
+    'BMW': 'bmw',
+    'Jeep': 'jeep',
+    'Tesla': 'tesla',
+    'KTM': 'ktm'
+  };
+  const slug = slugs[brand];
+  if (!slug) return null; // Forza il passaggio al Piano B
+  const cleanColor = hexColor.replace('#', '');
+  return `https://cdn.simpleicons.org/${slug}/${cleanColor}`;
+};
+
+// PIANO B: Loghi PNG reali (Fallback per Alfa Romeo e altri)
+const getFallbackLogoUrl = (brand: string) => {
+  const slugs: Record<string, string> = {
+    'Mercedes': 'mercedes-benz',
+    'Alfa': 'alfa-romeo',
+    'KTM': 'ktm'
+  };
+  const finalSlug = slugs[brand] || brand.toLowerCase();
+  return `https://raw.githubusercontent.com/filippofilip95/car-logos-dataset/master/logos/optimized/${finalSlug}.png`;
+};
+
 export default function MapOverlay({ onLogout }: { onLogout?: () => void }) {
   const { status, countdown, effectiveTime, pauseTime, currentSpeed, route, startCountdown, pauseTracking, resumeTracking, stopTracking } = useDriveTracker();
 
   const mapRef = useRef<any>(null);
+  const geoControlRef = useRef<any>(null);
   const [activeView, setActiveView] = useState<'map' | 'menu' | 'history' | 'settings' | 'tripDetail' | 'stats' | 'garage' | 'leaderboard' | 'profile'>('map');
   const [selectedTrip, setSelectedTrip] = useState<any | null>(null);
   const [showReport, setShowReport] = useState(false);
@@ -59,7 +89,7 @@ export default function MapOverlay({ onLogout }: { onLogout?: () => void }) {
   const [customPrimary, setCustomPrimary] = useState(() => localStorage.getItem('rr_custom1') || '#10b981');
   const [customAccent, setCustomAccent] = useState(() => localStorage.getItem('rr_custom2') || '#f59e0b');
   
-  const [carBrand, setCarBrand] = useState(() => localStorage.getItem('rr_carBrand') || 'Audi');
+  const [carBrand, setCarBrand] = useState(() => localStorage.getItem('rr_carBrand') || 'Base');
   const [carColor, setCarColor] = useState(() => localStorage.getItem('rr_carColor') || '#3b82f6');
   const [carLogo, setCarLogo] = useState(() => localStorage.getItem('rr_carLogo') || DEFAULT_ARROW);
   
@@ -98,6 +128,16 @@ export default function MapOverlay({ onLogout }: { onLogout?: () => void }) {
   const availableFilterTags = Array.from(new Set(history.map(t => t.tag).filter(Boolean)));
 
   const currentPos = route.length > 0 ? route[route.length - 1] : null;
+  const [livePos, setLivePos] = useState<any>(null); // Salva la posizione da fermi
+  const markerPos = (status === 'tracking' || status === 'paused') ? (currentPos || livePos) : livePos;
+  // NUOVO: Accende il pallino blu in automatico all'avvio
+  useEffect(() => {
+    // Aspetta 1 secondo che la mappa si carichi, poi "preme" il pulsante del GPS
+    const timer = setTimeout(() => {
+      geoControlRef.current?.trigger();
+    }, 1000);
+    return () => clearTimeout(timer);
+  }, []);
 
   useEffect(() => {
     const loadUserData = async () => {
@@ -375,17 +415,46 @@ export default function MapOverlay({ onLogout }: { onLogout?: () => void }) {
     <div className={`relative h-screen w-screen overflow-hidden transition-colors duration-500 ${bgClass} ${textClass}`}>
       
       <Map ref={mapRef} initialViewState={{ longitude: 8.8251, latitude: 45.8206, zoom: 13 }} mapStyle={isDarkMode ? "mapbox://styles/mapbox/dark-v11" : "mapbox://styles/mapbox/light-v11"} mapboxAccessToken={MAPBOX_TOKEN} preserveDrawingBuffer={true}>
-        <GeolocateControl positionOptions={{ enableHighAccuracy: true }} trackUserLocation showUserHeading position="bottom-right" />
+        <GeolocateControl 
+          ref={geoControlRef} 
+          positionOptions={{ enableHighAccuracy: true }} 
+          trackUserLocation 
+          showUserHeading 
+          showUserLocation={false} 
+          onGeolocate={(e: any) => setLivePos({ lat: e.coords.latitude, lng: e.coords.longitude })}
+          position="bottom-right" 
+        />
         <NavigationControl position="bottom-right" />
         {route.length > 1 && <Source id="route-source" type="geojson" data={routeGeoJSON}><Layer id="route-layer" type="line" layout={{ 'line-join': 'round', 'line-cap': 'round' }} paint={{ 'line-color': ['get', 'color'], 'line-width': 6 }} /></Source>}
 
-        {currentPos && (
-          <Marker longitude={currentPos.lng} latitude={currentPos.lat} anchor="center">
+        {markerPos && (
+          <Marker longitude={markerPos.lng} latitude={markerPos.lat} anchor="center">
             <div className="relative flex items-center justify-center drop-shadow-xl transition-all">
+              {/* L'onda che pulsa sotto (uguale per tutti) */}
               <div className="absolute h-10 w-10 animate-ping rounded-full opacity-40" style={{ backgroundColor: carColor }}></div>
-              <div className="relative z-10 h-10 w-10 rounded-full border-4 flex items-center justify-center bg-black overflow-hidden shadow-lg" style={{ borderColor: carColor, color: carColor }}>
-                 <div className="flex items-center justify-center w-5 h-5 [&>svg]:w-full [&>svg]:h-full [&>svg]:fill-current" dangerouslySetInnerHTML={{ __html: carLogo }} />
-              </div>
+              
+              {/* Condizione: Pallino Base oppure Logo Auto VERO */}
+              {carBrand === 'Base' ? (
+                <div className="relative z-10 h-5 w-5 rounded-full border-2 border-white shadow-lg" style={{ backgroundColor: carColor }}></div>
+              ) : (
+                <div className="relative z-10 h-10 w-10 rounded-full border-4 flex items-center justify-center bg-white overflow-hidden shadow-lg" style={{ borderColor: carColor }}>
+                   <img 
+                     src={getBrandLogoUrl(carBrand, carColor) || getFallbackLogoUrl(carBrand)} 
+                     alt={carBrand} 
+                     className="w-5 h-5 object-contain" 
+                     onError={(e) => {
+                       // Se fallisce anche il primo caricamento (es. Alfa), prova il fallback PNG
+                       const fallback = getFallbackLogoUrl(carBrand);
+                       if (e.currentTarget.src !== fallback) {
+                         e.currentTarget.src = fallback;
+                       } else {
+                         // Se falliscono entrambi, metti le 3 lettere come ultima spiaggia
+                         e.currentTarget.outerHTML = `<span class="text-[9px] font-black text-black uppercase tracking-tighter leading-none">${carBrand.substring(0, 3)}</span>`;
+                       }
+                     }}
+                   />
+                </div>
+              )}
             </div>
           </Marker>
         )}
@@ -643,8 +712,27 @@ export default function MapOverlay({ onLogout }: { onLogout?: () => void }) {
               <p className={`text-sm font-bold uppercase mb-4 tracking-wider ${subTextClass}`}>Costruttore Auto</p>
               <div className="grid grid-cols-4 gap-3">
                 {CAR_BRANDS.map((brand: string) => (
-                  <button key={brand} onClick={() => handleBrandChange(brand)} className={`flex flex-col items-center justify-center p-3 rounded-2xl border-2 transition-all ${cardClass}`} style={carBrand === brand ? { borderColor: hexPrimary, color: hexPrimary, backgroundColor: `${hexPrimary}11` } : { borderColor: 'transparent' }}>
-                    <span className="text-xs font-bold truncate w-full text-center">{brand.substring(0,3).toUpperCase()}</span>
+                  <button key={brand} onClick={() => setCarBrand(brand)} className={`flex flex-col items-center justify-center p-3 rounded-2xl border-2 transition-all ${cardClass}`} style={carBrand === brand ? { borderColor: hexPrimary, color: hexPrimary, backgroundColor: `${hexPrimary}11` } : { borderColor: 'transparent' }}>
+                    {brand === 'Base' ? (
+                       <span className="text-[10px] font-black truncate w-full text-center">BASE</span>
+                    ) : (
+                       <>
+                         <img 
+                           src={getBrandLogoUrl(brand, isDarkMode ? 'ffffff' : '000000') || getFallbackLogoUrl(brand)} 
+                           alt={brand} 
+                           className="w-8 h-8 object-contain mb-1 opacity-80" 
+                           onError={(e) => {
+                             const fallback = getFallbackLogoUrl(brand);
+                             if (e.currentTarget.src !== fallback) {
+                               e.currentTarget.src = fallback;
+                             } else {
+                               e.currentTarget.style.display = 'none';
+                             }
+                           }}
+                         />
+                         <span className={`text-[9px] font-bold uppercase tracking-wider ${subTextClass}`}>{brand}</span>
+                       </>
+                    )}
                   </button>
                 ))}
               </div>
